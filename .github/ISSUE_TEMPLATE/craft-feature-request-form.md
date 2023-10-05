@@ -2,7 +2,7 @@
 name: Craft Feature Request Form
 about: Suggest an idea to help enhance the Craft project
 title: 'FEAT REQ: <TITLE>'
-labels: ''
+labels: Feature Request
 assignees: ''
 
 ---

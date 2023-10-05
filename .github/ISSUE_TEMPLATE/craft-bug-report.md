@@ -2,7 +2,7 @@
 name: Craft Bug Report
 about: Create a report to help us identify and fix bugs
 title: 'BUG: <TITLE>'
-labels: ''
+labels: Bug
 assignees: ''
 
 ---
