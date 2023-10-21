@@ -4,14 +4,22 @@
 }
 
 .Link {
-    font-size: 1.2em;
-    margin: 0px 5px;
+    font-size: 1.3em;
+    margin: auto 10px;
+}
+
+.Active {
+    color: #f8c133;
 }
 
 @media (max-width: 768px) {
 
-        .buttonStyle {
-            width: max-content;
-            margin-left: auto;
-        }
+    .Link {
+        margin-top: 10px;
+    }
+
+    .buttonStyle {
+        width: max-content;
+        margin-left: auto;
+    }
 }
