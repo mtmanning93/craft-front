@@ -8,7 +8,7 @@ const SignUpForm = () => {
   const [signUpData, setSignUpData] = useState({
     username: "",
     password1: "",
-    password2: ""
+    password2: "",
   });
 
   const { username, password1, password2 } = signUpData;
@@ -73,6 +73,12 @@ const SignUpForm = () => {
               onChange={handleChange}
             />
           </Form.Group>
+          {errors.password1?.map((message, idx) => (
+            <Alert variant="warning" key={idx}>
+              {message}
+            </Alert>
+          ))}
+
           <Form.Group controlId="password2">
             <Form.Label className="d-none">Confirm password</Form.Label>
             <Form.Control
@@ -83,10 +89,22 @@ const SignUpForm = () => {
               onChange={handleChange}
             />
           </Form.Group>
+          {errors.password2?.map((message, idx) => (
+            <Alert variant="warning" key={idx}>
+              {message}
+            </Alert>
+          ))}
+
           {/* make button seperate component? */}
           <Button variant="warning" size="md" type="submit" block>
             Sign Up!
           </Button>
+          {errors.non_field_errors?.map((message, idx) => (
+            <Alert variant="warning" key={idx}>
+              {message}
+            </Alert>
+          ))}
+
         </Form>
         <p>
           Already have an account? <Link to="/login">Login here.</Link>
