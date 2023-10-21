@@ -1,0 +1,17 @@
+.NavBar {
+    background-color: #ffffff;
+    border-bottom: 1px solid #d9d9d9;
+}
+
+.Link {
+    font-size: 1.2em;
+    margin: 0px 5px;
+}
+
+@media (max-width: 768px) {
+
+        .buttonStyle {
+            width: max-content;
+            margin-left: auto;
+        }
+}

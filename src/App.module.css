@@ -1,0 +1,14 @@
+.App {
+    font-family: 'Titillium Web', sans-serif;
+    background-color: #f8f8f8;
+    min-height: 100vh;
+}
+
+a {
+    color: #000000;
+    transition: color ease-in-out 0.2s;
+}
+
+a:hover {
+    text-decoration: none;
+}
