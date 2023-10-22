@@ -1,6 +1,7 @@
 .NavBar {
     background-color: #ffffff;
     border-bottom: 1px solid #d9d9d9;
+    padding: 10px 20px;
 }
 
 .Link {
@@ -25,5 +26,16 @@
     .buttonStyle {
         width: max-content;
         margin-left: auto;
+    }
+}
+
+@media (max-width: 435px) {
+
+    .NavBar {
+        justify-content: center;
+    }
+
+    .Logo img {
+        height: 50px;
     }
 }

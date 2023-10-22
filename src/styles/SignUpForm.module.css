@@ -27,6 +27,10 @@
     color: #ffffff;
 }
 
+.LoginLink {
+    color: #ffc422;
+}
+
 @media (max-width: 576px) {
 
     .FormWrapper {
