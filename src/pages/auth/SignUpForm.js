@@ -3,6 +3,7 @@ import { Row, Col, Form, Button, Alert } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import icon from "../../assets/icon_nobg.png";
 import axios from "axios";
+import styles from "../../styles/SignUpForm.module.css";
 
 const SignUpForm = () => {
   const [signUpData, setSignUpData] = useState({
@@ -28,7 +29,7 @@ const SignUpForm = () => {
     event.preventDefault();
     try {
       await axios.post("/dj-rest-auth/registration/", signUpData);
-      history.push("/signin");
+      history.push("/login");
     } catch (err) {
       setErrors(err.response?.data);
     }
@@ -36,9 +37,9 @@ const SignUpForm = () => {
 
   return (
     <Row>
-      <Col className="m-auto text-center" md={6}>
+      <Col className={`mx-auto text-center ${styles.FormWrapper}`} md={6}>
         <img src={icon} alt="site icon" />
-        <h1>
+        <h1 className={styles.Heading}>
           Love your craft?
           <br />
           Share your craft!
@@ -50,8 +51,9 @@ const SignUpForm = () => {
           <Form.Group controlId="username">
             <Form.Label className="d-none">Username</Form.Label>
             <Form.Control
+              className={styles.Input}
               type="text"
-              placeholder="Enter a username"
+              placeholder="Enter Username"
               name="username"
               value={username}
               onChange={handleChange}
@@ -66,6 +68,7 @@ const SignUpForm = () => {
           <Form.Group controlId="password1">
             <Form.Label className="d-none">Password</Form.Label>
             <Form.Control
+              className={styles.Input}
               type="password"
               placeholder="Password"
               name="password1"
@@ -82,6 +85,7 @@ const SignUpForm = () => {
           <Form.Group controlId="password2">
             <Form.Label className="d-none">Confirm password</Form.Label>
             <Form.Control
+              className={styles.Input}
               type="password"
               placeholder="Confirm password"
               name="password2"
@@ -96,15 +100,14 @@ const SignUpForm = () => {
           ))}
 
           {/* make button seperate component? */}
-          <Button variant="warning" size="md" type="submit" block>
+          <Button className={styles.Button} variant="warning" size="md" type="submit" block>
             Sign Up!
           </Button>
           {errors.non_field_errors?.map((message, idx) => (
-            <Alert variant="warning" key={idx}>
+            <Alert variant="warning" key={idx} className="mt-3">
               {message}
             </Alert>
           ))}
-
         </Form>
         <p>
           Already have an account? <Link to="/login">Login here.</Link>

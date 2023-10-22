@@ -1,0 +1,37 @@
+.FormWrapper {
+    border: 1px solid #757575;
+    border-radius: 5px;
+    margin-top: 10px;
+    background-color: #ffffff;
+}
+
+.Heading {
+    font-weight: 700;
+}
+
+.Input {
+    text-align: center;
+    background: #ffffff;
+    border: 1px solid #cccccc;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    color: #000000;
+}
+
+.Button {
+    font-weight: 700;
+}
+
+.Button:hover {
+    color: #ffffff;
+}
+
+@media (max-width: 576px) {
+
+    .FormWrapper {
+        border-radius: 0;
+        border-left: 0;
+        border-right: 0;
+    }
+}

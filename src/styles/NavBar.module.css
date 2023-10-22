@@ -12,6 +12,10 @@
     color: #f8c133;
 }
 
+.buttonStyle:hover {
+    color: #ffffff;
+}
+
 @media (max-width: 768px) {
 
     .Link {
