@@ -4,11 +4,13 @@ import { Container } from "react-bootstrap";
 import { Route, Switch } from "react-router-dom";
 import './api/axiosDefaults';
 import SignUpForm from "./pages/auth/SignUpForm";
+import Header from "./components/Header";
 
 function App() {
   return (
     <div className={styles.App}>
       <NavBar />
+      <Header />
       <Container>
         <Switch>
           <Route exact path="/" render={() => <h1>Home</h1>} />
