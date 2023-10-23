@@ -4,6 +4,7 @@ import { Nav, Navbar, Button } from "react-bootstrap";
 import logo from "../assets/main_logo.png";
 import { NavLink } from "react-router-dom";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
+import Avatar from "./Avatar";
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
@@ -35,7 +36,24 @@ const NavBar = () => {
       </NavLink>
     </>
   );
-  const loggedInLinks = <>{currentUser?.username}</>;
+  const loggedInLinks = (
+    <>
+      <NavLink
+        to="/"
+        onClick={() => {}}
+        className={styles.Link}
+      >
+        Logout
+      </NavLink>
+      <NavLink
+        to={`/profiles/${currentUser?.profile_id}`}
+        onClick={() => {}}
+        className={styles.Link}
+      >
+        <Avatar src={currentUser?.profile_image} text="Profile" height={40} />
+      </NavLink>
+    </>
+  );
 
   return (
     <Navbar expand="md" className={`${styles.NavBar}`}>
