@@ -1,3 +1,4 @@
+import React from "react";
 import styles from "../styles/NavBar.module.css";
 import { Nav, Navbar, Button } from "react-bootstrap";
 import logo from "../assets/main_logo.png";
@@ -58,14 +59,14 @@ const NavBar = () => {
   const loggedInLinks = (
     <>
       <NavLink to="/" onClick={handleLogOut} className={styles.Link}>
-        Logout
+        logout
       </NavLink>
       <NavLink
         to={`/profiles/${currentUser?.profile_id}`}
         onClick={() => {}}
         className={styles.Link}
       >
-        <Avatar src={currentUser?.profile_image} text="Profile" height={40} />
+        <Avatar src={currentUser?.profile_image} text={currentUser?.username} height={40} />
       </NavLink>
     </>
   );
