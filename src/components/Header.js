@@ -1,39 +1,44 @@
 import React from "react";
 import { Nav } from "react-bootstrap";
 import styles from "../styles/Header.module.css";
-import { LinkContainer } from "react-router-bootstrap";
+import { NavLink } from "react-router-dom";
 
 const Header = () => {
   return (
-    <Nav justify variant="tabs">
-      <Nav.Item>
-        <LinkContainer exact to="/">
-          <Nav.Link eventKey="home">
-            <i class="fa-solid fa-magnifying-glass"></i>Discover
-          </Nav.Link>
-        </LinkContainer>
-      </Nav.Item>
-      <Nav.Item>
-        <LinkContainer to="/signup">
-          <Nav.Link eventKey="feed">
-            <i class="fa-solid fa-user-group"></i>Feed
-          </Nav.Link>
-        </LinkContainer>
-      </Nav.Item>
-      <Nav.Item>
-        <LinkContainer to="/liked">
-          <Nav.Link eventKey="liked">
-            <i class="fa-solid fa-heart"></i>Liked
-          </Nav.Link>
-        </LinkContainer>
-      </Nav.Item>
-      <Nav.Item>
-        <LinkContainer to="/top">
-          <Nav.Link eventKey="top">
-            <i class="fa-solid fa-ranking-star"></i>Top
-          </Nav.Link>
-        </LinkContainer>
-      </Nav.Item>
+    <Nav justify className={styles.Header} activeKey="/home">
+      <NavLink
+        exact
+        to="/"
+        className={styles.HeaderTab}
+        activeClassName={styles.Active}
+      >
+        <i className="fa-solid fa-magnifying-glass"></i>
+        <span className={styles.TabName}>Discover</span>
+      </NavLink>
+      <NavLink
+        to="/feed"
+        className={styles.HeaderTab}
+        activeClassName={styles.Active}
+      >
+        <i className="fa-solid fa-user-group"></i>
+        <span className={styles.TabName}>Feed</span>
+      </NavLink>
+      <NavLink
+        to="/liked"
+        className={styles.HeaderTab}
+        activeClassName={styles.Active}
+      >
+        <i className="fa-solid fa-heart"></i>
+        <span className={styles.TabName}>Liked</span>
+      </NavLink>
+      <NavLink
+        to="/signup"
+        className={styles.HeaderTab}
+        activeClassName={styles.Active}
+      >
+        <i className="fa-solid fa-ranking-star"></i>
+        <span className={styles.TabName}>Top</span>
+      </NavLink>
     </Nav>
   );
 };
