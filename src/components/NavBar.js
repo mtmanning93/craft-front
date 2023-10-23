@@ -1,10 +1,42 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "../styles/NavBar.module.css";
 import { Nav, Navbar, Button } from "react-bootstrap";
 import logo from "../assets/main_logo.png";
 import { NavLink } from "react-router-dom";
+import { CurrentUserContext } from "../App";
 
 const NavBar = () => {
+  const currentUser = useContext(CurrentUserContext);
+  const loggedOutLinks = (
+    <>
+      <NavLink
+        exact
+        to="/"
+        className={styles.Link}
+        activeClassName={styles.Active}
+      >
+        Home
+      </NavLink>
+      <NavLink
+        to="/login"
+        className={styles.Link}
+        activeClassName={styles.Active}
+      >
+        Login
+      </NavLink>
+      <NavLink to="/signup">
+        {/* Button to be seperate component */}
+        <Button
+          className={`${styles.Link} ${styles.buttonStyle} mr-0`}
+          variant="warning"
+        >
+          <i className="fas fa-user-plus"></i> Sign up
+        </Button>
+      </NavLink>
+    </>
+  );
+  const loggedInLinks = <>{currentUser?.username}</>;
+
   return (
     <Navbar expand="md" className={`${styles.NavBar}`}>
       <NavLink to="/">
@@ -18,30 +50,7 @@ const NavBar = () => {
       />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto text-right">
-          <NavLink
-            exact
-            to="/"
-            className={styles.Link}
-            activeClassName={styles.Active}
-          >
-            Home
-          </NavLink>
-          <NavLink
-            to="/login"
-            className={styles.Link}
-            activeClassName={styles.Active}
-          >
-            Login
-          </NavLink>
-          <NavLink to="/signup">
-            {/* Button to be seperate component */}
-            <Button
-              className={`${styles.Link} ${styles.buttonStyle} mr-0`}
-              variant="warning"
-            >
-              <i className="fas fa-user-plus"></i> Sign up
-            </Button>
-          </NavLink>
+          {currentUser ? loggedInLinks : loggedOutLinks}
         </Nav>
       </Navbar.Collapse>
     </Navbar>
