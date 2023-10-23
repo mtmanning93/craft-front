@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 
 const Header = () => {
   return (
-    <Nav justify className={styles.Header} activeKey="/home">
+    <Nav justify className={`bg-none ${styles.Header}`}>
       <NavLink
         exact
         to="/"
@@ -32,7 +32,7 @@ const Header = () => {
         <span className={styles.TabName}>Liked</span>
       </NavLink>
       <NavLink
-        to="/signup"
+        to="/top"
         className={styles.HeaderTab}
         activeClassName={styles.Active}
       >

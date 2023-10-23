@@ -1,6 +1,7 @@
 .Header {
   justify-content: space-evenly;
   padding: 0 5px 0 5px;
+  background-color: #ffffff;
 }
 
 .HeaderTab {
