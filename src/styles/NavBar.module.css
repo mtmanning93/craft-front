@@ -12,6 +12,10 @@
     margin: auto 10px;
 }
 
+.CreatePostBtn {
+    margin: 0 20px;
+}
+
 .CreatePostBtn i {
     padding-left: 8px;
 }
@@ -35,14 +39,30 @@
 
 @media (max-width: 768px) {
 
-    .Link {
+    /* .Link {
         margin-top: 10px;
-    }
+    } */
 
     .NavBtn {
         width: max-content;
         margin-left: auto;
     }
+
+    .CreatePostBtn i {
+        padding-left: 0;
+    }
+}
+
+@media (max-width: 576px) {
+
+    .NavBar {
+        padding: 10px;
+    }
+
+    .Link {
+        margin: 0;
+    }
+
 }
 
 @media (max-width: 435px) {

@@ -33,10 +33,13 @@ const NavBar = () => {
         variant="warning"
         size="md"
         type="button"
-        text={<span>Build Post <i class="fa-solid fa-plus"></i></span>}
+        text={
+          <>
+            <span className="d-none d-md-block">Build Post</span><i class="fa-solid fa-plus"></i>
+          </>
+        }
         className={styles.CreatePostBtn}
-      >
-      </ActionButton>
+      ></ActionButton>
     </NavLink>
   );
 
@@ -100,7 +103,6 @@ const NavBar = () => {
 
   const loggedInLinks = (
     <>
-      {currentUser && createPostBtn}
       <NavDropdown
         title={
           <Avatar
@@ -109,7 +111,7 @@ const NavBar = () => {
             height={50}
           />
         }
-        className={`d-none d-sm-block ${styles.UserDropdown}`}
+        className={`d-none d-md-block ${styles.UserDropdown}`}
       >
         <NavLink
           to={`/profiles/${currentUser?.profile_id}`}
@@ -129,7 +131,7 @@ const NavBar = () => {
       <NavLink
         to={`/profiles/${currentUser?.profile_id}`}
         onClick={() => {}}
-        className={`d-block d-sm-none ${styles.Link}`}
+        className={`d-block d-md-none ${styles.Link}`}
         activeClassName={styles.Active}
       >
         Profile
@@ -137,7 +139,7 @@ const NavBar = () => {
       <NavLink
         to="/"
         onClick={handleLogOut}
-        className={`d-block d-sm-none ${styles.Link}`}
+        className={`d-block d-md-none ${styles.Link}`}
       >
         Logout
       </NavLink>
@@ -151,6 +153,7 @@ const NavBar = () => {
           <img src={logo} alt="logo" height="60" className={styles.Logo} />
         </Navbar.Brand>
       </NavLink>
+      {currentUser && createPostBtn}
       {currentUser ? loggedInToggler : loggedOutToggler}
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto text-right">

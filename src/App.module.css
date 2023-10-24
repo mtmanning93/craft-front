@@ -13,3 +13,9 @@ a:hover {
     text-decoration: none;
     color: #f8c133;
 }
+
+.Content {
+    background-color: #f3f3f3;
+    padding: 10px;
+    border: 1px solid #4682B4;
+}
