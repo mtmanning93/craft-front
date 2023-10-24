@@ -8,6 +8,19 @@
     margin: auto 10px;
 }
 
+.UserDropdown {
+    font-size: 1.3em;
+    color: #000000;
+}
+
+.ProfileToggler {
+    border: none;
+}
+
+.dropdown-menu {
+    text-align: center;
+}
+
 .Active {
     color: #f8c133;
 }
@@ -31,6 +44,12 @@
     }
 
     .Logo img {
+        height: 50px;
+    }
+}
+
+@media (max-width: 435px) {
+    .Logo {
         height: 50px;
     }
 }
