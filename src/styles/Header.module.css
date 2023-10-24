@@ -4,6 +4,10 @@
   background-color: #ffffff;
 }
 
+.HeaderBorder {
+  border-right: 2px solid #c2c2c2;
+}
+
 .HeaderTab {
   font-size: 1.2em;
   padding: 10px 0;
@@ -26,5 +30,8 @@
 @media (max-width: 576px) {
   .TabName {
     display: none;
+  }
+  .HeaderBorder {
+    border-right: none;
   }
 }

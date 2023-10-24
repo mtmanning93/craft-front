@@ -82,7 +82,6 @@ const NavBar = () => {
   const loggedInLinks = (
     <>
       <NavDropdown
-        menuAlign="right"
         title={
           <Avatar
             src={currentUser?.profile_image}

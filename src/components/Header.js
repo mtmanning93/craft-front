@@ -1,11 +1,36 @@
 import React from "react";
-import { Nav } from "react-bootstrap";
+import { Col, Row, Nav } from "react-bootstrap";
 import styles from "../styles/Header.module.css";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { useCurrentUser } from "../contexts/CurrentUserContext";
 
 const Header = () => {
-  return (
-    <Nav justify className={`bg-none ${styles.Header}`}>
+  const currentUser = useCurrentUser();
+
+  const loggedOutHeader = (
+    <Row className={`flex-column flex-sm-row p-3 bg-none ${styles.Header}`}>
+      <Col className={`${styles.HeaderBorder} text-start text-lg-center col`}>
+        <h2>Welcome to Craft social!</h2>
+      </Col>
+      <Col className={styles.HeaderBorder}>
+        <p>
+          A network where craft is appreciated, showcased and celebrated.
+          <br />
+          <Link to="/signup"><strong>Sign up</strong></Link> now to join the community!
+        </p>
+      </Col>
+      <Col className="d-none d-sm-block" sm={3}>
+        <ul>
+          <li>Gain profile approvals</li>
+          <li>Share your hardwork</li>
+          <li>Join the conversation</li>
+        </ul>
+      </Col>
+    </Row>
+  );
+
+  const loggedInHeader = (
+    <Nav justify className={`pt-3 bg-none ${styles.Header}`}>
       <NavLink
         exact
         to="/"
@@ -41,6 +66,8 @@ const Header = () => {
       </NavLink>
     </Nav>
   );
+
+  return currentUser ? loggedInHeader : loggedOutHeader;
 };
 
 export default Header;

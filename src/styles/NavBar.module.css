@@ -43,13 +43,4 @@
         justify-content: center;
     }
 
-    .Logo img {
-        height: 50px;
-    }
-}
-
-@media (max-width: 435px) {
-    .Logo {
-        height: 50px;
-    }
 }
