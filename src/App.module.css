@@ -17,5 +17,7 @@ a:hover {
 .Content {
     background-color: #f3f3f3;
     padding: 10px;
-    border: 1px solid #4682B4;
+    margin: 10px 0;
+    border: 1px solid #6c6c6c;
+    border-radius: 2px;
 }

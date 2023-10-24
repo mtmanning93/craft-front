@@ -35,7 +35,7 @@ const NavBar = () => {
         type="button"
         text={
           <>
-            <span className="d-none d-md-block">Build Post</span><i class="fa-solid fa-plus"></i>
+            <span className="d-none d-md-block">Build Post</span><i className="fa-solid fa-plus"></i>
           </>
         }
         className={styles.CreatePostBtn}
