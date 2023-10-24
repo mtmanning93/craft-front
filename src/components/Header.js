@@ -10,7 +10,7 @@ const Header = () => {
   const loggedOutHeader = (
     <Row className={`flex-column flex-sm-row p-3 bg-none ${styles.Header}`}>
       <Col className={`${styles.HeaderBorder} text-start text-lg-center col`}>
-        <h2>Welcome to Craft social!</h2>
+        <h2>Welcome to Craft Social!</h2>
       </Col>
       <Col className={styles.HeaderBorder}>
         <p>
@@ -19,8 +19,8 @@ const Header = () => {
           <Link to="/signup"><strong>Sign up</strong></Link> now to join the community!
         </p>
       </Col>
-      <Col className="d-none d-sm-block" sm={3}>
-        <ul>
+      <Col className="d-none d-sm-block pl-0" sm={4}>
+        <ul className="m-0">
           <li>Gain profile approvals</li>
           <li>Share your hardwork</li>
           <li>Join the conversation</li>
