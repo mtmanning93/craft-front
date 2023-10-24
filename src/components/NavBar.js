@@ -27,6 +27,19 @@ const NavBar = () => {
     }
   };
 
+  const createPostBtn = (
+    <NavLink to="/posts/create" className={styles.Link}>
+      <ActionButton
+        variant="warning"
+        size="md"
+        type="button"
+        text={<span>Build Post <i class="fa-solid fa-plus"></i></span>}
+        className={styles.CreatePostBtn}
+      >
+      </ActionButton>
+    </NavLink>
+  );
+
   const loggedInToggler = (
     <Navbar.Toggle
       ref={ref}
@@ -87,6 +100,7 @@ const NavBar = () => {
 
   const loggedInLinks = (
     <>
+      {currentUser && createPostBtn}
       <NavDropdown
         title={
           <Avatar

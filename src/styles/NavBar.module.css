@@ -12,6 +12,10 @@
     margin: auto 10px;
 }
 
+.CreatePostBtn i {
+    padding-left: 8px;
+}
+
 .UserDropdown {
     font-size: 1.3em;
     color: #000000;
