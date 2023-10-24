@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import { Row, Col, Form, Button, Alert } from "react-bootstrap";
+import { Row, Col, Form, Alert } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import icon from "../../assets/icon_nobg.png";
 import axios from "axios";
 import styles from "../../styles/SignUpForm.module.css";
+import ActionButton from "../../components/ActionButton.js";
+
 
 const SignUpForm = () => {
   const [signUpData, setSignUpData] = useState({
@@ -99,10 +101,13 @@ const SignUpForm = () => {
             </Alert>
           ))}
 
-          {/* make button seperate component? */}
-          <Button className={styles.Button} variant="warning" size="md" type="submit" block>
-            Sign Up!
-          </Button>
+          <ActionButton
+            variant="warning"
+            size="md"
+            type="submit"
+            text="Sign Up!"
+            block
+          />
           {errors.non_field_errors?.map((message, idx) => (
             <Alert variant="warning" key={idx} className="mt-3">
               {message}

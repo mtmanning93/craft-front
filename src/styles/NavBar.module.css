@@ -3,6 +3,10 @@
     padding: 10px 20px;
 }
 
+.NavBtn {
+    font-weight: normal;
+}
+
 .Link {
     font-size: 1.3em;
     margin: auto 10px;
@@ -31,7 +35,7 @@
         margin-top: 10px;
     }
 
-    .buttonStyle {
+    .NavBtn {
         width: max-content;
         margin-left: auto;
     }

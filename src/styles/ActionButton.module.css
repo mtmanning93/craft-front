@@ -1,0 +1,7 @@
+.Btn {
+    font-weight: 700;
+}
+
+.Btn:hover {
+    color: #ffffff;
+}

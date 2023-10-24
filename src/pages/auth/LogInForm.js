@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import { Row, Col, Form, Button, Alert } from "react-bootstrap";
+import { Row, Col, Form, Alert } from "react-bootstrap";
 import icon from "../../assets/icon_nobg.png";
 import styles from "../../styles/SignUpForm.module.css";
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
+import ActionButton from "../../components/ActionButton";
 
 const LogInForm = () => {
-
   const setCurrentUser = useSetCurrentUser();
-  
+
   const [loginData, setLoginData] = useState({
     username: "",
     password: "",
@@ -85,17 +85,13 @@ const LogInForm = () => {
               {message}
             </Alert>
           ))}
-
-          {/* make button seperate component? */}
-          <Button
-            className={styles.Button}
+          <ActionButton
             variant="warning"
             size="md"
             type="submit"
+            text="Login!"
             block
-          >
-            Login!
-          </Button>
+          />
           {errors.non_field_errors?.map((message, idx) => (
             <Alert variant="warning" key={idx} className="mt-3">
               {message}

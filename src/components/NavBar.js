@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "../styles/NavBar.module.css";
-import { Nav, Navbar, Button, NavDropdown } from "react-bootstrap";
+import { Nav, Navbar, NavDropdown } from "react-bootstrap";
 import logo from "../assets/main_logo.png";
 import { NavLink } from "react-router-dom";
 import {
@@ -10,6 +10,7 @@ import {
 import Avatar from "./Avatar";
 import axios from "axios";
 import ClickOutsideToggle from "../hooks/ClickOutsideToggle";
+import ActionButton from "./ActionButton";
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
@@ -69,12 +70,17 @@ const NavBar = () => {
       </NavLink>
       <NavLink to="/signup">
         {/* Button to be seperate component */}
-        <Button
-          className={`${styles.Link} ${styles.buttonStyle} mr-0`}
+        <ActionButton
           variant="warning"
-        >
-          <i className="fas fa-user-plus"></i> Sign up
-        </Button>
+          size="md"
+          type="button" // Adjust the type if needed
+          text={
+            <>
+              <i className="fas fa-user-plus"></i> Sign Up
+            </>
+          }
+          className={`${styles.Link} ${styles.NavBtn} mr-0`}
+        />
       </NavLink>
     </>
   );
