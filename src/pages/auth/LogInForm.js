@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Row, Col, Form, Alert } from "react-bootstrap";
+import { Col, Form, Alert } from "react-bootstrap";
 import icon from "../../assets/icon_nobg.png";
 import styles from "../../styles/SignUpForm.module.css";
 import { Link, useHistory } from "react-router-dom";

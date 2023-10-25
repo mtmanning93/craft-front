@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Row, Col, Form, Alert } from "react-bootstrap";
+import { Col, Form, Alert } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import icon from "../../assets/icon_nobg.png";
 import axios from "axios";

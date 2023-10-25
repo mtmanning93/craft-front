@@ -1,5 +1,5 @@
 import styles from "./App.module.css";
-import NavBar from "./components/NavBar";
+// import NavBar from "./components/NavBar";
 import { Container } from "react-bootstrap";
 import { Route, Switch } from "react-router-dom";
 import "./api/axiosDefaults";
@@ -8,11 +8,13 @@ import Header from "./components/Header";
 import LogInForm from "./pages/auth/LogInForm";
 import CreatePostForm from "./pages/posts/CreatePostForm";
 import mainStyles from "./App.module.css";
+import NewNav from "./components/NewNav";
 
 function App() {
   return (
     <div className={styles.App}>
-      <NavBar />
+      <NewNav />
+      {/* <NavBar /> */}
       <Header />
       <Container fluid className={mainStyles.MainContainer}>
         <Switch>

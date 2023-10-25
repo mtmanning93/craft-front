@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "../styles/NavBar.module.css";
-import { Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { Col, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import logo from "../assets/main_logo.png";
 import icon from "../assets/icon_nobg.png";
 import { NavLink } from "react-router-dom";
@@ -146,15 +146,15 @@ const NavBar = () => {
           <img src={icon} alt="logo" className={styles.Icon} />
         </Navbar.Brand>
       </NavLink>
-      <div className={styles.NavCtrls}>
-        <div>{currentUser && createPostBtn}</div>
+      <Col className={styles.NavCtrls}>
+        {currentUser && createPostBtn}
         {currentUser ? loggedInToggler : loggedOutToggler}
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="text-right">
             {currentUser ? loggedInLinks : loggedOutLinks}
           </Nav>
         </Navbar.Collapse>
-      </div>
+      </Col>
     </Navbar>
   );
 };
