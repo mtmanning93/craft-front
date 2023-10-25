@@ -11,7 +11,7 @@ import {
 import Avatar from "./Avatar";
 import axios from "axios";
 import ClickOutsideToggle from "../hooks/ClickOutsideToggle";
-import ActionButton from "./ActionButton";
+import MainButton from "./buttons/MainButton";
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
@@ -30,9 +30,7 @@ const NavBar = () => {
 
   const createPostBtn = (
     <NavLink to="/posts/create" className={styles.Link}>
-      <ActionButton
-        variant="warning"
-        size="md"
+      <MainButton
         type="button"
         text={
           <>
@@ -40,7 +38,7 @@ const NavBar = () => {
           </>
         }
         className={styles.PostBtn}
-      ></ActionButton>
+      ></MainButton>
     </NavLink>
   );
 
@@ -82,9 +80,7 @@ const NavBar = () => {
         Login
       </NavLink>
       <NavLink to="/signup">
-        <ActionButton
-          variant="warning"
-          size="md"
+        <MainButton
           type="button"
           text={
             <>

@@ -4,7 +4,8 @@ import { Link, useHistory } from "react-router-dom";
 import icon from "../../assets/icon_nobg.png";
 import axios from "axios";
 import styles from "../../styles/SignUpForm.module.css";
-import ActionButton from "../../components/ActionButton.js";
+import MainButton from "../../components/buttons/MainButton.js";
+import btnStyles from "../../styles/Buttons.module.css"
 
 
 const SignUpForm = () => {
@@ -101,12 +102,10 @@ const SignUpForm = () => {
             </Alert>
           ))}
 
-          <ActionButton
-            variant="warning"
-            size="md"
+          <MainButton
             type="submit"
             text="Sign Up!"
-            block
+            className={btnStyles.Wide}
           />
           {errors.non_field_errors?.map((message, idx) => (
             <Alert variant="warning" key={idx} className="mt-3">

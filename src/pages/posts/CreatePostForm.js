@@ -2,14 +2,15 @@ import React, { useRef, useState } from "react";
 import { Form, Row, Col, Image, Alert } from "react-bootstrap";
 import mainStyles from "../../App.module.css";
 import styles from "../../styles/CreatePostForm.module.css";
-import ActionButton from "../../components/ActionButton";
+import MainButton from "../../components/buttons/MainButton";
 import Loader from "../../components/Loader";
 import uploadIcon from "../../assets/upload_icon.png";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { axiosReq } from "../../api/axiosDefaults";
 import Avatar from "../../components/Avatar";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import BackButton from "../../components/BackButton";
+import BackButton from "../../components/buttons/BackButton";
+import btnStyles from "../../styles/Buttons.module.css"
 
 const CreatePostForm = () => {
   const currentUser = useCurrentUser();
@@ -173,12 +174,10 @@ const CreatePostForm = () => {
             </Col>
           </Row>
           <Row className="m-2">
-            <ActionButton
-              variant="warning"
-              size="md"
+            <MainButton
               type="submit"
               text="Post!"
-              block
+              className={btnStyles.Wide}
             />
           </Row>
         </Form>

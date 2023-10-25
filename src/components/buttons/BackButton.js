@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import BtnStyles from "../styles/Buttons.module.css";
+import BtnStyles from "../../styles/Buttons.module.css";
 
 const BackButton = () => {
   const history = useHistory();

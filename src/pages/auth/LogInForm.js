@@ -5,7 +5,8 @@ import styles from "../../styles/SignUpForm.module.css";
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
-import ActionButton from "../../components/ActionButton";
+import MainButton from "../../components/buttons/MainButton";
+import btnStyles from "../../styles/Buttons.module.css"
 
 const LogInForm = () => {
   const setCurrentUser = useSetCurrentUser();
@@ -85,12 +86,10 @@ const LogInForm = () => {
               {message}
             </Alert>
           ))}
-          <ActionButton
-            variant="warning"
-            size="md"
+          <MainButton
             type="submit"
             text="Login!"
-            block
+            className={btnStyles.Wide}
           />
           {errors.non_field_errors?.map((message, idx) => (
             <Alert variant="warning" key={idx} className="mt-3">
