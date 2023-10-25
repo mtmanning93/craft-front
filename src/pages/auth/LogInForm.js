@@ -41,8 +41,7 @@ const LogInForm = () => {
   };
 
   return (
-    <Row>
-      <Col className={`mx-auto text-center ${styles.FormWrapper}`} md={6}>
+      <Col className={`mx-auto text-center ${styles.FormWrapper}`} sm={6} lg={5}>
         <img src={icon} alt="site icon" />
         <h1 className={styles.Heading}>
           Welcome Back!
@@ -101,7 +100,7 @@ const LogInForm = () => {
           Dont have an account? <Link to="/signup">Sign up here.</Link>
         </p>
       </Col>
-    </Row>
+
   );
 };
 

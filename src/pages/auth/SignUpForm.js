@@ -39,8 +39,7 @@ const SignUpForm = () => {
   };
 
   return (
-    <Row>
-      <Col className={`mx-auto text-center ${styles.FormWrapper}`} md={6}>
+      <Col className={`mx-auto text-center ${styles.FormWrapper}`} sm={6} lg={5}>
         <img src={icon} alt="site icon" />
         <h1 className={styles.Heading}>
           Love your craft?
@@ -117,7 +116,6 @@ const SignUpForm = () => {
           Already have an account? <Link to="/login">Login here.</Link>
         </p>
       </Col>
-    </Row>
   );
 };
 
