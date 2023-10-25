@@ -1,9 +1,6 @@
 .Avatar {
     border-radius: 50%;
-    border: 2px solid #000000;
+    border: 2px solid #4682B4;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     margin: 0px 5px;
 }
-
-/* .Avatar:hover {
-    border-color: #f8c313;
-} */

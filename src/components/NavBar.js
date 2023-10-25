@@ -1,17 +1,17 @@
 import React from "react";
-import styles from "../styles/NavBar.module.css";
-import { Col, Nav, Navbar, NavDropdown } from "react-bootstrap";
-import logo from "../assets/main_logo.png";
-import icon from "../assets/icon_nobg.png";
+import { Col, Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
+import ClickOutsideToggle from "../hooks/ClickOutsideToggle";
+import icon from "../assets/icon_nobg.png";
+import logo from "../assets/main_logo.png";
 import {
   useCurrentUser,
   useSetCurrentUser,
 } from "../contexts/CurrentUserContext";
 import Avatar from "./Avatar";
-import axios from "axios";
-import ClickOutsideToggle from "../hooks/ClickOutsideToggle";
 import MainButton from "./buttons/MainButton";
+import styles from "../styles/NavBar.module.css";
+import axios from "axios";
 import btnStyles from "../styles/Buttons.module.css";
 
 const NavBar = () => {
@@ -29,132 +29,151 @@ const NavBar = () => {
     }
   };
 
-  const createPostBtn = (
-    <NavLink to="/posts/create" className={styles.Link}>
+  const createBtn = (
+    <NavLink to="/posts/create">
       <MainButton
         type="button"
+        className={btnStyles.CreateBtn}
         text={
           <>
             <i className="fa-solid fa-plus"></i>
           </>
         }
-        className={btnStyles.PostBtn}
       ></MainButton>
     </NavLink>
-  );
-
-  const loggedInToggler = (
-    <Navbar.Toggle
-      ref={ref}
-      className={`ml-auto ${styles.ProfileToggler}`}
-      aria-controls="basic-navbar-nav"
-      onClick={() => setExpanded(!expanded)}
-    >
-      <Avatar src={currentUser?.profile_image} height={40} />
-    </Navbar.Toggle>
   );
 
   const loggedOutToggler = (
     <Navbar.Toggle
       ref={ref}
-      className={`${styles.Toggler}`}
       aria-controls="basic-navbar-nav"
       onClick={() => setExpanded(!expanded)}
+      className="border-0 p-0"
     />
   );
 
-  const loggedOutLinks = (
+  const loggedInToggler = (
+    <Navbar.Toggle
+      ref={ref}
+      aria-controls="basic-navbar-nav"
+      onClick={() => setExpanded(!expanded)}
+      className="border-0 p-0"
+    >
+      <Avatar src={currentUser?.profile_image} height={40} />
+    </Navbar.Toggle>
+  );
+
+  const loggedOutNav = (
     <>
-      <NavLink
-        exact
-        to="/"
-        className={styles.Link}
-        activeClassName={styles.Active}
+      <Navbar.Collapse
+        className="text-right justify-content-end"
+        id="basic-navbar-nav"
       >
-        Home
-      </NavLink>
-      <NavLink
-        to="/login"
-        className={styles.Link}
-        activeClassName={styles.Active}
-      >
-        Login
-      </NavLink>
-      <NavLink to="/signup">
-        <MainButton
-          type="button"
-          text={
-            <>
-              <i className="fas fa-user-plus"></i> Sign Up
-            </>
-          }
-          className={`${styles.Link} ${styles.NavBtn} mr-0`}
-        />
-      </NavLink>
+        <Nav className="align-items-center">
+          <NavLink
+            exact
+            to="/"
+            className={styles.Links}
+            activeClassName={styles.Active}
+          >
+            Home
+          </NavLink>
+          <NavLink
+            to="/login"
+            className={styles.Links}
+            activeClassName={styles.Active}
+          >
+            Login
+          </NavLink>
+          <NavLink to="/signup" className={styles.Links}>
+            <MainButton
+              type="button"
+              className={`${styles.NavBtn} mr-0`}
+              text={
+                <>
+                  <i className="fas fa-user-plus"></i> Sign Up
+                </>
+              }
+            />
+          </NavLink>
+        </Nav>
+      </Navbar.Collapse>
     </>
   );
 
-  const loggedInLinks = (
+  const loggedInNav = (
     <>
-      <NavDropdown
-        title={<Avatar src={currentUser?.profile_image} height={50} />}
-        className={`d-none d-md-block ${styles.UserDropdown}`}
-        alignRight
-      >
-        <p className={styles.Link}>Welcome back {currentUser?.username}</p>
-        <NavLink
-          to={`/profiles/${currentUser?.profile_id}`}
-          onClick={() => {}}
-          className={styles.Link}
-          activeClassName={styles.Active}
-        >
-          Profile
-        </NavLink>
-        <NavDropdown.Divider />
-        <NavLink to="/" onClick={handleLogOut} className={styles.Link}>
-          Logout
-        </NavLink>
-      </NavDropdown>
+      <Navbar.Collapse className="justify-content-md-end" id="basic-navbar-nav">
+        {/* Small Screens */}
+        <Nav className="ml-auto d-block d-md-none text-right">
+          {currentUser && (
+            <p className="mb-1">Welcome back {currentUser?.username}</p>
+          )}
+          <NavLink
+            to={`/profiles/${currentUser?.profile_id}`}
+            onClick={() => {}}
+          >
+            Profile
+          </NavLink>
+          <NavDropdown.Divider />
+          <NavLink to="/" onClick={handleLogOut}>
+            Logout
+          </NavLink>
+        </Nav>
+        {/* Large Screens */}
+        <Col md={4} className="d-none d-md-flex justify-content-end p-0">
+          <Nav className="ml-auto d-none d-md-block">
+            <NavDropdown
+              title={<Avatar src={currentUser?.profile_image} height={50} />}
+              alignRight
+              id="large-nav-dropdown"
+              className={styles.Dropdown}
+            >
+              <p className="mb-1">Welcome back {currentUser?.username}</p>
 
-      {/* small screeens */}
-      <p className={`${styles.Link} d-block d-md-none`}>
-        Welcome back {currentUser?.username}
-      </p>
-      <NavLink
-        to={`/profiles/${currentUser?.profile_id}`}
-        onClick={() => {}}
-        className={`d-block d-md-none ${styles.Link}`}
-        activeClassName={styles.Active}
-      >
-        Profile
-      </NavLink>
-      <NavLink
-        to="/"
-        onClick={handleLogOut}
-        className={`d-block d-md-none ${styles.Link}`}
-      >
-        Logout
-      </NavLink>
+              <NavLink
+                to={`/profiles/${currentUser?.profile_id}`}
+                onClick={() => {}}
+              >
+                Profile
+              </NavLink>
+              <NavDropdown.Divider />
+              <NavLink to="/" onClick={handleLogOut}>
+                Logout
+              </NavLink>
+            </NavDropdown>
+          </Nav>
+        </Col>
+      </Navbar.Collapse>
     </>
   );
 
   return (
     <Navbar expanded={expanded} expand="md" className={styles.NavBar}>
-      <NavLink to="/">
-        <Navbar.Brand className="mx-auto">
-          <img src={logo} alt="logo" className={styles.Logo} />
-          <img src={icon} alt="logo" className={styles.Icon} />
-        </Navbar.Brand>
-      </NavLink>
-      <Col className={styles.NavCtrls}>
-        {currentUser && createPostBtn}
+      <Container fluid className="p-0">
+        <Col className={styles.LogoContainer} xs={2} md={4}>
+          <NavLink to="/">
+            <Navbar.Brand className="mx-auto">
+              <img src={logo} alt="logo" className={styles.Logo} />
+              <img src={icon} alt="logo" className={styles.Icon} />
+            </Navbar.Brand>
+          </NavLink>
+        </Col>
+
+        {/* small */}
+        <Col className="d-flex d-md-none justify-content-end">
+          {currentUser && createBtn}
+        </Col>
+
+        {/* large */}
+        <Col md={4} className="d-none d-md-flex justify-content-center">
+          {currentUser && createBtn}
+        </Col>
+
         {currentUser ? loggedInToggler : loggedOutToggler}
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="text-right">
-            {currentUser ? loggedInLinks : loggedOutLinks}
-          </Nav>
-        </Navbar.Collapse>
-      </Col>
+
+        {currentUser ? loggedInNav : loggedOutNav}
+      </Container>
     </Navbar>
   );
 };

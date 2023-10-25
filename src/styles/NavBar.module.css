@@ -3,6 +3,10 @@
   padding: 10px 20px;
 }
 
+.LogoContainer {
+  padding: 0;
+}
+
 .Logo {
   height: 60px;
 }
@@ -12,33 +16,31 @@
 }
 
 .NavBtn {
-  font-weight: normal;
+  font-weight: 700;
 }
 
-.NavCtrls {
-  display: inline-flex;
-  align-items: center;
-  margin-left: auto;
+.NavBtn i {
+  padding-right: 5px;
 }
 
-.Link {
+.Links {
   font-size: 1.3em;
-  margin: auto 10px;
+  margin: 5px;
 }
 
-.UserDropdown {
-  font-size: 1.3em;
+.Dropdown a,
+.Dropdown p {
   text-align: right;
+  font-size: 1.2em;
   color: #000000;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
-.ProfileToggler {
-  border: none;
-  padding: 0 10px 0 0;
-}
-
-.dropdown-menu {
-  text-align: center;
+.Dropdown a:hover {
+    color: #f8c133;
 }
 
 .Active {
@@ -53,31 +55,17 @@
 }
 
 @media (max-width: 576px) {
-  .NavBar {
-    padding: 10px;
-  }
-
   .Logo {
     height: 40px;
   }
-
-  .Link {
-    margin: 0;
-  }
 }
 
-@media (max-width: 435px) {
-  .NavBar {
-    justify-content: center;
-  }
-}
-
-@media (max-width: 375px) {
+@media (max-width: 576px) {
   .Logo {
     display: none;
   }
   .Icon {
     display: block;
-    height: 60px;
+    height: 50px;
   }
 }
