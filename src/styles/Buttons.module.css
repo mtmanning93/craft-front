@@ -12,3 +12,11 @@
     transition: 0.3s ease-in-out;
     border-color: #444444;
 }
+
+@media (max-width: 576px) {
+    .BackBtn {
+        width: 30px;
+        height: 30px; 
+        padding: 0;
+    }
+}

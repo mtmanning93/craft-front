@@ -70,7 +70,7 @@ const CreatePostForm = () => {
           onSubmit={handleSubmit}
           className={`${styles.Form} ${mainStyles.Content} border m-3 pt-2 pb-2`}
         >
-          <Row className="m-2 border-bottom">
+          <Row className="m-2 pb-2 border-bottom">
             <Col xs={{ span: 6, order: 1 }} md={{ span: 4, order: 1 }}>
               <Avatar
                 src={currentUser?.profile_image}
@@ -79,11 +79,11 @@ const CreatePostForm = () => {
               />
             </Col>
             <Col
-              className="text-center"
+              className="text-center pt-2 pt-md-0"
               xs={{ span: 12, order: 3 }}
               md={{ span: 4, order: 2 }}
             >
-              <h1>Create a post</h1>
+              <h1 className="mt-2">Create a post</h1>
             </Col>
             <Col
               className="text-right"

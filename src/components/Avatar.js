@@ -11,7 +11,7 @@ const Avatar = ({ src, height = 45, text }) => {
             width={height}
             alt="user profile avatar"
         />
-        {text}
+        <span className="d-none d-sm-inline">{text}</span>
     </span>
   );
 };

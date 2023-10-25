@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 .App {
   font-family: "Titillium Web", sans-serif;
   background-color: #7a8d9d;
@@ -25,6 +29,10 @@ a:hover {
   border-radius: 5px;
 }
 
-* {
-  box-sizing: border-box;
+h1 {
+  font-size: 1.5em;
+  font-weight: 700;
+  text-transform: uppercase;
+  /* font-family: 'Work Sans', sans-serif; */
+  margin: 0;
 }
