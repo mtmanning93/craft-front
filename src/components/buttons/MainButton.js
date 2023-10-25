@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "react-bootstrap";
-import styles from "../../styles/Buttons.module.css"
+import btnStyles from "../../styles/Buttons.module.css"
 
 const MainButton = ({ type, text, onClick, className }) => {
   return (
@@ -8,7 +8,7 @@ const MainButton = ({ type, text, onClick, className }) => {
       variant="warning"
       type={type}
       onClick={onClick}
-      className={`${styles.Btn} ${className}`}
+      className={`${btnStyles.Btn} ${className}`}
     >
       {text}
     </Button>

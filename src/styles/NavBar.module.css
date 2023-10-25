@@ -26,16 +26,6 @@
   margin: auto 10px;
 }
 
-.PostBtn {
-  font-size: 1.3em;
-  font-weight: 700;
-  height: 50px;
-  width: 50px;
-  border: 2px solid #000000;
-  border-radius: 50%;
-  margin: 0;
-}
-
 .UserDropdown {
   font-size: 1.3em;
   text-align: right;
@@ -56,12 +46,6 @@
 }
 
 @media (max-width: 768px) {
-
-  .PostBtn {
-    height: 40px;
-    width: 40px;
-  }
-
   .NavBtn {
     width: max-content;
     margin-left: auto;

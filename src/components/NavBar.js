@@ -12,6 +12,7 @@ import Avatar from "./Avatar";
 import axios from "axios";
 import ClickOutsideToggle from "../hooks/ClickOutsideToggle";
 import MainButton from "./buttons/MainButton";
+import btnStyles from "../styles/Buttons.module.css";
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
@@ -37,7 +38,7 @@ const NavBar = () => {
             <i className="fa-solid fa-plus"></i>
           </>
         }
-        className={styles.PostBtn}
+        className={btnStyles.PostBtn}
       ></MainButton>
     </NavLink>
   );
