@@ -1,0 +1,14 @@
+.BackBtn {
+    width: 40px;
+    height: 40px;
+    color: #000000;
+    background-color: #f5f5f5;
+    border: 2px solid #000000;
+    border-radius: 50%;
+}
+
+.BackBtn:hover {
+    background-color: #7a8d9d;
+    transition: 0.3s ease-in-out;
+    border-color: #444444;
+}

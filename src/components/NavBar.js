@@ -2,6 +2,7 @@ import React from "react";
 import styles from "../styles/NavBar.module.css";
 import { Nav, Navbar, NavDropdown } from "react-bootstrap";
 import logo from "../assets/main_logo.png";
+import icon from "../assets/icon_nobg.png";
 import { NavLink } from "react-router-dom";
 import {
   useCurrentUser,
@@ -35,10 +36,10 @@ const NavBar = () => {
         type="button"
         text={
           <>
-            <span className="d-none d-md-block">Build Post</span><i className="fa-solid fa-plus"></i>
+            <i className="fa-solid fa-plus"></i>
           </>
         }
-        className={styles.CreatePostBtn}
+        className={styles.PostBtn}
       ></ActionButton>
     </NavLink>
   );
@@ -50,18 +51,14 @@ const NavBar = () => {
       aria-controls="basic-navbar-nav"
       onClick={() => setExpanded(!expanded)}
     >
-      <Avatar
-        src={currentUser?.profile_image}
-        text={currentUser?.username}
-        height={40}
-      />
+      <Avatar src={currentUser?.profile_image} height={40} />
     </Navbar.Toggle>
   );
 
   const loggedOutToggler = (
     <Navbar.Toggle
       ref={ref}
-      className={`ml-auto ${styles.Toggler}`}
+      className={`${styles.Toggler}`}
       aria-controls="basic-navbar-nav"
       onClick={() => setExpanded(!expanded)}
     />
@@ -85,11 +82,10 @@ const NavBar = () => {
         Login
       </NavLink>
       <NavLink to="/signup">
-        {/* Button to be seperate component */}
         <ActionButton
           variant="warning"
           size="md"
-          type="button" // Adjust the type if needed
+          type="button"
           text={
             <>
               <i className="fas fa-user-plus"></i> Sign Up
@@ -104,15 +100,11 @@ const NavBar = () => {
   const loggedInLinks = (
     <>
       <NavDropdown
-        title={
-          <Avatar
-            src={currentUser?.profile_image}
-            text={currentUser?.username}
-            height={50}
-          />
-        }
+        title={<Avatar src={currentUser?.profile_image} height={50} />}
         className={`d-none d-md-block ${styles.UserDropdown}`}
+        alignRight
       >
+        <p className={styles.Link}>Welcome back {currentUser?.username}</p>
         <NavLink
           to={`/profiles/${currentUser?.profile_id}`}
           onClick={() => {}}
@@ -128,6 +120,9 @@ const NavBar = () => {
       </NavDropdown>
 
       {/* small screeens */}
+      <p className={`${styles.Link} d-block d-md-none`}>
+        Welcome back {currentUser?.username}
+      </p>
       <NavLink
         to={`/profiles/${currentUser?.profile_id}`}
         onClick={() => {}}
@@ -150,16 +145,19 @@ const NavBar = () => {
     <Navbar expanded={expanded} expand="md" className={styles.NavBar}>
       <NavLink to="/">
         <Navbar.Brand className="mx-auto">
-          <img src={logo} alt="logo" height="60" className={styles.Logo} />
+          <img src={logo} alt="logo" className={styles.Logo} />
+          <img src={icon} alt="logo" className={styles.Icon} />
         </Navbar.Brand>
       </NavLink>
-      {currentUser && createPostBtn}
-      {currentUser ? loggedInToggler : loggedOutToggler}
-      <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="ml-auto text-right">
-          {currentUser ? loggedInLinks : loggedOutLinks}
-        </Nav>
-      </Navbar.Collapse>
+      <div className={styles.NavCtrls}>
+        <div>{currentUser && createPostBtn}</div>
+        {currentUser ? loggedInToggler : loggedOutToggler}
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="text-right">
+            {currentUser ? loggedInLinks : loggedOutLinks}
+          </Nav>
+        </Navbar.Collapse>
+      </div>
     </Navbar>
   );
 };

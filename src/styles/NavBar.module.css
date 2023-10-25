@@ -1,74 +1,99 @@
 .NavBar {
-    background-color: #ffffff;
-    padding: 10px 20px;
+  background-color: #f5f5f5;
+  padding: 10px 20px;
+}
+
+.Logo {
+  height: 60px;
+}
+
+.Icon {
+  display: none;
 }
 
 .NavBtn {
-    font-weight: normal;
+  font-weight: normal;
+}
+
+.NavCtrls {
+  display: inline-flex;
+  align-items: center;
+  margin-left: auto;
 }
 
 .Link {
-    font-size: 1.3em;
-    margin: auto 10px;
+  font-size: 1.3em;
+  margin: auto 10px;
 }
 
-.CreatePostBtn {
-    margin: 0 20px;
-}
-
-.CreatePostBtn i {
-    padding-left: 8px;
+.PostBtn {
+  font-size: 1.3em;
+  font-weight: 700;
+  height: 50px;
+  width: 50px;
+  border: 2px solid #000000;
+  border-radius: 50%;
+  margin: 0;
 }
 
 .UserDropdown {
-    font-size: 1.3em;
-    color: #000000;
+  font-size: 1.3em;
+  text-align: right;
+  color: #000000;
 }
 
 .ProfileToggler {
-    border: none;
+  border: none;
+  padding: 0 10px 0 0;
 }
 
 .dropdown-menu {
-    text-align: center;
+  text-align: center;
 }
 
 .Active {
-    color: #f8c133;
+  color: #f8c133;
 }
 
 @media (max-width: 768px) {
 
-    /* .Link {
-        margin-top: 10px;
-    } */
+  .PostBtn {
+    height: 40px;
+    width: 40px;
+  }
 
-    .NavBtn {
-        width: max-content;
-        margin-left: auto;
-    }
-
-    .CreatePostBtn i {
-        padding-left: 0;
-    }
+  .NavBtn {
+    width: max-content;
+    margin-left: auto;
+  }
 }
 
 @media (max-width: 576px) {
+  .NavBar {
+    padding: 10px;
+  }
 
-    .NavBar {
-        padding: 10px;
-    }
+  .Logo {
+    height: 40px;
+  }
 
-    .Link {
-        margin: 0;
-    }
-
+  .Link {
+    margin: 0;
+  }
 }
 
 @media (max-width: 435px) {
+  .NavBar {
+    justify-content: center;
+  }
+}
 
-    .NavBar {
-        justify-content: center;
-    }
-
+@media (max-width: 375px) {
+  .Logo {
+    display: none;
+  }
+  .Icon {
+    display: block;
+    height: 60px;
+  }
 }

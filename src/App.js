@@ -7,13 +7,14 @@ import SignUpForm from "./pages/auth/SignUpForm";
 import Header from "./components/Header";
 import LogInForm from "./pages/auth/LogInForm";
 import CreatePostForm from "./pages/posts/CreatePostForm";
+import mainStyles from "./App.module.css";
 
 function App() {
   return (
     <div className={styles.App}>
       <NavBar />
       <Header />
-      <Container>
+      <Container fluid className={mainStyles.MainContainer}>
         <Switch>
           <Route exact path="/" render={() => <h1>Home</h1>} />
           <Route exact path="/login" render={() => <LogInForm />} />

@@ -1,9 +1,9 @@
 .Avatar {
     border-radius: 50%;
     border: 2px solid #000000;
-    margin-left: 5px;
+    margin: 0px 5px;
 }
 
-.Avatar:hover {
+/* .Avatar:hover {
     border-color: #f8c313;
-}
+} */

@@ -1,5 +1,33 @@
-.UploadWrapper {
+.FormWrap {
+  background-color: #f5f5f5;
+}
+
+.ImgContainer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Image {
+  max-height: 40vh;
+  max-width: 100%;
+  object-fit: contain;
+
+}
+
+.ChangeImgBtn {
+  display: flex;
+  justify-content: center;
+}
+
+figure {
     text-align: center;
-    display: flex;
-    flex-direction: column;
+    display: inline-block;
+  }
+
+.ContentWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

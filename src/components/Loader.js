@@ -6,8 +6,8 @@ const Loader = ({ loader, src, message }) => {
   return (
     <div className={styles.Loader}>
       {loader && <Spinner animation="border" variant="warning" />}
-      {src && <img src={src} alt={message} />}
-      {message && <p>{message}</p>}
+      {src && <img src={src} alt={message} className="m-2"/>}
+      {message && <p className="m-2">{message}</p>}
     </div>
   );
 };
