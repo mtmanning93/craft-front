@@ -1,37 +1,37 @@
 * {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 .App {
-  font-family: "Titillium Web", sans-serif;
-  background-color: #7a8d9d;
-  min-height: 100vh;
+	font-family: "Titillium Web", sans-serif;
+	background-color: #7a8d9d;
+	min-height: 100vh;
 }
 
 .MainContainer {
-  display: flex;
-  justify-content: center;
+	display: flex;
+	justify-content: center;
 }
 
 a {
-  color: #000000;
-  transition: color ease-in-out 0.2s;
+	color: #000000;
+	transition: color ease-in-out 0.2s;
 }
 
 a:hover {
-  text-decoration: none;
-  color: #f8c133;
+	text-decoration: none;
+	color: #f8c133;
 }
 
 .Content {
-  background-color: #ffffff;
-  border: 1px solid #4682B4;
-  border-radius: 5px;
+	background-color: #ffffff;
+	border: 1px solid #4682b4;
+	border-radius: 5px;
 }
 
 h1 {
-  font-size: 1.5em;
-  font-weight: 700;
-  text-transform: uppercase;
-  margin: 0;
+	font-size: 1.5em;
+	font-weight: 700;
+	text-transform: uppercase;
+	margin: 0;
 }
