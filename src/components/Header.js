@@ -56,7 +56,7 @@ const Header = () => {
         className={styles.HeaderTab}
         activeClassName={styles.Active}
       >
-        <i class="fa-solid fa-thumbs-up"></i>
+        <i className="fa-solid fa-thumbs-up"></i>
         <span className={styles.TabName}>Liked</span>
       </NavLink>
       <NavLink

@@ -8,7 +8,7 @@ const BackButton = () => {
 
   return (
     <Button className={btnStyles.BackBtn} onClick={() => history.goBack()}>
-      <i class="fa-solid fa-rotate-left"></i>
+      <i className="fa-solid fa-rotate-left"></i>
     </Button>
   );
 };

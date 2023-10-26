@@ -74,7 +74,7 @@ const Post = (props) => {
                 {profile_job && profile_job}
                 {profile_location && (
                   <span className="ml-1">
-                    <i class="fa-solid fa-location-dot"></i> {profile_location}
+                    <i className="fa-solid fa-location-dot"></i> {profile_location}
                   </span>
                 )}
               </Card.Subtitle>
@@ -84,7 +84,7 @@ const Post = (props) => {
             <p className="mb-0">{updated_on}</p>
             {is_owner && (
               <span className={styles.Settings}>
-                <i class="fa-solid fa-wrench"></i>
+                <i className="fa-solid fa-wrench"></i>
               </span>
             )}
             <BackButton />
@@ -110,7 +110,7 @@ const Post = (props) => {
             overlay={<Tooltip>Join the discusion below.</Tooltip>}
           >
             <span className={styles.CommentIcon}>
-              <i class="fa-solid fa-message fa-sm"></i>
+              <i className="fa-solid fa-message fa-sm"></i>
             </span>
           </OverlayTrigger>
           <span className={styles.Count}>{likes_count}</span>
@@ -119,16 +119,16 @@ const Post = (props) => {
               placement="bottom"
               overlay={<Tooltip>You cant like your own posts.</Tooltip>}
             >
-              <i class="fa-regular fa-thumbs-up"></i>
+              <i className="fa-regular fa-thumbs-up"></i>
             </OverlayTrigger>
           ) : */}
           {like_id ? (
             <span className={styles.LikeIcon} onClick={unlikePost}>
-              <i class="fa-solid fa-thumbs-up"></i>
+              <i className="fa-solid fa-thumbs-up"></i>
             </span>
           ) : currentUser ? (
             <span className={styles.LikeIcon} onClick={likePost}>
-              <i class="fa-regular fa-thumbs-up"></i>
+              <i className="fa-regular fa-thumbs-up"></i>
             </span>
           ) : (
             <OverlayTrigger
@@ -137,7 +137,7 @@ const Post = (props) => {
                 <Tooltip>You must login or signup to like posts.</Tooltip>
               }
             >
-              <i class="fa-regular fa-thumbs-up"></i>
+              <i className="fa-regular fa-thumbs-up"></i>
             </OverlayTrigger>
           )}
         </div>

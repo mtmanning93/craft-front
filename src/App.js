@@ -2,13 +2,13 @@ import styles from "./App.module.css";
 import { Container } from "react-bootstrap";
 import { Route, Switch } from "react-router-dom";
 import "./api/axiosDefaults";
-import SignUpForm from "./pages/auth/SignUpForm";
+import SignUpForm from "./pages/forms/SignUpForm";
 import Header from "./components/Header";
-import LogInForm from "./pages/auth/LogInForm";
-import CreatePostForm from "./pages/pages/CreatePostForm";
+import LogInForm from "./pages/forms/LogInForm";
+import CreatePostForm from "./pages/forms/CreatePostForm";
 import mainStyles from "./App.module.css";
 import NavBar from "./components/NavBar";
-import PostDetails from "./pages/pages/PostDetails";
+import PostDetails from "./pages/PostDetails";
 
 function App() {
   return (
