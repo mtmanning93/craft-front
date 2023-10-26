@@ -51,7 +51,7 @@ const PostDetails = () => {
                             setComments={setComments}
                         />
                     ) : comments.results.length ? (
-                        "Comments"
+                        <h2 className="m-2 ml-4">Comments</h2>
                     ) : null}
 
                     {comments.results.length ? (
@@ -59,13 +59,19 @@ const PostDetails = () => {
                             <Comment key={comment.id} {...comment} />
                         ))
                     ) : currentUser ? (
-                        <span>be the first</span>
+                        <>
+                        <h2 className="m-2 ml-4">Got something to say?</h2>
+                        <p className="m-2 ml-4">Comment above to start the coversation...</p>
+                        </>
                     ) : (
-                        <span>no comments yet</span>
+                        <>
+                        <h2 className="m-2 ml-4">No comments yet</h2>
+                        <p className="m-2 ml-4">Login or signup to start the conversation...</p>
+                        </>
                     )}
                 </Container>
             </Col>
-            <Col className="border d-none d-lg-block" lg={4}>
+            <Col className="border ml-2 d-none d-lg-block" lg={4}>
                 <p>WOTW Desktop</p>
             </Col>
         </Row>

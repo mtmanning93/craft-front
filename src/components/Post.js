@@ -72,11 +72,11 @@ const Post = (props) => {
 
 	return (
 		<Card className={`${styles.Post} ${mainStyles.Content}`}>
-			<Card.Body>
-				<Row className="m-2 mb-3 align-items-center justify-content-between">
+			<Card.Body className="p-2 p-sm-4">
+				<Row className="m-2 mb-3 flex-column-reverse flex-sm-row align-items-center justify-content-between">
 					<Link
 						to={`/profiles/${profile_id}`}
-						className={styles.Author}
+						className={`mr-auto ${styles.Author}`}
 					>
 						<Avatar src={profile_image} height={55} />
 						<div className="ml-2">
@@ -92,7 +92,7 @@ const Post = (props) => {
 							</Card.Subtitle>
 						</div>
 					</Link>
-					<div className="d-flex align-items-center mb-auto">
+					<div className="ml-auto d-flex align-items-center mb-auto">
 						<p className="d-none d-sm-block mb-0 mr-3">
 							{updated_on}
 						</p>
