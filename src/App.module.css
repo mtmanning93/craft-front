@@ -35,3 +35,9 @@ h1 {
 	text-transform: uppercase;
 	margin: 0;
 }
+
+@media (max-width: 576px) {
+	.MainContainer {
+		padding: 0;
+	}
+}

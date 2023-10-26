@@ -6,6 +6,7 @@ import Post from "../components/Post";
 import CommentForm from "./forms/CommentForm";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 import mainStyles from "../App.module.css";
+import Comment from "../components/Comment";
 
 const PostDetails = () => {
     const { id } = useParams();
@@ -36,7 +37,7 @@ const PostDetails = () => {
 
     return (
         <Row className="w-100 border p-2">
-            <Col className="border">
+            <Col className="p-0">
                 <p>WOTW Mobile</p>
                 <Post {...post.results[0]} setPosts={setPost} />
                 <Container fluid className={`${mainStyles.Content} p-0 mt-2`}>
@@ -55,9 +56,7 @@ const PostDetails = () => {
 
                     {comments.results.length ? (
                         comments.results.map((comment) => (
-                            <p key={comment.id}>
-                                {comment.owner}: {comment.content}
-                            </p>
+                            <Comment key={comment.id} {...comment} />
                         ))
                     ) : currentUser ? (
                         <span>be the first</span>
