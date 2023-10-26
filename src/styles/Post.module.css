@@ -12,12 +12,27 @@
   font-size: 1.2em;
 }
 
-.LikeComment, .Settings {
+.Controls {
+    display: flex;
+    align-items: center;
+}
+
+.Controls, .Settings {
   font-size: 1.5em;
 }
 
-.LikeComment i {
+.Controls i {
   margin: 0 5px;
+}
+
+.Count {
+    color: #5b5b5b80;
+    font-size: 0.8em;
+}
+
+.LikeIcon:hover {
+    color: #f8c133;
+    cursor: pointer;
 }
 
 .CommentIcon {
