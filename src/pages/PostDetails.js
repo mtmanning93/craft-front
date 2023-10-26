@@ -36,7 +36,7 @@ const PostDetails = () => {
     }, [id]);
 
     return (
-        <Row className="w-100 border p-2">
+        <Row className="w-100 p-2">
             <Col className="p-0">
                 <p>WOTW Mobile</p>
                 <Post {...post.results[0]} setPosts={setPost} />

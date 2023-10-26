@@ -16,7 +16,7 @@ const Comment = (props) => {
 			<Link to={`/profiles/${profile_id}`}>
 				<Avatar src={profile_image} height={40} />
 			</Link>
-			<Col className="m-1 pr-0">
+			<Col className="m-1 p-0">
 				<div className="d-flex justify-content-between">
 					<strong>
 						{owner}
