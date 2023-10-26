@@ -16,7 +16,10 @@ const Header = () => {
         <p>
           A network where craft is appreciated, showcased and celebrated.
           <br />
-          <Link to="/signup"><strong>Sign up</strong></Link> now to join the community!
+          <Link to="/signup">
+            <strong>Sign up</strong>
+          </Link>{" "}
+          now to join the community!
         </p>
       </Col>
       <Col className="d-none d-sm-block pl-0" sm={4}>
@@ -53,7 +56,7 @@ const Header = () => {
         className={styles.HeaderTab}
         activeClassName={styles.Active}
       >
-        <i className="fa-solid fa-heart"></i>
+        <i class="fa-solid fa-thumbs-up"></i>
         <span className={styles.TabName}>Liked</span>
       </NavLink>
       <NavLink

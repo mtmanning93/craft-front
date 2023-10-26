@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Col, Row, Container } from "react-bootstrap";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { axiosReq } from "../../api/axiosDefaults";
+import Post from "../../components/Post";
 
 const PostDetails = () => {
   const { id } = useParams();
@@ -29,8 +30,8 @@ const PostDetails = () => {
     <Row className="w-100 border p-2">
       <Col className="border" lg={8}>
         <p>WOTW Mobile</p>
-        <p>Post Detail</p>
-        <Container className="border m-2">Comments</Container>
+        <Post {...obj.results[0]} setPost={setObj} />
+        <Container className="border">Comments</Container>
       </Col>
       <Col className="border d-none d-lg-block" lg={4}>
         <p>WOTW Desktop</p>
