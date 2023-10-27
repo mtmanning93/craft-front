@@ -13,6 +13,7 @@ const PostDetails = () => {
 
 	const currentUser = useCurrentUser();
 	const profile_image = currentUser?.profile_image;
+    
 	// empty array means you an fetch results or result
 	const [post, setPost] = useState({ results: [] });
 	const [comments, setComments] = useState({ results: [] });

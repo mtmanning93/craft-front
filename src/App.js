@@ -9,6 +9,7 @@ import CreatePostForm from "./pages/forms/CreatePostForm";
 import mainStyles from "./App.module.css";
 import NavBar from "./components/NavBar";
 import PostDetails from "./pages/PostDetails";
+import Feed from "./pages/Feeds";
 
 function App() {
   return (
@@ -17,7 +18,9 @@ function App() {
       <Header />
       <Container fluid className={mainStyles.MainContainer}>
         <Switch>
-          <Route exact path="/" render={() => <h1>Home</h1>} />
+          <Route exact path="/" render={() => <Feed />} />
+          <Route exact path="/feed" render={() => <Feed />} />
+          <Route exact path="/liked" render={() => <Feed />} />
           <Route exact path="/login" render={() => <LogInForm />} />
           <Route exact path="/signup" render={() => <SignUpForm />} />
           <Route exact path="/posts/create/" render={() => <CreatePostForm />} />
