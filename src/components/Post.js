@@ -86,7 +86,7 @@ const Post = (props) => {
 	};
 
 	return (
-		<Card className={`${styles.Post} ${mainStyles.Content}`}>
+		<Card className={`mt-3 ${mainStyles.Content}`}>
 			<Card.Body className="p-2 p-sm-4">
 				<Row className="m-2 mb-3 flex-column-reverse flex-sm-row align-items-center justify-content-between">
 					<Link

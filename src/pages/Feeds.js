@@ -24,14 +24,12 @@ const Feed = ({ filter = "" }) => {
 				}
 
 				const { data } = await axiosReq.get(`/posts/?${filter}`);
-
 				setPosts(data);
 				setLoaded(true);
 			} catch (error) {
 				console.error(error);
 			}
 		};
-
 		setLoaded(false);
 		getPosts();
 	}, [filter, currentUrl]);
@@ -56,7 +54,6 @@ const Feed = ({ filter = "" }) => {
 				) : (
 					<Loader loader />
 				)}
-
 			</Col>
 			<Col className="border ml-2 d-none d-lg-block" lg={4}>
 				<p>WOTW Desktop</p>
