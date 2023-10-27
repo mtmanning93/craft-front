@@ -21,7 +21,7 @@ const Comment = (props) => {
 	const user = useCurrentUser();
 
 	const is_owner = user?.username === owner;
-    
+
     const deleteComment = async () => {
         try {
           await axiosRes.delete(`/comments/${id}`);
@@ -59,7 +59,7 @@ const Comment = (props) => {
 						{is_owner && (
 							<SettingsDropdown
 								editObject={() => {}}
-								deleteObject={deleteComment}
+								onDelete={deleteComment}
 							/>
 						)}
 					</div>

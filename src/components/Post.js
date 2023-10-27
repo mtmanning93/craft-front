@@ -28,22 +28,22 @@ const Post = (props) => {
 	} = props;
 
 	const currentUser = useCurrentUser();
-    const history = useHistory();
+	const history = useHistory();
 
 	const is_owner = currentUser?.username === owner;
 
-    const editPost = async () => {
-        history.push(`/posts/${id}/edit`)
-    }
+	const editPost = async () => {
+		history.push(`/posts/${id}/edit`);
+	};
 
-    const deletePost = async () => {
-        try {
-            await axiosRes.delete(`/posts/${id}/`)
-            history.goBack();
-        } catch (err) {
-            console.log(err)
-        }
-    }
+	const deletePost = async () => {
+		try {
+			await axiosRes.delete(`/posts/${id}/`);
+			history.goBack();
+		} catch (err) {
+			console.log(err);
+		}
+	};
 
 	const unlikePost = async () => {
 		try {
@@ -112,17 +112,20 @@ const Post = (props) => {
 							{updated_on}
 						</p>
 						{is_owner && (
-								<SettingsDropdown editObject={editPost} deleteObject={deletePost} />
+							<SettingsDropdown
+								editObject={editPost}
+								onDelete={deletePost}
+							/>
 						)}
 						<BackButton />
 					</div>
 				</Row>
+				<p className="d-block d-md-none mx-2">{updated_on}</p>
 				{title && (
 					<Card.Text as="h3" className="m-2">
 						{title}
 					</Card.Text>
 				)}
-				<p className="d-block d-md-none mx-2">{updated_on}</p>
 
 				{content && (
 					<Card.Text className={styles.Description}>
