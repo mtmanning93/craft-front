@@ -3,10 +3,11 @@ import styles from "../styles/Post.module.css";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 import { Card, OverlayTrigger, Row, Tooltip } from "react-bootstrap";
 import Avatar from "./Avatar";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import mainStyles from "../App.module.css";
 import BackButton from "../components/buttons/BackButton";
 import { axiosRes } from "../api/axiosDefaults";
+import SettingsDropdown from "./buttons/SettingsDropdown";
 
 const Post = (props) => {
 	const {
@@ -27,8 +28,22 @@ const Post = (props) => {
 	} = props;
 
 	const currentUser = useCurrentUser();
+    const history = useHistory();
 
 	const is_owner = currentUser?.username === owner;
+
+    const editPost = async () => {
+        history.push(`/posts/${id}/edit`)
+    }
+
+    const deletePost = async () => {
+        try {
+            await axiosRes.delete(`/posts/${id}/`)
+            history.goBack();
+        } catch (err) {
+            console.log(err)
+        }
+    }
 
 	const unlikePost = async () => {
 		try {
@@ -85,21 +100,19 @@ const Post = (props) => {
 								{profile_job && profile_job}
 								{profile_location && (
 									<span className="ml-1">
-										<i className="fa-solid fa-location-dot"></i>{" "}
+										<i className="fa-solid fa-location-dot"></i>
 										{profile_location}
 									</span>
 								)}
 							</Card.Subtitle>
 						</div>
 					</Link>
-					<div className="ml-auto d-flex align-items-center mb-auto">
-						<p className="d-none d-sm-block mb-0 mr-3">
+					<div className="ml-auto d-flex align-items-center justify-content mb-auto">
+						<p className="d-none d-md-block mb-0 mr-3">
 							{updated_on}
 						</p>
 						{is_owner && (
-							<span className={styles.Settings}>
-								<i className="fa-solid fa-wrench"></i>
-							</span>
+								<SettingsDropdown editObject={editPost} deleteObject={deletePost} />
 						)}
 						<BackButton />
 					</div>
@@ -109,7 +122,7 @@ const Post = (props) => {
 						{title}
 					</Card.Text>
 				)}
-				<p className="d-block d-sm-none mx-2">{updated_on}</p>
+				<p className="d-block d-md-none mx-2">{updated_on}</p>
 
 				{content && (
 					<Card.Text className={styles.Description}>
