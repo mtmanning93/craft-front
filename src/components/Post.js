@@ -3,7 +3,7 @@ import styles from "../styles/Post.module.css";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 import { Card, OverlayTrigger, Row, Tooltip } from "react-bootstrap";
 import Avatar from "./Avatar";
-import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { Link, useHistory, useLocation } from "react-router-dom/cjs/react-router-dom.min";
 import mainStyles from "../App.module.css";
 import BackButton from "../components/buttons/BackButton";
 import { axiosRes } from "../api/axiosDefaults";
@@ -28,9 +28,14 @@ const Post = (props) => {
 	} = props;
 
 	const currentUser = useCurrentUser();
-	const history = useHistory();
 
 	const is_owner = currentUser?.username === owner;
+
+    const currentUrl = useLocation();
+    console.log(currentUrl.pathname);
+    const isPostDetails = currentUrl.pathname.startsWith(`/posts/${id}`)
+
+    const history = useHistory();
 
 	const editPost = async () => {
 		history.push(`/posts/${id}/edit`);
@@ -117,7 +122,8 @@ const Post = (props) => {
 								onDelete={deletePost}
 							/>
 						)}
-						<BackButton />
+
+                        {isPostDetails && <BackButton />}
 					</div>
 				</Row>
 				<p className="d-block d-md-none mx-2">{updated_on}</p>

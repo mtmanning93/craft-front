@@ -55,9 +55,7 @@ const Feed = ({ filter = "" }) => {
 					<Loader loader />
 				)}
 			</Col>
-			<Col className="border ml-2 d-none d-lg-block" lg={4}>
-				<p>WOTW Desktop</p>
-			</Col>
+            <Col className="border m-2 d-none d-lg-block" lg={4}>WOTW Desktop </Col>
 		</Row>
 	);
 };
