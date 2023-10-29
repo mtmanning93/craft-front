@@ -5,6 +5,8 @@ import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 import { axiosReq } from "../api/axiosDefaults";
 import Loader from "../components/Loader";
 import Post from "../components/Post";
+import InfiniteScroll from "react-infinite-scroll-component";
+import fetchMoreData from "../components/tools/InfiniteScroll";
 
 const Feed = ({ filter = "" }) => {
 	const [posts, setPosts] = useState([]);
@@ -15,6 +17,7 @@ const Feed = ({ filter = "" }) => {
 	const user_id = user?.profile_id;
 
 	useEffect(() => {
+
 		const getPosts = async () => {
 			try {
 				if (currentUrl === "/feed") {
@@ -32,6 +35,7 @@ const Feed = ({ filter = "" }) => {
 		};
 		setLoaded(false);
 		getPosts();
+
 	}, [filter, currentUrl]);
 
 	return (
@@ -41,21 +45,33 @@ const Feed = ({ filter = "" }) => {
 
 				{loaded ? (
 					<>
-						{posts.results.length
-							? posts.results.map((post) => (
+						{posts.results.length ? (
+							<InfiniteScroll
+								dataLength={posts.results.length}
+								next={()=> fetchMoreData(posts, setPosts)}
+								hasMore={!!posts.next}
+								loader={<Loader loader />}
+								endMessage={<p>No more data to load.</p>}
+							>
+								{posts.results.map((post) => (
 									<Post
 										key={post.id}
 										{...post}
 										setPosts={setPosts}
 									/>
-							  ))
-							: console.log("Show no results thing here")}
+								))}
+							</InfiniteScroll>
+						) : (
+							console.log("Show no results thing here")
+						)}
 					</>
 				) : (
 					<Loader loader />
 				)}
 			</Col>
-            <Col className="border m-2 d-none d-lg-block" lg={4}>WOTW Desktop </Col>
+			<Col className="border m-2 d-none d-lg-block" lg={4}>
+				WOTW Desktop{" "}
+			</Col>
 		</Row>
 	);
 };
