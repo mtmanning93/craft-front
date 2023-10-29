@@ -7,13 +7,16 @@ import CommentForm from "./forms/CommentForm";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 import mainStyles from "../App.module.css";
 import Comment from "../components/Comment";
+import fetchMoreData from "../components/tools/InfiniteScroll";
+import InfiniteScroll from "react-infinite-scroll-component";
+import Loader from "../components/Loader";
 
 const PostDetails = () => {
 	const { id } = useParams();
 
 	const currentUser = useCurrentUser();
 	const profile_image = currentUser?.profile_image;
-    
+
 	// empty array means you an fetch results or result
 	const [post, setPost] = useState({ results: [] });
 	const [comments, setComments] = useState({ results: [] });
@@ -54,14 +57,22 @@ const PostDetails = () => {
 					) : null}
 
 					{comments.results.length ? (
-						comments.results.map((comment) => (
-							<Comment
-								key={comment.id}
-								{...comment}
-								setPost={setPost}
-								setComments={setComments}
-							/>
-						))
+						<InfiniteScroll
+							dataLength={comments.results.length}
+							next={() => fetchMoreData(comments, setComments)}
+							hasMore={!!comments.next}
+							loader={<Loader loader />}
+							endMessage={<p>No more comments to load.</p>}
+						>
+							{comments.results.map((comment) => (
+								<Comment
+									key={comment.id}
+									{...comment}
+									setPost={setPost}
+									setComments={setComments}
+								/>
+							))}
+						</InfiniteScroll>
 					) : currentUser ? (
 						<>
 							<h2 className="border-bottom pb-2 m-2 ml-4">

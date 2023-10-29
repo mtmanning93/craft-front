@@ -51,7 +51,7 @@ const Feed = ({ filter = "" }) => {
 								next={()=> fetchMoreData(posts, setPosts)}
 								hasMore={!!posts.next}
 								loader={<Loader loader />}
-								endMessage={<p>No more data to load.</p>}
+								endMessage={<p>No more posts to load.</p>}
 							>
 								{posts.results.map((post) => (
 									<Post
