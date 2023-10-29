@@ -3,12 +3,15 @@ import { Col, Row } from "react-bootstrap";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 import { Link, useLocation } from "react-router-dom/cjs/react-router-dom.min";
 import { axiosReq } from "../api/axiosDefaults";
-import Loader from "../components/Loader";
+import Loader from "../components/tools/Loader";
 import Post from "../components/Post";
 import InfiniteScroll from "react-infinite-scroll-component";
 import fetchMoreData from "../components/tools/InfiniteScroll";
+import WorkOfTheWeek from "../components/WorkOfTheWeek";
+import styles from "../styles/WotW.module.css";
+import mainStyles from "../App.module.css";
 
-const Feed = ({ filter = "" }) => {
+const Feed = () => {
 	const [posts, setPosts] = useState([]);
 	const [loaded, setLoaded] = useState(false);
 	const currentUrl = useLocation().pathname;
@@ -21,7 +24,7 @@ const Feed = ({ filter = "" }) => {
 			<div className="m-2">
 				<h1>No posts yet! You do no follow anybody.</h1>
 				<p>
-					You must follow others to show all their posts here.
+					You must follow others to show all their posts here.{" "}
 					<Link className="text-warning" to="/">
 						Get started here.
 					</Link>
@@ -32,7 +35,7 @@ const Feed = ({ filter = "" }) => {
 				<h1>No posts yet! You have not liked any posts.</h1>
 				<p>
 					You must like others posts to show all your liked posts
-					here.
+					here.{" "}
 					<Link className="text-warning" to="/">
 						Get started here.
 					</Link>
@@ -65,7 +68,9 @@ const Feed = ({ filter = "" }) => {
 	return (
 		<Row className="w-100 p-2">
 			<Col className="p-0">
-				<p className="border m-2 d-lg-none">WOTW Mobile</p>
+				<Row className={`${mainStyles.Content} bg-warning border-dark m-0 mt-3 d-lg-none`}>
+					<WorkOfTheWeek />
+				</Row>
 
 				{loaded ? (
 					<>
@@ -93,8 +98,11 @@ const Feed = ({ filter = "" }) => {
 					<Loader loader />
 				)}
 			</Col>
-			<Col className="border m-2 d-none d-lg-block" lg={4}>
-				WOTW Desktop
+			<Col
+				className={`${styles.WotwContainer} ${mainStyles.Content} bg-warning border-dark ml-2 mt-3 d-none d-lg-block`}
+				lg={4}
+			>
+				<WorkOfTheWeek />
 			</Col>
 		</Row>
 	);

@@ -9,7 +9,7 @@ import mainStyles from "../App.module.css";
 import Comment from "../components/Comment";
 import fetchMoreData from "../components/tools/InfiniteScroll";
 import InfiniteScroll from "react-infinite-scroll-component";
-import Loader from "../components/Loader";
+import Loader from "../components/tools/Loader";
 
 const PostDetails = () => {
 	const { id } = useParams();
