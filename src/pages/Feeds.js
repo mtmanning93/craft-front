@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
-import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
+import { Link, useLocation } from "react-router-dom/cjs/react-router-dom.min";
 import { axiosReq } from "../api/axiosDefaults";
 import Loader from "../components/Loader";
 import Post from "../components/Post";
@@ -16,9 +16,32 @@ const Feed = ({ filter = "" }) => {
 	const user = useCurrentUser();
 	const user_id = user?.profile_id;
 
-	useEffect(() => {
+	const noFeedMessage =
+		currentUrl === "/feed" ? (
+			<div className="m-2">
+				<h1>No posts yet! You do no follow anybody.</h1>
+				<p>
+					You must follow others to show all their posts here.
+					<Link className="text-warning" to="/">
+						Get started here.
+					</Link>
+				</p>
+			</div>
+		) : (
+			<div>
+				<h1>No posts yet! You have not liked any posts.</h1>
+				<p>
+					You must like others posts to show all your liked posts
+					here.
+					<Link className="text-warning" to="/">
+						Get started here.
+					</Link>
+				</p>
+			</div>
+		);
 
-        let filter = ""
+	useEffect(() => {
+		let filter = "";
 
 		const getPosts = async () => {
 			try {
@@ -37,7 +60,6 @@ const Feed = ({ filter = "" }) => {
 		};
 		setLoaded(false);
 		getPosts();
-
 	}, [currentUrl, user_id]);
 
 	return (
@@ -50,7 +72,7 @@ const Feed = ({ filter = "" }) => {
 						{posts.results.length ? (
 							<InfiniteScroll
 								dataLength={posts.results.length}
-								next={()=> fetchMoreData(posts, setPosts)}
+								next={() => fetchMoreData(posts, setPosts)}
 								hasMore={!!posts.next}
 								loader={<Loader loader />}
 								endMessage={<p>No more posts to load...</p>}
@@ -64,7 +86,7 @@ const Feed = ({ filter = "" }) => {
 								))}
 							</InfiniteScroll>
 						) : (
-							console.log("Show no results thing here")
+							noFeedMessage
 						)}
 					</>
 				) : (
@@ -72,7 +94,7 @@ const Feed = ({ filter = "" }) => {
 				)}
 			</Col>
 			<Col className="border m-2 d-none d-lg-block" lg={4}>
-				WOTW Desktop{" "}
+				WOTW Desktop
 			</Col>
 		</Row>
 	);
