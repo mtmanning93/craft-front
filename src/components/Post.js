@@ -28,11 +28,9 @@ const Post = (props) => {
 	} = props;
 
 	const currentUser = useCurrentUser();
-
 	const is_owner = currentUser?.username === owner;
 
     const currentUrl = useLocation();
-    console.log(currentUrl.pathname);
     const isPostDetails = currentUrl.pathname.startsWith(`/posts/${id}`)
 
     const history = useHistory();
