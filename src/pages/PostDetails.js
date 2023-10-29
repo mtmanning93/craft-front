@@ -62,7 +62,6 @@ const PostDetails = () => {
 							next={() => fetchMoreData(comments, setComments)}
 							hasMore={!!comments.next}
 							loader={<Loader loader />}
-							endMessage={<p>No more comments to load.</p>}
 						>
 							{comments.results.map((comment) => (
 								<Comment

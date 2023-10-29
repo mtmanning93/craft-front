@@ -6,12 +6,28 @@ const fetchMoreData = async (resource, setResource) => {
     
     const newResults = [];
 
+    // for (const newResult of data.results) {
+
+    //     let isDuplicate = false;
+  
+    //     for (const existingResult of resource.results) {
+    //       if (newResult.id === existingResult.id) {
+    //         isDuplicate = true;
+    //         break;
+    //       }
+    //     }
+  
+    //     if (!isDuplicate) {
+    //       newResults.push(newResult);
+    //     }
+    //   }
+
     for (const newResult of data.results) {
         let isDuplicate = resource.results.some(existingResult => newResult.id === existingResult.id);
         if (!isDuplicate) {
             newResults.push(newResult)
         }
-      }      
+      }
 
     setResource((prevResource) => ({
       ...prevResource,
