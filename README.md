@@ -12,6 +12,52 @@ npm install axios
 
 axios defaults base URL was original set for the frontend url not the API
 
+## WARNINGS
+
+### Assignments to the 'filter' variable from inside React Hook useEffect will be lost after each render. 
+
+src/pages/Feeds.js
+Line 24:15:  Assignments to the 'filter' variable from inside React Hook useEffect will be lost after each render. To preserve the value over time, store it in a useRef Hook and keep the mutable value in the '.current' property. Otherwise, you can move this variable directly inside useEffect  react-hooks/exhaustive-deps
+
+CORRECT
+
+    useEffect(() => {
+        
+        let filter = ""
+        
+		const getPosts = async () => {
+
+    
+
+INCORRECT
+
+	useEffect(() => {
+
+		const getPosts = async () => {
+			try {
+				if (currentUrl === "/feed") {
+					filter = `owner__followed__owner__profile=${user_id}&`;
+				} else if (currentUrl === "/liked") {
+					filter = `like__owner__profile=${user_id}&ordering=-like__created_on&`;
+				}
+
+				const { data } = await axiosReq.get(`/posts/?${filter}`);
+				setPosts(data);
+				setLoaded(true);
+			} catch (error) {
+				console.error(error);
+			}
+		};
+		setLoaded(false);
+		getPosts();
+
+	}, [filter, currentUrl]);
+
+CORRECT
+
+
+
+
 ### React Hook useEffect has a missing dependency: 'handleMount'. Either include it or remove the dependency array
 
 The warning you're seeing is a linting warning provided by the react-hooks/exhaustive-deps rule. It's suggesting that you have a missing dependency in the dependency array of the useEffect hook.

@@ -18,6 +18,8 @@ const Feed = ({ filter = "" }) => {
 
 	useEffect(() => {
 
+        let filter = ""
+
 		const getPosts = async () => {
 			try {
 				if (currentUrl === "/feed") {
@@ -36,7 +38,7 @@ const Feed = ({ filter = "" }) => {
 		setLoaded(false);
 		getPosts();
 
-	}, [filter, currentUrl]);
+	}, [currentUrl, user_id]);
 
 	return (
 		<Row className="w-100 p-2">
