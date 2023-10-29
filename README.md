@@ -51,3 +51,9 @@ INCORRECT (WARNINGS)
 ### Custom user context hook
 
 ### axios interceptors and access tokens
+
+### Infinite Scroll
+
+[Npm react infinite scroll docs](https://www.npmjs.com/package/react-infinite-scroll-component)
+[NPM react infinite scroll github repo](https://github.com/ankeetmaini/react-infinite-scroll-component)
+[Implementing Infinite sroll (log rocket)](https://blog.logrocket.com/3-ways-implement-infinite-scroll-react/#call-fetchdata-component-mount)
