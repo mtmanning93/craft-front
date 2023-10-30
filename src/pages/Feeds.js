@@ -68,7 +68,10 @@ const Feed = () => {
 	return (
 		<Row className="w-100 p-2">
 			<Col className="p-0">
-				<Row className={`${mainStyles.Content} bg-warning border-dark m-0 mt-3 d-lg-none`}>
+				<Row
+					className={`${mainStyles.Content} bg-warning border-dark m-0 mt-3 d-md-none`}
+				>
+					<p className={`${styles.Heading} mb-0 mt-2 ml-3 ml-sm-4`}>Work of the week</p>
 					<WorkOfTheWeek />
 				</Row>
 
@@ -99,9 +102,10 @@ const Feed = () => {
 				)}
 			</Col>
 			<Col
-				className={`${styles.WotwContainer} ${mainStyles.Content} bg-warning border-dark ml-2 mt-3 d-none d-lg-block`}
-				lg={4}
+				className={`${styles.WotwContainer} ${mainStyles.Content} bg-warning border-dark ml-2 mt-3 p-0 d-none d-md-block`}
+				md={4}
 			>
+				<p className={`${styles.Heading} m-0 mt-2 ml-2`}>Work of the week</p>
 				<WorkOfTheWeek />
 			</Col>
 		</Row>

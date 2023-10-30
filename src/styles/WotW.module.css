@@ -1,13 +1,69 @@
 .WotwContainer {
-	height: 95vh;
-    position: -webkit-sticky; /* For Safari */
-    position: sticky;
-    top: 10px; /* Adjust the value as needed */
-    z-index: 1;
+	height: fit-content;
+}
+
+.Heading {
+    font-size: 1.4em;
+    font-weight: 700;
+    text-transform: uppercase;
 }
 
 .Post {
-	height: 100px;
-	text-align: center;
-	background-color: #f5f5f5;
+    height: auto;
+	color: #000000;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.Header {
+    background-color: #f5f5f5b5;
+    border-bottom: 1px solid #4682B4;
+}
+
+.Title {
+	background-color: #0000009c;
+    color: white;
+    font-size: 1.2em;
+	padding: 10px;
+    border: 0;
+}
+
+.Footer {
+    background-color: #f5f5f5b5;
+    border-top: 1px solid #4682B4;
+}
+
+@media (max-width: 767px) {
+    .Post {
+        width: 30%;
+        height: auto;
+    }
+
+    .Header {
+        font-size: 0.8em;
+    }
+
+    .Avatar {
+        height: 30px;
+        width: 30px;
+    }
+
+    .Title {
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 330px) {
+    .Wrapper {
+
+        display: flex;
+        flex-direction: column;
+    }
+
+    .Post {
+        width: auto;
+        height: 30%;
+        margin: 5px;
+    }
 }
