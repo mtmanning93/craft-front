@@ -60,6 +60,39 @@
 	padding: 3px;
 }
 
+.Approve,
+.ApproveUnregistered,
+.Approved {
+	font-weight: 700;
+}
+
+.Approve {
+	background-color: #4682b4;
+	color: #ffffff;
+}
+
+.ApproveUnregistered {
+	background-color: #4682b4;
+	color: #ffffff;
+}
+
+.Approved {
+	background-color: #ffffff;
+	color: #4682b4;
+	border-color: #4682b4;
+}
+
+.Approve:hover {
+	background-color: #ffffff;
+	color: #4682b4;
+	box-shadow: rgba(70, 130, 180, 0.35) 0px 5px 15px;
+}
+
+.Approved:hover {
+	background-color: #4682b4;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
 @media (max-width: 768px) {
 	.PostBtn {
 		height: 40px;

@@ -101,7 +101,7 @@ const ProfilePage = () => {
 
 				{loaded ? (
                     <>
-                    <ProfileCard {...profile.results[0]} />
+                    <ProfileCard {...profile.results[0]} setProfileData={setProfileData}/>
 					{profileOwnedPosts}
                     </>
 				) : (

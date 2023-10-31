@@ -1,5 +1,12 @@
 import React from "react";
-import { Row, Card, Col } from "react-bootstrap";
+import {
+	Row,
+	Card,
+	Col,
+	Tooltip,
+	OverlayTrigger,
+	Button,
+} from "react-bootstrap";
 import mainStyles from "../App.module.css";
 import Avatar from "./Avatar";
 import SettingsDropdown from "./buttons/SettingsDropdown";
@@ -8,10 +15,12 @@ import MainButton from "./buttons/MainButton";
 import styles from "../styles/Profiles.module.css";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { axiosRes } from "../api/axiosDefaults";
+import btnStyles from "../styles/Buttons.module.css";
 
 const ProfileCard = (props) => {
 	const {
-        id,
+		id,
 		owner,
 		name,
 		bio,
@@ -24,16 +33,60 @@ const ProfileCard = (props) => {
 		following_count,
 		followers_count,
 		approval_count,
+		approval_id,
+		setProfileData,
 	} = props;
 
 	const currentUser = useCurrentUser();
 
-    const history = useHistory();
+	const history = useHistory();
 
 	const personalInfo = name || job || employer || bio;
 
-    const editProfile = async () => {
+	const editProfile = async () => {
 		history.push(`/profiles/${id}/edit`);
+	};
+
+	const unApproveProfile = async () => {
+		try {
+			await axiosRes.delete(`/approvals/${approval_id}/`);
+			setProfileData((prevProfileData) => ({
+				...prevProfileData,
+				results: prevProfileData.results.map((profile) => {
+					return profile.id === id
+						? {
+								...profile,
+								approval_count: profile.approval_count - 1,
+								approval_id: null,
+						  }
+						: profile;
+				}),
+			}));
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const approveProfile = async () => {
+		try {
+			const { data } = await axiosRes.post("/approvals/", {
+				profile: id,
+			});
+			setProfileData((prevProfileData) => ({
+				...prevProfileData,
+				results: prevProfileData.results.map((profile) => {
+					return profile.id === id
+						? {
+								...profile,
+								approval_count: profile.approval_count + 1,
+								approval_id: data.id,
+						  }
+						: profile;
+				}),
+			}));
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	return (
@@ -46,7 +99,7 @@ const ProfileCard = (props) => {
 					{is_owner && (
 						<SettingsDropdown
 							editObject={editProfile}
-							onDelete={()=>{}}
+							onDelete={() => {}}
 						/>
 					)}
 					<BackButton />
@@ -65,16 +118,61 @@ const ProfileCard = (props) => {
 							<Card.Title as="h1">{owner}'s Profile</Card.Title>
 							{currentUser && (
 								<div className="d-flex m-auto m-sm-0">
-									<MainButton
-										onClick={() => {}}
-										text="Follow"
-										className="mr-2"
-									/>
-									<MainButton
-										variant="success"
-										onClick={() => {}}
-										text="Approve"
-									/>
+									{!is_owner && (
+										<MainButton
+											onClick={() => {}}
+											text="Follow"
+											className="mr-2"
+										/>
+									)}
+									{!is_owner &&
+										(approval_id ? (
+											<Button
+												className={btnStyles.Approved}
+												onClick={unApproveProfile}
+											>
+												Approved{" "}
+												<i className="fa-solid fa-circle-check" />
+											</Button>
+										) : currentUser ? (
+											<OverlayTrigger
+												placement="bottom"
+												overlay={
+													<Tooltip>
+														Approve this profile, to
+														approve their work, and
+														make them more visible.
+													</Tooltip>
+												}
+											>
+												<Button
+													className={
+														btnStyles.Approve
+													}
+													onClick={approveProfile}
+												>
+													Approve
+												</Button>
+											</OverlayTrigger>
+										) : (
+											<OverlayTrigger
+												placement="bottom"
+												overlay={
+													<Tooltip>
+														You must login or signup
+														to approve profiles.
+													</Tooltip>
+												}
+											>
+												<Button
+													className={
+														btnStyles.ApproveUnregistered
+													}
+												>
+													Approve
+												</Button>
+											</OverlayTrigger>
+										))}
 								</div>
 							)}
 
