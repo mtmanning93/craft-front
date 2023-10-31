@@ -174,7 +174,7 @@ const EditPostForm = () => {
 											className="btn"
 											htmlFor="upload"
 										>
-											<i class="fa-solid fa-images mr-2"></i>
+											<i className="fa-solid fa-images mr-2" />
 											Click to change image.
 										</Form.Label>
 									</div>
