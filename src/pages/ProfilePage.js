@@ -20,18 +20,6 @@ const ProfilePage = () => {
 
 	const [loaded, setLoaded] = useState(false);
 
-	const noPostsMessage = (
-		<div className="m-2">
-			<h1>You have no posts yet! Start building.</h1>
-			<p>
-				You need to create some posts to see results.{" "}
-				<Link className="text-warning" to="/posts/create">
-					Get started here.
-				</Link>
-			</p>
-		</div>
-	);
-
 	useEffect(() => {
 		const getProfileData = async () => {
 			try {
@@ -62,6 +50,18 @@ const ProfilePage = () => {
 		getProfileData();
 		getProfilePosts();
 	}, [id]);
+
+    const noPostsMessage = (
+		<div className="m-2">
+			<h1>You have no posts yet! Start building.</h1>
+			<p>
+				You need to create some posts to see results.{" "}
+				<Link className="text-warning" to="/posts/create">
+					Get started here.
+				</Link>
+			</p>
+		</div>
+	);
 
 	const profileOwnedPosts = (
 		<>
@@ -100,13 +100,10 @@ const ProfilePage = () => {
 				</Row>
 
 				{loaded ? (
-					<ProfileCard {...profile.results[0]} />
-				) : (
-					<Loader loader variant="warning" />
-				)}
-
-				{loaded ? (
-					profileOwnedPosts
+                    <>
+                    <ProfileCard {...profile.results[0]} />
+					{profileOwnedPosts}
+                    </>
 				) : (
 					<Loader loader variant="warning" />
 				)}
