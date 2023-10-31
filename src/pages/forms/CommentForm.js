@@ -52,7 +52,7 @@ const CommentForm = (props) => {
 		<Form className="my-2 mx-sm-2 p-2 border-bottom border-dark" onSubmit={handleSubmit}>
 			<Form.Group controlId="formBasicPassword">
 				<Link to={`/profiles/${profile_id}`}>
-					<Avatar src={profile_image} text={user.username} height={55} />
+					<Avatar src={profile_image} textAfter={user.username} height={55} />
 				</Link>
 				<Form.Label className="d-none">Comment</Form.Label>
 				<Form.Control

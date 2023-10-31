@@ -1,9 +1,10 @@
 import React from "react";
 import styles from "../styles/Avatar.module.css";
 
-const Avatar = ({ src, height = 45, text, className }) => {
+const Avatar = ({ src, height = 45, textBefore, textAfter, className }) => {
   return (
     <span>
+        <span className="d-none d-sm-inline">{textBefore}</span>
         <img
             className={`${styles.Avatar} ${className}`}
             src={src}
@@ -11,7 +12,7 @@ const Avatar = ({ src, height = 45, text, className }) => {
             width={height}
             alt="user profile avatar"
         />
-        <span className="d-none d-sm-inline">{text}</span>
+        <span className="d-none d-sm-inline">{textAfter}</span>
     </span>
   );
 };

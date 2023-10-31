@@ -41,6 +41,7 @@ const WorkOfTheWeek = () => {
 								backgroundImage: `url(${post.image})`,
 							}}
 							className={`${styles.Post} ${mainStyles.Content} my-md-2`}
+                            key={post.id}
 						>
 							<Link className="h-100" to={`/posts/${post.id}`}>
 								<div className="d-flex flex-column h-100">
@@ -50,7 +51,7 @@ const WorkOfTheWeek = () => {
 										<Avatar
 											src={post.profile_image}
 											height={45}
-											text={post.owner}
+											textAfter={post.owner}
 											className={styles.Avatar}
 										/>
 									</Card.Header>

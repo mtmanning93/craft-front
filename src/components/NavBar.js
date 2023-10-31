@@ -124,7 +124,7 @@ const NavBar = () => {
         <Col md={4} className="d-none d-md-flex justify-content-end p-0">
           <Nav className="ml-auto d-none d-md-block">
             <NavDropdown
-              title={<Avatar src={currentUser?.profile_image} height={50} />}
+              title={<Avatar src={currentUser?.profile_image} height={50} textBefore={currentUser?.username}/>}
               alignRight
               id="large-nav-dropdown"
               className={styles.Dropdown}
