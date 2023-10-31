@@ -12,6 +12,7 @@ import PostDetails from "./pages/PostDetails";
 import Feed from "./pages/Feeds";
 import EditPostForm from "./pages/forms/EditPostFrom";
 import ProfilePage from "./pages/ProfilePage";
+import UpdateProfileForm from "./pages/forms/UpdateProfileForm";
 
 function App() {
 	return (
@@ -41,6 +42,7 @@ function App() {
 						render={() => <PostDetails />}
 					/>
 					<Route exact path="/profiles/:id" render={() => <ProfilePage />} />
+					<Route exact path="/profiles/:id/edit" render={() => <UpdateProfileForm />} />
 					<Route render={() => <h1>Page not found!</h1>} />
 				</Switch>
 			</Container>

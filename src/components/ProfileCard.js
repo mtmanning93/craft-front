@@ -7,9 +7,11 @@ import BackButton from "./buttons/BackButton";
 import MainButton from "./buttons/MainButton";
 import styles from "../styles/Profiles.module.css";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const ProfileCard = (props) => {
 	const {
+        id,
 		owner,
 		name,
 		bio,
@@ -26,7 +28,13 @@ const ProfileCard = (props) => {
 
 	const currentUser = useCurrentUser();
 
+    const history = useHistory();
+
 	const personalInfo = name || job || employer || bio;
+
+    const editProfile = async () => {
+		history.push(`/profiles/${id}/edit`);
+	};
 
 	return (
 		<Card className={`mt-3 ${mainStyles.Content}`}>
@@ -35,7 +43,12 @@ const ProfileCard = (props) => {
 					<p>Joined: {created_on}</p>
 				</div>
 				<div className="mb-2 mb-sm-0 d-flex align-items-center">
-					{is_owner && <SettingsDropdown />}
+					{is_owner && (
+						<SettingsDropdown
+							editObject={editProfile}
+							onDelete={()=>{}}
+						/>
+					)}
 					<BackButton />
 				</div>
 			</Card.Header>
