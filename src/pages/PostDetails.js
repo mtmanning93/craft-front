@@ -6,10 +6,12 @@ import Post from "../components/Post";
 import CommentForm from "./forms/CommentForm";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 import mainStyles from "../App.module.css";
+import stylesW from "../styles/WotW.module.css";
 import Comment from "../components/Comment";
 import fetchMoreData from "../components/tools/InfiniteScroll";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Loader from "../components/tools/Loader";
+import WorkOfTheWeek from "../components/WorkOfTheWeek";
 
 const PostDetails = () => {
 	const { id } = useParams();
@@ -32,14 +34,21 @@ const PostDetails = () => {
 				console.log(err);
 			}
 		};
-        
+
 		handleMount();
 	}, [id]);
 
 	return (
 		<Row className="w-100 p-2">
 			<Col className="p-0">
-				<p>WOTW Mobile</p>
+				<Row
+					className={`${mainStyles.Content} bg-warning border-dark m-0 mt-3 d-md-none`}
+				>
+					<p className={`${stylesW.Heading} mb-0 mt-2 ml-3 ml-sm-4`}>
+						Work of the week
+					</p>
+					<WorkOfTheWeek />
+				</Row>
 				<Post {...post.results[0]} setPosts={setPost} />
 				<Container fluid className={`${mainStyles.Content} p-0 mt-2`}>
 					{currentUser ? (
@@ -93,8 +102,14 @@ const PostDetails = () => {
 					)}
 				</Container>
 			</Col>
-			<Col className="border ml-2 d-none d-lg-block" lg={4}>
-				<p>WOTW Desktop</p>
+			<Col
+				className={`${stylesW.WotwContainer} ${mainStyles.Content} bg-warning border-dark ml-2 mt-3 p-0 d-none d-md-block`}
+				md={4}
+			>
+				<p className={`${stylesW.Heading} m-0 mt-2 ml-2`}>
+					Work of the week
+				</p>
+				<WorkOfTheWeek />
 			</Col>
 		</Row>
 	);

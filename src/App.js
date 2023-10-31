@@ -13,25 +13,37 @@ import Feed from "./pages/Feeds";
 import EditPostForm from "./pages/forms/EditPostFrom";
 
 function App() {
-  return (
-    <div className={styles.App}>
-      <NavBar />
-      <Header />
-      <Container fluid className={mainStyles.MainContainer}>
-        <Switch>
-          <Route exact path="/" render={() => <Feed />} />
-          <Route exact path="/feed" render={() => <Feed />} />
-          <Route exact path="/liked" render={() => <Feed />} />
-          <Route exact path="/login" render={() => <LogInForm />} />
-          <Route exact path="/signup" render={() => <SignUpForm />} />
-          <Route exact path="/posts/create/" render={() => <CreatePostForm />} />
-          <Route exact path="/posts/:id/edit" render={() => <EditPostForm />} />
-          <Route exact path="/posts/:id" render={()=> <PostDetails />} />
-          <Route render={() => <h1>Page not found!</h1>} />
-        </Switch>
-      </Container>
-    </div>
-  );
+	return (
+		<div className={styles.App}>
+			<NavBar />
+			<Header />
+			<Container fluid className={mainStyles.MainContainer}>
+				<Switch>
+					<Route exact path="/" render={() => <Feed/>} />
+					<Route exact path="/feed" render={() => <Feed />} />
+					<Route exact path="/liked" render={() => <Feed />} />
+					<Route exact path="/login" render={() => <LogInForm />} />
+					<Route exact path="/signup" render={() => <SignUpForm />} />
+					<Route
+						exact
+						path="/posts/create/"
+						render={() => <CreatePostForm />}
+					/>
+					<Route
+						exact
+						path="/posts/:id/edit"
+						render={() => <EditPostForm />}
+					/>
+					<Route
+						exact
+						path="/posts/:id"
+						render={() => <PostDetails />}
+					/>
+					<Route render={() => <h1>Page not found!</h1>} />
+				</Switch>
+			</Container>
+		</div>
+	);
 }
 
 export default App;

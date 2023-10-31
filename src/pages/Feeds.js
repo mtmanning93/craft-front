@@ -8,7 +8,7 @@ import Post from "../components/Post";
 import InfiniteScroll from "react-infinite-scroll-component";
 import fetchMoreData from "../components/tools/InfiniteScroll";
 import WorkOfTheWeek from "../components/WorkOfTheWeek";
-import styles from "../styles/WotW.module.css";
+import stylesW from "../styles/WotW.module.css";
 import mainStyles from "../App.module.css";
 
 const Feed = () => {
@@ -18,6 +18,9 @@ const Feed = () => {
 
 	const user = useCurrentUser();
 	const user_id = user?.profile_id;
+	// console.log("User:", user);
+	// console.log("UserID:", user_id);
+	// May need to be called inside the App.js file see Bug Reports 
 
 	const noFeedMessage =
 		currentUrl === "/feed" ? (
@@ -45,24 +48,26 @@ const Feed = () => {
 
 	useEffect(() => {
 		let filter = "";
+		if (user_id) {
+			const getPosts = async () => {
+				try {
+					if (currentUrl === "/feed") {
+						filter = `owner__followed__owner__profile=${user_id}&`;
+					} else if (currentUrl === "/liked") {
+						filter = `like__owner__profile=${user_id}&ordering=-like__created_on&`;
+					}
 
-		const getPosts = async () => {
-			try {
-				if (currentUrl === "/feed") {
-					filter = `owner__followed__owner__profile=${user_id}&`;
-				} else if (currentUrl === "/liked") {
-					filter = `like__owner__profile=${user_id}&ordering=-like__created_on&`;
+					const { data } = await axiosReq.get(`/posts/?${filter}`);
+					setPosts(data);
+					setLoaded(true);
+				} catch (error) {
+					console.error(error);
 				}
+			};
 
-				const { data } = await axiosReq.get(`/posts/?${filter}`);
-				setPosts(data);
-				setLoaded(true);
-			} catch (error) {
-				console.error(error);
-			}
-		};
-		setLoaded(false);
-		getPosts();
+			setLoaded(false);
+			getPosts();
+		}
 	}, [currentUrl, user_id]);
 
 	return (
@@ -71,7 +76,9 @@ const Feed = () => {
 				<Row
 					className={`${mainStyles.Content} bg-warning border-dark m-0 mt-3 d-md-none`}
 				>
-					<p className={`${styles.Heading} mb-0 mt-2 ml-3 ml-sm-4`}>Work of the week</p>
+					<p className={`${stylesW.Heading} mb-0 mt-2 ml-3 ml-sm-4`}>
+						Work of the week
+					</p>
 					<WorkOfTheWeek />
 				</Row>
 
@@ -102,10 +109,12 @@ const Feed = () => {
 				)}
 			</Col>
 			<Col
-				className={`${styles.WotwContainer} ${mainStyles.Content} bg-warning border-dark ml-2 mt-3 p-0 d-none d-md-block`}
+				className={`${stylesW.WotwContainer} ${mainStyles.Content} bg-warning border-dark ml-2 mt-3 p-0 d-none d-md-block`}
 				md={4}
 			>
-				<p className={`${styles.Heading} m-0 mt-2 ml-2`}>Work of the week</p>
+				<p className={`${stylesW.Heading} m-0 mt-2 ml-2`}>
+					Work of the week
+				</p>
 				<WorkOfTheWeek />
 			</Col>
 		</Row>
