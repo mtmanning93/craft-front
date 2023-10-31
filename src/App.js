@@ -11,6 +11,7 @@ import NavBar from "./components/NavBar";
 import PostDetails from "./pages/PostDetails";
 import Feed from "./pages/Feeds";
 import EditPostForm from "./pages/forms/EditPostFrom";
+import ProfilePage from "./pages/ProfilePage";
 
 function App() {
 	return (
@@ -39,6 +40,7 @@ function App() {
 						path="/posts/:id"
 						render={() => <PostDetails />}
 					/>
+					<Route exact path="/profiles/:id" render={() => <ProfilePage />} />
 					<Route render={() => <h1>Page not found!</h1>} />
 				</Switch>
 			</Container>
