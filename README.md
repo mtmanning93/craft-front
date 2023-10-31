@@ -53,10 +53,9 @@ INCORRECT
 
 	}, [filter, currentUrl]);
 
-CORRECT
+### Warning: Can't perform a React state update on an unmounted component. 
 
-
-
+[isMounted](https://stackoverflow.com/questions/53949393/cant-perform-a-react-state-update-on-an-unmounted-component)
 
 ### React Hook useEffect has a missing dependency: 'handleMount'. Either include it or remove the dependency array
 
