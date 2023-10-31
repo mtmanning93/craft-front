@@ -15,25 +15,39 @@ const WorkOfTheWeek = () => {
 	const { popularPosts } = postData;
 
 	useEffect(() => {
+		// Not necessary in future versions
+		let isMounted = true;
+
 		const handleMount = async () => {
 			try {
 				const { data } = await axiosReq.get(
 					"/posts/?ordering=-likes_count"
 				);
-				setPostData((prevState) => ({
-					...prevState,
-					popularPosts: data,
-				}));
+
+                // Again in future versions remove is mounted var
+				if (isMounted) {
+					setPostData((prevState) => ({
+						...prevState,
+						popularPosts: data,
+					}));
+				}
 			} catch (error) {
 				console.log(error);
 			}
 		};
 		handleMount();
+
+		// Not necessary if updating component once per week see user story 'TT'
+		return () => {
+			isMounted = false;
+		};
 	}, []);
 
 	return (
 		<>
-			<Row className={`${styles.Wrapper} m-0 justify-content-around flex-md-column w-100 h-100 p-2 pt-md-0`}>
+			<Row
+				className={`${styles.Wrapper} m-0 justify-content-around flex-md-column w-100 h-100 p-2 pt-md-0`}
+			>
 				{popularPosts.results.length ? (
 					popularPosts.results.slice(0, 3).map((post) => (
 						<Card
@@ -41,7 +55,7 @@ const WorkOfTheWeek = () => {
 								backgroundImage: `url(${post.image})`,
 							}}
 							className={`${styles.Post} ${mainStyles.Content} my-md-2`}
-                            key={post.id}
+							key={post.id}
 						>
 							<Link className="h-100" to={`/posts/${post.id}`}>
 								<div className="d-flex flex-column h-100">

@@ -118,6 +118,7 @@ const ProfileCard = (props) => {
 							<Card.Title as="h1">{owner}'s Profile</Card.Title>
 							{currentUser && (
 								<div className="d-flex m-auto m-sm-0">
+                                    
 									{!is_owner && (
 										<MainButton
 											onClick={() => {}}
@@ -125,6 +126,7 @@ const ProfileCard = (props) => {
 											className="mr-2"
 										/>
 									)}
+
 									{!is_owner &&
 										(approval_id ? (
 											<Button
