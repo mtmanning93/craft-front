@@ -10,6 +10,7 @@ import mainStyles from "./App.module.css";
 import NavBar from "./components/NavBar";
 import PostDetails from "./pages/PostDetails";
 import Feed from "./pages/Feeds";
+import EditPostForm from "./pages/forms/EditPostFrom";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route exact path="/login" render={() => <LogInForm />} />
           <Route exact path="/signup" render={() => <SignUpForm />} />
           <Route exact path="/posts/create/" render={() => <CreatePostForm />} />
+          <Route exact path="/posts/:id/edit" render={() => <EditPostForm />} />
           <Route exact path="/posts/:id" render={()=> <PostDetails />} />
           <Route render={() => <h1>Page not found!</h1>} />
         </Switch>

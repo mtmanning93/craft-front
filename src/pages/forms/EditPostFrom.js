@@ -1,18 +1,21 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Form, Row, Col, Image, Alert } from "react-bootstrap";
 import mainStyles from "../../App.module.css";
 import styles from "../../styles/CreatePostForm.module.css";
 import MainButton from "../../components/buttons/MainButton";
 import Loader from "../../components/tools/Loader";
 import uploadIcon from "../../assets/upload_icon.png";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import {
+	useHistory,
+	useParams,
+} from "react-router-dom/cjs/react-router-dom.min";
 import { axiosReq } from "../../api/axiosDefaults";
 import Avatar from "../../components/Avatar";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import BackButton from "../../components/buttons/BackButton";
 import btnStyles from "../../styles/Buttons.module.css";
 
-const CreatePostForm = () => {
+const EditPostForm = () => {
 	const currentUser = useCurrentUser();
 
 	const [postData, setPostData] = useState({
@@ -29,8 +32,24 @@ const CreatePostForm = () => {
 
 	const history = useHistory();
 
+	const { id } = useParams();
+
+	useEffect(() => {
+		const getPostData = async () => {
+			try {
+				const { data } = await axiosReq.get(`/posts/${id}/`);
+				data.is_owner 
+                ? setPostData(data)
+				: history.push("/")
+			} catch (error) {
+				console.log(error);
+			}
+		}
+		getPostData();
+	}, [history, id]);
+
 	const handleImage = (event) => {
-		const selectedFile = event.target.files[0];
+        const selectedFile = event.target.files[0]
 		if (selectedFile) {
 			const imageUrl = URL.createObjectURL(selectedFile);
 
@@ -48,17 +67,17 @@ const CreatePostForm = () => {
 		});
 	};
 
-	const handleSubmit = async (event) => {
+    const handleSubmit = async (event) => {
 		event.preventDefault();
 
 		const formData = new FormData();
-		formData.append("image", imageSelection.current.files[0]);
+		formData.append("image", imageSelection.current.files[0] || postData.image);
 		formData.append("title", title);
 		formData.append("content", content);
 
 		try {
-			const response = await axiosReq.post("/posts/", formData);
-			history.push(`/posts/${response.data.id}`);
+			await axiosReq.put(`/posts/${id}/`, formData);
+			history.push(`/posts/${id}`);
 		} catch (err) {
 			console.log(err);
 			setErrors(err.response?.data || {});
@@ -187,7 +206,7 @@ const CreatePostForm = () => {
 				<Row className="m-2">
 					<MainButton
 						type="submit"
-						text="Post!"
+						text="Update Post!"
 						className={btnStyles.Wide}
 					/>
 				</Row>
@@ -196,4 +215,4 @@ const CreatePostForm = () => {
 	);
 };
 
-export default CreatePostForm;
+export default EditPostForm;

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Col, Row, Card, Button } from "react-bootstrap";
+import { Row, Card } from "react-bootstrap";
 import { axiosReq } from "../api/axiosDefaults";
 import Loader from "./tools/Loader";
 import styles from "../styles/WotW.module.css";
