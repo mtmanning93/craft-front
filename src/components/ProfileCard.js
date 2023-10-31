@@ -6,6 +6,7 @@ import SettingsDropdown from "./buttons/SettingsDropdown";
 import BackButton from "./buttons/BackButton";
 import MainButton from "./buttons/MainButton";
 import styles from "../styles/Profiles.module.css";
+import { useCurrentUser } from "../contexts/CurrentUserContext";
 
 const ProfileCard = (props) => {
 	const {
@@ -22,6 +23,8 @@ const ProfileCard = (props) => {
 		followers_count,
 		approval_count,
 	} = props;
+
+	const currentUser = useCurrentUser();
 
 	const personalInfo = name || job || employer || bio;
 
@@ -47,18 +50,21 @@ const ProfileCard = (props) => {
 
 						<div className="m-0 mx-sm-2 w-100 d-flex flex-column justify-content-between">
 							<Card.Title as="h1">{owner}'s Profile</Card.Title>
-							<div className="d-flex m-auto m-sm-0">
-								<MainButton
-									onClick={() => {}}
-									text="Follow"
-									className="mr-2"
-								/>
-								<MainButton
-									variant="success"
-									onClick={() => {}}
-									text="Approve"
-								/>
-							</div>
+							{currentUser && (
+								<div className="d-flex m-auto m-sm-0">
+									<MainButton
+										onClick={() => {}}
+										text="Follow"
+										className="mr-2"
+									/>
+									<MainButton
+										variant="success"
+										onClick={() => {}}
+										text="Approve"
+									/>
+								</div>
+							)}
+
 							<div className="mt-2">
 								<p className="m-0">
 									Approvals: {approval_count}

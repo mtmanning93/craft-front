@@ -5,12 +5,32 @@ import stylesW from "../styles/WotW.module.css";
 import mainStyles from "../App.module.css";
 import ProfileCard from "../components/ProfileCard";
 import { axiosReq } from "../api/axiosDefaults";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { useParams } from "react-router-dom";
+import InfiniteScroll from "react-infinite-scroll-component";
+import Post from "../components/Post";
+import Loader from "../components/tools/Loader";
+import fetchMoreData from "../components/tools/InfiniteScroll";
+import { Link } from "react-router-dom";
 
 const ProfilePage = () => {
-    const { id } = useParams();
+	const { id } = useParams();
 
-    const [profile, setProfileData] = useState({ results: [] })
+	const [profile, setProfileData] = useState({ results: [] });
+	const [profilePosts, setProfilePosts] = useState([]);
+
+	const [loaded, setLoaded] = useState(false);
+
+	const noPostsMessage = (
+		<div className="m-2">
+			<h1>You have no posts yet! Start building.</h1>
+			<p>
+				You need to create some posts to see results.{" "}
+				<Link className="text-warning" to="/posts/create">
+					Get started here.
+				</Link>
+			</p>
+		</div>
+	);
 
 	useEffect(() => {
 		const getProfileData = async () => {
@@ -18,15 +38,54 @@ const ProfilePage = () => {
 				const [{ data: profile }] = await Promise.all([
 					axiosReq.get(`/profiles/${id}`),
 				]);
-                console.log("Fetched Profile Data:", profile);
 				setProfileData({ results: [profile] });
+				setLoaded(true);
 			} catch (err) {
 				console.log(err);
 			}
 		};
 
+		const getProfilePosts = async () => {
+			try {
+				const { data: profilePosts } = await axiosReq.get(
+					`/posts/?owner__profile=${id}`
+				);
+				setProfilePosts(profilePosts.results);
+				setLoaded(true);
+			} catch (err) {
+				console.log(err);
+			}
+		};
+
+		setLoaded(false);
+
 		getProfileData();
+		getProfilePosts();
 	}, [id]);
+
+	const profileOwnedPosts = (
+		<>
+			{profilePosts.length ? (
+				<InfiniteScroll
+					dataLength={profilePosts.length}
+					next={() => fetchMoreData(profilePosts, setProfilePosts)}
+					hasMore={!!profilePosts.next}
+					loader={<Loader loader variant="warning" />}
+					endMessage={<p>No more posts to load...</p>}
+				>
+					{profilePosts.map((post) => (
+						<Post
+							key={post.id}
+							{...post}
+							setProfilePosts={setProfilePosts}
+						/>
+					))}
+				</InfiniteScroll>
+			) : (
+				noPostsMessage
+			)}
+		</>
+	);
 
 	return (
 		<Row className="w-100 p-2">
@@ -39,7 +98,18 @@ const ProfilePage = () => {
 					</p>
 					<WorkOfTheWeek />
 				</Row>
-                <ProfileCard {...profile.results[0]}/>
+
+				{loaded ? (
+					<ProfileCard {...profile.results[0]} />
+				) : (
+					<Loader loader variant="warning" />
+				)}
+
+				{loaded ? (
+					profileOwnedPosts
+				) : (
+					<Loader loader variant="warning" />
+				)}
 			</Col>
 			<Col
 				className={`${stylesW.WotwContainer} ${mainStyles.Content} bg-warning border-dark ml-2 mt-3 p-0 d-none d-md-block`}
