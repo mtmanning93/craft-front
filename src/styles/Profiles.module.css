@@ -1,0 +1,13 @@
+.PersonalInfo i {
+	margin-right: 5px;
+}
+
+@media (max-width: 576px) {
+	.Avatar {
+		margin-bottom: 10px;
+	}
+
+    .Joined {
+        font-size: 0.8em;
+    }
+}
