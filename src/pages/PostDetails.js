@@ -68,7 +68,7 @@ const PostDetails = () => {
 							dataLength={comments.results.length}
 							next={() => fetchMoreData(comments, setComments)}
 							hasMore={!!comments.next}
-							loader={<Loader loader />}
+							loader={<Loader loader variant="warning" />}
 						>
 							{comments.results.map((comment) => (
 								<Comment

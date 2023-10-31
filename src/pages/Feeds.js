@@ -89,7 +89,7 @@ const Feed = () => {
 								dataLength={posts.results.length}
 								next={() => fetchMoreData(posts, setPosts)}
 								hasMore={!!posts.next}
-								loader={<Loader loader />}
+								loader={<Loader loader variant="warning" />}
 								endMessage={<p>No more posts to load...</p>}
 							>
 								{posts.results.map((post) => (
@@ -105,7 +105,7 @@ const Feed = () => {
 						)}
 					</>
 				) : (
-					<Loader loader />
+					<Loader loader variant="warning" />
 				)}
 			</Col>
 			<Col

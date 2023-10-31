@@ -77,7 +77,7 @@ const WorkOfTheWeek = () => {
 						</Card>
 					))
 				) : (
-					<Loader loader />
+					<Loader loader variant="dark" />
 				)}
 			</Row>
 		</>
