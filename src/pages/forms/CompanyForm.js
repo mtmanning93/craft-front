@@ -36,10 +36,10 @@ const CompanyForm = () => {
 
 		try {
 			await axiosReq.post("/companies/", formData);
-            history.goBack();
+			history.goBack();
 		} catch (err) {
-			console.log(err);
-			setErrors(err.response?.data || {});
+			console.log(err.response.data);
+			setErrors(err.response?.data);
 		}
 	};
 
@@ -50,6 +50,12 @@ const CompanyForm = () => {
 				className={`${mainStyles.Content} border m-2 p-2 p-md-0 flex-column flex-md-row`}
 			>
 				<Col className="m-md-2 p-0">
+					{Array.isArray(errors) &&
+						errors.map((message, idx) => (
+							<Alert variant="warning" key={idx} className="mt-3">
+								{message}
+							</Alert>
+						))}
 					<Form.Group>
 						<Form.Label className="d-none">Name</Form.Label>
 						<Form.Control
@@ -60,11 +66,11 @@ const CompanyForm = () => {
 							onChange={handleChange}
 						/>
 					</Form.Group>
-                    {errors.name?.map((message, idx) => (
-							<Alert variant="warning" key={idx}>
-								{message}
-							</Alert>
-						))}
+					{errors.name?.map((message, idx) => (
+						<Alert variant="warning" key={idx}>
+							{message}
+						</Alert>
+					))}
 					<Form.Group>
 						<Form.Label className="d-none">Type</Form.Label>
 						<Form.Control
@@ -75,11 +81,11 @@ const CompanyForm = () => {
 							onChange={handleChange}
 						/>
 					</Form.Group>
-                    {errors.type?.map((message, idx) => (
-							<Alert variant="warning" key={idx}>
-								{message}
-							</Alert>
-						))}
+					{errors.type?.map((message, idx) => (
+						<Alert variant="warning" key={idx}>
+							{message}
+						</Alert>
+					))}
 					<Form.Group>
 						<Form.Label className="d-none">Location</Form.Label>
 						<Form.Control
@@ -90,11 +96,11 @@ const CompanyForm = () => {
 							onChange={handleChange}
 						/>
 					</Form.Group>
-                    {errors.location?.map((message, idx) => (
-							<Alert variant="warning" key={idx}>
-								{message}
-							</Alert>
-						))}
+					{errors.location?.map((message, idx) => (
+						<Alert variant="warning" key={idx}>
+							{message}
+						</Alert>
+					))}
 				</Col>
 			</Row>
 			<Row className="m-2">

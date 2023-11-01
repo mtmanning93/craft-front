@@ -239,9 +239,6 @@ const UpdateProfileForm = () => {
 					)}
 				</Row>
 				<Row>
-                    <ul>
-                        
-                    </ul>
 					<Link to="/companies/create/">
 						<Button>Add Company</Button>
 					</Link>
