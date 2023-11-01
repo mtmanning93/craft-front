@@ -12,6 +12,14 @@ npm install axios
 
 axios defaults base URL was original set for the frontend url not the API
 
+Not returning an image file:
+
+    // Correct
+    formData.append("image", imageSelection?.current?.files[0] || "");
+
+    // INCORRECT ORIGNAL wasnt returnign an image instance.
+    // formData.append("image", imageSelection.current.files[0] || profileData.image);
+
 ## WARNINGS
 
 ### Assignments to the 'filter' variable from inside React Hook useEffect will be lost after each render. 
