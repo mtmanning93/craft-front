@@ -30,6 +30,7 @@ const EmployerSelector = ({ value, onChange }) => {
 	}, []);
 
 	return (
+
 		<Select
 			name="company"
 			value={value}

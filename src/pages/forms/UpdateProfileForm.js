@@ -5,7 +5,6 @@ import btnStyles from "../../styles/Buttons.module.css";
 import { Alert, Col, Form, Image, Row } from "react-bootstrap";
 import BackButton from "../../components/buttons/BackButton";
 import Loader from "../../components/tools/Loader";
-import uploadIcon from "../../assets/upload_icon.png";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { useParams } from "react-router-dom/cjs/react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
@@ -19,12 +18,11 @@ const UpdateProfileForm = () => {
 		job: "",
 		bio: "",
 	});
-
-	const { name, image, job, bio } = profileData;
-
+	const [errors, setErrors] = useState({});
+	const [loaded, setLoaded] = useState(false);
 	const [selectedCompany, setSelectedCompany] = useState("");
 
-	const [errors, setErrors] = useState({});
+	const { name, image, job, bio } = profileData;
 
 	const imageSelection = useRef(null);
 
@@ -47,19 +45,20 @@ const UpdateProfileForm = () => {
 					bio: data.bio,
 				});
 
-				if (data.employer) {
-					setSelectedCompany({
-						value: data.employer,
-						label: data.employer,
-					});
-				} else {
-					setSelectedCompany(null);
-				}
+				data.employer
+					? setSelectedCompany({
+							value: data.employer,
+							label: data.employer,
+					  })
+					: setSelectedCompany(null);
+
+				setLoaded(true);
 			} catch (error) {
 				console.error(error);
 			}
 		};
 
+		setLoaded(false);
 		getProfileData();
 	}, [id]);
 
@@ -77,9 +76,9 @@ const UpdateProfileForm = () => {
 
 		formData.append("name", name);
 		formData.append("job", job);
-        if (selectedCompany) {
-            formData.append("employer", selectedCompany.value);
-        }
+		if (selectedCompany) {
+			formData.append("employer", selectedCompany.value);
+		}
 		formData.append("bio", bio);
 		formData.append("image", imageSelection?.current?.files[0] || "");
 
@@ -100,149 +99,157 @@ const UpdateProfileForm = () => {
 				onSubmit={handleSubmit}
 				className={`${mainStyles.Content} m-3 pt-2 pb-2`}
 			>
-				<Row className="m-2 pb-2 border-bottom justify-content-end">
+				<Row className="m-2 pb-2 border-bottom justify-content-between">
+					<Col>
+						<h2>
+							Update Profile
+						</h2>
+					</Col>
 					<Col
 						className="text-right"
-						xs={{ span: 6, order: 2 }}
-						md={{ span: 4, order: 3 }}
+						xs={3}
 					>
 						<BackButton />
 					</Col>
 				</Row>
 
-				<Row className={`${mainStyles.Content} m-2`}>
-					<Col className="border m-2">
-						<Form.Group className="m-0">
-							<Form.Label className="d-none">Image</Form.Label>
-							{image ? (
-								<>
-									<figure>
-										<Image
-											className={styles.Image}
-											src={image}
-										/>
-									</figure>
-									<div className={`p-0 mb-2`}>
-										<Form.Label
-											className="btn"
-											htmlFor="upload"
-										>
-											<i className="fa-solid fa-images mr-2" />
-											Click to change image.
-										</Form.Label>
-									</div>
-								</>
-							) : (
-								<Form.Label className="btn" htmlFor="upload">
-									<Loader
-										src={uploadIcon}
-										message="Click here to upload an image."
+				<Row
+					className={`m-2 p-2 flex-column flex-md-row justify-content-center align-items-center`}
+				>
+					{loaded ? (
+						<>
+							<Col className="d-flex justify-content-center align-items-center pt-2">
+								<Form.Group className="m-0 d-flex flex-column align-items-center">
+									<Form.Label className="d-none">
+										Image
+									</Form.Label>
+									{image && (
+										<>
+											<figure>
+												<Image
+													className={styles.Image}
+													src={image}
+												/>
+											</figure>
+											<div className="p-0 mb-2 text-center">
+												<Form.Label
+													className="btn"
+													htmlFor="upload"
+												>
+													<i className="fa-solid fa-images mr-2" />
+													Click to update profile
+													image.
+												</Form.Label>
+											</div>
+										</>
+									)}
+
+									<Form.File
+										id="upload"
+										accept="image/*"
+										onChange={(e) => {
+											if (e.target.files.length) {
+												setProfileData({
+													...profileData,
+													image: URL.createObjectURL(
+														e.target.files[0]
+													),
+												});
+											}
+										}}
+										ref={imageSelection}
+										hidden
 									/>
-								</Form.Label>
-							)}
+								</Form.Group>
+								{errors.image?.map((message, idx) => (
+									<Alert variant="warning" key={idx}>
+										{message}
+									</Alert>
+								))}
+							</Col>
+							<Col className="p-0 p-sm-2">
+								<Form.Group>
+									<Form.Label>
+										<i className="fa-solid fa-user" /> Name:
+									</Form.Label>
+									<Form.Control
+										type="text"
+										name="name"
+										placeholder="Name"
+										value={name}
+										onChange={handleChange}
+									/>
+								</Form.Group>
+								{errors.name?.map((message, idx) => (
+									<Alert variant="warning" key={idx}>
+										{message}
+									</Alert>
+								))}
 
-							<Form.File
-								id="upload"
-								accept="image/*"
-								onChange={(e) => {
-									if (e.target.files.length) {
-										setProfileData({
-											...profileData,
-											image: URL.createObjectURL(
-												e.target.files[0]
-											),
-										});
-									}
-								}}
-								ref={imageSelection}
-								hidden
-							/>
-						</Form.Group>
-						{errors.image?.map((message, idx) => (
-							<Alert variant="warning" key={idx}>
-								{message}
-							</Alert>
-						))}
-					</Col>
-					<Col className="border m-2">
-						<Form.Group>
-							<Form.Label>
-								<i className="fa-solid fa-user" /> Name:
-							</Form.Label>
-							<Form.Control
-								type="text"
-								name="name"
-								placeholder="Name"
-								value={name}
-								onChange={handleChange}
-							/>
-						</Form.Group>
-						{errors.name?.map((message, idx) => (
-							<Alert variant="warning" key={idx}>
-								{message}
-							</Alert>
-						))}
+								<Form.Group>
+									<Form.Label>
+										<i className="fa-solid fa-trowel-bricks" />{" "}
+										Craft:
+									</Form.Label>
+									<Form.Control
+										type="text"
+										name="job"
+										placeholder="Job"
+										value={job}
+										onChange={handleChange}
+									/>
+								</Form.Group>
+								{errors.job?.map((message, idx) => (
+									<Alert variant="warning" key={idx}>
+										{message}
+									</Alert>
+								))}
 
-						<Form.Group>
-							<Form.Label>
-								<i className="fa-solid fa-trowel-bricks" />{" "}
-								Craft:
-							</Form.Label>
-							<Form.Control
-								type="text"
-								name="job"
-								placeholder="Job"
-								value={job}
-								onChange={handleChange}
-							/>
-						</Form.Group>
-						{errors.job?.map((message, idx) => (
-							<Alert variant="warning" key={idx}>
-								{message}
-							</Alert>
-						))}
+								<Form.Group>
+									<Form.Label>
+										<i className="fa-solid fa-location-dot" />{" "}
+										Employer:
+									</Form.Label>
+									<EmployerSelector
+										value={selectedCompany}
+										onChange={setSelectedCompany}
+									/>
+								</Form.Group>
+								{errors.employer?.map((message, idx) => (
+									<Alert variant="warning" key={idx}>
+										{message}
+									</Alert>
+								))}
 
-						<Form.Group>
-							<Form.Label>
-								<i className="fa-solid fa-location-dot" />{" "}
-								Employer:
-							</Form.Label>
-							<EmployerSelector
-								value={selectedCompany}
-								onChange={setSelectedCompany}
-							/>
-						</Form.Group>
-						{errors.employer?.map((message, idx) => (
-							<Alert variant="warning" key={idx}>
-								{message}
-							</Alert>
-						))}
-
-						<Form.Group>
-							<Form.Label>
-								<i className="fa-solid fa-pencil" /> Bio
-							</Form.Label>
-							<Form.Control
-								as="textarea"
-								rows={5}
-								name="bio"
-								placeholder="Tell us about yourself..."
-								value={bio}
-								onChange={handleChange}
-							/>
-						</Form.Group>
-						{errors.bio?.map((message, idx) => (
-							<Alert variant="warning" key={idx}>
-								{message}
-							</Alert>
-						))}
-					</Col>
+								<Form.Group>
+									<Form.Label>
+										<i className="fa-solid fa-pencil" /> Bio
+									</Form.Label>
+									<Form.Control
+										as="textarea"
+										rows={5}
+										name="bio"
+										placeholder="Tell us about yourself..."
+										value={bio}
+										onChange={handleChange}
+									/>
+								</Form.Group>
+								{errors.bio?.map((message, idx) => (
+									<Alert variant="warning" key={idx}>
+										{message}
+									</Alert>
+								))}
+							</Col>
+						</>
+					) : (
+						<Loader loader variant="warning" />
+					)}
 				</Row>
 
 				<Row className="m-2">
 					<MainButton
 						type="Update"
-						text="Update Post!"
+						text="Update Profile!"
 						className={btnStyles.Wide}
 					/>
 				</Row>
