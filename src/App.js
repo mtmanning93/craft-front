@@ -22,7 +22,7 @@ function App() {
 			<Header />
 			<Container fluid className={mainStyles.MainContainer}>
 				<Switch>
-					<Route exact path="/" render={() => <Feed/>} />
+					<Route exact path="/" render={() => <Feed />} />
 					<Route exact path="/feed" render={() => <Feed />} />
 					<Route exact path="/liked" render={() => <Feed />} />
 					<Route exact path="/login" render={() => <LogInForm />} />
