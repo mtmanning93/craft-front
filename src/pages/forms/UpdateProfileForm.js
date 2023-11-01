@@ -10,190 +10,245 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { useParams } from "react-router-dom/cjs/react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import styles from "../../styles/UpdateProfileForm.module.css";
+import EmployerSelector from "../../components/tools/EmployerSelector";
 
 const UpdateProfileForm = () => {
+	const [profileData, setProfileData] = useState({
+		name: "",
+		image: "",
+		job: "",
+		bio: "",
+	});
 
-    const [profileData, setProfileData] = useState({
-        name: "",
-        image: "",
-        job: "",
-        bio: "",
-    });
+	const { name, image, job, bio } = profileData;
 
-    const { name, image, job, bio } = profileData;
+	const [selectedCompany, setSelectedCompany] = useState("");
 
-    const [errors, setErrors] = useState({});
+	const [errors, setErrors] = useState({});
 
-    const imageSelection = useRef(null);
+	const imageSelection = useRef(null);
 
-    const history = useHistory();
+	const history = useHistory();
 
-    const { id } = useParams();
+	const { id } = useParams();
 
-    useEffect(() => {
+	useEffect(() => {
+		const getProfileData = async () => {
+			try {
+				const response = await axiosReq.get(`/profiles/${id}/`);
+				const data = response.data;
 
-        const getProfileData = async () => {
-            try {
-                const response = await axiosReq.get(`/profiles/${id}/`);
-                const data = response.data;
+				console.log("data.employer:", data.employer);
 
-                setProfileData({
-                    name: data.name,
-                    image: data.image,
-                    job: data.job,
-                    bio: data.bio,
-                });
-            } catch (error) {
-                console.error(error);
-            }
-        };
+				setProfileData({
+					name: data.name,
+					image: data.image,
+					job: data.job,
+					bio: data.bio,
+				});
 
-        getProfileData();
-    }, [id]);
+				if (data.employer) {
+					setSelectedCompany({
+						value: data.employer,
+						label: data.employer,
+					});
+				} else {
+					setSelectedCompany(null);
+				}
+			} catch (error) {
+				console.error(error);
+			}
+		};
 
-    const handleChange = (event) => {
-        setProfileData({
-            ...profileData,
-            [event.target.name]: event.target.value,
-        });
-    };
+		getProfileData();
+	}, [id]);
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
+	const handleChange = (event) => {
+		setProfileData({
+			...profileData,
+			[event.target.name]: event.target.value,
+		});
+	};
 
-        const formData = new FormData();
+	const handleSubmit = async (event) => {
+		event.preventDefault();
 
-        formData.append("name", name);
-        formData.append("job", job);
-        formData.append("bio", bio);
-        formData.append("image", imageSelection?.current?.files[0] || "");
+		const formData = new FormData();
 
-        try {
-            await axiosReq.put(`/profiles/${id}/`, formData);
-            history.push(`/profiles/${id}`);
-        } catch (error) {
-            console.error(error);
-            error.response && error.response.data &&
-                setErrors(error.response.data)
+		formData.append("name", name);
+		formData.append("job", job);
+        if (selectedCompany) {
+            formData.append("employer", selectedCompany.value);
         }
-    };
+		formData.append("bio", bio);
+		formData.append("image", imageSelection?.current?.files[0] || "");
 
-    return (
-        <Col sm={12} md={10} lg={8} className="p-0">
-            <Form onSubmit={handleSubmit} className={`${mainStyles.Content} m-3 pt-2 pb-2`}>
-                <Row className="m-2 pb-2 border-bottom justify-content-end">
-                    <Col className="text-right" xs={{ span: 6, order: 2 }} md={{ span: 4, order: 3 }}>
-                        <BackButton />
-                    </Col>
-                </Row>
+		try {
+			await axiosReq.put(`/profiles/${id}/`, formData);
+			history.push(`/profiles/${id}`);
+		} catch (error) {
+			console.error(error);
+			error.response &&
+				error.response.data &&
+				setErrors(error.response.data);
+		}
+	};
 
-                <Row className={`${mainStyles.Content} m-2`}>
-                    <Col className="border m-2">
-                        <Form.Group className="m-0">
-                            <Form.Label className="d-none">Image</Form.Label>
-                            {image ? (
-                                <>
-                                    <figure>
-                                        <Image className={styles.Image} src={image} />
-                                    </figure>
-                                    <div className={`p-0 mb-2`}>
-                                        <Form.Label className="btn" htmlFor="upload">
-                                            <i className="fa-solid fa-images mr-2" />
-                                            Click to change image.
-                                        </Form.Label>
-                                    </div>
-                                </>
-                            ) : (
-                                <Form.Label className="btn" htmlFor="upload">
-                                    <Loader src={uploadIcon} message="Click here to upload an image." />
-                                </Form.Label>
-                            )}
+	return (
+		<Col sm={12} md={10} lg={8} className="p-0">
+			<Form
+				onSubmit={handleSubmit}
+				className={`${mainStyles.Content} m-3 pt-2 pb-2`}
+			>
+				<Row className="m-2 pb-2 border-bottom justify-content-end">
+					<Col
+						className="text-right"
+						xs={{ span: 6, order: 2 }}
+						md={{ span: 4, order: 3 }}
+					>
+						<BackButton />
+					</Col>
+				</Row>
 
-                            <Form.File
-                                id="upload"
-                                accept="image/*"
-                                onChange={(e) => {
-                                    if (e.target.files.length) {
-                                        setProfileData({
-                                            ...profileData,
-                                            image: URL.createObjectURL(e.target.files[0]),
-                                        });
-                                    }
-                                }}
-                                ref={imageSelection}
-                                hidden
-                            />
-                        </Form.Group>
-                        {errors.image?.map((message, idx) => (
-                            <Alert variant="warning" key={idx}>
-                                {message}
-                            </Alert>
-                        ))}
-                    </Col>
-                    <Col className="border m-2">
-                        <Form.Group>
-                            <Form.Label>
-                                <i className="fa-solid fa-user" /> Name:
-                            </Form.Label>
-                            <Form.Control
-                                type="text"
-                                name="name"
-                                placeholder="Name"
-                                value={name}
-                                onChange={handleChange}
-                            />
-                        </Form.Group>
-                        {errors.name?.map((message, idx) => (
-                            <Alert variant="warning" key={idx}>
-                                {message}
-                            </Alert>
-                        ))}
+				<Row className={`${mainStyles.Content} m-2`}>
+					<Col className="border m-2">
+						<Form.Group className="m-0">
+							<Form.Label className="d-none">Image</Form.Label>
+							{image ? (
+								<>
+									<figure>
+										<Image
+											className={styles.Image}
+											src={image}
+										/>
+									</figure>
+									<div className={`p-0 mb-2`}>
+										<Form.Label
+											className="btn"
+											htmlFor="upload"
+										>
+											<i className="fa-solid fa-images mr-2" />
+											Click to change image.
+										</Form.Label>
+									</div>
+								</>
+							) : (
+								<Form.Label className="btn" htmlFor="upload">
+									<Loader
+										src={uploadIcon}
+										message="Click here to upload an image."
+									/>
+								</Form.Label>
+							)}
 
-                        <Form.Group>
-                            <Form.Label>
-                                <i className="fa-solid fa-trowel-bricks" /> Craft:
-                            </Form.Label>
-                            <Form.Control
-                                type="text"
-                                name="job"
-                                placeholder="Job"
-                                value={job}
-                                onChange={handleChange}
-                            />
-                        </Form.Group>
-                        {errors.job?.map((message, idx) => (
-                            <Alert variant="warning" key={idx}>
-                                {message}
-                            </Alert>
-                        ))}
+							<Form.File
+								id="upload"
+								accept="image/*"
+								onChange={(e) => {
+									if (e.target.files.length) {
+										setProfileData({
+											...profileData,
+											image: URL.createObjectURL(
+												e.target.files[0]
+											),
+										});
+									}
+								}}
+								ref={imageSelection}
+								hidden
+							/>
+						</Form.Group>
+						{errors.image?.map((message, idx) => (
+							<Alert variant="warning" key={idx}>
+								{message}
+							</Alert>
+						))}
+					</Col>
+					<Col className="border m-2">
+						<Form.Group>
+							<Form.Label>
+								<i className="fa-solid fa-user" /> Name:
+							</Form.Label>
+							<Form.Control
+								type="text"
+								name="name"
+								placeholder="Name"
+								value={name}
+								onChange={handleChange}
+							/>
+						</Form.Group>
+						{errors.name?.map((message, idx) => (
+							<Alert variant="warning" key={idx}>
+								{message}
+							</Alert>
+						))}
 
-                        <Form.Group>
-                            <Form.Label>
-                                <i className="fa-solid fa-pencil" /> Bio
-                            </Form.Label>
-                            <Form.Control
-                                as="textarea"
-                                rows={5}
-                                name="bio"
-                                placeholder="Tell us about yourself..."
-                                value={bio}
-                                onChange={handleChange}
-                            />
-                        </Form.Group>
-                        {errors.bio?.map((message, idx) => (
-                            <Alert variant="warning" key={idx}>
-                                {message}
-                            </Alert>
-                        ))}
-                    </Col>
-                </Row>
+						<Form.Group>
+							<Form.Label>
+								<i className="fa-solid fa-trowel-bricks" />{" "}
+								Craft:
+							</Form.Label>
+							<Form.Control
+								type="text"
+								name="job"
+								placeholder="Job"
+								value={job}
+								onChange={handleChange}
+							/>
+						</Form.Group>
+						{errors.job?.map((message, idx) => (
+							<Alert variant="warning" key={idx}>
+								{message}
+							</Alert>
+						))}
 
-                <Row className="m-2">
-                    <MainButton type="Update" text="Update Post!" className={btnStyles.Wide} />
-                </Row>
-            </Form>
-        </Col>
-    );
+						<Form.Group>
+							<Form.Label>
+								<i className="fa-solid fa-location-dot" />{" "}
+								Employer:
+							</Form.Label>
+							<EmployerSelector
+								value={selectedCompany}
+								onChange={setSelectedCompany}
+							/>
+						</Form.Group>
+						{errors.employer?.map((message, idx) => (
+							<Alert variant="warning" key={idx}>
+								{message}
+							</Alert>
+						))}
+
+						<Form.Group>
+							<Form.Label>
+								<i className="fa-solid fa-pencil" /> Bio
+							</Form.Label>
+							<Form.Control
+								as="textarea"
+								rows={5}
+								name="bio"
+								placeholder="Tell us about yourself..."
+								value={bio}
+								onChange={handleChange}
+							/>
+						</Form.Group>
+						{errors.bio?.map((message, idx) => (
+							<Alert variant="warning" key={idx}>
+								{message}
+							</Alert>
+						))}
+					</Col>
+				</Row>
+
+				<Row className="m-2">
+					<MainButton
+						type="Update"
+						text="Update Post!"
+						className={btnStyles.Wide}
+					/>
+				</Row>
+			</Form>
+		</Col>
+	);
 };
 
 export default UpdateProfileForm;

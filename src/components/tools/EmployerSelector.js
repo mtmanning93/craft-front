@@ -1,39 +1,46 @@
 import React, { useEffect, useState } from "react";
-import Select from "react-select/dist/declarations/src/Select";
+import Select from "react-select";
 import { axiosReq } from "../../api/axiosDefaults";
 
-const EmployerSelector = () => {
-	const [selectedCompany, setSelectedCompany] = useState(value);
+const EmployerSelector = ({ value, onChange }) => {
 	const [companies, setCompanies] = useState([]);
 
 	useEffect(() => {
 		const getCompanies = async () => {
 			try {
-				const { data } = await axiosReq.get("/companies");
+				const response = await axiosReq.get("/companies/");
+				const data = response.data.results;
+
 				const options = data.map((company) => ({
-					value: company.pk,
+					value: company.id,
 					label: `${company.name} (${company.location})`,
 				}));
+
+				// Add no employer option
+				options.unshift({ value: "", label: "---------" });
+                
 				setCompanies(options);
+				console.log(options);
 			} catch (error) {
 				console.log(error);
 			}
 		};
 
-        getCompanies();
+		getCompanies();
 	}, []);
 
-	return <Select 
-        name="company"
-        value={selectedCompany}
-        onChange={(selectedOption) => {
-            setSelectedCompany(selectedOption);
-            onChange(selectedOption);
-        }}
-        options={companies}
-        isSearchable
-        placeholder="Select an employer"
-    />;
+	return (
+		<Select
+			name="company"
+			value={value}
+			onChange={(selectedOption) => {
+				onChange(selectedOption);
+			}}
+			options={companies}
+			isSearchable
+			aria-label="employer selector"
+		/>
+	);
 };
 
 export default EmployerSelector;
