@@ -46,7 +46,6 @@ const ProfilePage = () => {
 		};
 
 		setLoaded(false);
-
 		getProfileData();
 		getProfilePosts();
 	}, [id]);

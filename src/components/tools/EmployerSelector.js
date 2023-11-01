@@ -20,7 +20,6 @@ const EmployerSelector = ({ value, onChange }) => {
 				options.unshift({ value: "", label: "---------" });
                 
 				setCompanies(options);
-				console.log(options);
 			} catch (error) {
 				console.log(error);
 			}

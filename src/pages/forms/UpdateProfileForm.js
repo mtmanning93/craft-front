@@ -2,10 +2,10 @@ import React, { useEffect, useRef, useState } from "react";
 import MainButton from "../../components/buttons/MainButton";
 import mainStyles from "../../App.module.css";
 import btnStyles from "../../styles/Buttons.module.css";
-import { Alert, Col, Form, Image, Row } from "react-bootstrap";
+import { Alert, Button, Col, Form, Image, Row } from "react-bootstrap";
 import BackButton from "../../components/buttons/BackButton";
 import Loader from "../../components/tools/Loader";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { useParams } from "react-router-dom/cjs/react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import styles from "../../styles/UpdateProfileForm.module.css";
@@ -35,8 +35,6 @@ const UpdateProfileForm = () => {
 			try {
 				const response = await axiosReq.get(`/profiles/${id}/`);
 				const data = response.data;
-
-				console.log("data.employer:", data.employer);
 
 				setProfileData({
 					name: data.name,
@@ -101,14 +99,9 @@ const UpdateProfileForm = () => {
 			>
 				<Row className="m-2 pb-2 border-bottom justify-content-between">
 					<Col>
-						<h2>
-							Update Profile
-						</h2>
+						<h2>Update Profile</h2>
 					</Col>
-					<Col
-						className="text-right"
-						xs={3}
-					>
+					<Col className="text-right" xs={3}>
 						<BackButton />
 					</Col>
 				</Row>
@@ -245,7 +238,14 @@ const UpdateProfileForm = () => {
 						<Loader loader variant="warning" />
 					)}
 				</Row>
-
+				<Row>
+                    <ul>
+                        
+                    </ul>
+					<Link to="/companies/create/">
+						<Button>Add Company</Button>
+					</Link>
+				</Row>
 				<Row className="m-2">
 					<MainButton
 						type="Update"
