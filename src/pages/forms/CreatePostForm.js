@@ -66,7 +66,7 @@ const CreatePostForm = () => {
 	};
 
 	return (
-		<Col sm={12} md={10} lg={8} className="p-0">
+		<Col sm={12} md={10} lg={8} className={`${mainStyles.Content} p-0 mt-3`}>
 			<Form
 				onSubmit={handleSubmit}
 				className={`${styles.Form} ${mainStyles.Content} border m-3 pt-2 pb-2`}
