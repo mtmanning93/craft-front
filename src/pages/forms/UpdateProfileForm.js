@@ -106,11 +106,11 @@ const UpdateProfileForm = () => {
 					</Col>
 				</Row>
 
-				<Row
-					className={`m-2 p-2 flex-column flex-md-row justify-content-center align-items-center`}
-				>
-					{loaded ? (
-						<>
+				{loaded ? (
+					<>
+						<Row
+							className={`m-2 p-2 flex-column flex-md-row justify-content-center align-items-center`}
+						>
 							<Col className="d-flex justify-content-center align-items-center pt-2">
 								<Form.Group className="m-0 d-flex flex-column align-items-center">
 									<Form.Label className="d-none">
@@ -233,23 +233,24 @@ const UpdateProfileForm = () => {
 									</Alert>
 								))}
 							</Col>
-						</>
-					) : (
-						<Loader loader variant="warning" />
-					)}
-				</Row>
-				<Row>
-					<Link to="/companies/create/">
-						<Button>Add Company</Button>
-					</Link>
-				</Row>
-				<Row className="m-2">
-					<MainButton
-						type="Update"
-						text="Update Profile!"
-						className={btnStyles.Wide}
-					/>
-				</Row>
+						</Row>
+						<Row className="justify-content-center">
+                            {/* SHOW HERE */}
+							<Link to="/companies/create/">
+								<Button>Add Company</Button>
+							</Link>
+						</Row>
+						<Row className="m-2">
+							<MainButton
+								type="Update"
+								text="Update Profile!"
+								className={btnStyles.Wide}
+							/>
+						</Row>
+					</>
+				) : (
+					<Loader loader variant="warning" />
+				)}
 			</Form>
 		</Col>
 	);
