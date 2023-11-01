@@ -1,0 +1,11 @@
+.ImgContainer {
+    display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.Image {
+	max-height: 40vh;
+	max-width: 100%;
+	object-fit: contain;
+}
