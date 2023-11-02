@@ -2,7 +2,15 @@ import React, { useEffect, useRef, useState } from "react";
 import MainButton from "../../components/buttons/MainButton";
 import mainStyles from "../../App.module.css";
 import btnStyles from "../../styles/Buttons.module.css";
-import { Alert, Button, Col, Form, Image, Row } from "react-bootstrap";
+import {
+	Alert,
+	Button,
+	Col,
+	Container,
+	Form,
+	Image,
+	Row,
+} from "react-bootstrap";
 import BackButton from "../../components/buttons/BackButton";
 import Loader from "../../components/tools/Loader";
 import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
@@ -10,6 +18,7 @@ import { useParams } from "react-router-dom/cjs/react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import styles from "../../styles/UpdateProfileForm.module.css";
 import EmployerSelector from "../../components/tools/EmployerSelector";
+import ProfileCompany from "../../components/ProfileCompany";
 
 const UpdateProfileForm = () => {
 	const [profileData, setProfileData] = useState({
@@ -17,10 +26,13 @@ const UpdateProfileForm = () => {
 		image: "",
 		job: "",
 		bio: "",
+        companies: [],
 	});
 	const [errors, setErrors] = useState({});
 	const [loaded, setLoaded] = useState(false);
 	const [selectedCompany, setSelectedCompany] = useState("");
+	const [profileCompanies, setProfileCompanies] = useState([]);
+	const [numberOfCompanies, setNumberOfCompanies] = useState(0);
 
 	const { name, image, job, bio } = profileData;
 
@@ -41,6 +53,7 @@ const UpdateProfileForm = () => {
 					image: data.image,
 					job: data.job,
 					bio: data.bio,
+                    companies: data.companies || [],
 				});
 
 				data.employer
@@ -66,6 +79,42 @@ const UpdateProfileForm = () => {
 			[event.target.name]: event.target.value,
 		});
 	};
+
+	useEffect(() => {
+		const getProfileCompanies = async () => {
+			try {
+				const { data: profileCompanies } = await axiosReq.get(
+					`/companies/?owner__profile=${id}`
+				);
+				setProfileCompanies(profileCompanies.results);
+				setNumberOfCompanies(profileCompanies.count);
+			} catch (err) {
+				console.log(err);
+			}
+		};
+
+		getProfileCompanies();
+	}, [id]);
+
+	const profileOwnedCompanies = (
+		<>
+			{profileCompanies.length ? (
+				<Col
+					className={`${styles.PersonalInfo} mt-2 p-2 border-top border-dark`}
+				>
+					<h3>Owned companies</h3>
+					{profileCompanies.map((company) => (
+						<ProfileCompany
+							key={company.id}
+							{...company}
+                            setProfileData={setProfileData}
+                            setProfileCompanies={setProfileCompanies}
+						/>
+					))}
+				</Col>
+			) : null}
+		</>
+	);
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
@@ -234,12 +283,19 @@ const UpdateProfileForm = () => {
 								))}
 							</Col>
 						</Row>
-						<Row className="justify-content-center">
-                            {/* SHOW HERE */}
-							<Link to="/companies/create/">
-								<Button>Add Company</Button>
-							</Link>
-						</Row>
+						<Container className="justify-content-center">
+							{profileOwnedCompanies}
+							{numberOfCompanies < 3 ? (
+								<Link to="/companies/create/">
+									<Button>Add Company</Button>
+								</Link>
+							) : (
+								<p className="text-center">
+									(You have reached the maximum number of
+									companies for this profile)
+								</p>
+							)}
+						</Container>
 						<Row className="m-2">
 							<MainButton
 								type="Update"

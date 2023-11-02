@@ -17,10 +17,11 @@ import { useCurrentUser } from "../contexts/CurrentUserContext";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { axiosReq, axiosRes } from "../api/axiosDefaults";
 import btnStyles from "../styles/Buttons.module.css";
+import ProfileCompany from "./ProfileCompany";
 
 const ProfileCard = (props) => {
 	const {
-        id,
+		id,
 		owner,
 		name,
 		bio,
@@ -114,11 +115,11 @@ const ProfileCard = (props) => {
 				>
 					<h3>Owned companies</h3>
 					{profileCompanies.map((company) => (
-						<p key={company.id}>
-							<i className="fa-solid fa-house mr-2" />{company.name} ({company.type})
-							<i className="fa-solid fa-location-dot mx-2" />
-							{company.location}
-						</p>
+						<ProfileCompany
+							key={company.id}
+							{...company}
+							setProfileCompanies={setProfileCompanies}
+						/>
 					))}
 				</Col>
 			) : null}
@@ -163,7 +164,6 @@ const ProfileCard = (props) => {
 									)}
 
 									{!is_owner &&
-
 										(approval_id ? (
 											<Button
 												className={btnStyles.Approved}
