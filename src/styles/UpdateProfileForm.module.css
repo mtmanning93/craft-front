@@ -12,6 +12,11 @@
     border-radius: 50%;
 }
 
+.AddCompanyBtn {
+    background-color: #4682B4;
+    font-weight: 700;
+}
+
 @media (max-width: 576px) {
     .Image {
         width: 200px;

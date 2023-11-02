@@ -26,7 +26,7 @@ const UpdateProfileForm = () => {
 		image: "",
 		job: "",
 		bio: "",
-        companies: [],
+		companies: [],
 	});
 	const [errors, setErrors] = useState({});
 	const [loaded, setLoaded] = useState(false);
@@ -53,7 +53,7 @@ const UpdateProfileForm = () => {
 					image: data.image,
 					job: data.job,
 					bio: data.bio,
-                    companies: data.companies || [],
+					companies: data.companies || [],
 				});
 
 				data.employer
@@ -102,13 +102,31 @@ const UpdateProfileForm = () => {
 				<Col
 					className={`${styles.PersonalInfo} mt-2 p-2 border-top border-dark`}
 				>
-					<h3>Owned companies</h3>
+					<div className="d-flex justify-content-between">
+						<h3>Owned companies</h3>
+						{numberOfCompanies < 3 ? (
+							<Link to="/companies/create/">
+								<Button className={styles.AddCompanyBtn}>
+									<i className="fa-solid fa-plus" />
+									<span className="ml-2 d-none d-sm-inline">
+										Add Company
+									</span>
+								</Button>
+							</Link>
+						) : (
+							<p className="text-center">
+								(You have reached the maximum number of
+								companies for this profile)
+							</p>
+						)}
+					</div>
+
 					{profileCompanies.map((company) => (
 						<ProfileCompany
 							key={company.id}
 							{...company}
-                            setProfileData={setProfileData}
-                            setProfileCompanies={setProfileCompanies}
+							setProfileData={setProfileData}
+							setProfileCompanies={setProfileCompanies}
 						/>
 					))}
 				</Col>
@@ -285,16 +303,6 @@ const UpdateProfileForm = () => {
 						</Row>
 						<Container className="justify-content-center">
 							{profileOwnedCompanies}
-							{numberOfCompanies < 3 ? (
-								<Link to="/companies/create/">
-									<Button>Add Company</Button>
-								</Link>
-							) : (
-								<p className="text-center">
-									(You have reached the maximum number of
-									companies for this profile)
-								</p>
-							)}
 						</Container>
 						<Row className="m-2">
 							<MainButton
