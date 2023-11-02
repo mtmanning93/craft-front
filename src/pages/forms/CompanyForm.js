@@ -76,9 +76,10 @@ const CompanyForm = () => {
 				</Row>
 				<Row
 					id="inputs"
-					className={`${mainStyles.Content} border m-2 p-2 p-md-0 flex-column flex-md-row`}
+					className={`${mainStyles.Content} border m-2 p-2 p-md-0 flex-column`}
 				>
-					<Col className="m-md-2 p-0">
+                    <p className="text-center m-2"><strong>Note: </strong>You will automatically become the owner of a company you create</p>
+					<Col className="p-2">
 						{Array.isArray(errors) &&
 							errors.map((message, idx) => (
 								<Alert
