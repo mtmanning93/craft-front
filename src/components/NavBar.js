@@ -69,7 +69,7 @@ const NavBar = () => {
         className="text-right justify-content-end"
         id="basic-navbar-nav"
       >
-        <Nav className="align-items-center">
+        <Nav className="align-items-end">
           <NavLink
             exact
             to="/"

@@ -73,7 +73,7 @@ const ProfileCard = (props) => {
 
 	const approveProfile = async () => {
 		try {
-			const { data } = await axiosRes.post("/follower/", {
+			const { data } = await axiosRes.post("/approvals/", {
 				profile: id,
 			});
 			setProfileData((prevProfileData) => ({
@@ -203,7 +203,7 @@ const ProfileCard = (props) => {
 											<MainButton
 												onClick={() => unfollowProfile(id)}
 												text="Unfollow"
-												className="mr-2"
+												className={`${styles.UnfollowBtn} mr-2`}
 											/>
 										) : (
 											<MainButton

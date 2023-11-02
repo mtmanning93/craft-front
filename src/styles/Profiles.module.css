@@ -2,6 +2,10 @@
 	margin-right: 5px;
 }
 
+.UnfollowBtn {
+    background-color: #ffffff;
+}
+
 @media (max-width: 576px) {
 	.Avatar {
 		margin-bottom: 10px;
