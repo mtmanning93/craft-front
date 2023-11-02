@@ -31,6 +31,7 @@ const ProfileCard = (props) => {
 		is_owner,
 		employer,
 		posts_count,
+		following_id,
 		following_count,
 		followers_count,
 		approval_count,
@@ -72,7 +73,7 @@ const ProfileCard = (props) => {
 
 	const approveProfile = async () => {
 		try {
-			const { data } = await axiosRes.post("/approvals/", {
+			const { data } = await axiosRes.post("/follower/", {
 				profile: id,
 			});
 			setProfileData((prevProfileData) => ({
@@ -91,6 +92,48 @@ const ProfileCard = (props) => {
 			console.log(error);
 		}
 	};
+
+	const followProfile = async () => {
+		try {
+			const { data } = await axiosRes.post("/followers/", {
+				followed: id,
+			});
+			setProfileData((prevProfileData) => ({
+				...prevProfileData,
+				results: prevProfileData.results.map((profile) => {
+					return profile.id === id
+						? {
+								...profile,
+								following_id: data.id,
+								followers_count: profile.followers_count + 1,
+						  }
+						: profile;
+				}),
+			}));
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+    const unfollowProfile = async () => {
+        try {
+            await axiosRes.delete(`/followers/${following_id}/`);
+            setProfileData((prevProfileData) => ({
+              ...prevProfileData,
+              results: prevProfileData.results.map((profile) => {
+                return profile.id === id
+                  ? {
+                      ...profile,
+                      following_id: null,
+                      followers_count: profile.followers_count - 1,
+                    }
+                  : profile;
+              }),
+            }));
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
 	useEffect(() => {
 		const getProfileCompanies = async () => {
@@ -155,13 +198,22 @@ const ProfileCard = (props) => {
 							<Card.Title as="h1">{owner}'s Profile</Card.Title>
 							{currentUser && (
 								<div className="d-flex m-auto m-sm-0">
-									{!is_owner && (
-										<MainButton
-											onClick={() => {}}
-											text="Follow"
-											className="mr-2"
-										/>
-									)}
+									{!is_owner &&
+										(following_id ? (
+											<MainButton
+												onClick={() => unfollowProfile(id)}
+												text="Unfollow"
+												className="mr-2"
+											/>
+										) : (
+											<MainButton
+												onClick={() =>
+													followProfile(id)
+												}
+												text="Follow"
+												className="mr-2"
+											/>
+										))}
 
 									{!is_owner &&
 										(approval_id ? (
