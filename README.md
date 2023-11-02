@@ -1,5 +1,19 @@
 # Craft Social
 
+## Problem ID
+
+"As a tradesman there isnt a place for us to share our work. Instagram and Facebook are catered more to 'free-time' social activities. It would be good to have platform to share my work with other like minded people who can appreciate it. Tradesman and manual workers are often very skilled individuals whos work is often taken for granted as we have knowhere to share it."
+
+## Problem Statement
+
+"As a *skilled tradesman*, I would like to have *a place to share work I am proud of* or updates on a particular project, but I dont know where to share work related content. Instagram is too social, and LinkedIn seems too corporate. This makes me feel *my work is not getting seen or appreciated* like other industries. Where can I share content, to *showcase my skills* for others to appreciate it?
+
+## Site Goals
+
+**User Goals** - The user wants the ability to share work and work related updates via a post, to a site ith like minded individuals, showcasing their craft and abilities.
+
+**Owner Goals** - To create an environment for people in highly skilled manual jobs to share their work, showcase their skills and have their work appreciated.
+
 ### Libraries
 
 react bootstrap4
