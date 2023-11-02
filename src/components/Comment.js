@@ -58,7 +58,6 @@ const Comment = (props) => {
 					<div>
 						{is_owner && (
 							<SettingsDropdown
-								editObject={() => {}}
 								onDelete={deleteComment}
 							/>
 						)}

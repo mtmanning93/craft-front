@@ -59,13 +59,11 @@ const ProfileCompany = (props) => {
 					{location}
 				</div>
 				<div className="d-none d-sm-block">
-					{employee_count > 0 ? (
+					{employee_count > 0 && (
 						<>
 							<i className="fa-solid fa-users mx-2" />
 							{employee_count} Craft employees
 						</>
-					) : (
-						<i className="fa-solid fa-user ml-2" />
 					)}
 				</div>
 			</Col>
