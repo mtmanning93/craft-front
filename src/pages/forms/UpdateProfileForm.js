@@ -98,39 +98,40 @@ const UpdateProfileForm = () => {
 
 	const profileOwnedCompanies = (
 		<>
-			{profileCompanies.length ? (
-				<Col
-					className={`${styles.PersonalInfo} mt-2 p-2 border-top border-dark`}
-				>
-					<div className="d-flex justify-content-between">
-						<h3>Owned companies</h3>
-						{numberOfCompanies < 3 ? (
-							<Link to="/companies/create/">
-								<Button className={styles.AddCompanyBtn}>
-									<i className="fa-solid fa-plus" />
-									<span className="ml-2 d-none d-sm-inline">
-										Add Company
-									</span>
-								</Button>
-							</Link>
-						) : (
-							<p className="text-center">
-								(You have reached the maximum number of
-								companies for this profile)
-							</p>
-						)}
-					</div>
-
-					{profileCompanies.map((company) => (
+			<Col
+				className={`${styles.PersonalInfo} mt-2 p-2 border-top border-dark`}
+			>
+				<div className="d-flex justify-content-between">
+					<h3>Owned companies</h3>
+					{numberOfCompanies < 3 ? (
+						<Link to="/companies/create/">
+							<Button className={styles.AddCompanyBtn}>
+								<i className="fa-solid fa-plus" />
+								<span className="ml-2 d-none d-sm-inline">
+									Add Company
+								</span>
+							</Button>
+						</Link>
+					) : (
+						<p className="text-center">
+							(You have reached the maximum number of companies
+							for this profile)
+						</p>
+					)}
+				</div>
+				{profileCompanies.length ? (
+					profileCompanies.map((company) => (
 						<ProfileCompany
 							key={company.id}
 							{...company}
 							setProfileData={setProfileData}
 							setProfileCompanies={setProfileCompanies}
 						/>
-					))}
-				</Col>
-			) : null}
+					))
+				) : (
+					<p className="text-center">You have not yet added your own company.</p>
+				)}
+			</Col>
 		</>
 	);
 
