@@ -3,6 +3,7 @@ import { axiosRes } from "../api/axiosDefaults";
 import { Col, Row } from "react-bootstrap";
 import SettingsDropdown from "./buttons/SettingsDropdown";
 import { useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const ProfileCompany = (props) => {
 	const {
@@ -16,6 +17,12 @@ const ProfileCompany = (props) => {
 	} = props;
 
 	const currentUrl = useLocation().pathname;
+
+    const history = useHistory();
+
+    const editPost = async () => {
+		history.push(`/companies/${id}/edit`);
+	};
 
 	const deleteCompany = async () => {
 		try {
@@ -65,7 +72,7 @@ const ProfileCompany = (props) => {
 			{currentUrl.includes("edit") && (
 				<Col className="d-flex justify-content-end" xs={2}>
 					<SettingsDropdown
-						editObject={() => {}}
+						editObject={editPost}
 						onDelete={deleteCompany}
 					/>
 				</Col>
