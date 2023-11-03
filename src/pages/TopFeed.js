@@ -75,6 +75,7 @@ const Feed = () => {
 								hasMore={!!profiles.next}
 								loader={<Loader loader variant="warning" />}
 								endMessage={<p>No more profiles to load...</p>}
+                                className="mx-2"
 							>
 								{profiles.results.map((profile, idx) => (
 									<ApprovalFeedCard key={profile.id} profile={profile} ranking={idx + 1} />

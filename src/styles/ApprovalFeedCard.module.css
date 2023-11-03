@@ -1,3 +1,12 @@
 .OwnerCard {
-    border: 2px solid #f89c04;
+	border: 2px solid black;
+}
+
+.Heading {
+    margin: 0;
+    color: #4682B4;
+}
+
+.Bronze {
+	color: #cd7f32;
 }
