@@ -17,10 +17,12 @@ import EditCompanyForm from "./pages/forms/EditCompanyForm";
 import TopFeed from "./pages/TopFeed";
 import DefaultFeed from "./pages/DefaultFeed";
 import OtherFeeds from "./pages/OtherFeeds";
+import ErrorAlert from "./components/tools/ErrorAlert";
 
 function App() {
 	return (
 		<div className={styles.App}>
+            <ErrorAlert />
 			<NavBar />
 			<Header />
 			<Container fluid className={mainStyles.MainContainer}>
@@ -46,10 +48,26 @@ function App() {
 						path="/posts/:id"
 						render={() => <PostDetails />}
 					/>
-					<Route exact path="/profiles/:id" render={() => <ProfilePage />} />
-					<Route exact path="/profiles/:id/edit" render={() => <UpdateProfileForm />} />
-					<Route exact path="/companies/create/" render={() => <CompanyForm />} />
-					<Route exact path="/companies/:id/edit" render={() => <EditCompanyForm />} />
+					<Route
+						exact
+						path="/profiles/:id"
+						render={() => <ProfilePage />}
+					/>
+					<Route
+						exact
+						path="/profiles/:id/edit"
+						render={() => <UpdateProfileForm />}
+					/>
+					<Route
+						exact
+						path="/companies/create/"
+						render={() => <CompanyForm />}
+					/>
+					<Route
+						exact
+						path="/companies/:id/edit"
+						render={() => <EditCompanyForm />}
+					/>
 
 					<Route render={() => <h1>Page not found!</h1>} />
 				</Switch>

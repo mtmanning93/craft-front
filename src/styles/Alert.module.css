@@ -1,0 +1,14 @@
+.Container {
+    width: 30vw;
+    position: absolute;
+    z-index: 1;
+    top: 10px;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.Temp {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+}

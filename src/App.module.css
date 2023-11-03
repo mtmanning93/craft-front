@@ -6,6 +6,7 @@
 	font-family: "Titillium Web", sans-serif;
 	background-color: #7a8d9d;
 	min-height: 100vh;
+	position: relative;
 }
 
 .MainContainer {
@@ -26,7 +27,7 @@ a:hover {
 .Content {
 	background-color: #ffffff;
 	border: 1px solid #000000;
-    /* steel blue #4682b4 */
+	/* steel blue #4682b4 */
 	border-radius: 5px;
 }
 
