@@ -57,11 +57,14 @@ const UpdateProfileForm = () => {
 					job: data.job,
 					bio: data.bio,
 					companies: data.companies || [],
+                    employer: data.employer,
+                    employer_pk: data.employer_pk,
 				});
 
+                console.log("data.employer:", data.employer);
 				data.employer
 					? setSelectedCompany({
-							value: data.employer,
+							value: data.employer_pk,
 							label: data.employer,
 					  })
 					: setSelectedCompany(null);
@@ -145,6 +148,7 @@ const UpdateProfileForm = () => {
 
 		formData.append("name", name);
 		formData.append("job", job);
+        console.log(selectedCompany)
 		if (selectedCompany) {
 			formData.append("employer", selectedCompany.value);
 		}
