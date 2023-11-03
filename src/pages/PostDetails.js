@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Col, Row, Container } from "react-bootstrap";
-import { Link, useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { Link, useHistory, useParams } from "react-router-dom";
 import { axiosReq } from "../api/axiosDefaults";
 import Post from "../components/Post";
 import CommentForm from "./forms/CommentForm";
@@ -14,14 +14,16 @@ import Loader from "../components/tools/Loader";
 import WorkOfTheWeek from "../components/WorkOfTheWeek";
 
 const PostDetails = () => {
+	const [post, setPost] = useState({ results: [] });
+	const [comments, setComments] = useState({ results: [] });
+
 	const { id } = useParams();
+
+	const history = useHistory();
 
 	const currentUser = useCurrentUser();
 	const profile_image = currentUser?.profile_image;
 
-	// empty array means you can fetch results or result
-	const [post, setPost] = useState({ results: [] });
-	const [comments, setComments] = useState({ results: [] });
 
 	useEffect(() => {
 		const handleMount = async () => {
@@ -33,12 +35,16 @@ const PostDetails = () => {
 				setPost({ results: [post] });
 				setComments(comments);
 			} catch (err) {
+				if (err.response && err.response.status === 404) {
+					console.log("Does not exist");
+                    history.push("/")
+				}
 				console.log(err);
 			}
 		};
 
 		handleMount();
-	}, [id]);
+	}, [history, id]);
 
 	return (
 		<Row className="w-100 p-2">
