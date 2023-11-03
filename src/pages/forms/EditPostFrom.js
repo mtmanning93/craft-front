@@ -17,7 +17,7 @@ import btnStyles from "../../styles/Buttons.module.css";
 import { useRedirectUser } from "../../hooks/useRedirectUser";
 
 const EditPostForm = () => {
-    useRedirectUser('loggedOut');
+	useRedirectUser("loggedOut");
 
 	const currentUser = useCurrentUser();
 
@@ -41,18 +41,16 @@ const EditPostForm = () => {
 		const getPostData = async () => {
 			try {
 				const { data } = await axiosReq.get(`/posts/${id}/`);
-				data.is_owner 
-                ? setPostData(data)
-				: history.push("/")
+				data.is_owner ? setPostData(data) : history.push("/");
 			} catch (error) {
 				console.log(error);
 			}
-		}
+		};
 		getPostData();
 	}, [history, id]);
 
 	const handleImage = (event) => {
-        const selectedFile = event.target.files[0]
+		const selectedFile = event.target.files[0];
 		if (selectedFile) {
 			const imageUrl = URL.createObjectURL(selectedFile);
 
@@ -70,13 +68,22 @@ const EditPostForm = () => {
 		});
 	};
 
-    const handleSubmit = async (event) => {
+	const handleSubmit = async (event) => {
 		event.preventDefault();
 
 		const formData = new FormData();
-		formData.append("image", imageSelection.current.files[0] || postData.image);
+		if (imageSelection?.current?.files[0]) {
+			formData.append("image", imageSelection.current.files[0]);
+		}
 		formData.append("title", title);
 		formData.append("content", content);
+
+		// formData.append(
+		// 	"image",
+		// 	imageSelection.current.files[0] || postData.image
+		// );
+
+		// console.log(postData);
 
 		try {
 			await axiosReq.put(`/posts/${id}/`, formData);
@@ -194,6 +201,7 @@ const EditPostForm = () => {
 							<Form.File
 								id="upload"
 								accept="image/*"
+								name="image"
 								onChange={handleImage}
 								ref={imageSelection}
 								hidden
