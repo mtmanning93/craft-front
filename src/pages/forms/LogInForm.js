@@ -7,9 +7,11 @@ import axios from "axios";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 import MainButton from "../../components/buttons/MainButton";
 import btnStyles from "../../styles/Buttons.module.css";
+import { useRedirectUser } from "../../hooks/useRedirectUser";
 
 const LogInForm = () => {
 	const setCurrentUser = useSetCurrentUser();
+	useRedirectUser("loggedIn");
 
 	const [loginData, setLoginData] = useState({
 		username: "",
@@ -37,7 +39,7 @@ const LogInForm = () => {
 				loginData
 			);
 			setCurrentUser(data.user);
-			history.push("/");
+			history.goBack();
 		} catch (err) {
 			setErrors(err.response?.data);
 		}

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-const ClickOutsideToggle = () => {
+const useClickOutsideToggle = () => {
   const [expanded, setExpanded] = useState(false);
   const ref = useRef(null);
 
@@ -19,4 +19,4 @@ const ClickOutsideToggle = () => {
   return {expanded, setExpanded, ref};
 };
 
-export default ClickOutsideToggle;
+export default useClickOutsideToggle;

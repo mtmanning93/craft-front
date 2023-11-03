@@ -10,8 +10,11 @@ import fetchMoreData from "../components/tools/InfiniteScroll";
 import WorkOfTheWeek from "../components/WorkOfTheWeek";
 import stylesW from "../styles/WotW.module.css";
 import mainStyles from "../App.module.css";
+import { useRedirectUser } from "../hooks/useRedirectUser";
 
-const Feed = () => {
+const OtherFeeds = () => {
+	useRedirectUser("loggedOut");
+
 	const [posts, setPosts] = useState([]);
 	const [loaded, setLoaded] = useState(false);
 
@@ -21,10 +24,6 @@ const Feed = () => {
 
 	const user = useCurrentUser();
 	const user_id = user?.profile_id;
-
-	// console.log("User:", user);
-	// console.log("UserID:", user_id);
-	// May need to be called inside the App.js file see Bug Reports
 
 	const noFeedMessage =
 		currentUrl === "/feed" ? (
@@ -49,33 +48,6 @@ const Feed = () => {
 				</p>
 			</div>
 		);
-
-	useEffect(() => {
-		let isMounted = true;
-
-		const getDefaultFeed = async () => {
-			try {
-				const { data } = await axiosReq.get(`/posts/`);
-
-				if (isMounted) {
-					setPosts(data);
-					setLoaded(true);
-				}
-			} catch (error) {
-				console.log(error);
-			}
-		};
-
-		if (currentUrl === "/") {
-			setLoaded(false);
-			getDefaultFeed();
-		}
-
-		// Cleanup function
-		return () => {
-			isMounted = false;
-		};
-	}, [currentUrl]);
 
 	useEffect(() => {
 		let filter = "";
@@ -119,19 +91,21 @@ const Feed = () => {
 					</p>
 					<WorkOfTheWeek />
 				</Row>
-				<Form
-					onSubmit={(event) => event.preventDefault()}
-					className={`${mainStyles.Content} mt-3 d-flex`}
-				>
-					<i className="fa-solid fa-magnifying-glass my-auto mx-2" />
+				{user && (
+					<Form
+						onSubmit={(event) => event.preventDefault()}
+						className={`${mainStyles.Content} mt-3 d-flex`}
+					>
+						<i className="fa-solid fa-magnifying-glass my-auto mx-2" />
 
-					<Form.Control
-						type="text"
-						placeholder="Search feed..."
-						value={search}
-						onChange={(event) => setSearch(event.target.value)}
-					></Form.Control>
-				</Form>
+						<Form.Control
+							type="text"
+							placeholder="Search feed..."
+							value={search}
+							onChange={(event) => setSearch(event.target.value)}
+						></Form.Control>
+					</Form>
+				)}
 
 				{loaded ? (
 					<>
@@ -172,4 +146,4 @@ const Feed = () => {
 	);
 };
 
-export default Feed;
+export default OtherFeeds;

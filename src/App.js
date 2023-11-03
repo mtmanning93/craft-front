@@ -9,13 +9,14 @@ import CreatePostForm from "./pages/forms/CreatePostForm";
 import mainStyles from "./App.module.css";
 import NavBar from "./components/NavBar";
 import PostDetails from "./pages/PostDetails";
-import Feed from "./pages/Feeds";
 import EditPostForm from "./pages/forms/EditPostFrom";
 import ProfilePage from "./pages/ProfilePage";
 import UpdateProfileForm from "./pages/forms/UpdateProfileForm";
 import CompanyForm from "./pages/forms/CompanyForm";
 import EditCompanyForm from "./pages/forms/EditCompanyForm";
 import TopFeed from "./pages/TopFeed";
+import DefaultFeed from "./pages/DefaultFeed";
+import OtherFeeds from "./pages/OtherFeeds";
 
 function App() {
 	return (
@@ -24,9 +25,9 @@ function App() {
 			<Header />
 			<Container fluid className={mainStyles.MainContainer}>
 				<Switch>
-					<Route exact path="/" render={() => <Feed />} />
-					<Route exact path="/feed" render={() => <Feed />} />
-					<Route exact path="/liked" render={() => <Feed />} />
+					<Route exact path="/" render={() => <DefaultFeed />} />
+					<Route exact path="/feed" render={() => <OtherFeeds />} />
+					<Route exact path="/liked" render={() => <OtherFeeds />} />
 					<Route exact path="/top" render={() => <TopFeed />} />
 					<Route exact path="/login" render={() => <LogInForm />} />
 					<Route exact path="/signup" render={() => <SignUpForm />} />

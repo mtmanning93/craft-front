@@ -1,7 +1,7 @@
 import React from "react";
 import { Col, Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
-import ClickOutsideToggle from "../hooks/ClickOutsideToggle";
+import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
 import icon from "../assets/icon_nobg.png";
 import logo from "../assets/main_logo.png";
 import {
@@ -18,7 +18,7 @@ const NavBar = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
 
-  const { expanded, setExpanded, ref } = ClickOutsideToggle();
+  const { expanded, setExpanded, ref } = useClickOutsideToggle();
 
   const handleLogOut = async () => {
     try {
