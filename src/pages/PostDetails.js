@@ -12,10 +12,12 @@ import fetchMoreData from "../components/tools/InfiniteScroll";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Loader from "../components/tools/Loader";
 import WorkOfTheWeek from "../components/WorkOfTheWeek";
+import { useErrorContext } from "../contexts/ErrorContext";
 
 const PostDetails = () => {
 	const [post, setPost] = useState({ results: [] });
 	const [comments, setComments] = useState({ results: [] });
+	const { showErrorAlert } = useErrorContext();
 
 	const { id } = useParams();
 
@@ -23,7 +25,6 @@ const PostDetails = () => {
 
 	const currentUser = useCurrentUser();
 	const profile_image = currentUser?.profile_image;
-
 
 	useEffect(() => {
 		const handleMount = async () => {
@@ -37,14 +38,24 @@ const PostDetails = () => {
 			} catch (err) {
 				if (err.response && err.response.status === 404) {
 					console.log("Does not exist");
-                    history.push("/")
+					showErrorAlert(
+						"Does Not Exist",
+						"Requested object doesn't exist"
+					);
+				} else {
+					console.log(err);
+					showErrorAlert(
+						"Error",
+						"An error occurred while loading the post."
+					);
 				}
+                history.push("/");
 				console.log(err);
 			}
 		};
 
 		handleMount();
-	}, [history, id]);
+	}, [history, id, showErrorAlert]);
 
 	return (
 		<Row className="w-100 p-2">
