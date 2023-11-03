@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Col, Row } from "react-bootstrap";
+import { Col, Form, Row } from "react-bootstrap";
 // import { useCurrentUser } from "../contexts/CurrentUserContext";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { axiosReq } from "../api/axiosDefaults";
@@ -14,6 +14,7 @@ import ApprovalFeedCard from "../components/ApprovalFeedCard";
 const Feed = () => {
 	const [profiles, setProfiles] = useState([]);
 	const [loaded, setLoaded] = useState(false);
+	const [search, setSearch] = useState("");
 
 	// const user = useCurrentUser();
 	// const user_id = user?.profile_id;
@@ -39,7 +40,7 @@ const Feed = () => {
 		const getApprovedFeed = async () => {
 			try {
 				const { data } = await axiosReq.get(
-					`/profiles/?ordering=-approval_count`
+					`/profiles/?ordering=-approval_count&search=${search}`
 				);
 				setProfiles(data);
 				setLoaded(true);
@@ -49,8 +50,13 @@ const Feed = () => {
 		};
 
 		setLoaded(false);
-		getApprovedFeed();
-	}, []);
+			const timeout = setTimeout(() => {
+				getApprovedFeed();
+			}, 1000);
+			return () => {
+				clearTimeout(timeout);
+			};
+	}, [search]);
 
 	return (
 		<Row className="w-100 p-2">
@@ -63,6 +69,19 @@ const Feed = () => {
 					</p>
 					<WorkOfTheWeek />
 				</Row>
+                <Form
+					onSubmit={(event) => event.preventDefault()}
+					className={`${mainStyles.Content} mt-3 d-flex`}
+				>
+					<i className="fa-solid fa-magnifying-glass my-auto mx-2" />
+
+					<Form.Control
+						type="text"
+						placeholder="Search feed..."
+						value={search}
+						onChange={(event) => setSearch(event.target.value)}
+					></Form.Control>
+				</Form>
 
 				{loaded ? (
 					<>
@@ -75,7 +94,6 @@ const Feed = () => {
 								hasMore={!!profiles.next}
 								loader={<Loader loader variant="warning" />}
 								endMessage={<p>No more profiles to load...</p>}
-                                className="mx-2"
 							>
 								{profiles.results.map((profile, idx) => (
 									<ApprovalFeedCard key={profile.id} profile={profile} ranking={idx + 1} />

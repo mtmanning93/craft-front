@@ -16,7 +16,7 @@ const ApprovalFeedCard = ({ profile, ranking }) => {
 	const number_one = ranking === 1 && `${styles.NumberOne}`;
 
 	return (
-		<Card className={`mt-3 mx-2 ${mainStyles.Content} ${owner_card}`}>
+		<Card className={`mt-3 ${mainStyles.Content} ${owner_card}`}>
 			<Link to={`/profiles/${profile.id}`}>
 				<Card.Header
 					className={`d-flex justify-content-between ${number_one}`}
