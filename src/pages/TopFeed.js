@@ -77,7 +77,7 @@ const Feed = () => {
 
 					<Form.Control
 						type="text"
-						placeholder="Search feed..."
+						placeholder="Search approvals list..."
 						value={search}
 						onChange={(event) => setSearch(event.target.value)}
 					></Form.Control>

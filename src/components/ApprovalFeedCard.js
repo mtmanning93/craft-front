@@ -11,22 +11,16 @@ const ApprovalFeedCard = ({ profile, ranking }) => {
 
 	const is_owner = currentUser?.username === profile.owner;
 
-	const owner_card = is_owner && `${styles.OwnerCard}`;
-
-	const number_one = ranking === 1 && `${styles.NumberOne}`;
-
 	return (
-		<Card className={`mt-3 ${mainStyles.Content} ${owner_card}`}>
+		<Card className={`mt-3 ${mainStyles.Content}`}>
 			<Link to={`/profiles/${profile.id}`}>
-				<Card.Header
-					className={`d-flex justify-content-between ${number_one}`}
-				>
+				<Card.Header className="d-flex justify-content-between">
 					<div>
 						<p className={styles.Heading}>
 							<strong>Approvals ranking: {ranking}</strong>
 						</p>
 					</div>
-					<div>
+					<div className={styles.HeadIcons}>
 						{is_owner && <i className="fa-solid fa-user" />}
 						{ranking === 1 && (
 							<i className="fas fa-trophy ml-2 text-warning" />
@@ -46,9 +40,18 @@ const ApprovalFeedCard = ({ profile, ranking }) => {
 						<Col className="d-sm-flex text-center text-sm-left">
 							<Avatar src={profile.image} height={160} />
 							<div className="m-0 mx-sm-2 w-100 d-flex flex-column">
-								<Card.Title as="h1" className="border-bottom border-dark pb-2">{profile.owner}</Card.Title>
+								<Card.Title
+									as="h1"
+									className="border-bottom border-dark pb-2"
+								>
+									{profile.owner}
+								</Card.Title>
 
 								<div className="mt-2">
+									<p>
+										<i className="fa-solid fa-calendar-days mr-1" />
+										Joined: {profile.created_on}
+									</p>
 									<p>
 										<i className="fa-solid fa-circle-check mr-1" />
 										Total approvals:{" "}
