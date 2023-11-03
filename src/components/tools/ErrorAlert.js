@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Alert, Button } from "react-bootstrap";
 import styles from "../../styles/Alert.module.css";
 
@@ -7,7 +7,19 @@ const ErrorAlert = () => {
 
 	const handleButtonClick = () => {
 		setShow(true);
+
+		// Set a timeout to hide the alert after 3 seconds
+		setTimeout(() => {
+			setShow(false);
+		}, 3000);
 	};
+
+	// Use the useEffect hook to clear the timeout when the component unmounts
+	useEffect(() => {
+		return () => {
+			clearTimeout();
+		};
+	}, []);
 
 	return (
 		<div className={styles.Temp}>
