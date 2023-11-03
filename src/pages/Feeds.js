@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Col, Row } from "react-bootstrap";
+import { Col, Form, Row } from "react-bootstrap";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 import { Link, useLocation } from "react-router-dom/cjs/react-router-dom.min";
 import { axiosReq } from "../api/axiosDefaults";
@@ -14,6 +14,8 @@ import mainStyles from "../App.module.css";
 const Feed = () => {
 	const [posts, setPosts] = useState([]);
 	const [loaded, setLoaded] = useState(false);
+
+	const [search, setSearch] = useState("");
 
 	const currentUrl = useLocation().pathname;
 
@@ -75,7 +77,6 @@ const Feed = () => {
 		};
 	}, [currentUrl]);
 
-
 	useEffect(() => {
 		let filter = "";
 		if (user_id) {
@@ -87,7 +88,9 @@ const Feed = () => {
 						filter = `like__owner__profile=${user_id}&ordering=-like__created_on&`;
 					}
 
-					const { data } = await axiosReq.get(`/posts/?${filter}`);
+					const { data } = await axiosReq.get(
+						`/posts/?${filter}search=${search}`
+					);
 					setPosts(data);
 					setLoaded(true);
 				} catch (error) {
@@ -96,9 +99,14 @@ const Feed = () => {
 			};
 
 			setLoaded(false);
-			getPosts();
+			const timeout = setTimeout(() => {
+				getPosts();
+			}, 1000);
+			return () => {
+				clearTimeout(timeout);
+			};
 		}
-	}, [currentUrl, user_id]);
+	}, [currentUrl, search, user_id]);
 
 	return (
 		<Row className="w-100 p-2">
@@ -111,6 +119,19 @@ const Feed = () => {
 					</p>
 					<WorkOfTheWeek />
 				</Row>
+				<Form
+					onSubmit={(event) => event.preventDefault()}
+					className={`${mainStyles.Content} mt-3 d-flex`}
+				>
+					<i className="fa-solid fa-magnifying-glass my-auto mx-2" />
+
+					<Form.Control
+						type="text"
+						placeholder="Search feed..."
+						value={search}
+						onChange={(event) => setSearch(event.target.value)}
+					></Form.Control>
+				</Form>
 
 				{loaded ? (
 					<>
