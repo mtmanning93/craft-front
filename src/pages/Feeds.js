@@ -18,9 +18,10 @@ const Feed = () => {
 
 	const user = useCurrentUser();
 	const user_id = user?.profile_id;
+
 	// console.log("User:", user);
 	// console.log("UserID:", user_id);
-	// May need to be called inside the App.js file see Bug Reports 
+	// May need to be called inside the App.js file see Bug Reports
 
 	const noFeedMessage =
 		currentUrl === "/feed" ? (
@@ -45,6 +46,34 @@ const Feed = () => {
 				</p>
 			</div>
 		);
+        
+	useEffect(() => {
+		let isMounted = true; // Add a variable to track the component's mounted state
+
+		const getDefaultFeed = async () => {
+			try {
+				const { data } = await axiosReq.get(`/posts/`);
+
+				// Check if the component is still mounted before updating state
+				if (isMounted) {
+					setPosts(data);
+					setLoaded(true);
+				}
+			} catch (error) {
+				console.log(error);
+			}
+		};
+
+		if (currentUrl === "/") {
+			setLoaded(false);
+			getDefaultFeed();
+		}
+
+		// Cleanup function to set isMounted to false when the component unmounts
+		return () => {
+			isMounted = false;
+		};
+	}, [currentUrl]);
 
 	useEffect(() => {
 		let filter = "";
@@ -61,7 +90,7 @@ const Feed = () => {
 					setPosts(data);
 					setLoaded(true);
 				} catch (error) {
-					console.error(error);
+					console.log(error);
 				}
 			};
 
