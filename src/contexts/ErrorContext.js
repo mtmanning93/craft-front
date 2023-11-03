@@ -23,4 +23,3 @@ export const ErrorProvider = ({ children }) => {
     </ErrorContext.Provider>
   );
 };
-
