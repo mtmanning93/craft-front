@@ -10,8 +10,11 @@ import WorkOfTheWeek from "../components/WorkOfTheWeek";
 import stylesW from "../styles/WotW.module.css";
 import mainStyles from "../App.module.css";
 import ApprovalFeedCard from "../components/ApprovalFeedCard";
+import { useRedirectUser } from "../hooks/useRedirectUser";
 
 const Feed = () => {
+    useRedirectUser('loggedOut');
+
 	const [profiles, setProfiles] = useState([]);
 	const [loaded, setLoaded] = useState(false);
 	const [search, setSearch] = useState("");

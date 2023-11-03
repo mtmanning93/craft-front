@@ -11,8 +11,11 @@ import Avatar from "../../components/Avatar";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import BackButton from "../../components/buttons/BackButton";
 import btnStyles from "../../styles/Buttons.module.css";
+import { useRedirectUser } from "../../hooks/useRedirectUser";
 
 const CreatePostForm = () => {
+	useRedirectUser("loggedOut");
+    
 	const currentUser = useCurrentUser();
 
 	const [postData, setPostData] = useState({
@@ -66,7 +69,12 @@ const CreatePostForm = () => {
 	};
 
 	return (
-		<Col sm={12} md={10} lg={8} className={`${mainStyles.Content} p-0 mt-3`}>
+		<Col
+			sm={12}
+			md={10}
+			lg={8}
+			className={`${mainStyles.Content} p-0 mt-3`}
+		>
 			<Form
 				onSubmit={handleSubmit}
 				className={`${styles.Form} ${mainStyles.Content} border m-3 pt-2 pb-2`}

@@ -11,8 +11,11 @@ import {
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import Avatar from "../../components/Avatar";
 import BackButton from "../../components/buttons/BackButton";
+import { useRedirectUser } from "../../hooks/useRedirectUser";
 
 const EditCompanyForm = () => {
+	useRedirectUser("loggedOut");
+
 	const currentUser = useCurrentUser();
 
 	const [companyData, setCompanyData] = useState({
@@ -28,17 +31,15 @@ const EditCompanyForm = () => {
 
 	const { id } = useParams();
 
-    useEffect(() => {
+	useEffect(() => {
 		const getCompanyData = async () => {
 			try {
 				const { data } = await axiosReq.get(`/companies/${id}/`);
-				data.is_owner 
-                ? setCompanyData(data)
-				: history.push("/")
+				data.is_owner ? setCompanyData(data) : history.push("/");
 			} catch (error) {
 				console.log(error);
 			}
-		}
+		};
 		getCompanyData();
 	}, [history, id]);
 

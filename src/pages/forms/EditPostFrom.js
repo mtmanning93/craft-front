@@ -14,8 +14,11 @@ import Avatar from "../../components/Avatar";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import BackButton from "../../components/buttons/BackButton";
 import btnStyles from "../../styles/Buttons.module.css";
+import { useRedirectUser } from "../../hooks/useRedirectUser";
 
 const EditPostForm = () => {
+    useRedirectUser('loggedOut');
+
 	const currentUser = useCurrentUser();
 
 	const [postData, setPostData] = useState({

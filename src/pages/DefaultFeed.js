@@ -9,11 +9,9 @@ import mainStyles from "../App.module.css";
 import stylesW from "../styles/WotW.module.css";
 import { Col, Form, Row } from "react-bootstrap";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
-import { useRedirectUser } from "../hooks/useRedirectUser";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 
 const DefaultFeed = () => {
-	useRedirectUser("loggedIn");
 
 	const [posts, setPosts] = useState([]);
 	const [loaded, setLoaded] = useState(false);

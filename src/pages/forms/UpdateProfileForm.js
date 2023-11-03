@@ -19,8 +19,11 @@ import { axiosReq } from "../../api/axiosDefaults";
 import styles from "../../styles/UpdateProfileForm.module.css";
 import EmployerSelector from "../../components/tools/EmployerSelector";
 import ProfileCompany from "../../components/ProfileCompany";
+import { useRedirectUser } from "../../hooks/useRedirectUser";
 
 const UpdateProfileForm = () => {
+    useRedirectUser('loggedOut');
+
 	const [profileData, setProfileData] = useState({
 		name: "",
 		image: "",

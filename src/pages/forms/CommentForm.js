@@ -8,6 +8,7 @@ import { axiosRes } from "../../api/axiosDefaults";
 import mainStyles from "../../App.module.css";
 
 const CommentForm = (props) => {
+
 	const { post, setPost, setComments, profile_image, profile_id } = props;
 
 	const [commentData, setCommentData] = useState("");

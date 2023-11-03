@@ -8,8 +8,11 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import Avatar from "../../components/Avatar";
 import BackButton from "../../components/buttons/BackButton";
+import { useRedirectUser } from "../../hooks/useRedirectUser";
 
 const CompanyForm = () => {
+    useRedirectUser('loggedOut')
+    
 	const currentUser = useCurrentUser();
 
 	const [companyData, setCompanyData] = useState({
