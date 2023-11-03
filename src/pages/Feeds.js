@@ -14,6 +14,7 @@ import mainStyles from "../App.module.css";
 const Feed = () => {
 	const [posts, setPosts] = useState([]);
 	const [loaded, setLoaded] = useState(false);
+
 	const currentUrl = useLocation().pathname;
 
 	const user = useCurrentUser();
@@ -46,15 +47,14 @@ const Feed = () => {
 				</p>
 			</div>
 		);
-        
+
 	useEffect(() => {
-		let isMounted = true; // Add a variable to track the component's mounted state
+		let isMounted = true;
 
 		const getDefaultFeed = async () => {
 			try {
 				const { data } = await axiosReq.get(`/posts/`);
 
-				// Check if the component is still mounted before updating state
 				if (isMounted) {
 					setPosts(data);
 					setLoaded(true);
@@ -69,11 +69,12 @@ const Feed = () => {
 			getDefaultFeed();
 		}
 
-		// Cleanup function to set isMounted to false when the component unmounts
+		// Cleanup function
 		return () => {
 			isMounted = false;
 		};
 	}, [currentUrl]);
+
 
 	useEffect(() => {
 		let filter = "";

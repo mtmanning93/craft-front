@@ -15,6 +15,7 @@ import ProfilePage from "./pages/ProfilePage";
 import UpdateProfileForm from "./pages/forms/UpdateProfileForm";
 import CompanyForm from "./pages/forms/CompanyForm";
 import EditCompanyForm from "./pages/forms/EditCompanyForm";
+import TopFeed from "./pages/TopFeed";
 
 function App() {
 	return (
@@ -26,6 +27,7 @@ function App() {
 					<Route exact path="/" render={() => <Feed />} />
 					<Route exact path="/feed" render={() => <Feed />} />
 					<Route exact path="/liked" render={() => <Feed />} />
+					<Route exact path="/top" render={() => <TopFeed />} />
 					<Route exact path="/login" render={() => <LogInForm />} />
 					<Route exact path="/signup" render={() => <SignUpForm />} />
 					<Route
