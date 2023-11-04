@@ -28,7 +28,7 @@ const ErrorAlert = () => {
 					dismissible
 				>
 					<Alert.Heading>{errorInfo.title}</Alert.Heading>
-					<p>Message: {errorInfo.message}</p>
+					<p>{errorInfo.message}</p>
 				</Alert>
 			)}
 		</>

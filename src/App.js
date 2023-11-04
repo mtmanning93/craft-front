@@ -68,7 +68,7 @@ function App() {
 						path="/companies/:id/edit"
 						render={() => <EditCompanyForm />}
 					/>
-					<Route path="/page-not-found" render={() => <h1>Page not found!</h1>} />
+					<Route path="/page-not-found" render={() => <h1>Resource not found!</h1>} />
                     <Redirect to="/page-not-found" />
 				</Switch>
 			</Container>

@@ -42,14 +42,14 @@ const PostDetails = () => {
                 console.log(err);
                 if (err.response.status === 400 || err.response.status === 404) {
 				showErrorAlert(
-					`Error ${err.response.status}`,
+					`${err.response.status} error!`,
 					"Requested post could not be found or does not exist.",
 					"warning"
 				);
 				history.push("/page-not-found");
                 } else {
                     showErrorAlert(
-                        `Error ${err.response.status}`,
+                        `${err.response.status} error!`,
                         `${err.message}`,
                         "warning"
                     );
