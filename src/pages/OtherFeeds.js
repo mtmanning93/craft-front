@@ -14,15 +14,15 @@ import { useRedirectUser } from "../hooks/useRedirectUser";
 
 const OtherFeeds = () => {
 	useRedirectUser("loggedOut");
+	const user = useCurrentUser();
 
 	const [posts, setPosts] = useState([]);
 	const [loaded, setLoaded] = useState(false);
-
 	const [search, setSearch] = useState("");
+	const [feedErrorMessage, setFeedErrorMessage] = useState("");
 
 	const currentUrl = useLocation().pathname;
 
-	const user = useCurrentUser();
 	const user_id = user?.profile_id;
 
 	const noFeedMessage =
@@ -51,33 +51,35 @@ const OtherFeeds = () => {
 
 	useEffect(() => {
 		let filter = "";
-		if (user_id) {
-			const getPosts = async () => {
-				try {
-					if (currentUrl === "/feed") {
-						filter = `owner__followed__owner__profile=${user_id}&`;
-					} else if (currentUrl === "/liked") {
-						filter = `like__owner__profile=${user_id}&ordering=-like__created_on&`;
-					}
-
-					const { data } = await axiosReq.get(
-						`/posts/?${filter}search=${search}`
-					);
-					setPosts(data);
-					setLoaded(true);
-				} catch (error) {
-					console.log(error);
+		const getPosts = async () => {
+			try {
+				if (currentUrl === "/feed") {
+					filter = `owner__followed__owner__profile=${user_id}&`;
+				} else if (currentUrl === "/liked") {
+					filter = `like__owner__profile=${user_id}&ordering=-like__created_on&`;
 				}
-			};
 
-			setLoaded(false);
-			const timeout = setTimeout(() => {
-				getPosts();
-			}, 1000);
-			return () => {
-				clearTimeout(timeout);
-			};
-		}
+				const { data } = await axiosReq.get(
+					`/posts/?${filter}search=${search}`
+				);
+				setPosts(data);
+				setLoaded(true);
+				setFeedErrorMessage("");
+			} catch (error) {
+				console.log(error);
+                setFeedErrorMessage(
+					"Currently unable to retrieve feed data, please refresh the feed, or try again soon."
+				);
+			}
+		};
+
+		setLoaded(false);
+		const timeout = setTimeout(() => {
+			getPosts();
+		}, 1000);
+		return () => {
+			clearTimeout(timeout);
+		};
 	}, [currentUrl, search, user_id]);
 
 	return (
@@ -106,7 +108,12 @@ const OtherFeeds = () => {
 						></Form.Control>
 					</Form>
 				)}
-
+                {feedErrorMessage && (
+					<div className="m-2">
+						<h1>Unexpected Feed Error</h1>
+						<p>{feedErrorMessage}</p>
+					</div>
+				)}
 				{loaded ? (
 					<>
 						{posts.results.length ? (

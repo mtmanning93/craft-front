@@ -151,3 +151,13 @@ INCORRECT (WARNINGS)
 [Npm react infinite scroll docs](https://www.npmjs.com/package/react-infinite-scroll-component)
 [NPM react infinite scroll github repo](https://github.com/ankeetmaini/react-infinite-scroll-component)
 [Implementing Infinite sroll (log rocket)](https://blog.logrocket.com/3-ways-implement-infinite-scroll-react/#call-fetchdata-component-mount)
+
+## Manual Testing
+
+### simulating errors in try catch:
+
+	// const simulateError = () => {
+	// 	throw new Error("Simulated error message");
+	// };
+
+	// simulateError();

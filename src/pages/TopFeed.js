@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Col, Form, Row } from "react-bootstrap";
-// import { useCurrentUser } from "../contexts/CurrentUserContext";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { axiosReq } from "../api/axiosDefaults";
 import Loader from "../components/tools/Loader";
@@ -13,18 +12,12 @@ import ApprovalFeedCard from "../components/ApprovalFeedCard";
 import { useRedirectUser } from "../hooks/useRedirectUser";
 
 const Feed = () => {
-    useRedirectUser('loggedOut');
+	useRedirectUser("loggedOut");
 
 	const [profiles, setProfiles] = useState([]);
 	const [loaded, setLoaded] = useState(false);
 	const [search, setSearch] = useState("");
-
-	// const user = useCurrentUser();
-	// const user_id = user?.profile_id;
-
-	// // console.log("User:", user);
-	// // console.log("UserID:", user_id);
-	// // May need to be called inside the App.js file see Bug Reports
+	const [feedErrorMessage, setFeedErrorMessage] = useState("");
 
 	const noFeedMessage = (
 		<div>
@@ -47,18 +40,22 @@ const Feed = () => {
 				);
 				setProfiles(data);
 				setLoaded(true);
+				setFeedErrorMessage("");
 			} catch (error) {
 				console.log(error);
+				setFeedErrorMessage(
+					"Currently unable to retrieve feed data, please refresh the feed, or try again soon."
+				);
 			}
 		};
 
 		setLoaded(false);
-			const timeout = setTimeout(() => {
-				getApprovedFeed();
-			}, 1000);
-			return () => {
-				clearTimeout(timeout);
-			};
+		const timeout = setTimeout(() => {
+			getApprovedFeed();
+		}, 1000);
+		return () => {
+			clearTimeout(timeout);
+		};
 	}, [search]);
 
 	return (
@@ -72,7 +69,7 @@ const Feed = () => {
 					</p>
 					<WorkOfTheWeek />
 				</Row>
-                <Form
+				<Form
 					onSubmit={(event) => event.preventDefault()}
 					className={`${mainStyles.Content} mt-3 d-flex`}
 				>
@@ -85,7 +82,12 @@ const Feed = () => {
 						onChange={(event) => setSearch(event.target.value)}
 					></Form.Control>
 				</Form>
-
+				{feedErrorMessage && (
+					<div className="m-2">
+						<h1>Unexpected Feed Error</h1>
+						<p>{feedErrorMessage}</p>
+					</div>
+				)}
 				{loaded ? (
 					<>
 						{profiles.results.length ? (
@@ -99,7 +101,11 @@ const Feed = () => {
 								endMessage={<p>No more profiles to load...</p>}
 							>
 								{profiles.results.map((profile, idx) => (
-									<ApprovalFeedCard key={profile.id} profile={profile} ranking={idx + 1} />
+									<ApprovalFeedCard
+										key={profile.id}
+										profile={profile}
+										ranking={idx + 1}
+									/>
 								))}
 							</InfiniteScroll>
 						) : (

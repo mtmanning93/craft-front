@@ -8,19 +8,16 @@ import WorkOfTheWeek from "../components/WorkOfTheWeek";
 import mainStyles from "../App.module.css";
 import stylesW from "../styles/WotW.module.css";
 import { Col, Form, Row } from "react-bootstrap";
-import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
-import { useErrorContext } from "../contexts/ErrorContext";
 
 const DefaultFeed = () => {
-	const { showErrorAlert } = useErrorContext();
 	const user = useCurrentUser();
 
 	const [posts, setPosts] = useState([]);
 	const [loaded, setLoaded] = useState(false);
 	const [search, setSearch] = useState("");
-
-    const history = useHistory();
+	const [feedErrorMessage, setFeedErrorMessage] = useState("");
 
 	const noFeedMessage = (
 		<div className="m-2">
@@ -40,14 +37,12 @@ const DefaultFeed = () => {
 				const { data } = await axiosReq.get(`/posts/?search=${search}`);
 				setPosts(data);
 				setLoaded(true);
+				setFeedErrorMessage("");
 			} catch (err) {
-                console.log(err)
-				showErrorAlert(
-                    "Unexpected Error",
-                    "Currently unable to retrieve feed data, please try to refresh the feed, or try again soon.",
-                    "warning"
-                )
-                history.push("/page-not-found")
+				console.log(err);
+				setFeedErrorMessage(
+					"Currently unable to retrieve feed data, please refresh the feed, or try again soon."
+				);
 			}
 		};
 
@@ -58,7 +53,7 @@ const DefaultFeed = () => {
 		return () => {
 			clearTimeout(timeout);
 		};
-	}, [search, history, showErrorAlert]);
+	}, [search]);
 
 	return (
 		<Row className="w-100 p-2">
@@ -87,7 +82,12 @@ const DefaultFeed = () => {
 						></Form.Control>
 					</Form>
 				)}
-
+				{feedErrorMessage && (
+					<div className="m-2">
+						<h1>Unexpected Feed Error</h1>
+						<p>{feedErrorMessage}</p>
+					</div>
+				)}
 				{loaded ? (
 					<>
 						{posts.results.length ? (
