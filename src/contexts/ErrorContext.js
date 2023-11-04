@@ -9,8 +9,8 @@ export const useErrorContext = () => {
 export const ErrorProvider = ({ children }) => {
   const [errorInfo, setErrorInfo] = useState(null);
 
-  const showErrorAlert = (title, message) => {
-    setErrorInfo({ title, message });
+  const showErrorAlert = (title, message, variant) => {
+    setErrorInfo({ title, message, variant });
   };
 
   const clearErrorAlert = () => {

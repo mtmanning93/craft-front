@@ -14,7 +14,7 @@ const ErrorAlert = () => {
 			setTimeout(() => {
 				setShow(false);
 				clearErrorAlert();
-			}, 5000);
+			}, 20000);
 		}
 	}, [errorInfo, clearErrorAlert]);
 
@@ -23,7 +23,7 @@ const ErrorAlert = () => {
 			{show && (
 				<Alert
 					className={styles.Container}
-					variant="warning"
+					variant={errorInfo.variant}
 					onClose={() => setShow(false)}
 					dismissible
 				>

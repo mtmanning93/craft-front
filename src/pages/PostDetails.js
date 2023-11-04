@@ -17,6 +17,8 @@ import { useErrorContext } from "../contexts/ErrorContext";
 const PostDetails = () => {
 	const [post, setPost] = useState({ results: [] });
 	const [comments, setComments] = useState({ results: [] });
+	const [loaded, setLoaded] = useState(false);
+
 	const { showErrorAlert } = useErrorContext();
 
 	const { id } = useParams();
@@ -35,25 +37,26 @@ const PostDetails = () => {
 				]);
 				setPost({ results: [post] });
 				setComments(comments);
+				setLoaded(true);
 			} catch (err) {
-				if (err.response && err.response.status === 404) {
-					console.log("Does not exist");
-					showErrorAlert(
-						"Does Not Exist",
-						"Requested object doesn't exist"
-					);
-				} else {
-					console.log(err);
-					showErrorAlert(
-						"Error",
-						"An error occurred while loading the post."
-					);
-				}
-                history.push("/");
-				console.log(err);
+                console.log(err);
+                if (err.response.status === 400 || err.response.status === 404) {
+				showErrorAlert(
+					`Error ${err.response.status}`,
+					"Requested post could not be found or does not exist.",
+					"warning"
+				);
+				history.push("/page-not-found");
+                } else {
+                    showErrorAlert(
+                        `Error ${err.response.status}`,
+                        `${err.message}`,
+                        "warning"
+                    );
+                }
 			}
 		};
-
+		setLoaded(false);
 		handleMount();
 	}, [history, id, showErrorAlert]);
 
@@ -68,59 +71,71 @@ const PostDetails = () => {
 					</p>
 					<WorkOfTheWeek />
 				</Row>
-				<Post {...post.results[0]} setPosts={setPost} />
+				{loaded ? (
+					<>
+						<Post {...post.results[0]} setPosts={setPost} />
 
-				<Container fluid className={`${mainStyles.Content} p-0 mt-2`}>
-					{currentUser ? (
-						<CommentForm
-							profile_id={currentUser.profile_id}
-							profile_image={profile_image}
-							post={id}
-							setPost={setPost}
-							setComments={setComments}
-						/>
-					) : comments.results.length ? (
-						<h2 className="m-2 ml-4">Comments</h2>
-					) : null}
-
-					{comments.results.length ? (
-						<InfiniteScroll
-							dataLength={comments.results.length}
-							next={() => fetchMoreData(comments, setComments)}
-							hasMore={!!comments.next}
-							loader={<Loader loader variant="warning" />}
+						<Container
+							fluid
+							className={`${mainStyles.Content} p-0 mt-2`}
 						>
-							{comments.results.map((comment) => (
-								<Comment
-									key={comment.id}
-									{...comment}
+							{currentUser ? (
+								<CommentForm
+									profile_id={currentUser.profile_id}
+									profile_image={profile_image}
+									post={id}
 									setPost={setPost}
 									setComments={setComments}
 								/>
-							))}
-						</InfiniteScroll>
-					) : currentUser ? (
-						<>
-							<h2 className="border-bottom pb-2 m-2 ml-4">
-								Got something to say?
-							</h2>
-							<p className="m-2 ml-4">
-								Comment above to start the coversation...
-							</p>
-						</>
-					) : (
-						<>
-							<h2 className="border-bottom pb-2 m-2 ml-4">
-								No comments yet
-							</h2>
-							<p className="m-2 ml-4">
-								<Link to="/login">Login</Link> or{" "}
-								<Link to="/signup">signup</Link> to start the
-								conversation...
-							</p>
-						</>
-					)}
-				</Container>
+							) : comments.results.length ? (
+								<h2 className="m-2 ml-4">Comments</h2>
+							) : null}
+
+							{comments.results.length ? (
+								<InfiniteScroll
+									dataLength={comments.results.length}
+									next={() =>
+										fetchMoreData(comments, setComments)
+									}
+									hasMore={!!comments.next}
+									loader={<Loader loader variant="warning" />}
+								>
+									{comments.results.map((comment) => (
+										<Comment
+											key={comment.id}
+											{...comment}
+											setPost={setPost}
+											setComments={setComments}
+										/>
+									))}
+								</InfiniteScroll>
+							) : currentUser ? (
+								<>
+									<h2 className="border-bottom pb-2 m-2 ml-4">
+										Got something to say?
+									</h2>
+									<p className="m-2 ml-4">
+										Comment above to start the
+										coversation...
+									</p>
+								</>
+							) : (
+								<>
+									<h2 className="border-bottom pb-2 m-2 ml-4">
+										No comments yet
+									</h2>
+									<p className="m-2 ml-4">
+										<Link to="/login">Login</Link> or{" "}
+										<Link to="/signup">signup</Link> to
+										start the conversation...
+									</p>
+								</>
+							)}
+						</Container>
+					</>
+				) : (
+					<Loader loader variant="warning" />
+				)}
 			</Col>
 			<Col
 				className={`${stylesW.WotwContainer} ${mainStyles.Content} bg-warning border-dark ml-2 mt-3 p-0 d-none d-md-block`}

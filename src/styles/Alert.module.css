@@ -7,3 +7,10 @@
     left: 50%;
     transform: translate(-50%);
 }
+
+@media (max-width: 576px) {
+	.Container {
+        width: 75vw;
+        font-size: 0.8em;
+    }
+}

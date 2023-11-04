@@ -1,6 +1,6 @@
 import styles from "./App.module.css";
 import { Container } from "react-bootstrap";
-import { Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 import "./api/axiosDefaults";
 import SignUpForm from "./pages/forms/SignUpForm";
 import Header from "./components/Header";
@@ -68,8 +68,8 @@ function App() {
 						path="/companies/:id/edit"
 						render={() => <EditCompanyForm />}
 					/>
-
-					<Route render={() => <h1>Page not found!</h1>} />
+					<Route path="/page-not-found" render={() => <h1>Page not found!</h1>} />
+                    <Redirect to="/page-not-found" />
 				</Switch>
 			</Container>
 		</div>
