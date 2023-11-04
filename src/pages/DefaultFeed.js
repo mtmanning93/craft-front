@@ -8,16 +8,19 @@ import WorkOfTheWeek from "../components/WorkOfTheWeek";
 import mainStyles from "../App.module.css";
 import stylesW from "../styles/WotW.module.css";
 import { Col, Form, Row } from "react-bootstrap";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
+import { useErrorContext } from "../contexts/ErrorContext";
 
 const DefaultFeed = () => {
+	const { showErrorAlert } = useErrorContext();
+	const user = useCurrentUser();
 
 	const [posts, setPosts] = useState([]);
 	const [loaded, setLoaded] = useState(false);
 	const [search, setSearch] = useState("");
 
-	const user = useCurrentUser();
+    const history = useHistory();
 
 	const noFeedMessage = (
 		<div className="m-2">
@@ -37,8 +40,14 @@ const DefaultFeed = () => {
 				const { data } = await axiosReq.get(`/posts/?search=${search}`);
 				setPosts(data);
 				setLoaded(true);
-			} catch (error) {
-				console.log(error);
+			} catch (err) {
+                console.log(err)
+				showErrorAlert(
+                    "Unexpected Error",
+                    "Currently unable to retrieve feed data, please try to refresh the feed, or try again soon.",
+                    "warning"
+                )
+                history.push("/page-not-found")
 			}
 		};
 
@@ -49,7 +58,7 @@ const DefaultFeed = () => {
 		return () => {
 			clearTimeout(timeout);
 		};
-	}, [search]);
+	}, [search, history, showErrorAlert]);
 
 	return (
 		<Row className="w-100 p-2">
