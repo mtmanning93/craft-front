@@ -11,14 +11,19 @@ import Post from "../components/Post";
 import Loader from "../components/tools/Loader";
 import fetchMoreData from "../components/tools/InfiniteScroll";
 import { Link } from "react-router-dom";
+import { useErrorContext } from "../contexts/ErrorContext";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const ProfilePage = () => {
-	const { id } = useParams();
+	const { showErrorAlert } = useErrorContext();
 
 	const [profile, setProfileData] = useState({ results: [] });
 	const [profilePosts, setProfilePosts] = useState([]);
-
 	const [loaded, setLoaded] = useState(false);
+	const [feedErrorMessage, setFeedErrorMessage] = useState("");
+
+	const { id } = useParams();
+	const history = useHistory();
 
 	useEffect(() => {
 		const getProfileData = async () => {
@@ -30,6 +35,25 @@ const ProfilePage = () => {
 				setLoaded(true);
 			} catch (err) {
 				console.log(err);
+
+				if (
+					err.response.status === 400 ||
+					err.response.status === 404
+				) {
+					showErrorAlert(
+						`${err.response.status} error!`,
+						"Requested profile could not be found or does not exist.",
+						"warning"
+					);
+					history.push("/page-not-found");
+				} else {
+					showErrorAlert(
+						`${err.response.status} error!`,
+						`${err.message}`,
+						"warning"
+					);
+					history.push("/");
+				}
 			}
 		};
 
@@ -40,17 +64,21 @@ const ProfilePage = () => {
 				);
 				setProfilePosts(profilePosts.results);
 				setLoaded(true);
+				setFeedErrorMessage("");
 			} catch (err) {
 				console.log(err);
+				setFeedErrorMessage(
+					"Currently unable to retrieve this profiles posts, please refresh the profile, or try again soon."
+				);
 			}
 		};
 
 		setLoaded(false);
 		getProfileData();
 		getProfilePosts();
-	}, [id]);
+	}, [id, history, showErrorAlert]);
 
-    const noPostsMessage = (
+	const noPostsMessage = (
 		<div className="m-2">
 			<h1>You have no posts yet! Start building.</h1>
 			<p>
@@ -80,6 +108,11 @@ const ProfilePage = () => {
 						/>
 					))}
 				</InfiniteScroll>
+			) : feedErrorMessage ? (
+				<div className="m-2">
+					<h1>Unexpected Error</h1>
+					<p>{feedErrorMessage}</p>
+				</div>
 			) : (
 				noPostsMessage
 			)}
@@ -99,10 +132,13 @@ const ProfilePage = () => {
 				</Row>
 
 				{loaded ? (
-                    <>
-                    <ProfileCard {...profile.results[0]} setProfileData={setProfileData}/>
-					{profileOwnedPosts}
-                    </>
+					<>
+						<ProfileCard
+							{...profile.results[0]}
+							setProfileData={setProfileData}
+						/>
+						{profileOwnedPosts}
+					</>
 				) : (
 					<Loader loader variant="warning" />
 				)}

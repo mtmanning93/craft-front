@@ -52,6 +52,7 @@ const PostDetails = () => {
                         `${err.message}`,
                         "warning"
                     );
+                    history.push("/");
                 }
 			}
 		};

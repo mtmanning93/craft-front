@@ -5,8 +5,12 @@ import Avatar from "./Avatar";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 import SettingsDropdown from "./buttons/SettingsDropdown";
 import { axiosRes } from "../api/axiosDefaults";
+import { useErrorContext } from "../contexts/ErrorContext";
 
 const Comment = (props) => {
+	const user = useCurrentUser();
+	const { showErrorAlert } = useErrorContext();
+
 	const {
 		owner,
 		profile_id,
@@ -18,30 +22,35 @@ const Comment = (props) => {
 		setComments,
 	} = props;
 
-	const user = useCurrentUser();
-
 	const is_owner = user?.username === owner;
 
-    const deleteComment = async () => {
-        try {
-          await axiosRes.delete(`/comments/${id}`);
-      
-          setPost((prevPost) => ({
-            results: [
-              {
-                ...prevPost.results[0],
-                comments_count: prevPost.results[0].comments_count - 1,
-              },
-            ],
-          }));
-      
-          setComments((prevComments) => ({
-            results: prevComments.results.filter((comment) => comment.id !== id),
-          }));
-        } catch (error) {
-          console.error("Error deleting comment:", error);
-        }
-      };
+	const deleteComment = async () => {
+		try {
+			await axiosRes.delete(`/comments/${id}`);
+
+			setPost((prevPost) => ({
+				results: [
+					{
+						...prevPost.results[0],
+						comments_count: prevPost.results[0].comments_count - 1,
+					},
+				],
+			}));
+
+			setComments((prevComments) => ({
+				results: prevComments.results.filter(
+					(comment) => comment.id !== id
+				),
+			}));
+		} catch (err) {
+			console.error(err);
+			showErrorAlert(
+				"Delete Error",
+				`Unable to delete comment. ${err.message}`,
+				"warning"
+			);
+		}
+	};
 
 	return (
 		<Container fluid className="d-flex align-items-center border-top py-2">
@@ -57,9 +66,7 @@ const Comment = (props) => {
 					</strong>
 					<div>
 						{is_owner && (
-							<SettingsDropdown
-								onDelete={deleteComment}
-							/>
+							<SettingsDropdown onDelete={deleteComment} />
 						)}
 					</div>
 				</div>

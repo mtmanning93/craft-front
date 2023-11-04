@@ -4,8 +4,11 @@ import { Col, Row } from "react-bootstrap";
 import SettingsDropdown from "./buttons/SettingsDropdown";
 import { useLocation } from "react-router-dom";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useErrorContext } from "../contexts/ErrorContext";
 
 const ProfileCompany = (props) => {
+    const { showErrorAlert } = useErrorContext();
+
 	const {
 		id,
 		name,
@@ -17,7 +20,6 @@ const ProfileCompany = (props) => {
 	} = props;
 
 	const currentUrl = useLocation().pathname;
-
     const history = useHistory();
 
     const editPost = async () => {
@@ -28,7 +30,6 @@ const ProfileCompany = (props) => {
 		try {
 			await axiosRes.delete(`/companies/${id}`);
 
-			// Update the profile data to remove the company from the list
 			setProfileData((prevProfileData) => {
 				return {
 					...prevProfileData,
@@ -38,12 +39,16 @@ const ProfileCompany = (props) => {
 				};
 			});
 
-			// Update list of profileCompanies
 			setProfileCompanies((prevCompanies) =>
 				prevCompanies.filter((company) => company.id !== id)
 			);
-		} catch (error) {
-			console.error("Error deleting company:", error);
+		} catch (err) {
+			console.error("Error deleting company:", err);
+            showErrorAlert(
+				"Delete Error",
+				`Unable to delete company. ${err.message}`,
+				"warning"
+			);
 		}
 	};
 

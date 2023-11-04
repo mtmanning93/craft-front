@@ -3,13 +3,21 @@ import styles from "../styles/Post.module.css";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 import { Card, OverlayTrigger, Row, Tooltip } from "react-bootstrap";
 import Avatar from "./Avatar";
-import { Link, useHistory, useLocation } from "react-router-dom/cjs/react-router-dom.min";
+import {
+	Link,
+	useHistory,
+	useLocation,
+} from "react-router-dom/cjs/react-router-dom.min";
 import mainStyles from "../App.module.css";
 import BackButton from "../components/buttons/BackButton";
 import { axiosRes } from "../api/axiosDefaults";
 import SettingsDropdown from "./buttons/SettingsDropdown";
+import { useErrorContext } from "../contexts/ErrorContext";
 
 const Post = (props) => {
+	const { showErrorAlert } = useErrorContext();
+	const currentUser = useCurrentUser();
+
 	const {
 		id,
 		owner,
@@ -27,13 +35,11 @@ const Post = (props) => {
 		setPosts,
 	} = props;
 
-	const currentUser = useCurrentUser();
+	const currentUrl = useLocation();
+	const history = useHistory();
+
 	const is_owner = currentUser?.username === owner;
-
-    const currentUrl = useLocation();
-    const isPostDetails = currentUrl.pathname.startsWith(`/posts/${id}`)
-
-    const history = useHistory();
+	const isPostDetails = currentUrl.pathname.startsWith(`/posts/${id}`);
 
 	const editPost = async () => {
 		history.push(`/posts/${id}/edit`);
@@ -45,6 +51,11 @@ const Post = (props) => {
 			history.goBack();
 		} catch (err) {
 			console.log(err);
+			showErrorAlert(
+				"Delete Error",
+				`Unable to delete post. ${err.message}`,
+				"warning"
+			);
 		}
 	};
 
@@ -63,8 +74,13 @@ const Post = (props) => {
 						: post;
 				}),
 			}));
-		} catch (error) {
-			console.log(error);
+		} catch (err) {
+			console.log(err);
+            showErrorAlert(
+				"Unexpected Error",
+				`Unable to unlike post. ${err.message}`,
+				"warning"
+			);
 		}
 	};
 
@@ -83,8 +99,13 @@ const Post = (props) => {
 						: post;
 				}),
 			}));
-		} catch (error) {
-			console.log(error);
+		} catch (err) {
+			console.log(err);
+            showErrorAlert(
+				"Unexpected Error",
+				`Unable to like post. ${err.message}`,
+				"warning"
+			);
 		}
 	};
 
@@ -121,7 +142,7 @@ const Post = (props) => {
 							/>
 						)}
 
-                        {isPostDetails && <BackButton />}
+						{isPostDetails && <BackButton />}
 					</div>
 				</Row>
 				<p className="d-block d-md-none mx-2">{updated_on}</p>
