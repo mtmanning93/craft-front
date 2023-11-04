@@ -20,10 +20,17 @@ import styles from "../../styles/UpdateProfileForm.module.css";
 import EmployerSelector from "../../components/tools/EmployerSelector";
 import ProfileCompany from "../../components/ProfileCompany";
 import { useRedirectUser } from "../../hooks/useRedirectUser";
+import { useErrorContext } from "../../contexts/ErrorContext";
 
 const UpdateProfileForm = () => {
-    useRedirectUser('loggedOut');
+	useRedirectUser("loggedOut");
+	const { showErrorAlert } = useErrorContext();
 
+	const [errors, setErrors] = useState({});
+	const [loaded, setLoaded] = useState(false);
+	const [selectedCompany, setSelectedCompany] = useState("");
+	const [profileCompanies, setProfileCompanies] = useState([]);
+	const [numberOfCompanies, setNumberOfCompanies] = useState(0);
 	const [profileData, setProfileData] = useState({
 		name: "",
 		image: "",
@@ -31,18 +38,11 @@ const UpdateProfileForm = () => {
 		bio: "",
 		companies: [],
 	});
-	const [errors, setErrors] = useState({});
-	const [loaded, setLoaded] = useState(false);
-	const [selectedCompany, setSelectedCompany] = useState("");
-	const [profileCompanies, setProfileCompanies] = useState([]);
-	const [numberOfCompanies, setNumberOfCompanies] = useState(0);
 
 	const { name, image, job, bio } = profileData;
 
 	const imageSelection = useRef(null);
-
 	const history = useHistory();
-
 	const { id } = useParams();
 
 	useEffect(() => {
@@ -51,33 +51,59 @@ const UpdateProfileForm = () => {
 				const response = await axiosReq.get(`/profiles/${id}/`);
 				const data = response.data;
 
-				setProfileData({
-					name: data.name,
-					image: data.image,
-					job: data.job,
-					bio: data.bio,
-					companies: data.companies || [],
-                    employer: data.employer,
-                    employer_pk: data.employer_pk,
-				});
+				if (data.is_owner) {
+                    
+					setProfileData({
+						name: data.name,
+						image: data.image,
+						job: data.job,
+						bio: data.bio,
+						companies: data.companies || [],
+						employer: data.employer,
+						employer_pk: data.employer_pk,
+					});
 
-                console.log("data.employer:", data.employer);
-				data.employer
-					? setSelectedCompany({
-							value: data.employer_pk,
-							label: data.employer,
-					  })
-					: setSelectedCompany(null);
-
+					data.employer
+						? setSelectedCompany({
+								value: data.employer_pk,
+								label: data.employer,
+						  })
+						: setSelectedCompany(null);
+				} else {
+					showErrorAlert(
+						"Unauthorized",
+						`You are not the owner of this profile, you cannot edit this profile (id:${id}).`,
+						"danger"
+					);
+					history.push("/");
+				}
 				setLoaded(true);
-			} catch (error) {
-				console.error(error);
+			} catch (err) {
+				console.error(err);
+				if (
+					err.response.status === 404 ||
+					err.response.status === 400
+				) {
+					showErrorAlert(
+						`${err.response.status} error!`,
+						"Requested profile could not be found or does not exist.",
+						"warning"
+					);
+					history.push("/page-not-found");
+				} else {
+					showErrorAlert(
+						`${err.response.status} error!`,
+						`${err.message}`,
+						"warning"
+					);
+					history.push("/");
+				}
 			}
 		};
 
 		setLoaded(false);
 		getProfileData();
-	}, [id]);
+	}, [id, history, showErrorAlert]);
 
 	const handleChange = (event) => {
 		setProfileData({
@@ -95,12 +121,17 @@ const UpdateProfileForm = () => {
 				setProfileCompanies(profileCompanies.results);
 				setNumberOfCompanies(profileCompanies.count);
 			} catch (err) {
-				console.log(err);
+                console.log(err)
+                showErrorAlert(
+                    "Unsuccessful",
+                    "Unable to fetch requested data",
+                    "warning" 
+                )
 			}
 		};
 
 		getProfileCompanies();
-	}, [id]);
+	}, [id, showErrorAlert]);
 
 	const profileOwnedCompanies = (
 		<>
@@ -135,7 +166,9 @@ const UpdateProfileForm = () => {
 						/>
 					))
 				) : (
-					<p className="text-center">You have not yet added your own company.</p>
+					<p className="text-center">
+						You have not yet added your own company.
+					</p>
 				)}
 			</Col>
 		</>
@@ -148,7 +181,7 @@ const UpdateProfileForm = () => {
 
 		formData.append("name", name);
 		formData.append("job", job);
-        console.log(selectedCompany)
+		console.log(selectedCompany);
 		if (selectedCompany) {
 			formData.append("employer", selectedCompany.value);
 		}
@@ -158,11 +191,9 @@ const UpdateProfileForm = () => {
 		try {
 			await axiosReq.put(`/profiles/${id}/`, formData);
 			history.push(`/profiles/${id}`);
-		} catch (error) {
-			console.error(error);
-			error.response &&
-				error.response.data &&
-				setErrors(error.response.data);
+		} catch (err) {
+			console.error(err);
+			err.response && err.response.data && setErrors(err.response.data);
 		}
 	};
 
@@ -180,7 +211,6 @@ const UpdateProfileForm = () => {
 						<BackButton />
 					</Col>
 				</Row>
-
 				{loaded ? (
 					<>
 						<Row
@@ -319,6 +349,11 @@ const UpdateProfileForm = () => {
 								className={btnStyles.Wide}
 							/>
 						</Row>
+						{errors.non_field_errors?.map((message, idx) => (
+							<Alert variant="warning" key={idx} className="mt-3">
+								{message}
+							</Alert>
+						))}
 					</>
 				) : (
 					<Loader loader variant="warning" />

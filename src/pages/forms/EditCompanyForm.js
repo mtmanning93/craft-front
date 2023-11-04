@@ -44,8 +44,8 @@ const EditCompanyForm = () => {
 				} else {
 					showErrorAlert(
 						"Unauthorized",
-						`You are not the owner of this company, you cannot edit '${data.name}' (${id}).`,
-						"warning"
+						`You are not the owner of this company, you cannot edit this company (id:${id}).`,
+						"danger"
 					);
 					history.push("/");
 				}

@@ -45,8 +45,8 @@ const EditPostForm = () => {
 				} else {
 					showErrorAlert(
 						"Unauthorized",
-						`You are not the owner of this post, you cannot edit '${data.title}' (${id}).`,
-						"warning"
+						`You are not the owner of this post, you cannot edit this post (id:${id}).`,
+						"danger"
 					);
 					history.push("/");
 				}
