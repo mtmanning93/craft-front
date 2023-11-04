@@ -46,11 +46,9 @@ const CommentForm = (props) => {
 			}));
 			setCommentData("");
 		} catch (err) {
-			console.log(err.response);
 			setErrors(err.response?.data);
-
 			if (!errors.comment && !errors.genericError) {
-				setErrors({ genericError: "Invalid data" });
+				setErrors({ genericError: "Invalid input, please try again." });
 			}
 		}
 	};
@@ -86,7 +84,7 @@ const CommentForm = (props) => {
 					</Alert>
 				))
 			) : errors.genericError ? (
-				<Alert variant="warning">Invalid input</Alert>
+				<Alert variant="warning">{errors.genericError}</Alert>
 			) : null}
 
 			<MainButton type="submit" text="Comment" className="ml-auto" />
