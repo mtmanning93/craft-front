@@ -26,6 +26,25 @@ npm install react-select
 
 ### Bugs
 
+Not accepting populated image data:
+
+	const handleSubmit = async (event) => {
+		event.preventDefault();
+
+		const formData = new FormData();
+		if (imageSelection?.current?.files[0]) {
+			formData.append("image", imageSelection.current.files[0]);
+		}
+		formData.append("title", title);
+		formData.append("content", content);
+
+		// formData.append(
+		// 	"image",
+		// 	imageSelection.current.files[0] || postData.image
+		// );
+
+		// console.log(postData);
+
 axios defaults base URL was original set for the frontend url not the API
 
 Not returning an image file:

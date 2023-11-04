@@ -8,12 +8,11 @@ import { axiosRes } from "../../api/axiosDefaults";
 import mainStyles from "../../App.module.css";
 
 const CommentForm = (props) => {
+	const user = useCurrentUser();
+
 	const { post, setPost, setComments, profile_image, profile_id } = props;
 
 	const [commentData, setCommentData] = useState("");
-
-	const user = useCurrentUser();
-
 	const [errors, setErrors] = useState({});
 
 	const handleChange = (event) => {

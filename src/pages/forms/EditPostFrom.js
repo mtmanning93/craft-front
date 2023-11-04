@@ -15,12 +15,15 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import BackButton from "../../components/buttons/BackButton";
 import btnStyles from "../../styles/Buttons.module.css";
 import { useRedirectUser } from "../../hooks/useRedirectUser";
+import { useErrorContext } from "../../contexts/ErrorContext";
 
 const EditPostForm = () => {
 	useRedirectUser("loggedOut");
 
+	const { showErrorAlert } = useErrorContext();
 	const currentUser = useCurrentUser();
 
+	const [errors, setErrors] = useState({});
 	const [postData, setPostData] = useState({
 		title: "",
 		content: "",
@@ -29,25 +32,47 @@ const EditPostForm = () => {
 
 	const { title, content, image } = postData;
 
-	const [errors, setErrors] = useState({});
-
 	const imageSelection = useRef(null);
-
 	const history = useHistory();
-
 	const { id } = useParams();
 
 	useEffect(() => {
 		const getPostData = async () => {
 			try {
 				const { data } = await axiosReq.get(`/posts/${id}/`);
-				data.is_owner ? setPostData(data) : history.push("/");
-			} catch (error) {
-				console.log(error);
+				if (data.is_owner) {
+					setPostData(data);
+				} else {
+					showErrorAlert(
+						"Unauthorized",
+						`You are not the owner of this post, you cannot edit '${data.title}' (${id}).`,
+						"warning"
+					);
+					history.push("/");
+				}
+			} catch (err) {
+				console.log(err);
+
+				if (err.response.status === 404) {
+					showErrorAlert(
+						`${err.response.status} error!`,
+						"Requested post could not be found or does not exist.",
+						"warning"
+					);
+					history.push("/page-not-found");
+				} else {
+					showErrorAlert(
+						`${err.response.status} error!`,
+						`${err.message}`,
+						"warning"
+					);
+					history.push("/");
+				}
 			}
 		};
+
 		getPostData();
-	}, [history, id]);
+	}, [history, id, showErrorAlert]);
 
 	const handleImage = (event) => {
 		const selectedFile = event.target.files[0];
@@ -77,13 +102,6 @@ const EditPostForm = () => {
 		}
 		formData.append("title", title);
 		formData.append("content", content);
-
-		// formData.append(
-		// 	"image",
-		// 	imageSelection.current.files[0] || postData.image
-		// );
-
-		// console.log(postData);
 
 		try {
 			await axiosReq.put(`/posts/${id}/`, formData);
@@ -129,6 +147,11 @@ const EditPostForm = () => {
 					className={`${styles.FormWrap} ${mainStyles.Content} border m-2 p-2 p-md-0 flex-column flex-md-row`}
 				>
 					<Col className="m-md-2 p-0">
+						{errors.non_field_errors?.map((message, idx) => (
+							<Alert variant="warning" key={idx} className="mt-3">
+								{message}
+							</Alert>
+						))}
 						<Form.Group>
 							<Form.Label className="d-none">Title</Form.Label>
 							<Form.Control

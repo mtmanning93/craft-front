@@ -15,12 +15,12 @@ const CompanyForm = () => {
     
 	const currentUser = useCurrentUser();
 
+	const [errors, setErrors] = useState({});
 	const [companyData, setCompanyData] = useState({
 		name: "",
 		location: "",
 		type: "",
 	});
-	const [errors, setErrors] = useState({});
 
 	const { name, location, type } = companyData;
 

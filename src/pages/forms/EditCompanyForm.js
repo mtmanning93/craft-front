@@ -21,13 +21,13 @@ const EditCompanyForm = () => {
 	const { showErrorAlert } = useErrorContext();
 	const currentUser = useCurrentUser();
 
+    const [errors, setErrors] = useState({});
+	const [loaded, setLoaded] = useState(false);
 	const [companyData, setCompanyData] = useState({
 		name: "",
 		location: "",
 		type: "",
 	});
-	const [errors, setErrors] = useState({});
-	const [loaded, setLoaded] = useState(false);
 
 	const { name, location, type } = companyData;
 

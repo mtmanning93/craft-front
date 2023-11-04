@@ -18,6 +18,7 @@ const CreatePostForm = () => {
     
 	const currentUser = useCurrentUser();
 
+	const [errors, setErrors] = useState({});
 	const [postData, setPostData] = useState({
 		title: "",
 		content: "",
@@ -26,10 +27,7 @@ const CreatePostForm = () => {
 
 	const { title, content, image } = postData;
 
-	const [errors, setErrors] = useState({});
-
 	const imageSelection = useRef(null);
-
 	const history = useHistory();
 
 	const handleImage = (event) => {

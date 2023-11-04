@@ -15,17 +15,16 @@ import WorkOfTheWeek from "../components/WorkOfTheWeek";
 import { useErrorContext } from "../contexts/ErrorContext";
 
 const PostDetails = () => {
+    const { showErrorAlert } = useErrorContext();
+    const currentUser = useCurrentUser();
+
 	const [post, setPost] = useState({ results: [] });
 	const [comments, setComments] = useState({ results: [] });
 	const [loaded, setLoaded] = useState(false);
 
-	const { showErrorAlert } = useErrorContext();
-
 	const { id } = useParams();
-
 	const history = useHistory();
 
-	const currentUser = useCurrentUser();
 	const profile_image = currentUser?.profile_image;
 
 	useEffect(() => {
