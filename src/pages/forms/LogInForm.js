@@ -10,17 +10,17 @@ import btnStyles from "../../styles/Buttons.module.css";
 import { useRedirectUser } from "../../hooks/useRedirectUser";
 
 const LogInForm = () => {
-	const setCurrentUser = useSetCurrentUser();
 	useRedirectUser("loggedIn");
 
+	const setCurrentUser = useSetCurrentUser();
+
+	const [errors, setErrors] = useState({});
 	const [loginData, setLoginData] = useState({
 		username: "",
 		password: "",
 	});
 
 	const { username, password } = loginData;
-
-	const [errors, setErrors] = useState({});
 
 	const history = useHistory();
 
@@ -41,6 +41,7 @@ const LogInForm = () => {
 			setCurrentUser(data.user);
 			history.goBack();
 		} catch (err) {
+            console.log(err)
 			setErrors(err.response?.data);
 		}
 	};
@@ -61,6 +62,11 @@ const LogInForm = () => {
 
 			<Form className="mb-2" onSubmit={handleSubmit}>
 				<h2>Login</h2>
+                {errors.non_field_errors?.map((message, idx) => (
+					<Alert variant="warning" key={idx} className="mt-3">
+						{message}
+					</Alert>
+				))}
 				<Form.Group controlId="username">
 					<Form.Label className="d-none">Username</Form.Label>
 					<Form.Control
@@ -99,11 +105,6 @@ const LogInForm = () => {
 					text="Login!"
 					className={btnStyles.Wide}
 				/>
-				{errors.non_field_errors?.map((message, idx) => (
-					<Alert variant="warning" key={idx} className="mt-3">
-						{message}
-					</Alert>
-				))}
 			</Form>
 			<p>
 				Dont have an account? <Link to="/signup">Sign up here.</Link>

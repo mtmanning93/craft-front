@@ -10,6 +10,8 @@ import { useRedirectUser } from "../../hooks/useRedirectUser";
 
 const SignUpForm = () => {
 	useRedirectUser("loggedIn");
+
+	const [errors, setErrors] = useState({});
 	const [signUpData, setSignUpData] = useState({
 		username: "",
 		password1: "",
@@ -17,8 +19,6 @@ const SignUpForm = () => {
 	});
 
 	const { username, password1, password2 } = signUpData;
-
-	const [errors, setErrors] = useState({});
 
 	const history = useHistory();
 
@@ -35,6 +35,7 @@ const SignUpForm = () => {
 			await axios.post("/dj-rest-auth/registration/", signUpData);
 			history.push("/login");
 		} catch (err) {
+            console.log(err)
 			setErrors(err.response?.data);
 		}
 	};
@@ -55,6 +56,11 @@ const SignUpForm = () => {
 
 			<Form onSubmit={handleSubmit} className="mb-2">
 				<h2>Enter Details</h2>
+                {errors.non_field_errors?.map((message, idx) => (
+					<Alert variant="warning" key={idx} className="mt-3">
+						{message}
+					</Alert>
+				))}
 				<Form.Group controlId="username">
 					<Form.Label className="d-none">Username</Form.Label>
 					<Form.Control
@@ -111,11 +117,6 @@ const SignUpForm = () => {
 					text="Sign Up!"
 					className={btnStyles.Wide}
 				/>
-				{errors.non_field_errors?.map((message, idx) => (
-					<Alert variant="warning" key={idx} className="mt-3">
-						{message}
-					</Alert>
-				))}
 			</Form>
 			<p>
 				Already have an account? <Link to="/login">Login here.</Link>
