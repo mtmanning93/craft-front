@@ -19,11 +19,12 @@ import DefaultFeed from "./pages/DefaultFeed";
 import OtherFeeds from "./pages/OtherFeeds";
 import ErrorAlert from "./components/tools/ErrorAlert";
 import ErrorPage from "./pages/ErrorPage";
+import CredentialsForm from "./pages/forms/CredentialsForm";
 
 function App() {
 	return (
 		<div className={styles.App}>
-            <ErrorAlert />
+			<ErrorAlert />
 			<NavBar />
 			<Header />
 			<Container fluid className={mainStyles.MainContainer}>
@@ -61,6 +62,11 @@ function App() {
 					/>
 					<Route
 						exact
+						path="/profiles/:id/edit/credentials"
+						render={() => <CredentialsForm />}
+					/>
+					<Route
+						exact
 						path="/companies/create/"
 						render={() => <CompanyForm />}
 					/>
@@ -69,8 +75,11 @@ function App() {
 						path="/companies/:id/edit"
 						render={() => <EditCompanyForm />}
 					/>
-					<Route path="/page-not-found" render={() => <ErrorPage />} />
-                    <Redirect to="/page-not-found" />
+					<Route
+						path="/page-not-found"
+						render={() => <ErrorPage />}
+					/>
+					<Redirect to="/page-not-found" />
 				</Switch>
 			</Container>
 		</div>

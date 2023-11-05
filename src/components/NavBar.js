@@ -123,10 +123,15 @@ const NavBar = () => {
 					)}
 					<NavLink
 						to={`/profiles/${currentUser?.profile_id}`}
-						onClick={() => {}}
 						aria-label="profile"
 					>
 						Profile
+					</NavLink>
+					<NavLink
+						to={`/profiles/${currentUser?.profile_id}}/edit/credentials`}
+						aria-label="profile"
+					>
+						Settings
 					</NavLink>
 					<NavDropdown.Divider />
 					<NavLink to="/" onClick={handleLogOut} aria-label="logout">
@@ -157,10 +162,15 @@ const NavBar = () => {
 
 							<NavLink
 								to={`/profiles/${currentUser?.profile_id}`}
-								onClick={() => {}}
 								aria-label="profile"
 							>
 								Profile
+							</NavLink>
+                            <NavLink
+								to={`/profiles/${currentUser?.profile_id}/edit/credentials`}
+								aria-label="settings"
+							>
+								Settings
 							</NavLink>
 							<NavDropdown.Divider />
 							<NavLink
