@@ -18,8 +18,12 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { axiosReq, axiosRes } from "../api/axiosDefaults";
 import btnStyles from "../styles/Buttons.module.css";
 import ProfileCompany from "./ProfileCompany";
+import { useErrorContext } from "../contexts/ErrorContext";
 
 const ProfileCard = (props) => {
+	const { showErrorAlert } = useErrorContext();
+	const currentUser = useCurrentUser();
+
 	const {
 		id,
 		owner,
@@ -40,8 +44,7 @@ const ProfileCard = (props) => {
 	} = props;
 
 	const [profileCompanies, setProfileCompanies] = useState([]);
-
-	const currentUser = useCurrentUser();
+	const [companiesErrorMessage, setCompaniesErrorMessage] = useState("");
 
 	const history = useHistory();
 
@@ -66,8 +69,13 @@ const ProfileCard = (props) => {
 						: profile;
 				}),
 			}));
-		} catch (error) {
-			console.log(error);
+		} catch (err) {
+			console.log(err);
+			showErrorAlert(
+				"Unexpected Error",
+				`Unable to unapprove profile. ${err.message}`,
+				"warning"
+			);
 		}
 	};
 
@@ -88,8 +96,13 @@ const ProfileCard = (props) => {
 						: profile;
 				}),
 			}));
-		} catch (error) {
-			console.log(error);
+		} catch (err) {
+			console.log(err);
+			showErrorAlert(
+				"Unexpected Error",
+				`Unable to approve profile. ${err.message}`,
+				"warning"
+			);
 		}
 	};
 
@@ -110,48 +123,70 @@ const ProfileCard = (props) => {
 						: profile;
 				}),
 			}));
-		} catch (error) {
-			console.log(error);
+		} catch (err) {
+			console.log(err);
+			showErrorAlert(
+				"Unexpected Error",
+				`Unable to follow profile. ${err.message}`,
+				"warning"
+			);
 		}
 	};
 
-    const unfollowProfile = async () => {
-        try {
-            await axiosRes.delete(`/followers/${following_id}/`);
-            setProfileData((prevProfileData) => ({
-              ...prevProfileData,
-              results: prevProfileData.results.map((profile) => {
-                return profile.id === id
-                  ? {
-                      ...profile,
-                      following_id: null,
-                      followers_count: profile.followers_count - 1,
-                    }
-                  : profile;
-              }),
-            }));
-        } catch (error) {
-            console.log(error)
-        }
-    }
+	const unfollowProfile = async () => {
+		try {
+			await axiosRes.delete(`/followers/${following_id}/`);
+			setProfileData((prevProfileData) => ({
+				...prevProfileData,
+				results: prevProfileData.results.map((profile) => {
+					return profile.id === id
+						? {
+								...profile,
+								following_id: null,
+								followers_count: profile.followers_count - 1,
+						  }
+						: profile;
+				}),
+			}));
+		} catch (err) {
+			console.log(err);
+			showErrorAlert(
+				"Unexpected Error",
+				`Unable to unfollow profile. ${err.message}`,
+				"warning"
+			);
+		}
+	};
 
 	useEffect(() => {
-		const getProfileCompanies = async () => {
-			try {
-				const { data: profileCompanies } = await axiosReq.get(
-					`/companies/?owner__profile=${id}`
-				);
-				setProfileCompanies(profileCompanies.results);
-			} catch (err) {
-				console.log(err);
-			}
-		};
-
-		getProfileCompanies();
+		if (id !== undefined) {
+			const getProfileCompanies = async () => {
+				try {
+					const { data: profileCompanies } = await axiosReq.get(
+						`/companies/?owner__profile=${id}`
+					);
+					setProfileCompanies(profileCompanies.results);
+				} catch (err) {
+					console.log("API request error:", err);
+					setCompaniesErrorMessage(
+						"Unable to retrieve company data for profile at this time, please refresh the page."
+					);
+				}
+			};
+			getProfileCompanies();
+		}
 	}, [id]);
 
 	const profileOwnedCompanies = (
 		<>
+			{companiesErrorMessage && (
+				<Col
+					className={`${styles.PersonalInfo} mt-2 p-2 border-top border-dark`}
+				>
+					<p className="text-danger m-0"><strong>Unexpected Error</strong></p>
+					<p><em>{companiesErrorMessage}</em></p>
+				</Col>
+			)}
 			{profileCompanies.length ? (
 				<Col
 					className={`${styles.PersonalInfo} mt-2 p-2 border-top border-dark`}
@@ -201,7 +236,9 @@ const ProfileCard = (props) => {
 									{!is_owner &&
 										(following_id ? (
 											<MainButton
-												onClick={() => unfollowProfile(id)}
+												onClick={() =>
+													unfollowProfile(id)
+												}
 												text="Unfollow"
 												className={`${styles.UnfollowBtn} mr-2`}
 											/>

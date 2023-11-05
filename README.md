@@ -55,6 +55,34 @@ Not returning an image file:
     // INCORRECT ORIGNAL wasnt returnign an image instance.
     // formData.append("image", imageSelection.current.files[0] || profileData.image);
 
+### undefined ids on initial mount how to debug:
+
+
+	useEffect(() => {
+		if (id !== undefined) {
+			console.log("Before API request - id:", id);
+
+			const getProfileCompanies = async () => {
+				try {
+					console.log("API request initiated");
+					// simulateError();
+
+					const { data: profileCompanies } = await axiosReq.get(
+						`/companies/?owner__profile=${id}`
+					);
+					console.log("API request successful");
+					setProfileCompanies(profileCompanies.results);
+				} catch (err) {
+					console.log("API request error:", err);
+				}
+			};
+
+			getProfileCompanies();
+			console.log("After API request");
+		}
+	}, [id]);
+
+
 ## WARNINGS
 
 ### Assignments to the 'filter' variable from inside React Hook useEffect will be lost after each render. 

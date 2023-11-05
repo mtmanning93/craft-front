@@ -14,6 +14,11 @@ const WorkOfTheWeek = () => {
 
 	const { popularPosts } = postData;
 
+    const simulateError = () => {
+		throw new Error("Simulated error message");
+	};
+	// simulateError();
+
 	useEffect(() => {
 		// Not necessary in future versions
 		let isMounted = true;
