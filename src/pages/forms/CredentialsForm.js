@@ -15,7 +15,7 @@ const CredentialsForm = () => {
 		new_password1: "",
 		new_password2: "",
 	});
-	const [newUsername, setNewUsername] = useState("");
+	const [username, setUsername] = useState("");
 
 	const { new_password1, new_password2 } = passwordData;
 
@@ -26,14 +26,14 @@ const CredentialsForm = () => {
 			...passwordData,
 			[event.target.name]: event.target.value,
 		});
-        setNewUsername(event.target.value);
+        setUsername(event.target.value);
 	};
 
 	useEffect(() => {
 		if (user?.profile_id?.toString() !== id) {
 			history.push("/");
 		} else {
-			setNewUsername(user.username);
+			setUsername(user.username);
 		}
 	}, [user, history, id]);
 
@@ -43,9 +43,9 @@ const CredentialsForm = () => {
 			await axiosRes.post("/dj-rest-auth/password/change/", {
 				passwordData,
 			});
-			setUser((prevUser) => ({
+			setPasswordData((prevUser) => ({
 				...prevUser,
-				newUsername,
+				passwordData,
 			}));
 			history.goBack();
 		} catch (err) {
@@ -57,10 +57,10 @@ const CredentialsForm = () => {
 	const handleUsernameSubmit = async (event) => {
 		event.preventDefault();
 		try {
-			await axiosRes.put("/dj-rest-auth/user/", {newUsername});
+			await axiosRes.put("/dj-rest-auth/user/", { username, });
             setUser((prevUser) => ({
                 ...prevUser,
-                newUsername,
+                username,
               }));
 			history.goBack();
 		} catch (err) {
@@ -77,9 +77,9 @@ const CredentialsForm = () => {
 					<Form.Control
 						placeholder="new username"
 						type="text"
-						value={newUsername}
+						value={username}
 						onChange={handleChange}
-						name="newUsername"
+						name="username"
 					/>
 				</Form.Group>
 				{errors.new_username?.map((message, idx) => (
