@@ -14,7 +14,7 @@ const ErrorAlert = () => {
 			setTimeout(() => {
 				setShow(false);
 				clearErrorAlert();
-			}, 20000);
+			}, 5000);
 		}
 	}, [errorInfo, clearErrorAlert]);
 
