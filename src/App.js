@@ -18,6 +18,7 @@ import TopFeed from "./pages/TopFeed";
 import DefaultFeed from "./pages/DefaultFeed";
 import OtherFeeds from "./pages/OtherFeeds";
 import ErrorAlert from "./components/tools/ErrorAlert";
+import ErrorPage from "./pages/ErrorPage";
 
 function App() {
 	return (
@@ -68,7 +69,7 @@ function App() {
 						path="/companies/:id/edit"
 						render={() => <EditCompanyForm />}
 					/>
-					<Route path="/page-not-found" render={() => <h1>Resource not found!</h1>} />
+					<Route path="/page-not-found" render={() => <ErrorPage />} />
                     <Redirect to="/page-not-found" />
 				</Switch>
 			</Container>
