@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Col, Form, Row } from "react-bootstrap";
+import { Col, Form, OverlayTrigger, Popover, Row } from "react-bootstrap";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { axiosReq } from "../api/axiosDefaults";
 import Loader from "../components/tools/Loader";
@@ -7,6 +7,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import fetchMoreData from "../components/tools/InfiniteScroll";
 import WorkOfTheWeek from "../components/WorkOfTheWeek";
 import stylesW from "../styles/WotW.module.css";
+import styles from "../styles/TopFeed.module.css";
 import mainStyles from "../App.module.css";
 import ApprovalFeedCard from "../components/ApprovalFeedCard";
 import { useRedirectUser } from "../hooks/useRedirectUser";
@@ -69,19 +70,57 @@ const Feed = () => {
 					</p>
 					<WorkOfTheWeek />
 				</Row>
-				<Form
-					onSubmit={(event) => event.preventDefault()}
-					className={`${mainStyles.Content} mt-3 d-flex`}
-				>
-					<i className="fa-solid fa-magnifying-glass my-auto mx-2" />
+				<div className="d-flex flex-column flex-sm-row mt-3">
+					<div className="d-sm-none">
+						<strong><i className="fa-solid fa-circle-info mr-1" />Filter approved profiles</strong>
+						<p>
+							Try searching by trade, job title or location, to
+							filter all profiles and find the most approved
+							tradesmen and women in your search.
+						</p>
+					</div>
+					<Col sm={11} className="p-0">
+						<Form
+							onSubmit={(event) => event.preventDefault()}
+							className={`${mainStyles.Content} d-flex pl-0`}
+						>
+							<i className="fa-solid fa-magnifying-glass my-auto mx-2" />
 
-					<Form.Control
-						type="text"
-						placeholder="Search approvals list..."
-						value={search}
-						onChange={(event) => setSearch(event.target.value)}
-					></Form.Control>
-				</Form>
+							<Form.Control
+								type="text"
+								placeholder="Search approvals list..."
+								value={search}
+								onChange={(event) =>
+									setSearch(event.target.value)
+								}
+							></Form.Control>
+						</Form>
+					</Col>
+					<Col
+						sm={1}
+						className={`${styles.Info} d-none p-0 d-sm-flex align-items-center justify-content-end`}
+					>
+						<OverlayTrigger
+							placement="bottom"
+							overlay={
+								<Popover id="popover-positioned-bottom">
+									<Popover.Title as="h3">
+										Filter approved profiles
+									</Popover.Title>
+									<Popover.Content>
+										Try searching by trade, job title or
+										location, to filter all profiles and
+										find the most approved tradesmen and
+										women in your search.
+									</Popover.Content>
+								</Popover>
+							}
+						>
+							<i className="fa-solid fa-circle-info" />
+						</OverlayTrigger>
+					</Col>
+				</div>
+
 				{feedErrorMessage && (
 					<div className="m-2">
 						<h1>Unexpected Feed Error</h1>
