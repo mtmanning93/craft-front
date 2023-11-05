@@ -72,7 +72,10 @@ const Feed = () => {
 				</Row>
 				<div className="d-flex flex-column flex-sm-row mt-3">
 					<div className="d-sm-none">
-						<strong><i className="fa-solid fa-circle-info mr-1" />Filter approved profiles</strong>
+						<strong>
+							<i className="fa-solid fa-circle-info mr-1" />
+							Filter approved profiles
+						</strong>
 						<p>
 							Try searching by trade, job title or location, to
 							filter all profiles and find the most approved
@@ -98,7 +101,7 @@ const Feed = () => {
 					</Col>
 					<Col
 						sm={1}
-						className={`${styles.Info} d-none p-0 d-sm-flex align-items-center justify-content-end`}
+						className={`${styles.Info} d-none p-0 d-sm-flex align-items-center justify-content-end justify-content-lg-center`}
 					>
 						<OverlayTrigger
 							placement="bottom"
