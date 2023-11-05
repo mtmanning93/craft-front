@@ -6,47 +6,39 @@ import styles from "../styles/WotW.module.css";
 import mainStyles from "../App.module.css";
 import Avatar from "./Avatar";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { useErrorContext } from "../contexts/ErrorContext";
 
 const WorkOfTheWeek = () => {
+	const { showErrorAlert } = useErrorContext();
+
 	const [postData, setPostData] = useState({
 		popularPosts: { results: [] },
 	});
 
 	const { popularPosts } = postData;
 
-    const simulateError = () => {
-		throw new Error("Simulated error message");
-	};
-	// simulateError();
-
 	useEffect(() => {
-		// Not necessary in future versions
-		let isMounted = true;
-
 		const handleMount = async () => {
 			try {
 				const { data } = await axiosReq.get(
 					"/posts/?ordering=-likes_count"
 				);
 
-                // Again in future versions remove is mounted var
-				if (isMounted) {
-					setPostData((prevState) => ({
-						...prevState,
-						popularPosts: data,
-					}));
-				}
-			} catch (error) {
-				console.log(error);
+				setPostData((prevState) => ({
+					...prevState,
+					popularPosts: data,
+				}));
+			} catch (err) {
+				console.log(err);
+				showErrorAlert(
+					"Unexpected Error",
+					`Unable to get 'Work of the Week' posts. ${err.message}`,
+					"warning"
+				);
 			}
 		};
 		handleMount();
-
-		// Not necessary if updating component once per week see user story 'TT'
-		return () => {
-			isMounted = false;
-		};
-	}, []);
+	}, [showErrorAlert]);
 
 	return (
 		<>
