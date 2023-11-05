@@ -36,13 +36,15 @@ const SettingsDropdown = ({ editObject, onDelete }) => {
 							Edit
 						</Dropdown.Item>
 					)}
-					<Dropdown.Item
+                    {onDelete && (
+                        <Dropdown.Item
 						onClick={handleDeleteClick}
 						className="text-danger"
 						aria-label="delete"
 					>
 						Delete
 					</Dropdown.Item>
+                    )}
 				</Dropdown.Menu>
 			</Dropdown>
 

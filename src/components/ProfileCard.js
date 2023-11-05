@@ -215,7 +215,6 @@ const ProfileCard = (props) => {
 					{is_owner && (
 						<SettingsDropdown
 							editObject={editProfile}
-							onDelete={() => {}}
 						/>
 					)}
 					<BackButton />

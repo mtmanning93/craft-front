@@ -10,7 +10,7 @@ const EmployerSelector = ({ value, onChange }) => {
 	useEffect(() => {
 		const getCompanies = async () => {
 			try {
-				const response = await axiosReq.get("/companies/blob");
+				const response = await axiosReq.get("/companies/");
 				const data = response.data.results;
 
 				const options = data.map((company) => ({
