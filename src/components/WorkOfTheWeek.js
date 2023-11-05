@@ -16,25 +16,34 @@ const WorkOfTheWeek = () => {
 	const { popularPosts } = postData;
 
 	useEffect(() => {
+		let isMounted = true;
+
 		const getTopPosts = async () => {
 			try {
 				const { data } = await axiosReq.get(
 					"/posts/?ordering=-likes_count"
 				);
-				setPostData((prevState) => ({
-					...prevState,
-					popularPosts: data,
-				}));
-				setErrorMessage("");
+				if (isMounted) {
+					setPostData((prevState) => ({
+						...prevState,
+						popularPosts: data,
+					}));
+					setErrorMessage("");
+				}
 			} catch (err) {
 				console.log("API request error:", err);
-				setErrorMessage(
-					"Having trouble retrieving posts at this time."
-				);
+				if (isMounted) {
+					setErrorMessage(
+						"Having trouble retrieving posts at this time."
+					);
+				}
 			}
 		};
-
 		getTopPosts();
+
+		return () => {
+			isMounted = false;
+		};
 	}, []);
 
 	return (

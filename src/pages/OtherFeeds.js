@@ -63,8 +63,8 @@ const OtherFeeds = () => {
 					`/posts/?${filter}search=${search}`
 				);
 				setPosts(data);
-				setLoaded(true);
 				setFeedErrorMessage("");
+				setLoaded(true);
 			} catch (error) {
 				console.log(error);
                 setFeedErrorMessage(
