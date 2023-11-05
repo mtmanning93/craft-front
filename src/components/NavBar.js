@@ -48,6 +48,7 @@ const NavBar = () => {
 	const loggedOutToggler = (
 		<Navbar.Toggle
 			ref={ref}
+			aria-label="toggle navigation menu"
 			aria-controls="basic-navbar-nav"
 			onClick={() => setExpanded(!expanded)}
 			className="border-0 p-0"
@@ -57,6 +58,7 @@ const NavBar = () => {
 	const loggedInToggler = (
 		<Navbar.Toggle
 			ref={ref}
+			aria-label="toggle navigation menu"
 			aria-controls="basic-navbar-nav"
 			onClick={() => setExpanded(!expanded)}
 			className="border-0 p-0"
@@ -77,6 +79,7 @@ const NavBar = () => {
 						to="/"
 						className={styles.Links}
 						activeClassName={styles.Active}
+						aria-label="home"
 					>
 						Home
 					</NavLink>
@@ -84,6 +87,7 @@ const NavBar = () => {
 						to="/login"
 						className={styles.Links}
 						activeClassName={styles.Active}
+						aria-label="login"
 					>
 						Login
 					</NavLink>
@@ -91,6 +95,7 @@ const NavBar = () => {
 						<MainButton
 							type="button"
 							className={`${styles.NavBtn} mr-0`}
+							aria-label="sign up"
 							text={
 								<>
 									<i className="fas fa-user-plus"></i> Sign Up
@@ -119,11 +124,12 @@ const NavBar = () => {
 					<NavLink
 						to={`/profiles/${currentUser?.profile_id}`}
 						onClick={() => {}}
+						aria-label="profile"
 					>
 						Profile
 					</NavLink>
 					<NavDropdown.Divider />
-					<NavLink to="/" onClick={handleLogOut}>
+					<NavLink to="/" onClick={handleLogOut} aria-label="logout">
 						Logout
 					</NavLink>
 				</Nav>
@@ -152,11 +158,16 @@ const NavBar = () => {
 							<NavLink
 								to={`/profiles/${currentUser?.profile_id}`}
 								onClick={() => {}}
+								aria-label="profile"
 							>
 								Profile
 							</NavLink>
 							<NavDropdown.Divider />
-							<NavLink to="/" onClick={handleLogOut}>
+							<NavLink
+								to="/"
+								onClick={handleLogOut}
+								aria-label="logout"
+							>
 								Logout
 							</NavLink>
 						</NavDropdown>
@@ -186,12 +197,10 @@ const NavBar = () => {
 					</NavLink>
 				</Col>
 
-				{/* small */}
 				<Col className="d-flex d-md-none justify-content-end">
 					{currentUser && createBtn}
 				</Col>
 
-				{/* large */}
 				<Col md={4} className="d-none d-md-flex justify-content-center">
 					{currentUser && createBtn}
 				</Col>
