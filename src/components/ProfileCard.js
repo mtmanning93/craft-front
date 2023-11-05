@@ -166,6 +166,7 @@ const ProfileCard = (props) => {
 						`/companies/?owner__profile=${id}`
 					);
 					setProfileCompanies(profileCompanies.results);
+                    setCompaniesErrorMessage("")
 				} catch (err) {
 					console.log("API request error:", err);
 					setCompaniesErrorMessage(
@@ -183,7 +184,7 @@ const ProfileCard = (props) => {
 				<Col
 					className={`${styles.PersonalInfo} mt-2 p-2 border-top border-dark`}
 				>
-					<p className="text-danger m-0"><strong>Unexpected Error</strong></p>
+					<p className="text-danger m-0"><strong>Unexpected Error:</strong></p>
 					<p><em>{companiesErrorMessage}</em></p>
 				</Col>
 			)}

@@ -181,8 +181,8 @@ const UpdateProfileForm = () => {
 
 		formData.append("name", name);
 		formData.append("job", job);
-		console.log(selectedCompany);
-		if (selectedCompany) {
+
+        if (selectedCompany) {
 			formData.append("employer", selectedCompany.value);
 		}
 		formData.append("bio", bio);

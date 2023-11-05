@@ -6,11 +6,9 @@ import styles from "../styles/WotW.module.css";
 import mainStyles from "../App.module.css";
 import Avatar from "./Avatar";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
-import { useErrorContext } from "../contexts/ErrorContext";
 
 const WorkOfTheWeek = () => {
-	const { showErrorAlert } = useErrorContext();
-
+	const [errorMessage, setErrorMessage] = useState("");
 	const [postData, setPostData] = useState({
 		popularPosts: { results: [] },
 	});
@@ -18,33 +16,42 @@ const WorkOfTheWeek = () => {
 	const { popularPosts } = postData;
 
 	useEffect(() => {
-		const handleMount = async () => {
+		const getTopPosts = async () => {
 			try {
 				const { data } = await axiosReq.get(
 					"/posts/?ordering=-likes_count"
 				);
-
 				setPostData((prevState) => ({
 					...prevState,
 					popularPosts: data,
 				}));
+				setErrorMessage("");
 			} catch (err) {
-				console.log(err);
-				showErrorAlert(
-					"Unexpected Error",
-					`Unable to get 'Work of the Week' posts. ${err.message}`,
-					"warning"
+				console.log("API request error:", err);
+				setErrorMessage(
+					"Having trouble retrieving posts at this time."
 				);
 			}
 		};
-		handleMount();
-	}, [showErrorAlert]);
+
+		getTopPosts();
+	}, []);
 
 	return (
 		<>
 			<Row
 				className={`${styles.Wrapper} m-0 justify-content-around flex-md-column w-100 h-100 p-2 pt-md-0`}
 			>
+				{errorMessage && (
+					<>
+						<p className="text-danger m-0">
+							<strong>Unexpected Error:</strong>
+						</p>
+						<p>
+							<em>{errorMessage}</em>
+						</p>
+					</>
+				)}
 				{popularPosts.results.length ? (
 					popularPosts.results.slice(0, 3).map((post) => (
 						<Card

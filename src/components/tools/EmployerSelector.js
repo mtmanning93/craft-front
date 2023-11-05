@@ -3,12 +3,14 @@ import Select from "react-select";
 import { axiosReq } from "../../api/axiosDefaults";
 
 const EmployerSelector = ({ value, onChange }) => {
+
 	const [companies, setCompanies] = useState([]);
+	const [error, setError] = useState(null);
 
 	useEffect(() => {
 		const getCompanies = async () => {
 			try {
-				const response = await axiosReq.get("/companies/");
+				const response = await axiosReq.get("/companies/blob");
 				const data = response.data.results;
 
 				const options = data.map((company) => ({
@@ -16,20 +18,24 @@ const EmployerSelector = ({ value, onChange }) => {
 					label: `${company.name} (${company.location})`,
 				}));
 
-				// Add no employer option
 				options.unshift({ value: "", label: "---------" });
-                
+
 				setCompanies(options);
-			} catch (error) {
-				console.log(error);
+				setError(null);
+			} catch (err) {
+				console.log(err);
+				setError("Currently unable to retrieve company list");
 			}
 		};
 
 		getCompanies();
 	}, []);
 
-	return (
+	if (error) {
+		return <p className="text-danger">{error}</p>;
+	}
 
+	return (
 		<Select
 			name="company"
 			value={value}
