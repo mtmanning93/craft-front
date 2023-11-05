@@ -121,6 +121,7 @@ const DefaultFeed = () => {
 				<p className={`${stylesW.Heading} m-0 mt-2 ml-2`}>
 					Work of the week
 				</p>
+				<p className="mx-2 mb-0">The most liked work right now.</p>
 				<WorkOfTheWeek />
 			</Col>
 		</Row>

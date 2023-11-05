@@ -30,21 +30,24 @@ const SettingsDropdown = ({ editObject, onDelete }) => {
 		<>
 			<Dropdown alignRight>
 				<Dropdown.Toggle as={SettingsBtn}></Dropdown.Toggle>
-				<Dropdown.Menu className="text-right">
+				<Dropdown.Menu
+					className="text-right"
+					popperConfig={{ strategy: "fixed" }}
+				>
 					{editObject && (
 						<Dropdown.Item onClick={editObject} aria-label="edit">
 							Edit
 						</Dropdown.Item>
 					)}
-                    {onDelete && (
-                        <Dropdown.Item
-						onClick={handleDeleteClick}
-						className="text-danger"
-						aria-label="delete"
-					>
-						Delete
-					</Dropdown.Item>
-                    )}
+					{onDelete && (
+						<Dropdown.Item
+							onClick={handleDeleteClick}
+							className="text-danger"
+							aria-label="delete"
+						>
+							Delete
+						</Dropdown.Item>
+					)}
 				</Dropdown.Menu>
 			</Dropdown>
 

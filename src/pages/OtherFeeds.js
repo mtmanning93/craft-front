@@ -67,7 +67,7 @@ const OtherFeeds = () => {
 				setLoaded(true);
 			} catch (error) {
 				console.log(error);
-                setFeedErrorMessage(
+				setFeedErrorMessage(
 					"Currently unable to retrieve feed data, please refresh the feed, or try again soon."
 				);
 			}
@@ -108,7 +108,7 @@ const OtherFeeds = () => {
 						></Form.Control>
 					</Form>
 				)}
-                {feedErrorMessage && (
+				{feedErrorMessage && (
 					<div className="m-2">
 						<h1>Unexpected Feed Error</h1>
 						<p>{feedErrorMessage}</p>
@@ -147,6 +147,7 @@ const OtherFeeds = () => {
 				<p className={`${stylesW.Heading} m-0 mt-2 ml-2`}>
 					Work of the week
 				</p>
+				<p className="mx-2 mb-0">The most liked work right now.</p>
 				<WorkOfTheWeek />
 			</Col>
 		</Row>

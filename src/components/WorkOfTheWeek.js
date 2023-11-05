@@ -70,7 +70,7 @@ const WorkOfTheWeek = () => {
 							className={`${styles.Post} ${mainStyles.Content} my-md-2`}
 							key={post.id}
 						>
-							<Link className="h-100" to={`/posts/${post.id}`}>
+							<Link className={`${mainStyles.hoverDark} h-100`} to={`/posts/${post.id}`}>
 								<div className="d-flex flex-column h-100">
 									<Card.Header
 										className={`${styles.Header} p-1 p-md-2`}

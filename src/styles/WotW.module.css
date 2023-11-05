@@ -34,6 +34,10 @@
     border-top: 1px solid #4682B4;
 }
 
+.Post:hover {
+    border: 1px solid white;
+}
+
 @media (max-width: 767px) {
     .Post {
         width: 30%;

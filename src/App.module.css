@@ -24,6 +24,10 @@ a:hover {
 	color: #f8c133;
 }
 
+.hoverDark:hover {
+    color: rgba(0, 0, 0, 0.621)
+}
+
 .Content {
 	background-color: #ffffff;
 	border: 1px solid #000000;
