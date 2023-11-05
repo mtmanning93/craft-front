@@ -1,5 +1,7 @@
-.OwnerCard {
-	border: 2px solid #f8c133;
+.Card:hover {
+    transition: 0.3s;
+	border: 1px solid #f8c133;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .Heading {

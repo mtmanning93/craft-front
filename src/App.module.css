@@ -25,7 +25,11 @@ a:hover {
 }
 
 .hoverDark:hover {
-    color: rgba(0, 0, 0, 0.621)
+    color: #0000009e
+}
+
+.hoverLight:hover {
+    color: #000000;
 }
 
 .Content {

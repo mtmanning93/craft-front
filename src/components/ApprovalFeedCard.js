@@ -12,8 +12,8 @@ const ApprovalFeedCard = ({ profile, ranking }) => {
 	const is_owner = currentUser?.username === profile.owner;
 
 	return (
-		<Card className={`mt-3 ${mainStyles.Content}`}>
-			<Link to={`/profiles/${profile.id}`}>
+		<Card className={`mt-3 ${styles.Card} ${mainStyles.Content}`}>
+			<Link className={mainStyles.hoverLight} to={`/profiles/${profile.id}`}>
 				<Card.Header className="d-flex justify-content-between">
 					<div>
 						<p className={styles.Heading}>
