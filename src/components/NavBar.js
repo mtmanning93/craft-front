@@ -81,7 +81,7 @@ const NavBar = () => {
 						activeClassName={styles.Active}
 						aria-label="home"
 					>
-						Home <i class="fa-solid fa-house"></i>
+						Home <i className="fa-solid fa-house" />
 					</NavLink>
 					<NavLink
 						to="/login"
@@ -124,7 +124,6 @@ const NavBar = () => {
 					)}
 					<NavLink
 						className="d-block"
-						ß
 						to={`/profiles/${currentUser?.profile_id}`}
 						aria-label="profile"
 					>

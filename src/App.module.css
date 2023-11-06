@@ -46,6 +46,11 @@ h1 {
 	margin: 0;
 }
 
+.Pointer:hover {
+    cursor: pointer;
+    color: #f8c133;
+}
+
 @media (max-width: 576px) {
 	.MainContainer {
 		padding: 0;
