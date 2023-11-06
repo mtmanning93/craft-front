@@ -80,17 +80,24 @@ const CredentialsForm = () => {
 	};
 
     // const deleteProfile = async () => {
-	// 	try {
-	// 		await axiosRes.delete(`/profiles/${id}/`);
-    //         await axiosRes.post("dj-rest-auth/logout/");
-    //         setCurrentUser(null)
-	// 		history.push("/");
-	// 	} catch (err) {
-	// 		console.log(err);
-	// 		console.log(err.response?.data);
-	// 	}
-	// };
-
+    //     try {
+    //         // delete the profile
+    //         // await axiosRes.delete(`/profiles/${id}/`);
+    
+    //         // logout and delete
+    //         await axiosRes.post("/dj-rest-auth/delete-profile/");
+    
+    //         // reset currentUser
+    //         // setCurrentUser("");
+    
+    //         history.push("/");
+    //         console.log("deleted")
+    //     } catch (err) {
+    //         console.log(err);
+    //         console.log(err.response?.data);
+    //         console.log("not deleted")
+    //     }
+    // };
 
 	return (
 		<Col
