@@ -20,8 +20,6 @@ const CredentialsForm = () => {
 	const currentUser = useCurrentUser();
 	const setCurrentUser = useSetCurrentUser();
 
-	console.log(currentUser);
-
 	const [passwordData, setPasswordData] = useState({
 		new_password1: "",
 		new_password2: "",
@@ -80,6 +78,19 @@ const CredentialsForm = () => {
 			setErrors(err.response?.data);
 		}
 	};
+
+    // const deleteProfile = async () => {
+	// 	try {
+	// 		await axiosRes.delete(`/profiles/${id}/`);
+    //         await axiosRes.post("dj-rest-auth/logout/");
+    //         setCurrentUser(null)
+	// 		history.push("/");
+	// 	} catch (err) {
+	// 		console.log(err);
+	// 		console.log(err.response?.data);
+	// 	}
+	// };
+
 
 	return (
 		<Col
@@ -192,6 +203,7 @@ const CredentialsForm = () => {
 					<i className="fa-solid fa-xmark" /> Cancel
 				</p>
 			</Form>
+            {/* <Button className="btn-danger" onClick={deleteProfile}>Delete Profile</Button> */}
 		</Col>
 	);
 };
