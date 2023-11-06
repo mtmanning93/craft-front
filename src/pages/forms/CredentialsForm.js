@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Alert, Button, Form } from "react-bootstrap";
 import { useHistory, useParams } from "react-router-dom";
 import { axiosRes } from "../../api/axiosDefaults";
@@ -21,28 +21,21 @@ const CredentialsForm = () => {
 
 	const [errors, setErrors] = useState({});
 
-	const handleChange = (event) => {
+    const handleChangeUsername = (event) => {
+        setUsername(event.target.value);
+	};
+
+	const handleChangePassword = (event) => {
 		setPasswordData({
 			...passwordData,
 			[event.target.name]: event.target.value,
 		});
-        setUsername(event.target.value);
 	};
-
-	useEffect(() => {
-		if (user?.profile_id?.toString() !== id) {
-			history.push("/");
-		} else {
-			setUsername(user.username);
-		}
-	}, [user, history, id]);
 
 	const handlePasswordSubmit = async (event) => {
 		event.preventDefault();
 		try {
-			await axiosRes.post("/dj-rest-auth/password/change/", {
-				passwordData,
-			});
+			await axiosRes.post("/dj-rest-auth/password/change/", passwordData);
 			setPasswordData((prevUser) => ({
 				...prevUser,
 				passwordData,
@@ -78,7 +71,7 @@ const CredentialsForm = () => {
 						placeholder="new username"
 						type="text"
 						value={username}
-						onChange={handleChange}
+						onChange={handleChangeUsername}
 						name="username"
 					/>
 				</Form.Group>
@@ -97,7 +90,7 @@ const CredentialsForm = () => {
 						placeholder="new password"
 						type="password"
 						value={new_password1}
-						onChange={handleChange}
+						onChange={handleChangePassword}
 						name="new_password1"
 					/>
 				</Form.Group>
@@ -112,7 +105,7 @@ const CredentialsForm = () => {
 						placeholder="confirm new password"
 						type="password"
 						value={new_password2}
-						onChange={handleChange}
+						onChange={handleChangePassword}
 						name="new_password2"
 					/>
 				</Form.Group>
