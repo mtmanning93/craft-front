@@ -81,7 +81,7 @@ const NavBar = () => {
 						activeClassName={styles.Active}
 						aria-label="home"
 					>
-						Home
+						Home <i class="fa-solid fa-house"></i>
 					</NavLink>
 					<NavLink
 						to="/login"
@@ -89,7 +89,8 @@ const NavBar = () => {
 						activeClassName={styles.Active}
 						aria-label="login"
 					>
-						Login
+						Login{" "}
+						<i className="fa-solid fa-arrow-right-to-bracket" />
 					</NavLink>
 					<NavLink to="/signup" className={styles.Links}>
 						<MainButton
@@ -122,20 +123,24 @@ const NavBar = () => {
 						</p>
 					)}
 					<NavLink
+						className="d-block"
+						ß
 						to={`/profiles/${currentUser?.profile_id}`}
 						aria-label="profile"
 					>
-						Profile
+						Profile <i className="fa-solid fa-angle-right" />
 					</NavLink>
 					<NavLink
+						className="d-block"
 						to={`/profiles/${currentUser?.profile_id}}/edit/credentials`}
 						aria-label="profile"
 					>
-						Settings
+						Settings <i className="fa-solid fa-angle-right" />
 					</NavLink>
 					<NavDropdown.Divider />
 					<NavLink to="/" onClick={handleLogOut} aria-label="logout">
-						Logout
+						Logout{" "}
+						<i className="fa-solid fa-arrow-right-from-bracket" />
 					</NavLink>
 				</Nav>
 				{/* Large Screens */}
@@ -164,13 +169,19 @@ const NavBar = () => {
 								to={`/profiles/${currentUser?.profile_id}`}
 								aria-label="profile"
 							>
-								Profile
+								<span>
+									Profile{" "}
+									<i className="fa-solid fa-angle-right" />
+								</span>
 							</NavLink>
-                            <NavLink
+							<NavLink
 								to={`/profiles/${currentUser?.profile_id}/edit/credentials`}
 								aria-label="settings"
 							>
-								Settings
+								<span>
+									Settings{" "}
+									<i className="fa-solid fa-angle-right" />
+								</span>
 							</NavLink>
 							<NavDropdown.Divider />
 							<NavLink
@@ -178,7 +189,10 @@ const NavBar = () => {
 								onClick={handleLogOut}
 								aria-label="logout"
 							>
-								Logout
+								<span>
+									Logout{" "}
+									<i className="fa-solid fa-arrow-right-from-bracket" />
+								</span>
 							</NavLink>
 						</NavDropdown>
 					</Nav>
@@ -207,13 +221,20 @@ const NavBar = () => {
 					</NavLink>
 				</Col>
 
-				<Col className="d-flex d-md-none justify-content-end">
-					{currentUser && createBtn}
-				</Col>
+				{currentUser && (
+					<>
+						<Col className="d-flex d-md-none justify-content-end">
+							{currentUser && createBtn}
+						</Col>
 
-				<Col md={4} className="d-none d-md-flex justify-content-center">
-					{currentUser && createBtn}
-				</Col>
+						<Col
+							md={4}
+							className="d-none d-md-flex justify-content-center"
+						>
+							{currentUser && createBtn}
+						</Col>
+					</>
+				)}
 
 				{currentUser ? loggedInToggler : loggedOutToggler}
 
