@@ -8,9 +8,11 @@ import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 import MainButton from "../../components/buttons/MainButton";
 import btnStyles from "../../styles/Buttons.module.css";
 import { useRedirectUser } from "../../hooks/useRedirectUser";
+import { useErrorContext } from "../../contexts/ErrorContext";
 
 const LogInForm = () => {
 	useRedirectUser("loggedIn");
+    const { showSuccessAlert } = useErrorContext();
 
 	const setCurrentUser = useSetCurrentUser();
 
@@ -39,6 +41,11 @@ const LogInForm = () => {
 				loginData
 			);
 			setCurrentUser(data.user);
+            showSuccessAlert(
+                "Success",
+                "You have successfully logged in.",
+                "success"
+            )
 			history.goBack();
 		} catch (err) {
             console.log(err)

@@ -13,12 +13,16 @@ export const ErrorProvider = ({ children }) => {
     setErrorInfo({ title, message, variant });
   };
 
+  const showSuccessAlert = (title, message, variant) => {
+    setErrorInfo({ title, message, variant });
+  }
+
   const clearErrorAlert = () => {
     setErrorInfo(null);
   };
 
   return (
-    <ErrorContext.Provider value={{ errorInfo, showErrorAlert, clearErrorAlert }}>
+    <ErrorContext.Provider value={{ errorInfo, showErrorAlert, showSuccessAlert, clearErrorAlert }}>
       {children}
     </ErrorContext.Provider>
   );

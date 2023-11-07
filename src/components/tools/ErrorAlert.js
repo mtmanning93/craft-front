@@ -3,7 +3,7 @@ import { Alert } from "react-bootstrap";
 import styles from "../../styles/Alert.module.css";
 import { useErrorContext } from "../../contexts/ErrorContext";
 
-const ErrorAlert = () => {
+const CustomAlert = () => {
 	const { errorInfo, clearErrorAlert } = useErrorContext();
 	const [show, setShow] = useState(false);
 
@@ -35,4 +35,4 @@ const ErrorAlert = () => {
 	);
 };
 
-export default ErrorAlert;
+export default CustomAlert;

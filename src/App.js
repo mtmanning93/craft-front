@@ -17,14 +17,14 @@ import EditCompanyForm from "./pages/forms/EditCompanyForm";
 import TopFeed from "./pages/TopFeed";
 import DefaultFeed from "./pages/DefaultFeed";
 import OtherFeeds from "./pages/OtherFeeds";
-import ErrorAlert from "./components/tools/ErrorAlert";
+import CustomAlert from "./components/tools/ErrorAlert";
 import ErrorPage from "./pages/ErrorPage";
 import CredentialsForm from "./pages/forms/CredentialsForm";
 
 function App() {
 	return (
 		<div className={styles.App}>
-			<ErrorAlert />
+			<CustomAlert />
 			<NavBar />
 			<Header />
 			<Container fluid className={mainStyles.MainContainer}>
