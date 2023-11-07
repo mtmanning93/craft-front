@@ -43,7 +43,6 @@ const Comment = (props) => {
 				),
 			}));
 		} catch (err) {
-			console.error(err);
 			showErrorAlert(
 				"Delete Error",
 				`Unable to delete comment. ${err.message}`,
