@@ -47,10 +47,14 @@ const Post = (props) => {
 
 	const deletePost = async () => {
 		try {
-			await axiosRes.delete(`/posts/${id}/`);
-			history.goBack();
+			const response = await axiosRes.delete(`/posts/${id}/`);
+			console.log("Server response:", response);
+            // if (currentUrl === `/posts/${id}/`) {
+            //     go back twice
+            // }
+            // else
+            history.push("/")
 		} catch (err) {
-			console.log(err);
 			showErrorAlert(
 				"Delete Error",
 				`Unable to delete post. ${err.message}`,
@@ -75,8 +79,7 @@ const Post = (props) => {
 				}),
 			}));
 		} catch (err) {
-			console.log(err);
-            showErrorAlert(
+			showErrorAlert(
 				"Unexpected Error",
 				`Unable to unlike post. ${err.message}`,
 				"warning"
@@ -100,8 +103,7 @@ const Post = (props) => {
 				}),
 			}));
 		} catch (err) {
-			console.log(err);
-            showErrorAlert(
+			showErrorAlert(
 				"Unexpected Error",
 				`Unable to like post. ${err.message}`,
 				"warning"
@@ -111,7 +113,7 @@ const Post = (props) => {
 
 	return (
 		<Card className={`mt-3 ${mainStyles.Content}`}>
-			<Card.Body className="p-2 p-sm-4">
+			<Card.Header>
 				<Row className="m-2 mb-3 flex-column-reverse flex-sm-row align-items-center justify-content-between">
 					<Link
 						to={`/profiles/${profile_id}`}
@@ -157,10 +159,12 @@ const Post = (props) => {
 						{content}
 					</Card.Text>
 				)}
+			</Card.Header>
+			<Card.Body className="px-0 py-2 text-center">
+				<Link to={`/posts/${id}`}>
+					<Card.Img className={styles.Img} src={image} alt={title} />
+				</Link>
 			</Card.Body>
-			<Link to={`/posts/${id}`} className="m-2">
-				<Card.Img className={styles.Img} src={image} alt={title} />
-			</Link>
 			<Card.Footer className="d-flex align-items-center justify-content-end">
 				<div className={styles.Controls}>
 					<span className={styles.Count}>{comments_count}</span>
@@ -173,14 +177,6 @@ const Post = (props) => {
 						</span>
 					</OverlayTrigger>
 					<span className={styles.Count}>{likes_count}</span>
-					{/* {is_owner ? (
-            <OverlayTrigger
-              placement="bottom"
-              overlay={<Tooltip>You cant like your own posts.</Tooltip>}
-            >
-              <i className="fa-regular fa-thumbs-up"></i>
-            </OverlayTrigger>
-          ) : */}
 					{like_id ? (
 						<span className={styles.LikeIcon} onClick={unlikePost}>
 							<i className="fa-solid fa-thumbs-up"></i>

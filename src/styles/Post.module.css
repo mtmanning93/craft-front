@@ -1,40 +1,47 @@
 .Author {
-  display: flex;
-  align-items: center;
+	display: flex;
+	align-items: center;
 }
 
 .Settings {
-    margin-right: 20px;
+	margin-right: 20px;
 }
 
 .Description {
-  margin: 10px;
-  font-size: 1.2em;
+	margin: 10px;
+	font-size: 1.2em;
+}
+
+.Img {
+    max-height: 525px;
+    max-width: fit-content;
+    object-fit: contain;
 }
 
 .Controls {
-    display: flex;
-    align-items: center;
+	display: flex;
+	align-items: center;
 }
 
-.Controls, .Settings {
-  font-size: 1.5em;
+.Controls,
+.Settings {
+	font-size: 1.5em;
 }
 
 .Controls i {
-  margin: 0 5px;
+	margin: 0 5px;
 }
 
 .Count {
-    color: #5b5b5b80;
-    font-size: 0.8em;
+	color: #5b5b5b80;
+	font-size: 0.8em;
 }
 
 .LikeIcon:hover {
-    color: #f8c133;
-    cursor: pointer;
+	color: #f8c133;
+	cursor: pointer;
 }
 
 .CommentIcon {
-  margin-right: 10px;
+	margin-right: 10px;
 }
