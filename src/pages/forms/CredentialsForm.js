@@ -13,10 +13,12 @@ import btnStyles from "../../styles/Buttons.module.css";
 import formStyles from "../../styles/SignUpForm.module.css";
 import MainButton from "../../components/buttons/MainButton";
 import { useRedirectUser } from "../../hooks/useRedirectUser";
+import { useErrorContext } from "../../contexts/ErrorContext";
 
 const CredentialsForm = () => {
 	useRedirectUser("loggedOut");
-
+    
+    const { showSuccessAlert } = useErrorContext();
 	const currentUser = useCurrentUser();
 	const setCurrentUser = useSetCurrentUser();
 
@@ -57,6 +59,11 @@ const CredentialsForm = () => {
 				...prevUser,
 				passwordData,
 			}));
+            showSuccessAlert(
+				"Success",
+				"You have successfully updated your password.",
+				"success"
+			);
 			history.goBack();
 		} catch (err) {
 			console.log(err);
@@ -72,6 +79,11 @@ const CredentialsForm = () => {
 				...prevUser,
 				username,
 			}));
+            showSuccessAlert(
+				"Success",
+				"You have successfully updated your username.",
+				"success"
+			);
 			history.goBack();
 		} catch (err) {
 			console.log(err);

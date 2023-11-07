@@ -9,10 +9,12 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import Avatar from "../../components/Avatar";
 import BackButton from "../../components/buttons/BackButton";
 import { useRedirectUser } from "../../hooks/useRedirectUser";
+import { useErrorContext } from "../../contexts/ErrorContext";
 
 const CompanyForm = () => {
     useRedirectUser('loggedOut')
     
+    const { showSuccessAlert } = useErrorContext();
 	const currentUser = useCurrentUser();
 
 	const [errors, setErrors] = useState({});
@@ -44,6 +46,11 @@ const CompanyForm = () => {
 
 		try {
 			await axiosReq.post("/companies/", formData);
+            showSuccessAlert(
+                "Success",
+                "You have successfully added a company to your profile.",
+                "success"
+            )
 			history.goBack();
 		} catch (err) {
 			console.log(err.response.data);

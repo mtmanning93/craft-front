@@ -21,10 +21,12 @@ import EmployerSelector from "../../components/tools/EmployerSelector";
 import ProfileCompany from "../../components/ProfileCompany";
 import { useRedirectUser } from "../../hooks/useRedirectUser";
 import { useErrorContext } from "../../contexts/ErrorContext";
+import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 
 const UpdateProfileForm = () => {
 	useRedirectUser("loggedOut");
 	const { showErrorAlert } = useErrorContext();
+    const setCurrentUser = useSetCurrentUser();
 
 	const [errors, setErrors] = useState({});
 	const [loaded, setLoaded] = useState(false);
@@ -52,7 +54,6 @@ const UpdateProfileForm = () => {
 				const data = response.data;
 
 				if (data.is_owner) {
-                    
 					setProfileData({
 						name: data.name,
 						image: data.image,
@@ -121,12 +122,12 @@ const UpdateProfileForm = () => {
 				setProfileCompanies(profileCompanies.results);
 				setNumberOfCompanies(profileCompanies.count);
 			} catch (err) {
-                console.log(err)
-                showErrorAlert(
-                    "Unsuccessful",
-                    "Unable to fetch requested data",
-                    "warning" 
-                )
+				console.log(err);
+				showErrorAlert(
+					"Unsuccessful",
+					"Unable to fetch requested data",
+					"warning"
+				);
 			}
 		};
 
@@ -182,14 +183,20 @@ const UpdateProfileForm = () => {
 		formData.append("name", name);
 		formData.append("job", job);
 
-        if (selectedCompany) {
+		if (selectedCompany) {
 			formData.append("employer", selectedCompany.value);
 		}
 		formData.append("bio", bio);
 		formData.append("image", imageSelection?.current?.files[0] || "");
 
 		try {
-			await axiosReq.put(`/profiles/${id}/`, formData);
+			const response = await axiosReq.put(`/profiles/${id}/`, formData);
+
+			// Update the profile image in the currentUser context
+			setCurrentUser((prevUser) => ({
+				...prevUser,
+				profile_image: response.data.image,
+			}));
 			history.push(`/profiles/${id}`);
 		} catch (err) {
 			console.error(err);

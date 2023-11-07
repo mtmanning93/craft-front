@@ -34,46 +34,59 @@ const EditCompanyForm = () => {
 	const history = useHistory();
 	const { id } = useParams();
 
-	useEffect(() => {
-		const getCompanyData = async () => {
-			try {
-				const { data } = await axiosReq.get(`/companies/${id}/`);
-
-				if (data.is_owner) {
-					setCompanyData(data);
-				} else {
-					showErrorAlert(
-						"Unauthorized",
-						`You are not the owner of this company, you cannot edit this company (id:${id}).`,
-						"danger"
-					);
-					history.push("/");
-				}
-				setLoaded(true);
-			} catch (err) {
-				console.log(err.response.status);
-
-				if (err.response.status === 404) {
-					showErrorAlert(
-						`${err.response.status} error!`,
-						"Requested company could not be found or does not exist.",
-						"warning"
-					);
-                    history.push("/page-not-found")
-				} else {
-					showErrorAlert(
-						`${err.response.status} error!`,
-						`${err.message}`,
-						"warning"
-					);
-                    history.push("/")
-				}
-			}
-		};
-
-		setLoaded(false);
-		getCompanyData();
-	}, [history, id, showErrorAlert]);
+    useEffect(() => {
+        let isMounted = true; // track whether the component is mounted
+      
+        const getCompanyData = async () => {
+          try {
+            const { data } = await axiosReq.get(`/companies/${id}/`);
+      
+            if (isMounted) {
+              // Check the component is mounted before updating
+              if (data.is_owner) {
+                setCompanyData(data);
+              } else {
+                showErrorAlert(
+                  "Unauthorized",
+                  `You are not the owner of this company, you cannot edit this company (id:${id}).`,
+                  "danger"
+                );
+                history.push("/");
+              }
+              setLoaded(true);
+            }
+          } catch (err) {
+            console.log(err.response.status);
+      
+            if (isMounted) {
+              // Check the component is mounted before updating
+              if (err.response.status === 404) {
+                showErrorAlert(
+                  `${err.response.status} error!`,
+                  "Requested company could not be found or does not exist.",
+                  "warning"
+                );
+                history.push("/page-not-found");
+              } else {
+                showErrorAlert(
+                  `${err.response.status} error!`,
+                  `${err.message}`,
+                  "warning"
+                );
+                history.push("/");
+              }
+            }
+          }
+        };
+      
+        setLoaded(false);
+        getCompanyData();
+      
+        // Cleanup function to prevent state updates
+        return () => {
+          isMounted = false; // Set to false when the component unmounts
+        };
+      }, [history, id, showErrorAlert]);
 
 	const handleChange = (event) => {
 		setCompanyData({

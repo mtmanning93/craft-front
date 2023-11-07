@@ -6,9 +6,12 @@ import MainButton from "../../components/buttons/MainButton";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { axiosRes } from "../../api/axiosDefaults";
 import mainStyles from "../../App.module.css";
+import { useErrorContext } from "../../contexts/ErrorContext";
 
 const CommentForm = (props) => {
 	const user = useCurrentUser();
+
+    const { showSuccessAlert } = useErrorContext();
 
 	const { post, setPost, setComments, profile_image, profile_id } = props;
 
@@ -29,13 +32,13 @@ const CommentForm = (props) => {
 			});
 
 			const data = response.data;
-			// Update comments
+
 			setComments((prevComments) => ({
 				...prevComments,
 				results: [data, ...prevComments.results],
 			}));
-			// Update post, increase comments_count
-			setPost((prevPost) => ({
+
+            setPost((prevPost) => ({
 				results: [
 					{
 						...prevPost.results[0],
@@ -44,6 +47,11 @@ const CommentForm = (props) => {
 				],
 			}));
 			setCommentData("");
+            showSuccessAlert(
+                "Success",
+                "Your comment was successfully posted.",
+                "success"
+            )
 		} catch (err) {
 			setErrors(err.response?.data);
 			if (!errors.comment && !errors.genericError) {

@@ -12,10 +12,12 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import BackButton from "../../components/buttons/BackButton";
 import btnStyles from "../../styles/Buttons.module.css";
 import { useRedirectUser } from "../../hooks/useRedirectUser";
+import { useErrorContext } from "../../contexts/ErrorContext";
 
 const CreatePostForm = () => {
 	useRedirectUser("loggedOut");
     
+    const { showSuccessAlert } = useErrorContext();
 	const currentUser = useCurrentUser();
 
 	const [errors, setErrors] = useState({});
@@ -59,6 +61,11 @@ const CreatePostForm = () => {
 
 		try {
 			const response = await axiosReq.post("/posts/", formData);
+            showSuccessAlert(
+                "Success",
+                "Your post was successfully created.",
+                "success"
+            )
 			history.push(`/posts/${response.data.id}`);
 		} catch (err) {
 			console.log(err);

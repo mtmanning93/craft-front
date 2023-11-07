@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
@@ -16,15 +16,28 @@ import btnStyles from "../styles/Buttons.module.css";
 import { useErrorContext } from "../contexts/ErrorContext";
 
 const NavBar = () => {
-	const { showErrorAlert } = useErrorContext();
+	const { showErrorAlert, showSuccessAlert } = useErrorContext();
 	const currentUser = useCurrentUser();
 	const setCurrentUser = useSetCurrentUser();
+    
 	const { expanded, setExpanded, ref } = useClickOutsideToggle();
+
+    const [profileImage, setProfileImage] = useState(currentUser?.profile_image);
+  
+    useEffect(() => {
+      setProfileImage(currentUser?.profile_image);
+    }, [currentUser?.profile_image]);
+  
 
 	const handleLogOut = async () => {
 		try {
 			await axios.post("dj-rest-auth/logout/");
 			setCurrentUser(null);
+			showSuccessAlert(
+				"Success",
+				"You have successfully logged out",
+				"success"
+			);
 		} catch (err) {
 			console.log(err);
 			showErrorAlert(`${err.response.status} Error`, `${err}`, "danger");
@@ -63,7 +76,7 @@ const NavBar = () => {
 			onClick={() => setExpanded(!expanded)}
 			className="border-0 p-0"
 		>
-			<Avatar src={currentUser?.profile_image} height={40} />
+			<Avatar src={profileImage} height={40} />
 		</Navbar.Toggle>
 	);
 
