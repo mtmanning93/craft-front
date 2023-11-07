@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Col, Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
@@ -20,14 +20,7 @@ const NavBar = () => {
 	const currentUser = useCurrentUser();
 	const setCurrentUser = useSetCurrentUser();
     
-	const { expanded, setExpanded, ref } = useClickOutsideToggle();
-
-    const [profileImage, setProfileImage] = useState(currentUser?.profile_image);
-  
-    useEffect(() => {
-      setProfileImage(currentUser?.profile_image);
-    }, [currentUser?.profile_image]);
-  
+	const { expanded, setExpanded, ref } = useClickOutsideToggle();  
 
 	const handleLogOut = async () => {
 		try {
@@ -76,7 +69,7 @@ const NavBar = () => {
 			onClick={() => setExpanded(!expanded)}
 			className="border-0 p-0"
 		>
-			<Avatar src={profileImage} height={40} />
+			<Avatar src={currentUser?.profile_image} height={40} />
 		</Navbar.Toggle>
 	);
 
