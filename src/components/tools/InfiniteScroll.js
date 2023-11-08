@@ -1,13 +1,7 @@
 import { axiosReq } from "../../api/axiosDefaults";
 
 const fetchMoreData = async (resource, setResource, setError) => {
-	const simulateError = () => {
-		throw new Error("Simulated error message");
-	};
-
 	try {
-		simulateError();
-
 		const { data } = await axiosReq.get(resource.next);
 
 		const newResults = [];
