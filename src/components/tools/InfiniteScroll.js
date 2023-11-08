@@ -1,8 +1,13 @@
 import { axiosReq } from "../../api/axiosDefaults";
 
 const fetchMoreData = async (resource, setResource, setError) => {
+	const simulateError = () => {
+		throw new Error("Simulated error message");
+	};
 
 	try {
+		simulateError();
+
 		const { data } = await axiosReq.get(resource.next);
 
 		const newResults = [];
@@ -22,7 +27,9 @@ const fetchMoreData = async (resource, setResource, setError) => {
 			results: [...prevResource.results, ...newResults],
 		}));
 	} catch (err) {
-		setError("An error occured whilst getting more data. Try again soon...");
+		setError(
+			"An error occured whilst getting more data. Try again soon..."
+		);
 	}
 };
 

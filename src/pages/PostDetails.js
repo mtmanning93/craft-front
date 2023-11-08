@@ -15,12 +15,13 @@ import WorkOfTheWeek from "../components/WorkOfTheWeek";
 import { useErrorContext } from "../contexts/ErrorContext";
 
 const PostDetails = () => {
-    const { showErrorAlert } = useErrorContext();
-    const currentUser = useCurrentUser();
+	const { showErrorAlert } = useErrorContext();
+	const currentUser = useCurrentUser();
 
 	const [post, setPost] = useState({ results: [] });
 	const [comments, setComments] = useState({ results: [] });
 	const [loaded, setLoaded] = useState(false);
+	const [commentFeedErrors, setCommentFeedErrors] = useState("");
 
 	const { id } = useParams();
 	const history = useHistory();
@@ -38,21 +39,24 @@ const PostDetails = () => {
 				setComments(comments);
 				setLoaded(true);
 			} catch (err) {
-                if (err.response.status === 400 || err.response.status === 404) {
-				showErrorAlert(
-					`${err.response.status} error!`,
-					"Requested post could not be found or does not exist.",
-					"warning"
-				);
-				history.push("/page-not-found");
-                } else {
-                    showErrorAlert(
-                        `${err.response.status} error!`,
-                        `${err.message}`,
-                        "warning"
-                    );
-                    history.push("/");
-                }
+				if (
+					err.response.status === 400 ||
+					err.response.status === 404
+				) {
+					showErrorAlert(
+						`${err.response.status} error!`,
+						"Requested post could not be found or does not exist.",
+						"warning"
+					);
+					history.push("/page-not-found");
+				} else {
+					showErrorAlert(
+						`${err.response.status} error!`,
+						`${err.message}`,
+						"warning"
+					);
+					history.push("/");
+				}
 			}
 		};
 		setLoaded(false);
@@ -94,7 +98,11 @@ const PostDetails = () => {
 								<InfiniteScroll
 									dataLength={comments.results.length}
 									next={() =>
-										fetchMoreData(comments, setComments)
+										fetchMoreData(
+											comments,
+											setComments,
+											setCommentFeedErrors
+										)
 									}
 									hasMore={!!comments.next}
 									loader={<Loader loader variant="warning" />}
@@ -107,6 +115,16 @@ const PostDetails = () => {
 											setComments={setComments}
 										/>
 									))}
+									{commentFeedErrors && (
+										<div className="m-2">
+											<p className="text-warning mb-0">
+												<strong>
+													Unexpected Feed Error:
+												</strong>
+											</p>
+											<p>{commentFeedErrors}</p>
+										</div>
+									)}
 								</InfiniteScroll>
 							) : currentUser ? (
 								<>

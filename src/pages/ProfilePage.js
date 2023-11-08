@@ -95,7 +95,13 @@ const ProfilePage = () => {
 			{profilePosts.length ? (
 				<InfiniteScroll
 					dataLength={profilePosts.length}
-					next={() => fetchMoreData(profilePosts, setProfilePosts)}
+					next={() =>
+						fetchMoreData(
+							profilePosts,
+							setProfilePosts,
+							setFeedErrorMessage
+						)
+					}
 					hasMore={!!profilePosts.next}
 					loader={<Loader loader variant="warning" />}
 					endMessage={<p>No more posts to load...</p>}
@@ -107,6 +113,14 @@ const ProfilePage = () => {
 							setProfilePosts={setProfilePosts}
 						/>
 					))}
+					{feedErrorMessage && (
+						<div className="m-2">
+							<p className="text-warning mb-0">
+								<strong>Unexpected Feed Error:</strong>
+							</p>
+							<p>{feedErrorMessage}</p>
+						</div>
+					)}
 				</InfiniteScroll>
 			) : feedErrorMessage ? (
 				<div className="m-2">
