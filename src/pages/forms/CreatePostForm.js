@@ -76,7 +76,6 @@ const CreatePostForm = () => {
 			);
 			history.push(`/posts/${response.data.id}`);
 		} catch (err) {
-			console.log(err);
 			setErrors(err.response?.data || {});
 		}
 	};

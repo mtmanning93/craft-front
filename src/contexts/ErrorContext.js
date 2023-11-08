@@ -14,12 +14,10 @@ export const ErrorProvider = ({ children }) => {
   };
 
   const showSuccessAlert = (title, message, variant) => {
-    console.log("provider showing alert")
     setErrorInfo({ title, message, variant });
   }
 
   const clearErrorAlert = () => {
-    console.log("provider clearing alert")
     setErrorInfo(null);
   };
 

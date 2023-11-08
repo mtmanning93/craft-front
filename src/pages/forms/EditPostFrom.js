@@ -51,7 +51,7 @@ const EditPostForm = () => {
 					history.push("/");
 				}
 			} catch (err) {
-				console.log(err);
+				(err);
 
 				if (err.response.status === 404) {
 					showErrorAlert(
@@ -107,7 +107,6 @@ const EditPostForm = () => {
 			await axiosReq.put(`/posts/${id}/`, formData);
             history.goBack()
 		} catch (err) {
-			console.log(err);
 			setErrors(err.response?.data || {});
 		}
 	};

@@ -43,7 +43,6 @@ const Feed = () => {
 				setLoaded(true);
 				setFeedErrorMessage("");
 			} catch (error) {
-				console.log(error);
 				setFeedErrorMessage(
 					"Currently unable to retrieve feed data, please refresh the feed, or try again soon."
 				);

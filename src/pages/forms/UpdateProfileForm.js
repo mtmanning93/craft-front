@@ -122,7 +122,6 @@ const UpdateProfileForm = () => {
 				setProfileCompanies(profileCompanies.results);
 				setNumberOfCompanies(profileCompanies.count);
 			} catch (err) {
-				console.log(err);
 				showErrorAlert(
 					"Unsuccessful",
 					"Unable to fetch requested data",

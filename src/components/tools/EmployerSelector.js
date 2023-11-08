@@ -23,7 +23,6 @@ const EmployerSelector = ({ value, onChange }) => {
 				setCompanies(options);
 				setError(null);
 			} catch (err) {
-				console.log(err);
 				setError("Currently unable to retrieve company list");
 			}
 		};

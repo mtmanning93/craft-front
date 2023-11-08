@@ -66,7 +66,6 @@ const CredentialsForm = () => {
 			);
 			history.goBack();
 		} catch (err) {
-			console.log(err);
 			setErrors(err.response?.data);
 		}
 	};
@@ -86,7 +85,6 @@ const CredentialsForm = () => {
 			);
 			history.goBack();
 		} catch (err) {
-			console.log(err);
 			setErrors(err.response?.data);
 		}
 	};

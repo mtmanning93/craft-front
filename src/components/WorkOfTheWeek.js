@@ -31,7 +31,6 @@ const WorkOfTheWeek = () => {
 					setErrorMessage("");
 				}
 			} catch (err) {
-				console.log("API request error:", err);
 				if (isMounted) {
 					setErrorMessage(
 						"Having trouble retrieving posts at this time."

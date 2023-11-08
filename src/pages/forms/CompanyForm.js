@@ -53,7 +53,6 @@ const CompanyForm = () => {
             )
 			history.goBack();
 		} catch (err) {
-			console.log(err.response.data);
 			setErrors(err.response?.data);
 		}
 	};

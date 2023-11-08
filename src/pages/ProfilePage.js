@@ -34,8 +34,6 @@ const ProfilePage = () => {
 				setProfileData({ results: [profile] });
 				setLoaded(true);
 			} catch (err) {
-				console.log(err);
-
 				if (
 					err.response.status === 400 ||
 					err.response.status === 404
@@ -66,7 +64,6 @@ const ProfilePage = () => {
 				setLoaded(true);
 				setFeedErrorMessage("");
 			} catch (err) {
-				console.log(err);
 				setFeedErrorMessage(
 					"Currently unable to retrieve this profiles posts, please refresh the profile, or try again soon."
 				);

@@ -70,7 +70,6 @@ const ProfileCard = (props) => {
 				}),
 			}));
 		} catch (err) {
-			console.log(err);
 			showErrorAlert(
 				"Unexpected Error",
 				`Unable to unapprove profile. ${err.message}`,
@@ -97,7 +96,6 @@ const ProfileCard = (props) => {
 				}),
 			}));
 		} catch (err) {
-			console.log(err);
 			showErrorAlert(
 				"Unexpected Error",
 				`Unable to approve profile. ${err.message}`,
@@ -124,7 +122,6 @@ const ProfileCard = (props) => {
 				}),
 			}));
 		} catch (err) {
-			console.log(err);
 			showErrorAlert(
 				"Unexpected Error",
 				`Unable to follow profile. ${err.message}`,
@@ -149,7 +146,6 @@ const ProfileCard = (props) => {
 				}),
 			}));
 		} catch (err) {
-			console.log(err);
 			showErrorAlert(
 				"Unexpected Error",
 				`Unable to unfollow profile. ${err.message}`,
@@ -168,7 +164,6 @@ const ProfileCard = (props) => {
 					setProfileCompanies(profileCompanies.results);
                     setCompaniesErrorMessage("")
 				} catch (err) {
-					console.log("API request error:", err);
 					setCompaniesErrorMessage(
 						"Unable to retrieve company data for profile at this time, please refresh the page."
 					);

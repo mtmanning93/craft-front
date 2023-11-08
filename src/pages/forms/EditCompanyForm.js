@@ -56,7 +56,6 @@ const EditCompanyForm = () => {
               setLoaded(true);
             }
           } catch (err) {
-            console.log(err.response.status);
       
             if (isMounted) {
               // Check the component is mounted before updating
@@ -108,7 +107,6 @@ const EditCompanyForm = () => {
 			await axiosReq.put(`/companies/${id}/`, formData);
 			history.goBack();
 		} catch (err) {
-			console.log(err.response.data);
 			setErrors(err.response?.data);
 		}
 	};

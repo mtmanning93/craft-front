@@ -32,7 +32,6 @@ const NavBar = () => {
 				"success"
 			);
 		} catch (err) {
-			console.log(err);
 			showErrorAlert(`${err.response.status} Error`, `${err}`, "danger");
 		}
 	};

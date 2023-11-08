@@ -66,7 +66,6 @@ const OtherFeeds = () => {
 				setFeedErrorMessage("");
 				setLoaded(true);
 			} catch (error) {
-				console.log(error);
 				setFeedErrorMessage(
 					"Currently unable to retrieve feed data, please refresh the feed, or try again soon."
 				);
