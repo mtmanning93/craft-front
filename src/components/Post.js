@@ -15,7 +15,7 @@ import SettingsDropdown from "./buttons/SettingsDropdown";
 import { useErrorContext } from "../contexts/ErrorContext";
 
 const Post = (props) => {
-	const { showErrorAlert } = useErrorContext();
+	const { showErrorAlert, showSuccessAlert } = useErrorContext();
 	const currentUser = useCurrentUser();
 
 	const {
@@ -45,9 +45,6 @@ const Post = (props) => {
 		history.push(`/posts/${id}/edit`);
 	};
 
-    console.log(currentUrl.pathname)
-    console.log(isPostDetails)
-
 	const deletePost = async () => {
 		try {
 			await axiosRes.delete(`/posts/${id}/`);
@@ -61,6 +58,11 @@ const Post = (props) => {
 			if (isPostDetails) {
 				history.push("/");
 			}
+            showSuccessAlert(
+                "Success",
+                "Your post was deleted",
+                "success"
+            )
 		} catch (err) {
 			showErrorAlert(
 				"Delete Error",

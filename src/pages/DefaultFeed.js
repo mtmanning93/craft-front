@@ -39,14 +39,11 @@ const DefaultFeed = () => {
 				setLoaded(true);
 				setFeedErrorMessage("");
 			} catch (err) {
-				console.log(err);
 				setFeedErrorMessage(
 					"Currently unable to retrieve feed data, please refresh the feed, or try again soon."
 				);
 			}
 		};
-
-		console.log("Render oNLY oNCE");
 
 		setLoaded(false);
 		const timeout = setTimeout(() => {

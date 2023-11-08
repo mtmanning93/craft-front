@@ -38,7 +38,6 @@ const PostDetails = () => {
 				setComments(comments);
 				setLoaded(true);
 			} catch (err) {
-                console.log(err);
                 if (err.response.status === 400 || err.response.status === 404) {
 				showErrorAlert(
 					`${err.response.status} error!`,

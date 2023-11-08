@@ -15,3 +15,7 @@ code {
 .dropdown-toggle::after {
   display: none;
 }
+
+.dropdown-item:focus {
+    background-color: #ffffff;
+}

@@ -19,8 +19,8 @@ const NavBar = () => {
 	const { showErrorAlert, showSuccessAlert } = useErrorContext();
 	const currentUser = useCurrentUser();
 	const setCurrentUser = useSetCurrentUser();
-    
-	const { expanded, setExpanded, ref } = useClickOutsideToggle();  
+
+	const { expanded, setExpanded, ref } = useClickOutsideToggle();
 
 	const handleLogOut = async () => {
 		try {
@@ -143,7 +143,12 @@ const NavBar = () => {
 						Settings <i className="fa-solid fa-angle-right" />
 					</NavLink>
 					<NavDropdown.Divider />
-					<NavLink to="/" onClick={handleLogOut} aria-label="logout">
+					<NavLink
+						to="/"
+						onClick={handleLogOut}
+						aria-label="logout"
+						className="text-danger"
+					>
 						Logout{" "}
 						<i className="fa-solid fa-arrow-right-from-bracket" />
 					</NavLink>
@@ -163,42 +168,47 @@ const NavBar = () => {
 								/>
 							}
 							alignRight
-							id="large-nav-dropdown"
+							id="basic-nav-dropdown"
 							className={styles.Dropdown}
 						>
 							<p className="mb-1">
 								Welcome back {currentUser?.username}
 							</p>
-
-							<NavLink
+							<NavDropdown.Item
+								as={NavLink}
 								to={`/profiles/${currentUser?.profile_id}`}
 								aria-label="profile"
+								activeClassName={`${styles.Active} bg-none`}
 							>
 								<span>
 									Profile{" "}
 									<i className="fa-solid fa-angle-right" />
 								</span>
-							</NavLink>
-							<NavLink
+							</NavDropdown.Item>
+							<NavDropdown.Item
+								as={NavLink}
 								to={`/profiles/${currentUser?.profile_id}/edit/credentials`}
 								aria-label="settings"
+								activeClassName={`${styles.Active} bg-none`}
 							>
 								<span>
 									Settings{" "}
 									<i className="fa-solid fa-angle-right" />
 								</span>
-							</NavLink>
+							</NavDropdown.Item>
 							<NavDropdown.Divider />
-							<NavLink
+							<NavDropdown.Item
+								as={NavLink}
 								to="/"
 								onClick={handleLogOut}
 								aria-label="logout"
+								activeClassName={`${styles.Active} bg-none`}
 							>
-								<span>
+								<span className="text-danger">
 									Logout{" "}
 									<i className="fa-solid fa-arrow-right-from-bracket" />
 								</span>
-							</NavLink>
+							</NavDropdown.Item>
 						</NavDropdown>
 					</Nav>
 				</Col>
