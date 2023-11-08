@@ -47,12 +47,12 @@ const Post = (props) => {
 
 	const deletePost = async () => {
 		try {
-			const response = await axiosRes.delete(`/posts/${id}/`);
-			console.log("Server response:", response);
-            // if (currentUrl === `/posts/${id}/`) {
-            //     go back twice
-            // }
-            // else
+            await axiosRes.delete(`/posts/${id}/`);
+            if (currentUrl === "/") {
+                history.replace("/");
+            } else {
+                history.push("/")
+            }
             history.push("/")
 		} catch (err) {
 			showErrorAlert(
