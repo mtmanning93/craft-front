@@ -45,15 +45,22 @@ const Post = (props) => {
 		history.push(`/posts/${id}/edit`);
 	};
 
+    console.log(currentUrl.pathname)
+    console.log(isPostDetails)
+
 	const deletePost = async () => {
 		try {
-            await axiosRes.delete(`/posts/${id}/`);
-            if (currentUrl === "/") {
-                history.replace("/");
-            } else {
-                history.push("/")
-            }
-            history.push("/")
+			await axiosRes.delete(`/posts/${id}/`);
+
+            setPosts((prevPosts) => ({
+				results: prevPosts.results.filter(
+					(post) => post.id !== id
+				),
+			}));
+
+			if (isPostDetails) {
+				history.push("/");
+			}
 		} catch (err) {
 			showErrorAlert(
 				"Delete Error",

@@ -46,6 +46,8 @@ const DefaultFeed = () => {
 			}
 		};
 
+		console.log("Render oNLY oNCE");
+
 		setLoaded(false);
 		const timeout = setTimeout(() => {
 			getDefaultFeed();
