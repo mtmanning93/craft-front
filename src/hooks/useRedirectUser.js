@@ -13,11 +13,6 @@ export const useRedirectUser = (userStatus) => {
 			try {
 				await axios.post("/dj-rest-auth/token/refresh/");
 				if (userStatus === "loggedIn") {
-					showErrorAlert(
-						"Wrong way",
-						"You are already logged in.",
-						"info"
-					);
 					history.push("/");
 				}
 			} catch (error) {

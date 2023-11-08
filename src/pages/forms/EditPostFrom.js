@@ -51,8 +51,6 @@ const EditPostForm = () => {
 					history.push("/");
 				}
 			} catch (err) {
-				(err);
-
 				if (err.response.status === 404) {
 					showErrorAlert(
 						`${err.response.status} error!`,
