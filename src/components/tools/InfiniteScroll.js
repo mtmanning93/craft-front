@@ -1,6 +1,7 @@
 import { axiosReq } from "../../api/axiosDefaults";
 
-const fetchMoreData = async (resource, setResource) => {
+const fetchMoreData = async (resource, setResource, setError) => {
+
 	try {
 		const { data } = await axiosReq.get(resource.next);
 
@@ -21,8 +22,7 @@ const fetchMoreData = async (resource, setResource) => {
 			results: [...prevResource.results, ...newResults],
 		}));
 	} catch (err) {
-		console.log("Error fetching more data:", err);
-
+		setError("An error occured whilst getting more data. Try again soon...");
 	}
 };
 

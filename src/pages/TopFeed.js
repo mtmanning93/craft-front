@@ -126,7 +126,9 @@ const Feed = () => {
 
 				{feedErrorMessage && (
 					<div className="m-2">
-						<h1>Unexpected Feed Error</h1>
+						<p className="text-warning mb-0">
+							<strong>Unexpected Feed Error:</strong>
+						</p>
 						<p>{feedErrorMessage}</p>
 					</div>
 				)}
@@ -136,7 +138,11 @@ const Feed = () => {
 							<InfiniteScroll
 								dataLength={profiles.results.length}
 								next={() =>
-									fetchMoreData(profiles, setProfiles)
+									fetchMoreData(
+										profiles,
+										setProfiles,
+										setFeedErrorMessage
+									)
 								}
 								hasMore={!!profiles.next}
 								loader={<Loader loader variant="warning" />}
@@ -149,6 +155,16 @@ const Feed = () => {
 										ranking={idx + 1}
 									/>
 								))}
+								{feedErrorMessage && (
+									<div className="m-2">
+										<p className="text-warning mb-0">
+											<strong>
+												Unexpected Feed Error:
+											</strong>
+										</p>
+										<p>{feedErrorMessage}</p>
+									</div>
+								)}
 							</InfiniteScroll>
 						) : (
 							noFeedMessage

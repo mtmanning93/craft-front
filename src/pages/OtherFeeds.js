@@ -110,7 +110,9 @@ const OtherFeeds = () => {
 				)}
 				{feedErrorMessage && (
 					<div className="m-2">
-						<h1>Unexpected Feed Error</h1>
+						<p className="text-warning mb-0">
+							<strong>Unexpected Feed Error:</strong>
+						</p>
 						<p>{feedErrorMessage}</p>
 					</div>
 				)}
@@ -119,7 +121,13 @@ const OtherFeeds = () => {
 						{posts.results.length ? (
 							<InfiniteScroll
 								dataLength={posts.results.length}
-								next={() => fetchMoreData(posts, setPosts)}
+								next={() =>
+									fetchMoreData(
+										posts,
+										setPosts,
+										setFeedErrorMessage
+									)
+								}
 								hasMore={!!posts.next}
 								loader={<Loader loader variant="warning" />}
 								endMessage={<p>No more posts to load...</p>}
@@ -131,6 +139,16 @@ const OtherFeeds = () => {
 										setPosts={setPosts}
 									/>
 								))}
+								{feedErrorMessage && (
+									<div className="m-2">
+										<p className="text-warning mb-0">
+											<strong>
+												Unexpected Feed Error:
+											</strong>
+										</p>
+										<p>{feedErrorMessage}</p>
+									</div>
+								)}
 							</InfiniteScroll>
 						) : (
 							noFeedMessage
