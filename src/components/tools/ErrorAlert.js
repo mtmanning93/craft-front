@@ -12,12 +12,10 @@ const CustomAlert = () => {
 	useEffect(() => {
 		if (errorInfo) {
 			setShow(true);
-            console.log("Show alert")
 			timeoutRef.current = setTimeout(() => {
 				setShow(false);
 				clearErrorAlert();
 			}, 5000);
-            console.log("Unshow alert")
 		}
 		return () => {
 			if (timeoutRef.current) {

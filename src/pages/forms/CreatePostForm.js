@@ -16,8 +16,8 @@ import { useErrorContext } from "../../contexts/ErrorContext";
 
 const CreatePostForm = () => {
 	useRedirectUser("loggedOut");
-    
-    const { showSuccessAlert } = useErrorContext();
+
+	const { showSuccessAlert } = useErrorContext();
 	const currentUser = useCurrentUser();
 
 	const [errors, setErrors] = useState({});
@@ -55,17 +55,25 @@ const CreatePostForm = () => {
 		event.preventDefault();
 
 		const formData = new FormData();
-		formData.append("image", imageSelection.current.files[0]);
+		formData.append("image", imageSelection.current.files[0] || "");
 		formData.append("title", title);
 		formData.append("content", content);
 
+		if (imageSelection.current.files.length === 0) {
+			setErrors({
+				...errors,
+				image: ["Please select an image for your post."],
+			});
+			return;
+		}
+
 		try {
 			const response = await axiosReq.post("/posts/", formData);
-            showSuccessAlert(
-                "Success",
-                "Your post was successfully created.",
-                "success"
-            )
+			showSuccessAlert(
+				"Success",
+				"Your post was successfully created.",
+				"success"
+			);
 			history.push(`/posts/${response.data.id}`);
 		} catch (err) {
 			console.log(err);
