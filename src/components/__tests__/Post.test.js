@@ -1,8 +1,4 @@
-import {
-	render,
-	screen,
-	act,
-} from "@testing-library/react";
+import { render, screen, act } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom/cjs/react-router-dom.min";
 import { ErrorProvider } from "../../contexts/ErrorContext";
 import Post from "../Post";
@@ -32,7 +28,7 @@ test("renders correct post details", async () => {
 	const postOwner = screen.getByText("Test Name");
 	const postContent = screen.getByText("Test content for post");
 	const postImage = screen.getByAltText("Post title and image alt text");
-	const likeButton = screen.getByTitle("login or sign up to like");
+	const likeButton = screen.getByTitle("Login or sign up to like");
 	expect(postOwner).toBeInTheDocument();
 	expect(postContent).toBeInTheDocument();
 	expect(postImage).toBeInTheDocument();
@@ -58,7 +54,7 @@ test("renders post like button for logged in user", async () => {
 		</Router>
 	);
 
-	const likeButton = await screen.findByTitle("like");
+	const likeButton = await screen.findByTitle("Like button");
 	expect(likeButton).toBeInTheDocument();
 });
 
@@ -89,4 +85,27 @@ test("renders like and comment count based on post counters", async () => {
 	const commentCount = await screen.findByText("12");
 	expect(likeCount).toBeInTheDocument();
 	expect(commentCount).toBeInTheDocument();
+});
+
+test("settings menu is rendered for owner of post", async () => {
+	const mockPost = {
+		id: 1,
+		owner: "admin1",
+		profile_id: 1,
+	};
+
+	await act(async () => {
+		render(
+			<Router>
+				<CurrentUserProvider>
+					<ErrorProvider>
+						<Post {...mockPost} />
+					</ErrorProvider>
+				</CurrentUserProvider>
+			</Router>
+		);
+	});
+
+	const SettingsDropdown = await screen.findByTitle("Settings")
+	expect(SettingsDropdown).toBeInTheDocument();
 });

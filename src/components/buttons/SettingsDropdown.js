@@ -28,7 +28,7 @@ const SettingsDropdown = ({ editObject, onDelete }) => {
 
 	return (
 		<>
-			<Dropdown alignRight>
+			<Dropdown alignRight title="Settings">
 				<Dropdown.Toggle as={SettingsBtn}></Dropdown.Toggle>
 				<Dropdown.Menu
 					className="text-right"

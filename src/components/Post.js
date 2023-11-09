@@ -188,10 +188,10 @@ const Post = (props) => {
 					<span className={styles.Count}>{likes_count}</span>
 					{like_id ? (
 						<span className={styles.LikeIcon} onClick={unlikePost}>
-							<i className="fa-solid fa-thumbs-up" title="unlike" />
+							<i className="fa-solid fa-thumbs-up" title="Unlike button" />
 						</span>
 					) : currentUser ? (
-						<span className={styles.LikeIcon} onClick={likePost} title="like">
+						<span className={styles.LikeIcon} onClick={likePost} title="Like button">
 							<i className="fa-regular fa-thumbs-up" />
 						</span>
 					) : (
@@ -203,7 +203,7 @@ const Post = (props) => {
 								</Tooltip>
 							}
 						>
-							<i className="fa-regular fa-thumbs-up" title="login or sign up to like" />
+							<i className="fa-regular fa-thumbs-up" title="Login or sign up to like" />
 						</OverlayTrigger>
 					)}
 				</div>
