@@ -17,7 +17,17 @@ export const handlers = [
 			})
 		);
 	}),
-    rest.post(`${baseURL}dj-rest-auth/logout/`, (req,res,ctx) => {
-        return res(ctx.status(200));
-    })
+	rest.post(`${baseURL}dj-rest-auth/logout/`, (req, res, ctx) => {
+		return res(ctx.status(200));
+	}),
+	rest.post(`${baseURL}likes/`, (req, res, ctx) => {
+		return res(
+			ctx.json({
+				id: 15,
+				owner: "admin1",
+				post: 10,
+				created_on: "29/10/2023 - 10:50",
+			})
+		);
+	}),
 ];
