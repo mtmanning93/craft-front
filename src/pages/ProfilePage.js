@@ -14,9 +14,11 @@ import fetchMoreData from "../components/tools/InfiniteScroll";
 import { Link } from "react-router-dom";
 import { useErrorContext } from "../contexts/ErrorContext";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useCurrentUser } from "../contexts/CurrentUserContext";
 
 const ProfilePage = () => {
 	const { showErrorAlert } = useErrorContext();
+	const currentUser = useCurrentUser();
 
 	const [profile, setProfileData] = useState({ results: [] });
 	const [profilePosts, setProfilePosts] = useState({ results: [] });
@@ -24,6 +26,8 @@ const ProfilePage = () => {
 
 	const { id } = useParams();
 	const history = useHistory();
+
+	const is_owner = currentUser?.pk.toString() === id;
 
 	useEffect(() => {
 		const getProfileData = async () => {
@@ -79,12 +83,7 @@ const ProfilePage = () => {
 			{profilePosts.results.length ? (
 				<InfiniteScroll
 					dataLength={profilePosts.results.length}
-					next={() =>
-						fetchMoreData(
-							profilePosts,
-							setProfilePosts
-						)
-					}
+					next={() => fetchMoreData(profilePosts, setProfilePosts)}
 					hasMore={!!profilePosts.next}
 					loader={<Loader loader variant="warning" />}
 					endMessage={<p>No more posts to load...</p>}
@@ -121,7 +120,11 @@ const ProfilePage = () => {
 							{...profile.results[0]}
 							setProfileData={setProfileData}
 						/>
-                        <h1 className="mb-0 mt-3 pb-2 border-bottom">Your Posts:</h1>
+
+						<h1 className="mb-0 mt-3 pb-2 border-bottom">
+							{is_owner ? "Your" : profile.results[0].owner}{" "}
+							posts:
+						</h1>
 						{profileOwnedPosts}
 					</>
 				) : (
@@ -135,7 +138,7 @@ const ProfilePage = () => {
 				<p className={`${stylesW.Heading} m-0 mt-2 ml-2`}>
 					Work of the week
 				</p>
-                <p className="mx-2 mb-0">The most liked work right now.</p>
+				<p className="mx-2 mb-0">The most liked work right now.</p>
 				<WorkOfTheWeek />
 			</Col>
 		</Row>
