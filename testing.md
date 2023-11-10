@@ -13,7 +13,9 @@
 - [CSS Validation](#css-validation)
     - [Stylelint](#stylelint)
         - [Install/ Run](#install-run-stylint)
-- [Manual Testing]()
+- [Manual Testing](#manual-testing)
+    - [More...]()
+    - [Simulating Errors](#simulating-errors)
 - [Screen Testing]()
 - [Browser Testing]()
 - [Lighthouse]()
@@ -97,6 +99,23 @@ Finally to run the linter I could use the custom script command:
     npm run lint:css
 
 [For more on getting started with Stylelint](https://stylelint.io/user-guide/get-started)
+
+## Manual Testing
+
+### Simulating Errors
+
+When creating alerts to show the user incase of an error, I sometimes needed to trigger the catch block. To do so I created a simple function to mock an error. This way I was able to see the alerts play out in the case of an actual error. Below is the simple function and function call I used throughout testing the errors and the alerts.
+    
+    // outside useEffect()
+
+	const simulateError = () => {
+	    throw new Error("Simulated error message");
+	};
+
+    // inside try block
+
+	simulateError();
+
 
 [⏪ Main README](README.md)
 
