@@ -14,7 +14,7 @@ import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 
 const DefaultFeed = () => {
-	const user = useCurrentUser();
+	const currentUser = useCurrentUser();
 
 	const [posts, setPosts] = useState([]);
 	const [loaded, setLoaded] = useState(false);
@@ -54,7 +54,7 @@ const DefaultFeed = () => {
 		return () => {
 			clearTimeout(timeout);
 		};
-	}, [search, user]);
+	}, [search, currentUser]);
 
 	return (
 		<Row className="w-100 px-4">
@@ -68,7 +68,7 @@ const DefaultFeed = () => {
 					<WorkOfTheWeek />
 				</Row>
 
-				{user && (
+				{currentUser && (
 					<Form
 						onSubmit={(event) => event.preventDefault()}
 						className={`${mainStyles.Content} mt-3 d-flex`}
