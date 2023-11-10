@@ -19,9 +19,8 @@ const ProfilePage = () => {
 	const { showErrorAlert } = useErrorContext();
 
 	const [profile, setProfileData] = useState({ results: [] });
-	const [profilePosts, setProfilePosts] = useState([]);
+	const [profilePosts, setProfilePosts] = useState({ results: [] });
 	const [loaded, setLoaded] = useState(false);
-	const [feedErrorMessage, setFeedErrorMessage] = useState("");
 
 	const { id } = useParams();
 	const history = useHistory();
@@ -29,15 +28,18 @@ const ProfilePage = () => {
 	useEffect(() => {
 		const getProfileData = async () => {
 			try {
-				const [{ data: profile }] = await Promise.all([
-					axiosReq.get(`/profiles/${id}`),
-				]);
+				const [{ data: profile }, { data: profilePosts }] =
+					await Promise.all([
+						axiosReq.get(`/profiles/${id}`),
+						axiosReq.get(`/posts/?owner__profile=${id}`),
+					]);
 				setProfileData({ results: [profile] });
+				setProfilePosts(profilePosts);
 				setLoaded(true);
 			} catch (err) {
 				if (
-					err.response.status === 400 ||
-					err.response.status === 404
+					err.response &&
+					(err.response.status === 400 || err.response.status === 404)
 				) {
 					showErrorAlert(
 						`${err.response.status} error!`,
@@ -56,24 +58,8 @@ const ProfilePage = () => {
 			}
 		};
 
-		const getProfilePosts = async () => {
-			try {
-				const { data: profilePosts } = await axiosReq.get(
-					`/posts/?owner__profile=${id}`
-				);
-				setProfilePosts(profilePosts.results);
-				setLoaded(true);
-				setFeedErrorMessage("");
-			} catch (err) {
-				setFeedErrorMessage(
-					"Currently unable to retrieve this profiles posts, please refresh the profile, or try again soon."
-				);
-			}
-		};
-
 		setLoaded(false);
 		getProfileData();
-		getProfilePosts();
 	}, [id, history, showErrorAlert]);
 
 	const noPostsMessage = (
@@ -90,41 +76,27 @@ const ProfilePage = () => {
 
 	const profileOwnedPosts = (
 		<>
-			{profilePosts.length ? (
+			{profilePosts.results.length ? (
 				<InfiniteScroll
-					dataLength={profilePosts.length}
+					dataLength={profilePosts.results.length}
 					next={() =>
 						fetchMoreData(
 							profilePosts,
-							setProfilePosts,
-							setFeedErrorMessage
+							setProfilePosts
 						)
 					}
 					hasMore={!!profilePosts.next}
 					loader={<Loader loader variant="warning" />}
 					endMessage={<p>No more posts to load...</p>}
 				>
-					{profilePosts.map((post) => (
+					{profilePosts.results.map((post) => (
 						<Post
 							key={post.id}
 							{...post}
-							setProfilePosts={setProfilePosts}
+							setPosts={setProfilePosts}
 						/>
 					))}
-					{feedErrorMessage && (
-						<div className="m-2">
-							<p className="text-warning mb-0">
-								<strong>Unexpected Feed Error:</strong>
-							</p>
-							<p>{feedErrorMessage}</p>
-						</div>
-					)}
 				</InfiniteScroll>
-			) : feedErrorMessage ? (
-				<div className="m-2">
-					<h1>Unexpected Error</h1>
-					<p>{feedErrorMessage}</p>
-				</div>
 			) : (
 				noPostsMessage
 			)}
@@ -149,6 +121,7 @@ const ProfilePage = () => {
 							{...profile.results[0]}
 							setProfileData={setProfileData}
 						/>
+                        <h1 className="mb-0 mt-3 pb-2 border-bottom">Your Posts:</h1>
 						{profileOwnedPosts}
 					</>
 				) : (
@@ -162,6 +135,7 @@ const ProfilePage = () => {
 				<p className={`${stylesW.Heading} m-0 mt-2 ml-2`}>
 					Work of the week
 				</p>
+                <p className="mx-2 mb-0">The most liked work right now.</p>
 				<WorkOfTheWeek />
 			</Col>
 		</Row>
