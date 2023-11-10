@@ -54,7 +54,7 @@ const DefaultFeed = () => {
 		return () => {
 			clearTimeout(timeout);
 		};
-	}, [search]);
+	}, [search, user]);
 
 	return (
 		<Row className="w-100 px-4">
