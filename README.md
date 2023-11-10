@@ -1,18 +1,110 @@
 # Craft Social
 
-## Problem ID
+![Craft Social](./README_images/responsive.png)
 
-"As a tradesman there isnt a place for us to share our work. Instagram and Facebook are catered more to 'free-time' social activities. It would be good to have platform to share my work with other like minded people who can appreciate it. Tradesman and manual workers are often very skilled individuals whos work is often taken for granted as we have knowhere to share it."
+## Intro
 
-## Problem Statement
+Craft Social is a social platform where tradesmen and skilled workers can share work related content. Showcasing their skills and abilities. It is designed to highlight good skills through the approval of people within the industry.
 
-"As a *skilled tradesman*, I would like to have *a place to share work I am proud of* or updates on a particular project, but I dont know where to share work related content. Instagram is too social, and LinkedIn seems too corporate. This makes me feel *my work is not getting seen or appreciated* like other industries. Where can I share content, to *showcase my skills* for others to appreciate it?
+This repository is for the Craft Social frontend. The application also utilizes a backend API using Django Rest Framework, the repository for this can be found at [Craft-API](https://github.com/mtmanning93/craft-api).
 
-## Site Goals
+### Live Site
 
-**User Goals** - The user wants the ability to share work and work related updates via a post, to a site ith like minded individuals, showcasing their craft and abilities.
+[Hosted on Heroku](https://craftltd-6c672c6a814e.herokuapp.com/)
+
+### Repository
+
+[Github Repository](https://github.com/mtmanning93/craft-front)
+
+### Project Stack
+
+React, React-Bootstrap, CSS, HTML
+
+### Get Started
+
+To get started follow these steps to clone the github repository locally, and setup other dependencies: 
+
+[Deployment](#deployment)
+
+## Contents
+
+- [Craft Social](#craft-social)
+    - [Intro](#intro)
+        - [Live Site](#live-site)
+        - [Repository](#repository)
+        - [Project Stack](#project-stack)
+        - [Getting Started](#get-started)
+    - [Design Thinking](#design-thinking)
+        - [Problem ID](#problem-id)
+        - [Problem Statement](#problem-statement)
+        - [Design Thinking](#design-thinking)
+    - [UX](#ux-user-experience-design)
+        - [User Stories]()
+            - [Site Admin]()
+            - [User]()
+            - [Registered User]()
+        - [Wireframe]()
+        - [Information Architecture]()
+        - [Visual Design]()
+            - [Color Scheme]()
+            - [Fonts]()
+            - [Icons]()
+            - [Logo]()
+    - [Database ERD]()
+    - [Development]()
+        - [Agile Design]()
+            - [Github Issues]()
+                - [Templates]()
+                    - [User Story]()
+                    - [Bug Report]()
+                    - [Feature Request]()
+                - [Labels]()
+            - [Product Backlog]()
+            - [Milestones]()
+                - [Backend Iteration]()
+                - [Frontend Iteration 1]()
+                - [Frontend Iteration 2]()
+                - [Frontend Iteration 3]()
+                - [Frontend Iteration 4]()
+            - [Project Board]()
+    - [Features]()
+        - [Current Features]()
+        - [Future Features]()
+        - [Defensive Design]()
+    - [Technologies]()
+        - [React]()
+        - [React-Bootstrap]()
+        - [Javascript]()
+    - [Testing](testing.md)
+    - [Bugs]()
+        - [Resolved Bugs]()
+        - [Unresolved Bugs]()
+    - [Deployment]()
+        - [Github Cloning]()
+        - [Heroku Deployment]()
+    - [Credits]()
+        - [Tools]()
+        - [Resources]()
+        - [Tutorials]()
+
+## Design Thinking
+
+### Problem ID
+---
+For a tradesman there isnt a place for to share work. Instagram and Facebook are catered more to 'free-time' social activities. It would be beneficial to have platform to share work and related information with other like minded people who can appreciate it. Tradesman and manual workers are often very skilled individuals, their work is often taken for granted as they have knowhere to share it.
+
+### Problem Statement
+---
+"As a *skilled tradesman*, I would like to have *a place to share work I am proud of* or updates on a particular project, but I dont know where to share work related content. Instagram is too social, and LinkedIn seems too corporate. This makes me feel *my work is not getting seen or appreciated* like other industries. Where can I share content, to *showcase my skills* for others to appreciate it."
+
+### Site Goals
+---
+**User Goals** - The user wants the ability to share work and work related updates via a post, to a site with like minded individuals, showcasing their craft and abilities.
 
 **Owner Goals** - To create an environment for people in highly skilled manual jobs to share their work, showcase their skills and have their work appreciated.
+
+## UX/ User Experience Design
+# ------------------------------------------------------------
 
 ### Libraries
 
@@ -189,3 +281,8 @@ INCORRECT (WARNINGS)
 	// };
 
 	// simulateError();
+
+
+[⏩ Testing README](README.md)
+
+[⏫ contents](#contents)
