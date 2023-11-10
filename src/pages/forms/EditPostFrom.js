@@ -1,5 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Form, Row, Col, Image, Alert } from "react-bootstrap";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Form from "react-bootstrap/Form";
+import Alert from "react-bootstrap/Alert";
+import Image from "react-bootstrap/Image";
 import mainStyles from "../../App.module.css";
 import styles from "../../styles/CreatePostForm.module.css";
 import MainButton from "../../components/buttons/MainButton";

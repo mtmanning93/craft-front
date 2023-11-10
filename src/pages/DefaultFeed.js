@@ -7,7 +7,9 @@ import fetchMoreData from "../components/tools/InfiniteScroll";
 import WorkOfTheWeek from "../components/WorkOfTheWeek";
 import mainStyles from "../App.module.css";
 import stylesW from "../styles/WotW.module.css";
-import { Col, Form, Row } from "react-bootstrap";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 

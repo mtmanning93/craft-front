@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Col, Row } from "react-bootstrap";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import WorkOfTheWeek from "../components/WorkOfTheWeek";
 import stylesW from "../styles/WotW.module.css";
 import mainStyles from "../App.module.css";

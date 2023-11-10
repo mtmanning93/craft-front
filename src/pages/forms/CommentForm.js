@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Alert, Form } from "react-bootstrap";
+import Alert from "react-bootstrap/Alert";
+import Form from "react-bootstrap/Form";
 import Avatar from "../../components/Avatar";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import MainButton from "../../components/buttons/MainButton";

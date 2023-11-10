@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Col, Row, Container } from "react-bootstrap";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
 import { Link, useHistory, useParams } from "react-router-dom";
 import { axiosReq } from "../api/axiosDefaults";
 import Post from "../components/Post";

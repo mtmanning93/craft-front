@@ -1,5 +1,5 @@
 import styles from "./App.module.css";
-import { Container } from "react-bootstrap";
+import Container from "react-bootstrap/Container";
 import { Redirect, Route, Switch } from "react-router-dom";
 import "./api/axiosDefaults";
 import SignUpForm from "./pages/forms/SignUpForm";

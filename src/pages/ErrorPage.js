@@ -1,6 +1,6 @@
 import React from "react";
 import BackButton from "../components/buttons/BackButton";
-import { Card } from "react-bootstrap";
+import Card from "react-bootstrap/Card";
 import errorCone from "../assets/error_cone.jpg";
 import mainStyles from "../App.module.css";
 

@@ -2,15 +2,13 @@ import React, { useEffect, useRef, useState } from "react";
 import MainButton from "../../components/buttons/MainButton";
 import mainStyles from "../../App.module.css";
 import btnStyles from "../../styles/Buttons.module.css";
-import {
-	Alert,
-	Button,
-	Col,
-	Container,
-	Form,
-	Image,
-	Row,
-} from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Image from "react-bootstrap/Image";
+import Container from "react-bootstrap/Container";
+import Form from "react-bootstrap/Form";
+import Alert from "react-bootstrap/Alert";
 import BackButton from "../../components/buttons/BackButton";
 import Loader from "../../components/tools/Loader";
 import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";

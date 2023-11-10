@@ -1,5 +1,8 @@
 import React, { useState } from "react";
-import { Alert, Col, Form, Row } from "react-bootstrap";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Alert from "react-bootstrap/Alert";
+import Form from "react-bootstrap/Form";
 import mainStyles from "../../App.module.css";
 import btnStyles from "../../styles/Buttons.module.css";
 import MainButton from "../../components/buttons/MainButton";

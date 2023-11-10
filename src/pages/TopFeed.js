@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Col, Form, OverlayTrigger, Popover, Row } from "react-bootstrap";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Form from "react-bootstrap/Form";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Popover from "react-bootstrap/Popover";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { axiosReq } from "../api/axiosDefaults";
 import Loader from "../components/tools/Loader";
