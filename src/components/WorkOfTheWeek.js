@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Row, Card } from "react-bootstrap";
+import Row from "react-bootstrap/Row";
+import Card from "react-bootstrap/Card";
 import { axiosReq } from "../api/axiosDefaults";
 import Loader from "./tools/Loader";
 import styles from "../styles/WotW.module.css";

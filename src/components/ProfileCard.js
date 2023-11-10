@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
-import {
-	Row,
-	Card,
-	Col,
-	Tooltip,
-	OverlayTrigger,
-	Button,
-} from "react-bootstrap";
+import Row from "react-bootstrap/Row";
+import Card from "react-bootstrap/Card";
+import Col from "react-bootstrap/Col";
+import Tooltip from "react-bootstrap/Tooltip";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Button from "react-bootstrap/Button";
 import mainStyles from "../App.module.css";
 import Avatar from "./Avatar";
 import SettingsDropdown from "./buttons/SettingsDropdown";

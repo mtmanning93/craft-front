@@ -1,6 +1,8 @@
 import React from "react";
 import mainStyles from "../App.module.css";
-import { Row, Col, Card } from "react-bootstrap";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Card from "react-bootstrap/Card";
 import Avatar from "./Avatar";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 import styles from "../styles/ApprovalFeedCard.module.css";

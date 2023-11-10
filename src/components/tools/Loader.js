@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "../../styles/Loader.module.css"
-import { Spinner } from "react-bootstrap";
+import Spinner from "react-bootstrap/Spinner";
 
 const Loader = ({ loader, src, message, variant }) => {
   return (

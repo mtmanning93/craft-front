@@ -1,5 +1,7 @@
 import React from "react";
-import { Col, Row, Nav } from "react-bootstrap";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+import Nav from "react-bootstrap/Nav";
 import styles from "../styles/Header.module.css";
 import { Link, NavLink } from "react-router-dom";
 import { useCurrentUser } from "../contexts/CurrentUserContext";

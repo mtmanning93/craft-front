@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Alert } from "react-bootstrap";
+import Alert from "react-bootstrap/Alert";
 import styles from "../../styles/Alert.module.css";
 import { useErrorContext } from "../../contexts/ErrorContext";
 

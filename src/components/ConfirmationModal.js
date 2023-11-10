@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal } from "react-bootstrap";
+import Modal from "react-bootstrap/Modal";
 import MainButton from "./buttons/MainButton";
 import btnStyles from "../styles/Buttons.module.css";
 

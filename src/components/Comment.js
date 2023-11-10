@@ -1,5 +1,6 @@
 import React from "react";
-import { Col, Container } from "react-bootstrap";
+import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import Avatar from "./Avatar";
 import { useCurrentUser } from "../contexts/CurrentUserContext";

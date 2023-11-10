@@ -1,7 +1,10 @@
 import React from "react";
 import styles from "../styles/Post.module.css";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
-import { Card, OverlayTrigger, Row, Tooltip } from "react-bootstrap";
+import Card from "react-bootstrap/Card";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Row from "react-bootstrap/Row";
+import Tooltip from "react-bootstrap/Tooltip";
 import Avatar from "./Avatar";
 import {
 	Link,

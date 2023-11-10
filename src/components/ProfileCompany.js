@@ -1,6 +1,7 @@
 import React from "react";
 import { axiosRes } from "../api/axiosDefaults";
-import { Col, Row } from "react-bootstrap";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import SettingsDropdown from "./buttons/SettingsDropdown";
 import { useLocation } from "react-router-dom";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
