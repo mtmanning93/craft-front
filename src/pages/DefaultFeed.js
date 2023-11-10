@@ -57,8 +57,8 @@ const DefaultFeed = () => {
 	}, [search, currentUser]);
 
 	return (
-		<Row className="w-100 px-4">
-			<Col className="pl-0 pr-4">
+		<Row className="w-100 px-2 px-sm-4">
+			<Col className="px-0 pr-md-4">
 				<Row
 					className={`${mainStyles.Content} bg-warning border-dark m-0 mt-3 d-md-none`}
 				>
