@@ -92,26 +92,6 @@ const CredentialsForm = () => {
 		}
 	};
 
-    // const deleteProfile = async () => {
-    //     try {
-    //         // delete the profile
-    //         // await axiosRes.delete(`/profiles/${id}/`);
-    
-    //         // logout and delete
-    //         await axiosRes.post("/dj-rest-auth/delete-profile/");
-    
-    //         // reset currentUser
-    //         // setCurrentUser("");
-    
-    //         history.push("/");
-    //         console.log("deleted")
-    //     } catch (err) {
-    //         console.log(err);
-    //         console.log(err.response?.data);
-    //         console.log("not deleted")
-    //     }
-    // };
-
 	return (
 		<Col
 			xs={11}
@@ -223,7 +203,6 @@ const CredentialsForm = () => {
 					<i className="fa-solid fa-xmark" /> Cancel
 				</p>
 			</Form>
-            {/* <Button className="btn-danger" onClick={deleteProfile}>Delete Profile</Button> */}
 		</Col>
 	);
 };
