@@ -13,7 +13,7 @@ test("renders NavBar component", () => {
 		</Router>
 	);
 
-	const navElement = screen.getByRole('link', { name: "login" });
+	const navElement = screen.getByRole("link", { name: "login" });
 	expect(navElement).toBeInTheDocument();
 });
 
@@ -26,5 +26,6 @@ test("renders Header component", () => {
 		</Router>
 	);
 
-    const headerText = screen.getByText("Welcome to Craft Social!")
+	const headerText = screen.getByText("Welcome to Craft Social!");
+	expect(headerText).toBeInTheDocument();
 });
