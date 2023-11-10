@@ -14,6 +14,7 @@ import styles from "../styles/NavBar.module.css";
 import axios from "axios";
 import btnStyles from "../styles/Buttons.module.css";
 import { useErrorContext } from "../contexts/ErrorContext";
+import { removeTokenTimestamp } from "../jwt/timestamps";
 
 const NavBar = () => {
 	const { showErrorAlert, showSuccessAlert } = useErrorContext();
@@ -26,6 +27,7 @@ const NavBar = () => {
 		try {
 			await axios.post("dj-rest-auth/logout/");
 			setCurrentUser(null);
+			removeTokenTimestamp();
 			showSuccessAlert(
 				"Success",
 				"You have successfully logged out",

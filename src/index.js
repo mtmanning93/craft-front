@@ -8,15 +8,13 @@ import { CurrentUserProvider } from "./contexts/CurrentUserContext";
 import { ErrorProvider } from "./contexts/ErrorContext";
 
 ReactDOM.render(
-	<React.StrictMode>
 		<Router>
 			<CurrentUserProvider>
 				<ErrorProvider>
 					<App />
 				</ErrorProvider>
 			</CurrentUserProvider>
-		</Router>
-	</React.StrictMode>,
+		</Router>,
 	document.getElementById("root")
 );
 

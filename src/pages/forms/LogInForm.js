@@ -9,6 +9,7 @@ import MainButton from "../../components/buttons/MainButton";
 import btnStyles from "../../styles/Buttons.module.css";
 import { useRedirectUser } from "../../hooks/useRedirectUser";
 import { useErrorContext } from "../../contexts/ErrorContext";
+import { setTokenTimestamp } from "../../jwt/timestamps";
 
 const LogInForm = () => {
 	useRedirectUser("loggedIn");
@@ -46,6 +47,7 @@ const LogInForm = () => {
                 "You have successfully logged in.",
                 "success"
             )
+            setTokenTimestamp(data)
 			history.goBack();
 		} catch (err) {
 			setErrors(err.response?.data);
