@@ -1,6 +1,6 @@
 # Craft Social
 
-![Craft Social](./README_images/responsive.png)
+![Craft Social](README_images/responsive.png)
 
 ## Intro
 
@@ -39,33 +39,29 @@ To get started follow these steps to clone the github repository locally, and se
         - [Problem Statement](#problem-statement)
         - [Design Thinking](#design-thinking)
     - [UX](#ux-user-experience-design)
-        - [User Stories]()
-            - [Site Admin]()
-            - [User]()
-            - [Registered User]()
-        - [Wireframe]()
-        - [Information Architecture]()
-        - [Visual Design]()
-            - [Color Scheme]()
-            - [Fonts]()
-            - [Icons]()
-            - [Logo]()
+        - [User Stories](#user-stories)
+            - [Site Admin](#site-admin)
+            - [User](#user)
+            - [Registered User](#registered-user)
+        - [Wireframe](#wireframe)
+        - [Information Architecture](#information-architecture)
+        - [Visual Design](#visual-design)
+            - [Color Scheme](#color-scheme)
+            - [Fonts](#fonts)
+            - [Icons](#icons)
+            - [Logo](#logo)
     - [Database ERD](#database-erd)
-    - [Development]()
-        - [Agile Design]()
-            - [Github Issues]()
-                - [Templates]()
-                    - [User Story]()
-                    - [Bug Report]()
-                    - [Feature Request]()
-                - [Labels]()
-            - [Product Backlog]()
-            - [Milestones]()
+    - [Development](#deployment)
+        - [Agile Design](#agile-design)
+            - [Github Issues](#github-issues)
+                - [Templates](#templates)
+                    - [User Story Template](#user-story-template)
+                    - [Bug Report](#bug-report)
+                    - [Feature Request](#feature-request)
+                - [Labels](#labels)
+            - [Product Backlog](#product-backlog)
+            - [Iterations](#iterations)
                 - [Backend Iteration]()
-                - [Frontend Iteration 1]()
-                - [Frontend Iteration 2]()
-                - [Frontend Iteration 3]()
-                - [Frontend Iteration 4]()
             - [Project Board]()
     - [Features]()
         - [Current Features]()
@@ -103,9 +99,118 @@ For a tradesman there isnt a place for to share work. Instagram and Facebook are
 
 **Owner Goals** - To create an environment for people in highly skilled manual jobs to share their work, showcase their skills and have their work appreciated.
 
+### Brainstorm
+---
+After establishing the site goals, A brainstorming session was carried out. Many ideas were written down and the final brainstorm sheet took the best ideas discussed together, for better clarity during the build. Below is the final sheet.
+
+![Brainstorm sheet](README_images/ux/brainstorm.jpg)
+
 [⏫ contents](#contents)
 
 ## UX/ User Experience Design
+
+### User Stories
+---
+Once the main site functions and goals were decided on, user stories were created to clarify which tasks must be completed to reach the MVP (minimum viable product) of the site. Below are a few example user stories. To see all the user stories completed during the apllications build, and those left within the product backlog, visit this link [Craft Project Board](https://github.com/users/mtmanning93/projects/8).
+
+#### Site Admin
+
+> "As a site admin I can control all site content so that I can keep site content safe for all users."
+
+#### User
+
+> "As a user I can move through the site easily so that my experience when moving through the site is without frustration."
+>
+> "As a user I can view a list of all posts so that I have an overview of the entire site, and can easily select one to view more closely."
+>
+> "As an unregistered user I can sign up to an account so that I can enjoy the benefits of a registered user."
+>
+> "As a non-registered user I can view the comments left on each post so that I can read the conversation."
+>
+> "As a user I can select a post and read its content so that I can read more information about it."
+
+#### Registered User
+
+> "As a registered user I can login to my account so that i can use the registered user functions of the site."
+>
+> "As a registered user I can navigate to the feed which shows all posts from users i follow so that I can see what these users are up to easier."
+>
+> "As a registered user I can view a list of all posts I have liked so that I can see my favourite posts."
+>
+> "As a registered user I can edit a published post so that its contents is how I would like."
+>
+> "As a registered user I can login to my account so that i can use the registered user functions of the site."
+
+[⏫ contents](#contents)
+
+### Wireframe
+---
+To aid in the design of the UI a wireframe was created. The preference was to create a large wireframe incorporating all pages, to visualise the flow of the website as well as the design. I provided wireframes for, desktop/ laptop and mobile devices, along with the deletion confirmation modals.
+
+Line Key:\
+**Green** - Creation or Addition\
+**Orange** - Action\
+
+![Full wireframe and flow of Reach website](README_images/ux/wireframe.png)
+
+[⏫ contents](#contents)
+
+### Information Architecture
+---
+When building the project's wireframe it was important to take into consideration the positioning of elements. Across the entire application, the user will find the consistent layout of a navbar and header above the main content, and an extra 'Work of the Week' app on the right hand side of the main feed or object details. Key aspects of the information architecture, found throughout the site are:
+
+- **Site Wide Navbar:**\
+The navbar offers the user links to various pages of the site. For non-registered users simple 'home', 'login' and 'signup' links. Once logged in the naviation shows user related links, such as the main 'Create Report (+)' button and the user avatar dropdown. The dropdown for each registered user contains links to profile, settings and logout. The consistency of this navigations position aids the user in moving easily between user specific parts of the site, contributing to a better user experience.
+
+- **Branding:**\
+Within the navbar is a large site logo, this allows users to quickly identify the website and helps establish a visual identity. Its also a 'home' link when clicked, offering a return-to-home option wherever the user is in the site.
+
+- **Header:**\
+The header contains a simple welcome message and extra link to signup for unregistered users. For logged in users the header contains links, in the form of tabs, to the different feeds of the site, it is consisitently positioned througout the application again to enable the user to navigate easily through the feed pages.
+
+- **Work of the Week:**\
+The extra 'Work of the Week' (WotW) component is consistently positioned to the right of the main page details on desktops and at the top under the header for mobile devices. As one of the site goals is to hsowcase work this component had to be positioned in a clear, easy to locate place throughout the site.
+
+[⏫ contents](#contents)
+
+### Visual Design
+---
+
+#### Color Scheme
+
+The main colors used throughout the site were:
+
+![Color Palette](README_images/ux/color-palette.png)
+
+* **#000000**
+    - Used for fonts and borders. Provides high contrast against the backgrounds used throughout the site, creating better readability for the user.
+* **#2a2a2a**
+    - The main content container background color, chosen for its high contrast when rendering other components on top. The 'concrete gey' color also represents a sense of stability. Which is relatable to the target audience.
+* **#4682B4**
+    - The 'steel blue' color was used througout the site as an accent color to highlight varios items, mainly the user Avatar and 'add company' button, representing trust and professionalism.
+* **#f0ad4e**
+    - 'Warning yellow' catches the eye against the more plain background colors. It was used in the aplicaiton to draw attention to important elements, such as, the main action button component. Warning yellow is again relatable to the target audience as it often used in their industrys to gain attention.
+* **#f5f5f5**
+    - A light background color was needed for 'white space' in the site, to contrast against the main content background, and dark fonts.
+
+#### Fonts
+
+The fonts chosen were imported from [Google Fonts](https://fonts.google.com/). The main font used throughout the site was 'Titillium Web'. Titillium Web is a versatile font that was easily adaptable to different font elements. Whether it's used in headings, subheadings, or body text, the font remains easy to read. As a sans serif font it is simple and clear.
+
+![An example of Titillium Web in different font sizes](README_images/ux/fonts.png)
+
+#### Icons
+
+Icons were used throughout the site to assist the user in clarifying different actions and elements. They are a simple yet very efficient way to convey a message to the user. I used the [Font Awesome](https://fontawesome.com/) library.
+
+![Example FA icons](README_images/ux/icon-use.png)
+
+#### Logo
+
+A site logo was created using the [Looka](https://looka.com/explore) site. A site logo is an effective way for a user to immediately recognise the sites identity. Two logos were created for the site, a large named logo and a simple icon style logo, both were used in different situations, but mainly in the navigation bar as a link to home.
+
+![Large named logo](README_images/ux/logo-large.png)
+![Smaller icon logo](README_images/ux/logo-small.png)
 
 [⏫ contents](#contents)
 
@@ -113,13 +218,98 @@ For a tradesman there isnt a place for to share work. Instagram and Facebook are
 
 An entity relationship diagram was created to assist in the visualisation of the database structure. This visualisation was important to clarify what data would be needed in order to provide the functionality desired within the application. Below is an image of the Created ERD with the raltionships between models. A full rundown of the ERD and the databade models within can be found in the [Craft-API README/Database ERD](https://github.com/mtmanning93/craft-api/blob/main/README.md#database-erd)
 
-<details>
-<summary>Click to see Craft-API ERD image</summary>
+![Craft Social API ERD](README_images/api-erd.png)
 
-![Craft Social API ERD](./README_images/api-erd.png)
-</details>
+[⏫ contents](#contents)
 
 ## Development
+
+### Agile Design
+---
+Due to the size, and the many different parts of the Craft Social project, it was crucial to adopt an Agile methodology. The project was split into two with a backend to compliment the frontend, adding to the complexity. In a project of this size, it can be easy to move between the tasks, skipping parts or even leaving them unfinished. With an Agile approach, it was possible to identify the key components and sturcure needed to build the MVP, and seperate them into more manageable tasks. Manual testing was carried out on each component to ensure it was working as expected before moving onto the next task. This method enforces regular reflection on the projects progress.
+
+#### Github Issues
+---
+
+#### Templates
+
+Prior to the build process, three issue templates were created *(more information can be found below)*:
+
+- [User Story](https://github.com/mtmanning93/craft-front/blob/main/.github/ISSUE_TEMPLATE/craft-user-story.md)
+- [Bug Report](https://github.com/mtmanning93/craft-front/blob/main/.github/ISSUE_TEMPLATE/craft-bug-report.md)
+- [Feature Request](https://github.com/mtmanning93/craft-front/blob/main/.github/ISSUE_TEMPLATE/craft-feature-request-form.md)
+
+#### Labels
+
+In the beginning of the build after creating the templates, labels also needed to be created. The first labels created were to assign each template with a front or backend label, this helped to clearly seperate tasks between the two project repositories. The repository labels:
+- frontend
+- backend
+
+Nect prioritising labels were created to define the importance using the 'MoSCoW' principle, and seperate the templates into groups. The labels were used when assessing each iteration, meaning they were not static from the beginning, they were reassigned when necessary to adjust the level of importance of the user story, throughout each iteration in the overall project. The 4 prioritising labels were:
+- Must Have
+- Should Have
+- Could Have
+- Wont have
+
+To compliment the build process and reach the project MVP within the timeframe, other labels were created. All bug reports were naturally labelled with 'bug' and feature requests with the corresponding label. The labels were:
+- Bug
+- Feature Request
+
+[Project labels](https://github.com/mtmanning93/craft-front/labels)
+
+[⏫ contents](#contents)
+
+#### User Story Template
+
+The first template created was the user story template. Every user story includes **Acceptance Criteria** and **Tasks**. The purpose of the user story was to begin the building process and help decide what features would be potentially included.
+
+* **Acceptance Criteria**:
+The acceptance criteria for a user story gives a clear indication of what the expected outcome for the user is, it contains no technical information with regards to completing the user story. However is clearly states what a user would expect in response.
+
+* **Tasks**:
+Once the user story was created and the acceptance criteria was assigned, the next step was to break it down into smaller tasks, all of which achievable in a day or less. I created the tasks as a checkable list, making it visually clear, whilst developing the project, what the next step was.
+
+[Closed Issues list](https://github.com/mtmanning93/craft-front/issues?q=is%3Aissue+is%3Aclosed) | [Example user story](https://github.com/mtmanning93/craft-front/issues/2)
+
+#### Bug Report
+
+The next template created was the bug report. Whilst building the application and carrying out manual testing to check each components acceptance criteria was met, occassionally, I would notice a 'Bug'. In order to keep the development flow I would create bug reports and add them to the list of issues, preventing being side tracked. The bug reports were then addressed when the priority to do so was high, for example, when labeled a 'Must Have' within the current iteration.
+
+If it was a bug within the current user story task I would assign the label 'Bug' to it.
+
+[Assigned 'Bug' label](https://github.com/mtmanning93/craft-front/issues/20) | [Bug Report](https://github.com/mtmanning93/craft-front/issues/46)
+
+#### Feature Request
+
+The last template created was the feature request template. Whilst building such an application, or whilst demonstrating functionality to otheers ideas for new features would arise. Some of these ideas would clearly be a great addition to the application, however, applying them at that exact moment would slow down the overall production. Therefore adding feature requests to the product backlog meant they could be addressed once the MVP had been produced, or in future versions of the application.
+
+[Example Feature Request](https://github.com/mtmanning93/craft-front/issues/47)
+
+[⏫ contents](#contents)
+
+#### Product Backlog
+---
+When creating new issues, bug reports, or feature request they were added directly to the [Craft Product Backlog](https://github.com/mtmanning93/craft-front/milestone/1). Once added to the product backlog it would be assigned the above mentioned labels. Throughout the build as iterations were created, issues would be would be taken from the product backlog and into the relevant iteration, reassigning the labels according to the specific iterations priorities.
+
+[Craft Product Backlog](https://github.com/mtmanning93/craft-front/milestone/1)
+
+#### Iterations
+---
+In order to manage the complexity of the project I implemented the use of iterations using the issue milestones in GitHub. The use of iterations meant I could breakdown the project and provide incremental delivery. This would help to provide clear feeback on progress throughout.
+
+Each iteration was created with a due date. This was to allow for adaptations throughout. An example would be that if a user story was not complete before the iterations due date it was returned to the product backlog for review of its importance, then reprioritized accordingly.
+
+A great effect that working in iterations has is it maintains a steady pace of work, keeps momentum, and keeps the development team motivated. This is due to the constant assessment of progress.
+
+[Project iterations](https://github.com/mtmanning93/Reach_reports/milestones?state=closed)
+
+#### Kanban Board
+---
+To help with the visualization of tasks in the project I implemented a Kanban board, using GitHub projects. The board was seperated into 3 columns; To Do, In Progress, and Done. All issues in the backlog were automatically added to the Kanban 'To Do' column. Throughout the build, I would take all issues from the current iteration into the 'In Progress' column. Once all tasks were completed in the issue I would move the issue over to the 'Done' column. 
+
+When possible I would close an issue from the terminal using the `close #10` command from inside a commit message. This would automatically move the issue into the 'Done' column.
+
+[Reach Kanban Board](https://github.com/users/mtmanning93/projects/7)
 
 [⏫ contents](#contents)
 
@@ -134,11 +324,11 @@ Fork or clone this project from its [GitHub repository](https://github.com/mtman
 
 **1. Navigate to the craft-front repository, and click the green 'code' button.**
 
-![Clone button in repo](./README_images/deployment/code_button.png)
+![Clone button in repo](README_images/deployment/code_button.png)
 
 **2. Once clicked, within the dropdown, fork or clone this project, here we will clone using the url.**
 
-![Clone url](./README_images/deployment/clone_url.png)
+![Clone url](README_images/deployment/clone_url.png)
 
 **3. In your local IDE open your Git terminal**
 
@@ -165,35 +355,35 @@ In order to deploy Craft Social to Heroku I followed these 8 steps:
 
 **1. Navigate to the Heroku dashboard. Click "New" and select "Create new app".**
 
-![Create new app](./README_images/deployment/heroku_new.png)
+![Create new app](README_images/deployment/heroku_new.png)
 
 **2. Create an app name and select a region closest to you.**
 
-![Giving the app a name](./README_images/deployment/app_name.png)
+![Giving the app a name](README_images/deployment/app_name.png)
 
 **3. Navigate to the 'Deploy' tab.**
 
-![Deploy tab](./README_images/deployment/deploy.png)
+![Deploy tab](README_images/deployment/deploy.png)
 
 **4. Scroll to the 'Deployment Methods' section and select 'Connect to GitHub'.**
 
-![Step one connect to GitHub](./README_images/deployment/github_connect.png)
+![Step one connect to GitHub](README_images/deployment/github_connect.png)
 
 **5. Once connected to GitHub, search for the repository in the 'Connect to GitHub' section, and click 'Connect'.**
 
-![Step two connect to Github](./README_images/deployment/repo_connect.png)
+![Step two connect to Github](README_images/deployment/repo_connect.png)
 
 **6. I chose to enable 'Automatic Deploys'. In order to do so click the 'Enable Automatic Deploys' button.**
 
-![Enable automatic deploys](./README_images/deployment/auto_deploy.png)
+![Enable automatic deploys](README_images/deployment/auto_deploy.png)
 
 **7. For manual deployment use the 'Manual Deploy' section by clicking 'Deploy Branch'.**
 
-![Manual deploys](./README_images/deployment/manual_deploys.png)
+![Manual deploys](README_images/deployment/manual_deploys.png)
 
 **8. Click 'View' at the bottom of the 'Manual Deploy' section to view the deployed project.**
 
-![View deployed site button](./README_images/deployment/view_site.png)
+![View deployed site button](README_images/deployment/view_site.png)
 
 [⏫ contents](#contents)
 
@@ -421,3 +611,9 @@ INCORRECT (WARNINGS)
   useEffect(() => {
     handleMount();
   }, [id]);
+
+  <details>
+<summary>Click to see Craft-API ERD image</summary>
+
+![Craft Social API ERD](README_images/api-erd.png)
+</details>
