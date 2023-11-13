@@ -94,10 +94,10 @@ setup other dependencies:
                 -   [Select Employer](#select-employer)
                 -   [Add/ Edit Company](#add-edit-company)
             -   [Account Credentials](#account-credentials)
-        -   [CRUD Functionality]()
+        -   [CRUD Functionality](#crud-functionality)
         -   [Future Features]()
         -   [Defensive Design]()
-    -   [Efficient Components]()
+    -   [Reusable Components]()
     -   [Libraries/ Dependencies](#libraries-and-dependencies)
     -   [Testing](testing.md)
     -   [Bugs](#bugs)
@@ -769,8 +769,39 @@ Users occasionally want to update their username or password to allow for this a
 
 [⏫ contents](#contents)
 
+### CRUD Functionality
+---
+Craft Social features full Create, Read, Update, Delete functionality, for registered users, within the UI shown above in [current features](#current-features).
+
+* #### Create:
+Users can create posts, comments, likes, follows, approvals and companies.
+
+* #### Read:
+Both registered and unregistered users have complete read funcitonality across posts, profiles and comments.
+
+* #### Update:
+Posts, profiles and companies can be updated within the UI.
+
+* #### Delete:
+All user owned objects can be deleted with the UI. Including, posts, coments companies, likes, follows and approvals.
+
+[⏫ contents](#contents)
+
 ### Future Features
 ---
+The current released version of Craft Social was produced with a timeframe in mind, meaning the projects scope was planned accordingly. Therefore in order to reach an MVP on time some features must be implemented in future versions. These features may be short or long term, some future features are listed below:
+
+* #### Companies Directory
+    As users can add companies and employers to their profiles it would be a great addition to have a page which could work as a 'yellow pages' style directory. As the sites goal is to showcase the skills and abilities of the users, a directory whereby the user's companies and employers are listed, and can be searched through, would incease the visibilty of the users and potentially offer them work opportunities.
+
+* #### Company Contact Details
+    In order to enable the above directory feature to work, adding company contact details would mean users can search companies by trade of by a particular profile and contact the company directly.
+
+* #### Delete Account
+    Users will be able to delete there account with all posts and company instances in one click, logging them out in the process.
+
+* #### Swipe Through Feed
+    On mobile and tablet sized devices users could swip left and right through the different feeds.
 
 [⏫ contents](#contents)
 
@@ -779,7 +810,7 @@ Users occasionally want to update their username or password to allow for this a
 
 [⏫ contents](#contents)
 
-## Efficient Components
+## Reusable Components
 
 [⏫ contents](#contents)
 
