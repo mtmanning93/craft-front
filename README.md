@@ -81,6 +81,19 @@ setup other dependencies:
             -   [Liked Feed](#liked-feed)
             -   [Top Feed](#top-feed)
             -   [Search Bar](#search-bar)
+            -   [Create Post](#create-post-form)
+            -   [Edit Post](#edit-post-form)
+            -   [Delete Objects](#delete-objects)
+            -   [Post Details Page](#post-details-page)
+                -   [Likes](#liking)
+                -   [Comments](#commenting)
+            -   [Profile Page](#profile-page)
+                -   [Follow](#follow)
+                -   [Approve](#approve)
+            -   [Update Profile](#update-profile)
+                -   [Select Employer](#select-employer)
+                -   [Add/ Edit Company](#add-edit-company)
+            -   [Account Credentials](#account-credentials)
         -   [CRUD Functionality]()
         -   [Future Features]()
         -   [Defensive Design]()
@@ -515,11 +528,15 @@ When a user visits the site they are welcomed by a simple navbar giving options 
 
 ![Landing Page Desktop](README_images/features/landing-page.png) ![Landing Page Mobile](README_images/features/landing-page-m.png)
 
+[⏫ contents](#contents)
+
 ### Sign Up Form
 
 The sign up registration form is simple, making it easy for unregistered users to sign up with just a username and password confirmation. If a registered user find themselves on the sign up form there is also a login form link at the bottom to make navigate to the correct form easily.
 
 ![Sign Up Form](README_images/features/sign-up-form.png)
+
+[⏫ contents](#contents)
 
 ### Login Form
 
@@ -574,17 +591,23 @@ As one of the site goals is to showcase all users work and skills it was clear t
 ![WOTW Desktop](README_images/features/wotw/wotw.png)
 ![WOTW Mobile](README_images/features/wotw/wotw-m.png)
 
+[⏫ contents](#contents)
+
 ### Discover Feed
 
 The discover feed is where all site content lives. This feed acts also as the landing page feed, enabling users to search around all site content, from here users are able to discover each others profiles and posts. The posts are listed by the date of creation. All feeds use infinite scroll technology in order to create a better user experience by loading posts only when needed.
 
 ![Discover Feed](README_images/features/feeds/discover.png)
 
+[⏫ contents](#contents)
+
 ### 'Feed' Feed
 
 This feed is only available to logged in users and contians, all the posts, from all profiles they follow. Again using infintie scroll and listed by created date, in descending order. If a user is new or they havent followed any profiles a message appears tellling the user to 'get started by following other profiles' *(an example can be seen in the liked feed explanation)*.
 
 !['Feed' (following) Feed](README_images/features/feeds/feed.png)
+
+[⏫ contents](#contents)
 
 ### Liked Feed
 
@@ -620,6 +643,129 @@ This works as a directory for users to find highly skilled individuals based on 
 The search bar can be found above all feeds when a user is logged in. A user can use the search bar to filter feed results, if there are no posts found using this search filter a message is displayed.
 
 ![Search Bar](README_images/features/feeds/search-bar.png)
+
+[⏫ contents](#contents)
+
+### Create Post Form
+
+A logged in user has the ability to create a post via the yellow '+' button in the navbar. The button links to the create post form where a user can specify a title, content and add an image. Both the title and image are required to submit a valid form. Once a valid form is submitted the user is redirected to the post details page of the post they have just created.
+
+![Create Post Form Mobile](README_images/features/crud/create-m.png)
+![Create Post Form Desktop](README_images/features/crud/create.png)
+!['+' Create Button](README_images/features/crud/add-button.png)
+
+[⏫ contents](#contents)
+
+### Edit Post Form
+
+If a user owns a post object they will find an extra settings button on the post, with a spanner icon to make it distinguishable. When clicked it displays the option to edit the post. If a user clicks the edit option they are directed to the edit post form, this is the same as the create post form, just populated with the necessary post details. Here a user can update the post details.
+
+![Settings Button](README_images/features/crud/post-settings.png)
+![Edit Post Form](README_images/features/crud/edit-post.png)
+
+[⏫ contents](#contents)
+
+### Delete Objects
+
+If a user owns a Post or Comment they will find the settings dropdown menu on the object itself. When clicked the object will show options to edit/ delete the oject. If a user clicks the delete option a confirmation modal is shown, with further options to delete or cancel the deletion process. Only when the deletion is confirmed is the object deleted.
+
+![Delete Confirmation Modal](README_images/features/crud/modal.png)
+![Settings Dropdown Delete](README_images/features/crud/delete-option.png)
+
+[⏫ contents](#contents)
+
+### Post Details Page
+
+When a user clicks on a post in a feed or WOTW they are directed to the post details page for the specific post, here a user can see the post in full size with a comments section beneath. If there are comments they can be read by the user. If a user is logged in they can interact with the post instance, both by liking the post and commenting on the post.
+
+* #### Liking
+    On every post a user will find a like button in the form of a 'thumbs up' icon. If the user is logged in they can click the button to like a post, naturally the icon changes in response to this action and clicking the button again will unlike the post. These actions in turn increment and decrement the like count accordingly.
+
+    ![Like Button](README_images/features/crud/like.png)
+    ![Unlike Button](README_images/features/crud/unlike.png)
+
+* #### Commenting
+    In addition to the liking button there is a comments icon displaying the number of comments next to it. If the user scrolls down they will be presented with a comment form. Here the user can write a comment in orer to join the conversation of the post, by simply clicking the 'comment' button. Once posted the user will be able to see their comment listed below the post in order of most recent first. A user has the ability to delete the comment if they wish.
+
+    ![Comments](README_images/features/crud/comments.png)
+
+[⏫ contents](#contents)
+
+### Profile Page
+
+Throughout the site users can navigate to fellow users' profiles by clicking the avatar or personal information of a user, this can be seen on all posts. The profile page contains a profile card for every user which is populated with personal information and company information, which the user has added to their profile, this information could include:
+
+- name *(not username)*
+- craft
+- employer
+- location
+- bio
+- owned companies
+
+*This information can be added via the settings menu, more on this [here](#update-profile).*
+
+Beneath the profile card is a feed of all posts created by the user in descending order of date of creation.
+
+![Profile Page Desktop](README_images/features/profile/profile-page.png)
+![Profile Page Mobile](README_images/features/profile/profile-page-m.png)
+
+* #### Follow
+
+    If a user is on a profile which is not their own, they can find an additional 'Follow' button. When clicking this button four things happen:
+
+    1. the users following count increases by one
+    2. the profiles follower count increases by one
+    3. the follow button switches to an unfolow button
+    4. the followed profiles posts are added to the 'Feed' feed.
+
+    Of course clicking the button again will simply reverse these effects.
+
+    ![Follow Button](README_images/features/profile/follow.png)
+    ![Unfollow Button](README_images/features/profile/unfollow.png)
+
+* #### Approve
+
+    Similarly a user can approve another profile using the approve button found on a profile, When clicking this button two things happen:
+
+    1. the profiles approval count increases by one
+    2. the approve button switches to an approved button
+
+    Again clicking the button again will simply reverse these effects.
+
+    ![Approve Button](README_images/features/profile/approve.png)
+    ![Approved Button](README_images/features/profile/approved.png)
+
+[⏫ contents](#contents)
+
+### Update Profile
+
+In order for a user to improve their profile and searchability within the top feed they can update their profile with additional information, they can do this by navigating to their profile and clicking the settings dropdown spanner, then selected edit. They will be directed to the update profile form. Where they can add additional profile data or update existing data, including profile image, [adding companies](#add-edit-company) they own, and [selecting an employer](#select-company).
+
+![Update Profile Form Desktop](README_images/features/profile/update-form.png)
+![Update Profile Form Mobile](README_images/features/profile/update-form-m.png)
+
+* #### Select Employer
+
+    One feature of the update profile form is an employer selection field. This selection dropdown is populated with companies created by other profiles. A user can select one of these companies as their employer or select no employer. The selection field is searchable making it much easier to find your employer if the site was to become populated with lots of profiles. When a user selects a company as their employer, the companies employee count increases accordingly. The employee count of companies can be seen on profile cards next to the owned companies of the profile in the 'Craft Employees' field.
+
+    ![Employer Selector](README_images/features/profile/employer-selector.png)
+    ![Employer Search](README_images/features/profile/employer-search.png)
+    ![Employee Count](README_images/features/profile/employee-count.png)
+
+* #### Add/ Edit Company
+
+    Beneath the personal information form users can add up to three owned companies to their profile. Once added they can edit them or delete via the settings menu. If a user creates a company the company will be available in the employer selector field for all users, likewise if they delete the company the company will be removed from the selector and from all associated profiles employer field. Furthermore users cannot create the same company multiple times, however, users must give a location when creating a company this means that franchises in different towns or countries is possible.
+
+    ![Add Company](README_images/features/profile/add-company.png)
+    ![Edit Company](README_images/features/profile/edit-company.png)
+
+[⏫ contents](#contents)
+
+### Account Credentials
+
+Users occasionally want to update their username or password to allow for this an update credentials form was created, here a user can update either. The username is validated to check it hasnt already been used, and the passwords too must be the same and of correct length.
+
+![Update Credentials Form](README_images/features/profile/credentials.png)
 
 [⏫ contents](#contents)
 
