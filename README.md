@@ -22,7 +22,7 @@ at [Craft-API](https://github.com/mtmanning93/craft-api).
 
 ### Project Stack
 
-React, React-Bootstrap, CSS, HTML
+React, React-Bootstrap, JSX, CSS, HTML, axios
 
 ### Get Started
 
@@ -503,6 +503,16 @@ automatically move the issue into the 'Done' column.
 
 ### Current Features
 ---
+
+#### Landing Page
+
+When a user visits the site they are welcomed by a simple navbar giving options to home, login and signup. A header containing a welcome message and brief information enticing a non-registered user to sign up. Below is a feed containg all posts from the site and the 'Work of the Week' component, this gives a non registered user the ability to navigate around the site and read all information.
+
+![Landing Page Desktop](README_images/features/landing-page.png) ![Landing Page Mobile](README_images/features/landing-page-m.png)
+
+#### Sign Up Form
+
+
 
 [⏫ contents](#contents)
 

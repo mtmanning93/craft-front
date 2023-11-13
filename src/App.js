@@ -20,13 +20,19 @@ import OtherFeeds from "./pages/OtherFeeds";
 import CustomAlert from "./components/tools/ErrorAlert";
 import ErrorPage from "./pages/ErrorPage";
 import CredentialsForm from "./pages/forms/CredentialsForm";
+import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 
 function App() {
+
+    const location = useLocation().pathname;
+
+    console.log(location)
+
 	return (
 		<div className={styles.App}>
 			<CustomAlert />
 			<NavBar />
-			<Header />
+            {location !== '/login' && location !== '/signup' && <Header />}
 			<Container fluid className={mainStyles.MainContainer}>
 				<Switch>
 					<Route exact path="/" render={() => <DefaultFeed />} />
