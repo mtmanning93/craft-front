@@ -95,9 +95,19 @@ setup other dependencies:
                 -   [Add/ Edit Company](#add-edit-company)
             -   [Account Credentials](#account-credentials)
         -   [CRUD Functionality](#crud-functionality)
-        -   [Future Features]()
-        -   [Defensive Design]()
-    -   [Reusable Components]()
+        -   [Future Features](#future-features)
+    -   [Reusable Components](#reusable-components)
+        -   [BackButton.js](#backbuttonjs)
+        -   [MainButton.js](#mainbuttonjs)
+        -   [SettingDropdown.js](#settingsdropdownjs)
+        -   [InfiniteScroll.js](#infinitescrolljs)
+        -   [Loader.js](#loaderjs)
+        -   [ErrorAlert.js](#erroralertjs)
+        -   [Avatar.js](#avatarjs)
+        -   [ConfirmationModal.js](#confirationmodaljs)
+        -   [Post.js](#postjs)
+        -   [Comment.js](#commentjs)
+    -   [Contexts/ Hooks]()
     -   [Libraries/ Dependencies](#libraries-and-dependencies)
     -   [Testing](testing.md)
     -   [Bugs](#bugs)
@@ -526,7 +536,8 @@ automatically move the issue into the 'Done' column.
 
 When a user visits the site they are welcomed by a simple navbar giving options to home, login and signup. A header containing a welcome message and brief information enticing a non-registered user to sign up. Below is a feed containg all posts from the site and the 'Work of the Week' component, this gives a non registered user the ability to navigate around the site and read all information.
 
-![Landing Page Desktop](README_images/features/landing-page.png) ![Landing Page Mobile](README_images/features/landing-page-m.png)
+![Landing Page Desktop](README_images/features/home/landing-page.png)
+![Landing Page Mobile](README_images/features/home/landing-page-m.png)
 
 [⏫ contents](#contents)
 
@@ -534,7 +545,7 @@ When a user visits the site they are welcomed by a simple navbar giving options 
 
 The sign up registration form is simple, making it easy for unregistered users to sign up with just a username and password confirmation. If a registered user find themselves on the sign up form there is also a login form link at the bottom to make navigate to the correct form easily.
 
-![Sign Up Form](README_images/features/sign-up-form.png)
+![Sign Up Form](README_images/features/home/sign-up-form.png)
 
 [⏫ contents](#contents)
 
@@ -542,7 +553,7 @@ The sign up registration form is simple, making it easy for unregistered users t
 
 Very similar to the sign up form is the login form, registered users are able to login to their account quickly via simple username and password combination. For non registered users there is a small link to navigate to the coreect sign up form if they have navigated to the wrong page.
 
-![Login Form](README_images/features/login-form.png)
+![Login Form](README_images/features/home/login-form.png)
 
 [⏫ contents](#contents)
 
@@ -774,16 +785,16 @@ Users occasionally want to update their username or password to allow for this a
 Craft Social features full Create, Read, Update, Delete functionality, for registered users, within the UI shown above in [current features](#current-features).
 
 * #### Create:
-Users can create posts, comments, likes, follows, approvals and companies.
+    Users can create posts, comments, likes, follows, approvals and companies.
 
 * #### Read:
-Both registered and unregistered users have complete read funcitonality across posts, profiles and comments.
+    Both registered and unregistered users have complete read funcitonality across posts, profiles and comments.
 
 * #### Update:
-Posts, profiles and companies can be updated within the UI.
+    Posts, profiles and companies can be updated within the UI.
 
 * #### Delete:
-All user owned objects can be deleted with the UI. Including, posts, coments companies, likes, follows and approvals.
+    All user owned objects can be deleted with the UI. Including, posts, coments companies, likes, follows and approvals.
 
 [⏫ contents](#contents)
 
@@ -805,12 +816,51 @@ The current released version of Craft Social was produced with a timeframe in mi
 
 [⏫ contents](#contents)
 
-### Defensive Design
----
+## Reusable Components
+
+In a React application, seperating the UI into smaller components offers many benefits, such as, code maintainability and development efficiency. Smaller components meant I was able focus on specific functionalities or features, one at a time. Furthermore these smaller components were reusable across the application, simplifying the develpoment process. Additionally when components have bugs or changes need to be made its easier to pinpoint the issue, and fixing it often wont affect the other components in the application. Overall the use of smaller components created a cleaner codebase, and more efficient production. 
+
+Below are examples of components which were resused throughout the build.
+
+### `BackButton.js`
+Used throughout the application to provide the user with a go back option.
+
+### `MainButton.js`
+The main button component was used throughout to provide a better user experience, reusing this component meant all actions carried out by the user were controlled using the same button styling, different styles were available for use by adding the correct className, for example `btnStyles.Wide` was used to make the button full width in its container.
+
+### `SettingsDropdown.js`
+SettingsDropdown component was used in a conditional statement acrosss the application. If a user owned the object in question the SettingsDropdown would appear, it was used across, posts, profiles, comments and companies. The dropdown offered options for edit or delete. The options were added to the dropdown when necessary in each use by adding the related props `editObject={}` and/ or `onDelete={}`.
+
+### `InfiniteScroll.js`
+For all feeds infinitie scroll component was applied to enhance the user experience. Using this meant that page load was kept to a minumum speeding up the application as a whole.
+
+### `Loader.js`
+Its important for users to never feel confused. Therefore whilst waiting for components to load a spinner is displayed to visualise the loading process. As the application contains many components a self defined Loader component became very useful.
+
+### `ErrorAlert.js`
+A good user experience involves feedback to the user, therefore the application needed a way to display any error, or success, messages to the user. Having the error alert at hand meant calling it via the [ErrorContext](***) easy when needed in try and catch blocks.
+
+### `Avatar.js`
+The avatar component was also useful. As a link to the profile of all users adding it to posts and comments was simple. In a use case, props were added to specify, src, height, textBefore, textAfter, className. Having two props for text positioning also cancelled down on unnecessary CSS.
+
+### `ConfirationModal.js`
+Whenever users wish to delete something its important to get confirmation, ensuring they are not accidently deleting something. The creation of the ConfirmationModal component means this process is easy to produce whenever a delete function is called. The use can be seen when deleting an object.
+
+### `Post.js`
+Perhaps considered one of the main components of the application, a post component is displayed multiple times throughout. Often used as the response to a map() function, this means, the more posts by users, the Post.js components are used. Seperating this was imperative to the efficiency of the build.
+
+### `Comment.js`
+Much like the Post.js component the Comment.js component is used as the response when 'mapping' over a list of results. Therefore having a seperate component to use here makes the codebase more streamlined.
 
 [⏫ contents](#contents)
 
-## Reusable Components
+## Contexts/ Hooks
+
+### `ErrorContext.js`
+
+### `CurrentUserContext.js`
+
+### `UseRedirectUser.js`
 
 [⏫ contents](#contents)
 
