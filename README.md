@@ -107,7 +107,10 @@ setup other dependencies:
         -   [ConfirmationModal.js](#confirationmodaljs)
         -   [Post.js](#postjs)
         -   [Comment.js](#commentjs)
-    -   [Contexts/ Hooks]()
+    -   [Contexts/ Hooks](#contexts-hooks)
+        -   [ErrorContext.js](#errorcontextjs)
+        -   [CurrentUserContext.js](#currentusercontextjs)
+        -   [useRedirectUser.js](#useredirectuserjs)
     -   [Libraries/ Dependencies](#libraries-and-dependencies)
     -   [Testing](testing.md)
     -   [Bugs](#bugs)
@@ -858,9 +861,37 @@ Much like the Post.js component the Comment.js component is used as the response
 
 ### `ErrorContext.js`
 
+The application needed a notfication system for error alerts initially, and further into the build a success alert. Using React's built in context API, the `ErrorContext` was defined, this provided a way to share an error state, throughout the application. The context includes three functions and a state variable.
+
+* **`useErrorContext` hook:**
+
+    This hook is used to access the `ErrorContext`. By calling `useErrorContext()` in a component, you can access the `errorInfo` state and use the three functions `showErrorAlert`, `showSuccessAlert`, and `clearErrorAlert`.
+
+    * `errorInfo` - stores information about an error, such as the title, message, and variant *(bootstrap variant e.g. warning)*.
+
+    * `showErrorAlert` - the function used to display error alerts. It takes parameters for title, message, and variant, sets the error details, and triggers an error alert.
+
+    * `showSuccessAlert` - function is similar to `showErrorAlert` but for success alerts.
+
+    * `clearErrorAlert` - function resets the `errorInfo` state to 'null', effectively hiding any displayed alerts, used within the `ErrorAert.js` components timeout function.
+
+* **`ErrorProvider`:**
+
+The component which serves as the provider for the `ErrorContext`. It wraps the entite application (`App.js`) with `ErrorContext.Provider` *(index.js)*, making the state and functions available to all the nested components.
+
+Creating this context, gave the ability to display error or success alerts throughout the application without having to pass down props through multiple components.
+
+[⏫ contents](#contents)
+
 ### `CurrentUserContext.js`
 
-### `UseRedirectUser.js`
+The CurrentUserContext was taken from the Code Institute Moments React walkthrough project. It is used for handling the current user's information. `CurrentUserContext` is used to share the current user data in different components. There's also the `SetCurrentUserContext` which is used to provide a function to update the current user data.
+
+Additionally, there is the Axios interceptors which handle token refreshing. When making requests using `axiosReq` it checks if the token needs refreshing and automatically refreshes it when needed.
+
+### `useRedirectUser.js`
+
+A custom React hook, taken from Code Institute Moments React walkthrough project, which handles redirection based on the user's authentication status. The logic means that by simply adding a line of code you can redirect unauthenticated users away from parts of the site. For example a logged out user shouldnt be able to access a create post form.
 
 [⏫ contents](#contents)
 
