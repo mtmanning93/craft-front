@@ -141,7 +141,7 @@ const EditCompanyForm = () => {
 							md={{ span: 8, order: 2 }}
 						>
 							<h1 className="mt-2">
-								Add a company to your profile
+								Edit your company
 							</h1>
 						</Col>
 						<Col
