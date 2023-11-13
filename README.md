@@ -5,8 +5,8 @@
 ## Intro
 
 Craft Social is a social platform where tradesmen and skilled workers can share
-work related content. Showcasing their skills and abilities. It is designed to
-highlight good skills through the approval of people within the industry.
+work-related content. Showcasing their skills and abilities. It highlights good
+skills through people's approval within the industry.
 
 This repository is for the Craft Social frontend. The application also utilizes
 a backend API using Django Rest Framework, the repository for this can be found
@@ -26,7 +26,7 @@ React, React-Bootstrap, JSX, CSS, HTML, axios
 
 ### Get Started
 
-To get started follow these steps to clone the github repository locally, and
+To get started follow these steps to clone the GitHub repository locally, and
 setup other dependencies:
 
 [Deployment](#deployment)
@@ -127,36 +127,42 @@ setup other dependencies:
 ## Design Thinking
 
 ### Problem ID
+
 ---
 
-For a tradesman there isnt a place for to share work. Instagram and Facebook are
-catered more to 'free-time' social activities. It would be beneficial to have
-platform to share work and related information with other like minded people who
-can appreciate it. Tradesman and manual workers are often very skilled
-individuals, their work is often taken for granted as they have knowhere to
-share it.
+Tradesmen and manual workers often lack a dedicated platform to share their work
+and related information with other like-minded individuals who can appreciate
+it. Social media platforms like Instagram and Facebook are more geared towards
+free-time social activities and are not ideal for tradesmen. This lack of a
+dedicated platform is unfortunate, as tradesmen are often highly skilled
+individuals whose work is taken for granted due to the absence of a place to
+showcase it.
 
 ### Problem Statement
+
 ---
 
-"As a _skilled tradesman_, I would like to have _a place to share work I am
-proud of_ or updates on a particular project, but I dont know where to share
-work related content. Instagram is too social, and LinkedIn seems too corporate.
-This makes me feel _my work is not getting seen or appreciated_ like other
-industries. Where can I share content, to _showcase my skills_ for others to
+"As a skilled tradesman, I would like to have a place to share work I am proud
+of or updates on a particular project, but I don't know where to share
+work-related content. Instagram is too social, and LinkedIn seems too corporate.
+This makes me feel my work is not getting seen or appreciated like other
+industries. Where can I share content, to showcase my skills for others to
 appreciate it."
 
 ### Site Goals
+
 ---
 
-**User Goals** - The user wants the ability to share work and work related
-updates via a post, to a site with like minded individuals, showcasing their
+**User Goals** - The user wants the ability to share work and work-related
+updates via a post, to a site with like-minded individuals, showcasing their
 craft and abilities.
 
-**Owner Goals** - To create an environment for people in highly skilled manual
-jobs to share their work, showcase their skills and have their work appreciated.
+**Owner Goals** - To create an environment for people with highly skilled manual
+jobs to share their work, showcase their skills, and have their work
+appreciated.
 
 ### Brainstorm
+
 ---
 
 After establishing the site goals, A brainstorming session was carried out. Many
@@ -171,18 +177,19 @@ sheet.
 ## UX/ User Experience Design
 
 ### User Stories
+
 ---
 
 Once the main site functions and goals were decided on, user stories were
 created to clarify which tasks must be completed to reach the MVP (minimum
 viable product) of the site. Below are a few example user stories. To see all
-the user stories completed during the apllications build, and those left within
+the user stories completed during the applications build, and those left within
 the product backlog, visit this link
 [Craft Project Board](https://github.com/users/mtmanning93/projects/8).
 
 #### Site Admin
 
-> "As a site admin I can control all site content so that I can keep site
+> "As a site admin I can control all site content so that I can keep the site
 > content safe for all users."
 
 #### User
@@ -222,12 +229,13 @@ the product backlog, visit this link
 [⏫ contents](#contents)
 
 ### Wireframe
+
 ---
 
 To aid in the design of the UI a wireframe was created. The preference was to
-create a large wireframe incorporating all pages, to visualise the flow of the
-website as well as the design. I provided wireframes for, desktop/ laptop and
-mobile devices, along with the deletion confirmation modals.
+create a large wireframe incorporating all pages, to visualize the flow of the
+website as well as the design. I provided wireframes for desktop/ laptop and
+mobile devices and the deletion confirmation modals.
 
 Line Key:\
 **Green** - Creation or Addition\
@@ -238,44 +246,47 @@ Line Key:\
 [⏫ contents](#contents)
 
 ### Information Architecture
+
 ---
 
 When building the project's wireframe it was important to take into
 consideration the positioning of elements. Across the entire application, the
 user will find the consistent layout of a navbar and header above the main
-content, and an extra 'Work of the Week' app on the right hand side of the main
-feed or object details. Key aspects of the information architecture, found
+content, and an extra 'Work of the Week' app on the right-hand side of the main
+feed or object details. Key aspects of the information architecture found
 throughout the site are:
 
 -   **Site Wide Navbar:**\
     The navbar offers the user links to various pages of the site. For non-registered
-    users simple 'home', 'login' and 'signup' links. Once logged in the naviation
-    shows user related links, such as the main 'Create Report (+)' button and the
+    users simple 'home', 'login', and 'signup' links. Once logged in the navigation
+    shows user-related links, such as the main 'Create Report (+)' button and the
     user avatar dropdown. The dropdown for each registered user contains links to
-    profile, settings and logout. The consistency of this navigations position aids
-    the user in moving easily between user specific parts of the site, contributing
+    profile, settings, and logout. The consistency of this navigation position aids
+    the user in moving easily between user-specific parts of the site, contributing
     to a better user experience.
 
 -   **Branding:**\
     Within the navbar is a large site logo, this allows users to quickly identify
-    the website and helps establish a visual identity. Its also a 'home' link when
+    the website and helps establish a visual identity. It's also a 'home' link when
     clicked, offering a return-to-home option wherever the user is in the site.
 
 -   **Header:**\
-    The header contains a simple welcome message and extra link to signup for unregistered
-    users. For logged in users the header contains links, in the form of tabs, to
-    the different feeds of the site, it is consisitently positioned througout the
-    application again to enable the user to navigate easily through the feed pages.
+    The header contains a simple welcome message and an extra link to signup for
+    unregistered users. For logged-in users the header contains links, in the form
+    of tabs, to the different feeds of the site, it is consistently positioned throughout
+    the application again to enable the user to navigate easily through the feed
+    pages.
 
 -   **Work of the Week:**\
     The extra 'Work of the Week' (WotW) component is consistently positioned to the
     right of the main page details on desktops and at the top under the header for
-    mobile devices. As one of the site goals is to hsowcase work this component had
-    to be positioned in a clear, easy to locate place throughout the site.
+    mobile devices. As one of the site goals is to showcase work this component had
+    to be positioned in a clear, easy-to-locate place throughout the site.
 
 [⏫ contents](#contents)
 
 ### Visual Design
+
 ---
 
 #### Color Scheme
@@ -294,26 +305,26 @@ The main colors used throughout the site were:
         color also represents a sense of stability. Which is relatable to the
         target audience.
 -   **#4682B4**
-    -   The 'steel blue' color was used througout the site as an accent color to
-        highlight varios items, mainly the user Avatar and 'add company' button,
-        representing trust and professionalism.
+    -   The 'steel blue' color was used throughout the site as an accent color
+        to highlight various items, mainly the user Avatar and the 'add company'
+        button, representing trust and professionalism.
 -   **#f0ad4e**
     -   'Warning yellow' catches the eye against the more plain background
-        colors. It was used in the aplicaiton to draw attention to important
-        elements, such as, the main action button component. Warning yellow is
+        colors. It was used in the application to draw attention to important
+        elements, such as the main action button component. Warning yellow is
         again relatable to the target audience as it often used in their
-        industrys to gain attention.
+        industries to gain attention.
 -   **#f5f5f5**
     -   A light background color was needed for 'white space' in the site, to
-        contrast against the main content background, and dark fonts.
+        contrast against the main content background and dark fonts.
 
 #### Fonts
 
 The fonts chosen were imported from [Google Fonts](https://fonts.google.com/).
 The main font used throughout the site was 'Titillium Web'. Titillium Web is a
-versatile font that was easily adaptable to different font elements. Whether
-it's used in headings, subheadings, or body text, the font remains easy to read.
-As a sans serif font it is simple and clear.
+versatile font that is easily adaptable to different font elements. Whether it's
+used in headings, subheadings, or body text, the font remains easy to read. As a
+sans serif font, it is simple and clear.
 
 ![An example of Titillium Web in different font sizes](README_images/ux/fonts.png)
 
@@ -329,7 +340,7 @@ library.
 #### Logo
 
 A site logo was created using the [Looka](https://looka.com/explore) site. A
-site logo is an effective way for a user to immediately recognise the sites
+site logo is an effective way for a user to immediately recognize the site's
 identity. Two logos were created for the site, a large named logo and a simple
 icon style logo, both were used in different situations, but mainly in the
 navigation bar as a link to home.
@@ -341,11 +352,11 @@ navigation bar as a link to home.
 
 ## Database ERD
 
-An entity relationship diagram was created to assist in the visualisation of the
-database structure. This visualisation was important to clarify what data would
+An entity relationship diagram was created to assist in the visualization of the
+database structure. This visualization was important to clarify what data would
 be needed in order to provide the functionality desired within the application.
-Below is an image of the Created ERD with the raltionships between models. A
-full rundown of the ERD and the databade models within can be found in the
+Below is an image of the Created ERD with the relationships between models. A
+full rundown of the ERD and the database models within can be found in the
 [Craft-API README/Database ERD](https://github.com/mtmanning93/craft-api/blob/main/README.md#database-erd)
 
 ![Craft Social API ERD](README_images/api-erd.png)
@@ -355,6 +366,7 @@ full rundown of the ERD and the databade models within can be found in the
 ## Development
 
 ### Agile Design
+
 ---
 
 Due to the size, and the many different parts of the Craft Social project, it
@@ -362,12 +374,13 @@ was crucial to adopt an Agile methodology. The project was split into two with a
 backend to compliment the frontend, adding to the complexity. In a project of
 this size, it can be easy to move between the tasks, skipping parts or even
 leaving them unfinished. With an Agile approach, it was possible to identify the
-key components and sturcure needed to build the MVP, and seperate them into more
+key components and structure needed to build the MVP and separate them into more
 manageable tasks. Manual testing was carried out on each component to ensure it
-was working as expected before moving onto the next task. This method enforces
-regular reflection on the projects progress.
+was working as expected before moving on to the next task. This method enforces
+regular reflection on the progress of the project.
 
 #### Github Issues
+
 ---
 
 #### Templates
@@ -381,17 +394,17 @@ information can be found below)_:
 
 #### Labels
 
-In the beginning of the build after creating the issues, labels also needed to
+At the beginning of the build after creating the issues, labels also needed to
 be created. The first labels created were to assign each template with a front
-or backend label, this helped to clearly seperate tasks between the two project
+or backend label, this helped to clearly separate tasks between the two project
 repositories. The repository labels:
 
 -   frontend
 -   backend _(to read more about the backend label
     [click here](https://github.com/mtmanning93/craft-api/blob/main/README.md#backend-label))_
 
-Next prioritising labels were created to define the importance using the
-'MoSCoW' principle, and seperate the issues into groups. The labels were used
+Next prioritising labels were created to define the importance of using the
+'MoSCoW' principle, and separate the issues into groups. The labels were used
 when assessing each iteration, meaning they were not static from the beginning,
 they were reassigned when necessary to adjust the level of importance of the
 user story, throughout each iteration in the overall project. The 4 prioritising
@@ -403,8 +416,8 @@ labels were:
 -   Wont have
 
 To compliment the build process and reach the project MVP within the timeframe,
-other labels were created. All bug reports were naturally labelled with 'bug'
-and feature requests with the corresponding label. The labels were:
+other labels were created. All bug reports were naturally labeled with 'bug' and
+feature requests with the corresponding label. The labels were:
 
 -   Bug
 -   Feature Request
@@ -420,16 +433,16 @@ includes **Acceptance Criteria** and **Tasks**. The purpose of the user story
 was to begin the building process and help decide what features would be
 potentially included.
 
--   **Acceptance Criteria**: The acceptance criteria for a user story gives a
+-   **Acceptance Criteria**: The acceptance criteria for a user story give a
     clear indication of what the expected outcome for the user is, it contains
-    no technical information with regards to completing the user story. However
+    no technical information with regards to completing the user story. However,
     is clearly states what a user would expect in response.
 
--   **Tasks**: Once the user story was created and the acceptance criteria was
+-   **Tasks**: Once the user story was created and the acceptance criteria were
     assigned, the next step was to break it down into smaller tasks, all of
-    which achievable in a day or less. I created the tasks as a checkable list,
-    making it visually clear, whilst developing the project, what the next step
-    was.
+    which were achievable in a day or less. I created the tasks as a checkable
+    list, making it visually clear, whilst developing the project, what the next
+    step was.
 
 [Closed Issues list](https://github.com/mtmanning93/craft-front/issues?q=is%3Aissue+is%3Aclosed)
 | [Example user story](https://github.com/mtmanning93/craft-front/issues/2)
@@ -437,10 +450,10 @@ potentially included.
 #### Bug Report
 
 The next template created was the bug report. Whilst building the application
-and carrying out manual testing to check each components acceptance criteria was
-met, occassionally, I would notice a 'Bug'. In order to keep the development
+and carrying out manual testing to check each component's acceptance criteria
+was met, occasionally, I would notice a 'Bug'. In order to keep the development
 flow I would create bug reports and add them to the list of issues, preventing
-being side tracked. The bug reports were then addressed when the priority to do
+being sidetracked. The bug reports were then addressed when the priority to do
 so was high, for example, when labeled a 'Must Have' within the current
 iteration.
 
@@ -453,11 +466,11 @@ If it was a bug within the current user story task I would assign the label
 #### Feature Request
 
 The last template created was the feature request template. Whilst building such
-an application, or whilst demonstrating functionality to otheers ideas for new
+an application, or whilst demonstrating functionality to others ideas for new
 features would arise. Some of these ideas would clearly be a great addition to
 the application, however, applying them at that exact moment would slow down the
 overall production. Therefore adding feature requests to the product backlog
-meant they could be addressed once the MVP had been produced, or in future
+meant they could be addressed once the MVP had been produced, or in the future
 versions of the application.
 
 [Example Feature Request](https://github.com/mtmanning93/craft-front/issues/47)
@@ -465,27 +478,29 @@ versions of the application.
 [⏫ contents](#contents)
 
 #### Product Backlog
+
 ---
 
-When creating new issues, bug reports, or feature request they were added
+When creating new issues, bug reports, or feature requests they were added
 directly to the
 [Craft Product Backlog](https://github.com/mtmanning93/craft-front/milestone/1).
-Once added to the product backlog it would be assigned the above mentioned
+Once added to the product backlog it would be assigned the above-mentioned
 labels. Throughout the build as iterations were created, issues would be would
 be taken from the product backlog and into the relevant iteration, reassigning
-the labels according to the specific iterations priorities.
+the labels according to the specific iteration priorities.
 
 [Craft Product Backlog](https://github.com/mtmanning93/craft-front/milestone/1)
 
 #### Iterations
+
 ---
 
 In order to help manage the workload of the project, iterations were implemented
-using github milestones to further breakdown the production and provide
-incremental delivery. This meant theere was clear feeback as the project grew.
+using GitHub milestones to further breakdown the production and provide
+incremental delivery. This meant there was clear feedback as the project grew.
 
 Each iteration was created with a due date. Allowing for adaptations throughout.
-An example would be that if a user story was not complete before the iterations
+An example would be that if a user story was not complete before the iteration
 due date it was returned to the product backlog for review of its importance,
 then reprioritized accordingly.
 
@@ -498,19 +513,20 @@ throughout production. This is due to the constant assessment of progress.
 
 As the project consisted of two parts a front and backend I felt it was
 necessary to include a backend iteration, as the backend would ultimately enable
-the front end functionality. To read more with regards to this iteration you can
+the front-end functionality. To read more with regards to this iteration you can
 visit the
 [Craft-API documentation](https://github.com/mtmanning93/craft-api/blob/main/README.md#backend-iteration).
 
 #### Kanban Board
+
 ---
 
 Before starting the production a Kanban board was created using Github Projects.
 Both the front and backend repositories were connected to the 'Craft Project
 Board', this enabled ease of access from both repositories and clear
-visualisation of progress from the beginning.
+visualization of progress from the beginning.
 
-The board was seperated into 5 columns:
+The board was separated into 5 columns:
 
 -   **Backlog:** the entire craft product backlog _(all issues)_.
 -   **To Do/ Current Iteration:** all issues in the current iteration.
@@ -533,11 +549,17 @@ automatically move the issue into the 'Done' column.
 ## Features
 
 ### Current Features
+
 ---
 
 ### Landing Page
 
-When a user visits the site they are welcomed by a simple navbar giving options to home, login and signup. A header containing a welcome message and brief information enticing a non-registered user to sign up. Below is a feed containg all posts from the site and the 'Work of the Week' component, this gives a non registered user the ability to navigate around the site and read all information.
+When a user visits the site they are welcomed by a simple navbar giving options
+to home, login, and signup. A header containing a welcome message and brief
+information entice a non-registered user to sign up. Below is a feed containing
+all posts from the site and the 'Work of the Week' component, this gives a non
+registered user the ability to navigate around the site and read all
+information.
 
 ![Landing Page Desktop](README_images/features/home/landing-page.png)
 ![Landing Page Mobile](README_images/features/home/landing-page-m.png)
@@ -546,7 +568,10 @@ When a user visits the site they are welcomed by a simple navbar giving options 
 
 ### Sign Up Form
 
-The sign up registration form is simple, making it easy for unregistered users to sign up with just a username and password confirmation. If a registered user find themselves on the sign up form there is also a login form link at the bottom to make navigate to the correct form easily.
+The sign-up registration form is simple, making it easy for unregistered users
+to sign-up with just a username and password confirmation. If a registered user
+finds themselves on the signup form there is also a login form link at the
+bottom to make navigate to the correct form easily.
 
 ![Sign Up Form](README_images/features/home/sign-up-form.png)
 
@@ -554,7 +579,10 @@ The sign up registration form is simple, making it easy for unregistered users t
 
 ### Login Form
 
-Very similar to the sign up form is the login form, registered users are able to login to their account quickly via simple username and password combination. For non registered users there is a small link to navigate to the coreect sign up form if they have navigated to the wrong page.
+Very similar to the signup form is the login form, registered users are able to
+login into their account quickly via a simple username and password combination.
+For non-registered users, there is a small link to navigate to the correct
+sign-up form if they have navigated to the wrong page.
 
 ![Login Form](README_images/features/home/login-form.png)
 
@@ -562,45 +590,70 @@ Very similar to the sign up form is the login form, registered users are able to
 
 ### Navbar
 
-The navbar found at the top of the site contains user related links to parts of the site. For unregistered and logged out users the navbar hold links to home, login and signup forms. When a registered user is logged in the navbar switches to contain the main '+' (add post) button along with their clickable avatar dropdown menu. Within this menu a user can find a small welcome message along with links to their profile page, account settings (username and password), and a logout link. It is fully responsive from desktop to mobile collapsing down as the screen size gets smaller. The links in the nav have an active classname set to enable better site navigation for a user and finally the site logo is a clickable link to the home page.
+The navbar found at the top of the site contains user-related links to parts of
+the site. For unregistered and logged-out users the navbar holds links to home,
+login, and signup forms. When a registered user is logged in the navbar switches
+to contain the main '+' (add post) button along with their clickable avatar
+dropdown menu. Within this menu, a user can find a small welcome message along
+with links to their profile page, account settings (username and password), and
+a logout link. It is fully responsive from desktop to mobile collapsing down as
+the screen size gets smaller. The links in the nav have an active 'className'
+set to enable better site navigation for a user and finally the site logo is a
+clickable link to the home page.
 
 <details>
 <summary>Logged Out Nav Screenshots</summary>
 
 ![Logged Out Nav Dekstop](README_images/features/nav/logged-out-desk.png)
 ![Logged Out Nav Mobile](README_images/features/nav/logged-out-m.png)
+
 </details>
 <details>
 <summary>Logged In Nav Screenshots</summary>
 
 ![Logged In Nav Desktop](README_images/features/nav/logged-in-desk.png)
 ![Logged In Nav Mobile](README_images/features/nav/logged-in-m.png)
+
 </details>
 
 [⏫ contents](#contents)
 
 ### Header
 
-A header component is found between the navbar and the main content of the site, for a logged out or un-registered user it acts as a welcome header, providing snippets of information as to why they should sign up. For logged in users the header switches to feed navigation tabs. Users are able to quickly click between feeds, having the active feed visible as a tab when clicked. The tabs are responsive as on smaller screen sizes the text dissaperas showing only feed related icons.
+A header component is found between the navbar and the main content of the site,
+for a logged-out or un-registered user it acts as a welcome header, providing
+snippets of information as to why they should sign up. For logged in users the
+header switches to feed navigation tabs. Users are able to quickly click between
+feeds, having the active feed visible as a tab when clicked. The tabs are
+responsive as on smaller screen sizes the text disappears showing only
+feed-related icons.
 
 <details>
 <summary>Logged Out Header Screenshots</summary>
 
 ![Logged Out Header Dekstop](README_images/features/header/header-lo.png)
 ![Logged Out Header Mobile](README_images/features/header/header-lo-m.png)
+
 </details>
 <details>
 <summary>Logged In Header Screenshots</summary>
 
 ![Logged In Header Desktop](README_images/features/header/header.png)
 ![Logged In Header Mobile](README_images/features/header/header-m.png)
+
 </details>
 
 [⏫ contents](#contents)
 
 ### Work Of The Week (WOTW)
 
-As one of the site goals is to showcase all users work and skills it was clear there needed to be a place to showcase popular posts. Therefore throughout the site the WOTW component can be found on the right hand side of the main content. It includes the top 3 most liked posts in smaller post form, hiding some informaton. All of the posts in the WOTW are links to the related post details page, this means users can easily navigate to these posts. As other posts gain more likes they are replaced.
+As one of the site goals is to showcase all user's work and skills it was clear
+there needed to be a place to showcase popular posts. Therefore throughout the
+site, the WOTW component can be found on the right-hand side of the main content.
+It includes the top 3 most liked posts in smaller post forms, hiding some
+information. All of the posts in the WOTW are links to the related post details
+page, this means users can easily navigate to these posts. As other posts gain
+more likes they are replaced.
 
 ![WOTW Desktop](README_images/features/wotw/wotw.png)
 ![WOTW Mobile](README_images/features/wotw/wotw-m.png)
@@ -609,7 +662,11 @@ As one of the site goals is to showcase all users work and skills it was clear t
 
 ### Discover Feed
 
-The discover feed is where all site content lives. This feed acts also as the landing page feed, enabling users to search around all site content, from here users are able to discover each others profiles and posts. The posts are listed by the date of creation. All feeds use infinite scroll technology in order to create a better user experience by loading posts only when needed.
+The Discover feed is where all site content lives. This feed acts also as the
+landing page feed, enabling users to search around all site content, from here
+users are able to discover each other's profiles and posts. The posts are listed
+by the date of creation. All feeds use infinite scroll technology in order to
+create a better user experience by loading posts only when needed.
 
 ![Discover Feed](README_images/features/feeds/discover.png)
 
@@ -617,7 +674,11 @@ The discover feed is where all site content lives. This feed acts also as the la
 
 ### 'Feed' Feed
 
-This feed is only available to logged in users and contians, all the posts, from all profiles they follow. Again using infintie scroll and listed by created date, in descending order. If a user is new or they havent followed any profiles a message appears tellling the user to 'get started by following other profiles' *(an example can be seen in the liked feed explanation)*.
+This feed is only available to logged-in users and contains, all the posts, from
+all profiles they follow. Again using infintie scroll and listed by created
+date, in descending order. If a user is new or they haven't followed any profiles
+a message appears telling the user to 'get started by following other profiles'
+_(an example can be seen in the liked feed explanation)_.
 
 !['Feed' (following) Feed](README_images/features/feeds/feed.png)
 
@@ -625,7 +686,10 @@ This feed is only available to logged in users and contians, all the posts, from
 
 ### Liked Feed
 
-Much like the feed described above this feed is ony available to logged in users. It displays all posts a user has liked. Again if a user is new or they havent liked any posts yet a message appears tellling the user to 'get started by liking some posts'.
+Much like the feed described above this feed is only available to logged-in
+users. It displays all posts a user has liked. Again if a user is new or they
+haven't liked any posts yet a message appears telling the user to 'get started
+by liking some posts'.
 
 ![Liked Feed](README_images/features/feeds/liked.png)
 ![No posts message](README_images/features/feeds/no-posts-message.png)
@@ -634,11 +698,23 @@ Much like the feed described above this feed is ony available to logged in users
 
 ### Top Feed
 
-Top feed is only accessible to logged in users. It differs from the pther feeds in that instead of displaying posts it displays profile cards. When the feed initially loads it lists all profiles in order of [approval count](***), the most approved profile is awarded with the golden trophy on the top right of their profile card, second the silver medal and third the bronze.
+The Top feed is only accessible to logged-in users. It differs from the other feeds
+in that instead of displaying posts it displays profile cards. When the feed
+initially loads it lists all profiles in order of [approval count](***), the
+most approved profile is awarded with the golden trophy on the top right of
+their profile card, second the silver medal, and third the bronze.
 
-The idea of the top feed is for users to search profiles and have them listed in descending order of [approvals](***). Users are able to search profiles by information on their profile cards. For example if a user would like to find the most approved 'Landscaper' they can simply search this and have the profile cards listed with the most approved 'Landscaper' at the top of the list. Other examples include searching by employer, location, name, and username. Additionally beside the search bar is a hoverable information icon to explain in brief how a user can use the feed. 
+The idea of the top feed is for users to search profiles and have them listed in
+descending order of [approvals](***). Users are able to search profiles by
+information on their profile cards. For example, if a user would like to find the
+most approved 'Landscaper' they can simply search this and have the profile
+cards listed with the most approved 'Landscaper' at the top of the list. Other
+examples include searching by employer, location, name, and username.
+Additionally beside the search bar is a hoverable information icon to explain in
+brief how a user can use the feed.
 
-This works as a directory for users to find highly skilled individuals based on their needs.
+This works as a directory for users to find highly skilled individuals based on
+their needs.
 
 ![Top Feed (Overall)](README_images/features/feeds/top.png)
 
@@ -648,13 +724,16 @@ This works as a directory for users to find highly skilled individuals based on 
 ![Top Feed (Overall) Mobile](README_images/features/feeds/top-m.png)
 ![Example Top Feed Search](README_images/features/feeds/top-searched.png)
 ![Information Icon](README_images/features/feeds/information.png)
+
 </details>
 
 [⏫ contents](#contents)
 
 ### Search Bar
 
-The search bar can be found above all feeds when a user is logged in. A user can use the search bar to filter feed results, if there are no posts found using this search filter a message is displayed.
+The search bar can be found above all feeds when a user is logged in. A user can
+use the search bar to filter feed results, if there are no posts found using
+this search filter a message is displayed.
 
 ![Search Bar](README_images/features/feeds/search-bar.png)
 
@@ -662,7 +741,11 @@ The search bar can be found above all feeds when a user is logged in. A user can
 
 ### Create Post Form
 
-A logged in user has the ability to create a post via the yellow '+' button in the navbar. The button links to the create post form where a user can specify a title, content and add an image. Both the title and image are required to submit a valid form. Once a valid form is submitted the user is redirected to the post details page of the post they have just created.
+A logged-in user has the ability to create a post via the yellow '+' button in
+the navbar. The button links to the create post form where a user can specify a
+title, content and add an image. Both the title and image are required to submit
+a valid form. Once a valid form is submitted the user is redirected to the post
+details page of the post they have just created.
 
 ![Create Post Form Mobile](README_images/features/crud/create-m.png)
 ![Create Post Form Desktop](README_images/features/crud/create.png)
@@ -672,7 +755,11 @@ A logged in user has the ability to create a post via the yellow '+' button in t
 
 ### Edit Post Form
 
-If a user owns a post object they will find an extra settings button on the post, with a spanner icon to make it distinguishable. When clicked it displays the option to edit the post. If a user clicks the edit option they are directed to the edit post form, this is the same as the create post form, just populated with the necessary post details. Here a user can update the post details.
+If a user owns a post object they will find an extra settings button on the
+post, with a spanner icon to make it distinguishable. When clicked it displays
+the option to edit the post. If a user clicks the edit option they are directed
+to the edit post form, this is the same as the create post form, just populated
+with the necessary post details. Here a user can update the post details.
 
 ![Settings Button](README_images/features/crud/post-settings.png)
 ![Edit Post Form](README_images/features/crud/edit-post.png)
@@ -681,7 +768,11 @@ If a user owns a post object they will find an extra settings button on the post
 
 ### Delete Objects
 
-If a user owns a Post or Comment they will find the settings dropdown menu on the object itself. When clicked the object will show options to edit/ delete the oject. If a user clicks the delete option a confirmation modal is shown, with further options to delete or cancel the deletion process. Only when the deletion is confirmed is the object deleted.
+If a user owns a Post or Comment they will find the settings dropdown menu on
+the object itself. When clicked the object will show options to edit/ delete the
+object. If a user clicks the delete option a confirmation modal is shown, with
+further options to delete or cancel the deletion process. Only when the deletion
+is confirmed is the object deleted.
 
 ![Delete Confirmation Modal](README_images/features/crud/modal.png)
 ![Settings Dropdown Delete](README_images/features/crud/delete-option.png)
@@ -690,16 +781,32 @@ If a user owns a Post or Comment they will find the settings dropdown menu on th
 
 ### Post Details Page
 
-When a user clicks on a post in a feed or WOTW they are directed to the post details page for the specific post, here a user can see the post in full size with a comments section beneath. If there are comments they can be read by the user. If a user is logged in they can interact with the post instance, both by liking the post and commenting on the post.
+When a user clicks on a post in a feed or WOTW they are directed to the post
+details page for the specific post, here a user can see the post in full size
+with a comments section beneath. If there are comments they can be read by the
+user. If a user is logged in they can interact with the post instance, both by
+liking the post and commenting on the post.
 
-* #### Liking
-    On every post a user will find a like button in the form of a 'thumbs up' icon. If the user is logged in they can click the button to like a post, naturally the icon changes in response to this action and clicking the button again will unlike the post. These actions in turn increment and decrement the like count accordingly.
+-   #### Liking
+
+    On every post, a user will find a like button in the form of a 'thumbs up'
+    icon. If the user is logged in they can click the button to like a post,
+    naturally, the icon changes in response to this action, and clicking the
+    button again will unlike the post. These actions in turn increment and
+    decrement the like count accordingly.
 
     ![Like Button](README_images/features/crud/like.png)
     ![Unlike Button](README_images/features/crud/unlike.png)
 
-* #### Commenting
-    In addition to the liking button there is a comments icon displaying the number of comments next to it. If the user scrolls down they will be presented with a comment form. Here the user can write a comment in orer to join the conversation of the post, by simply clicking the 'comment' button. Once posted the user will be able to see their comment listed below the post in order of most recent first. A user has the ability to delete the comment if they wish.
+-   #### Commenting
+
+    In addition to the liking button, there is a comments icon displaying the
+    number of comments next to it. If the user scrolls down they will be
+    presented with a comment form. Here the user can write a comment in order to
+    join the conversation of the post, by simply clicking the 'comment' button.
+    Once posted the user will be able to see their comment listed below the post
+    in order of most recent first. A user has the ability to delete the comment
+    if they wish.
 
     ![Comments](README_images/features/crud/comments.png)
 
@@ -707,41 +814,48 @@ When a user clicks on a post in a feed or WOTW they are directed to the post det
 
 ### Profile Page
 
-Throughout the site users can navigate to fellow users' profiles by clicking the avatar or personal information of a user, this can be seen on all posts. The profile page contains a profile card for every user which is populated with personal information and company information, which the user has added to their profile, this information could include:
+Throughout the site users can navigate to fellow users' profiles by clicking the
+avatar or personal information of a user, this can be seen on all posts. The
+profile page contains a profile card for every user which is populated with
+personal information and company information, which the user has added to their
+profile, this information could include:
 
-- name *(not username)*
-- craft
-- employer
-- location
-- bio
-- owned companies
+-   name _(not username)_
+-   craft
+-   employer
+-   location
+-   bio
+-   owned companies
 
-*This information can be added via the settings menu, more on this [here](#update-profile).*
+_This information can be added via the settings menu, more on this [here](#update-profile)._
 
-Beneath the profile card is a feed of all posts created by the user in descending order of date of creation.
+Beneath the profile card is a feed of all posts created by the user in
+descending order of date of creation.
 
 ![Profile Page Desktop](README_images/features/profile/profile-page.png)
 ![Profile Page Mobile](README_images/features/profile/profile-page-m.png)
 
-* #### Follow
+-   #### Follow
 
-    If a user is on a profile which is not their own, they can find an additional 'Follow' button. When clicking this button four things happen:
+    If a user is on a profile which is not their own, they can find an
+    additional 'Follow' button. When clicking this button four things happen:
 
     1. the users following count increases by one
     2. the profiles follower count increases by one
-    3. the follow button switches to an unfolow button
-    4. the followed profiles posts are added to the 'Feed' feed.
+    3. the follow button switches to an unfollow button
+    4. the following profile posts are added to the 'Feed' feed.
 
-    Of course clicking the button again will simply reverse these effects.
+    Of course, clicking the button again will simply reverse these effects.
 
     ![Follow Button](README_images/features/profile/follow.png)
     ![Unfollow Button](README_images/features/profile/unfollow.png)
 
-* #### Approve
+-   #### Approve
 
-    Similarly a user can approve another profile using the approve button found on a profile, When clicking this button two things happen:
+    Similarly, a user can approve another profile using the approve button found
+    on a profile, When clicking this button two things happen:
 
-    1. the profiles approval count increases by one
+    1. the profile approval count increases by one
     2. the approve button switches to an approved button
 
     Again clicking the button again will simply reverse these effects.
@@ -753,22 +867,44 @@ Beneath the profile card is a feed of all posts created by the user in descendin
 
 ### Update Profile
 
-In order for a user to improve their profile and searchability within the top feed they can update their profile with additional information, they can do this by navigating to their profile and clicking the settings dropdown spanner, then selected edit. They will be directed to the update profile form. Where they can add additional profile data or update existing data, including profile image, [adding companies](#add-edit-company) they own, and [selecting an employer](#select-company).
+In order for a user to improve their profile and searchability within the top
+feed they can update their profile with additional information, they can do this
+by navigating to their profile and clicking the settings dropdown spanner, then
+selected edit. They will be directed to the update profile form. Where they can
+add additional profile data or update existing data, including profile image,
+[adding companies](#add-edit-company) they own, and
+[selecting an employer](#select-company).
 
 ![Update Profile Form Desktop](README_images/features/profile/update-form.png)
 ![Update Profile Form Mobile](README_images/features/profile/update-form-m.png)
 
-* #### Select Employer
+-   #### Select Employer
 
-    One feature of the update profile form is an employer selection field. This selection dropdown is populated with companies created by other profiles. A user can select one of these companies as their employer or select no employer. The selection field is searchable making it much easier to find your employer if the site was to become populated with lots of profiles. When a user selects a company as their employer, the companies employee count increases accordingly. The employee count of companies can be seen on profile cards next to the owned companies of the profile in the 'Craft Employees' field.
+    One feature of the update profile form is an employer selection field. This
+    selection dropdown is populated with companies created by other profiles. A
+    user can select one of these companies as their employer or select no
+    employer. The selection field is searchable making it much easier to find
+    your employer if the site was to become populated with lots of profiles.
+    When a user selects a company as their employer, the company's employee
+    count increases accordingly. The employee count of companies can be seen on
+    profile cards next to the owned companies of the profile in the 'Craft
+    Employees' field.
 
     ![Employer Selector](README_images/features/profile/employer-selector.png)
     ![Employer Search](README_images/features/profile/employer-search.png)
     ![Employee Count](README_images/features/profile/employee-count.png)
 
-* #### Add/ Edit Company
+-   #### Add/ Edit Company
 
-    Beneath the personal information form users can add up to three owned companies to their profile. Once added they can edit them or delete via the settings menu. If a user creates a company the company will be available in the employer selector field for all users, likewise if they delete the company the company will be removed from the selector and from all associated profiles employer field. Furthermore users cannot create the same company multiple times, however, users must give a location when creating a company this means that franchises in different towns or countries is possible.
+    Beneath the personal information form, users can add up to three owned
+    companies to their profile. Once added they can edit them or delete via the
+    settings menu. If a user creates a company the company will be available in
+    the employer selector field for all users, likewise if they delete the
+    company the company will be removed from the selector and from all
+    associated profiles employer field. Furthermore, users cannot create the same
+    company multiple times, however, users must give a location when creating a
+    the company this means that franchises in different towns or countries are
+    possible.
 
     ![Add Company](README_images/features/profile/add-company.png)
     ![Edit Company](README_images/features/profile/edit-company.png)
@@ -777,7 +913,10 @@ In order for a user to improve their profile and searchability within the top fe
 
 ### Account Credentials
 
-Users occasionally want to update their username or password to allow for this an update credentials form was created, here a user can update either. The username is validated to check it hasnt already been used, and the passwords too must be the same and of correct length.
+Users occasionally want to update their username or password to allow for this
+an updated credentials form was created, here a user can update either. The
+username is validated to check it hasn't already been used, and the passwords too
+must be the same and of correct length.
 
 ![Update Credentials Form](README_images/features/profile/credentials.png)
 
@@ -785,75 +924,144 @@ Users occasionally want to update their username or password to allow for this a
 
 ### CRUD Functionality
 ---
-Craft Social features full Create, Read, Update, Delete functionality, for registered users, within the UI shown above in [current features](#current-features).
+Craft Social features full Create, Read, Update, Delete functionality, for
+registered users, within the UI shown above in
+[current features](#current-features).
 
-* #### Create:
-    Users can create posts, comments, likes, follows, approvals and companies.
+-   #### Create:
 
-* #### Read:
-    Both registered and unregistered users have complete read funcitonality across posts, profiles and comments.
+    Users can create posts, comments, likes, follows, approvals, and companies.
 
-* #### Update:
-    Posts, profiles and companies can be updated within the UI.
+-   #### Read:
 
-* #### Delete:
-    All user owned objects can be deleted with the UI. Including, posts, coments companies, likes, follows and approvals.
+    Both registered and unregistered users have complete read functionality
+    across posts, profiles, and comments.
+
+-   #### Update:
+
+    Posts, profiles, and companies can be updated within the UI.
+
+-   #### Delete:
+    All user-owned objects can be deleted with the UI. Including, posts, comments
+    companies, likes, follows, and approvals.
 
 [⏫ contents](#contents)
 
 ### Future Features
 ---
-The current released version of Craft Social was produced with a timeframe in mind, meaning the projects scope was planned accordingly. Therefore in order to reach an MVP on time some features must be implemented in future versions. These features may be short or long term, some future features are listed below:
+The current released version of Craft Social was produced with a timeframe in
+mind, meaning the project scope was planned accordingly. Therefore in order to
+reach an MVP on time some features must be implemented in future versions. These
+features may be short or long-term, some future features are listed below:
 
-* #### Companies Directory
-    As users can add companies and employers to their profiles it would be a great addition to have a page which could work as a 'yellow pages' style directory. As the sites goal is to showcase the skills and abilities of the users, a directory whereby the user's companies and employers are listed, and can be searched through, would incease the visibilty of the users and potentially offer them work opportunities.
+-   #### Companies Directory
 
-* #### Company Contact Details
-    In order to enable the above directory feature to work, adding company contact details would mean users can search companies by trade of by a particular profile and contact the company directly.
+    As users can add companies and employers to their profiles it would be a
+    great addition to have a page that could work as a 'Yellow Pages' style
+    directory. As the site's goal is to showcase the skills and abilities of the
+    users, a directory whereby the user's companies and employers are listed,
+    and can be searched through, would increase the visibilty of the users and
+    potentially offer them work opportunities.
 
-* #### Delete Account
-    Users will be able to delete there account with all posts and company instances in one click, logging them out in the process.
+-   #### Company Contact Details
 
-* #### Swipe Through Feed
-    On mobile and tablet sized devices users could swip left and right through the different feeds.
+    In order to enable the above directory feature to work, adding the company
+    contact details would mean users can search companies by trade or by a
+    particular profile and contact the company directly.
+
+-   #### Delete Account
+
+    Users will be able to delete there account with all posts and company
+    instances in one click, logging them out in the process.
+
+-   #### Swipe Through Feed
+
+    On mobile and tablet-sized devices users could swipe left and right through
+    the different feeds.
 
 [⏫ contents](#contents)
 
 ## Reusable Components
 
-In a React application, seperating the UI into smaller components offers many benefits, such as, code maintainability and development efficiency. Smaller components meant I was able focus on specific functionalities or features, one at a time. Furthermore these smaller components were reusable across the application, simplifying the develpoment process. Additionally when components have bugs or changes need to be made its easier to pinpoint the issue, and fixing it often wont affect the other components in the application. Overall the use of smaller components created a cleaner codebase, and more efficient production. 
+In a React application, seperating the UI into smaller components offers many
+benefits, such as code maintainability and development efficiency. Smaller
+components meant I was able to focus on specific functionalities or features, one
+at a time. Furthermore, these smaller components were reusable across the
+application, simplifying the development process. Additionally when components
+have bugs or changes need to be made its easier to pinpoint the issue, and
+fixing it often won't affect the other components in the application. Overall the
+use of smaller components created a cleaner codebase and more efficient
+production.
 
-Below are examples of components which were resused throughout the build.
+Below are examples of components that were reused throughout the build.
 
 ### `BackButton.js`
-Used throughout the application to provide the user with a go back option.
+
+Used throughout the application to provide the user with a go-back option.
 
 ### `MainButton.js`
-The main button component was used throughout to provide a better user experience, reusing this component meant all actions carried out by the user were controlled using the same button styling, different styles were available for use by adding the correct className, for example `btnStyles.Wide` was used to make the button full width in its container.
+
+The main button component was used throughout to provide a better user
+experience, reusing this component meant all actions carried out by the user
+were controlled using the same button styling, different styles were available
+for use by adding the correct className, for example `btnStyles.Wide` was used
+to make the button full width in its container.
 
 ### `SettingsDropdown.js`
-SettingsDropdown component was used in a conditional statement acrosss the application. If a user owned the object in question the SettingsDropdown would appear, it was used across, posts, profiles, comments and companies. The dropdown offered options for edit or delete. The options were added to the dropdown when necessary in each use by adding the related props `editObject={}` and/ or `onDelete={}`.
+
+SettingsDropdown component was used in a conditional statement across the
+application. If a user owned the object in question the SettingsDropdown would
+appear, it was used across, posts, profiles, comments, and companies. The
+dropdown offered options for edit or delete. The options were added to the
+dropdown when necessary in each use by adding the related props `editObject={}`
+and/ or `onDelete={}`.
 
 ### `InfiniteScroll.js`
-For all feeds infinitie scroll component was applied to enhance the user experience. Using this meant that page load was kept to a minumum speeding up the application as a whole.
+
+For all feeds infinitie scroll component was applied to enhance the user
+experience. Using this meant that page load was kept to a minimum speeding up
+the application as a whole.
 
 ### `Loader.js`
-Its important for users to never feel confused. Therefore whilst waiting for components to load a spinner is displayed to visualise the loading process. As the application contains many components a self defined Loader component became very useful.
+
+It's important for users to never feel confused. Therefore whilst waiting for
+components to load a spinner is displayed to visualise the loading process. As
+the application contains many components a self defined Loader component became
+very useful.
 
 ### `ErrorAlert.js`
-A good user experience involves feedback to the user, therefore the application needed a way to display any error, or success, messages to the user. Having the error alert at hand meant calling it via the [ErrorContext](***) easy when needed in try and catch blocks.
+
+A good user experience involves feedback to the user, therefore the application
+needed a way to display any error, or success, messages to the user. Having the
+error alert at hand meant calling it via the [ErrorContext](***) easy when
+needed in try and catch blocks.
 
 ### `Avatar.js`
-The avatar component was also useful. As a link to the profile of all users adding it to posts and comments was simple. In a use case, props were added to specify, src, height, textBefore, textAfter, className. Having two props for text positioning also cancelled down on unnecessary CSS.
+
+The avatar component was also useful. As a link to the profile of all users
+adding it to posts and comments was simple. In a use case, props were added to
+specify, src, height, textBefore, textAfter, className. Having two props for
+text positioning also canceled down on unnecessary CSS.
 
 ### `ConfirationModal.js`
-Whenever users wish to delete something its important to get confirmation, ensuring they are not accidently deleting something. The creation of the ConfirmationModal component means this process is easy to produce whenever a delete function is called. The use can be seen when deleting an object.
+
+Whenever users wish to delete something it's important to get confirmation,
+ensuring they are not accidentally deleting something. The creation of the
+ConfirmationModal component means this process is easy to produce whenever a
+delete function is called. The use can be seen when deleting an object.
 
 ### `Post.js`
-Perhaps considered one of the main components of the application, a post component is displayed multiple times throughout. Often used as the response to a map() function, this means, the more posts by users, the Post.js components are used. Seperating this was imperative to the efficiency of the build.
+
+Perhaps considered one of the main components of the application, a post
+component is displayed multiple times throughout. Often used as the response to
+a map() function, this means, that the more posts by users, the more Post.js components
+are used. Seperating this was imperative to the efficiency of the build.
 
 ### `Comment.js`
-Much like the Post.js component the Comment.js component is used as the response when 'mapping' over a list of results. Therefore having a seperate component to use here makes the codebase more streamlined.
+
+Much like the Post.js component the Comment.js component is used as the response
+when 'mapping' over a list of results. Therefore having a separate component to
+use here makes the codebase more streamlined.
 
 [⏫ contents](#contents)
 
@@ -861,37 +1069,64 @@ Much like the Post.js component the Comment.js component is used as the response
 
 ### `ErrorContext.js`
 
-The application needed a notfication system for error alerts initially, and further into the build a success alert. Using React's built in context API, the `ErrorContext` was defined, this provided a way to share an error state, throughout the application. The context includes three functions and a state variable.
+The application needed a notification system for error alerts initially, and
+further into the build a success alert. Using React's built-in context API, the
+`ErrorContext` was defined, this provided a way to share an error state,
+throughout the application. The context includes three functions and a state
+variable.
 
-* **`useErrorContext` hook:**
+-   **`useErrorContext` hook:**
 
-    This hook is used to access the `ErrorContext`. By calling `useErrorContext()` in a component, you can access the `errorInfo` state and use the three functions `showErrorAlert`, `showSuccessAlert`, and `clearErrorAlert`.
+    This hook is used to access the `ErrorContext`. By calling
+    `useErrorContext()` in a component, you can access the `errorInfo` state and
+    use the three functions `showErrorAlert`, `showSuccessAlert`, and
+    `clearErrorAlert`.
 
-    * `errorInfo` - stores information about an error, such as the title, message, and variant *(bootstrap variant e.g. warning)*.
+    -   `errorInfo` - stores information about an error, such as the title,
+        message, and variant _(bootstrap variant e.g. warning)_.
 
-    * `showErrorAlert` - the function used to display error alerts. It takes parameters for title, message, and variant, sets the error details, and triggers an error alert.
+    -   `showErrorAlert` - the function used to display error alerts. It takes
+        parameters for title, message, and variant, sets the error details, and
+        triggers an error alert.
 
-    * `showSuccessAlert` - function is similar to `showErrorAlert` but for success alerts.
+    -   `showSuccessAlert` - function is similar to `showErrorAlert` but for
+        success alerts.
 
-    * `clearErrorAlert` - function resets the `errorInfo` state to 'null', effectively hiding any displayed alerts, used within the `ErrorAert.js` components timeout function.
+    -   `clearErrorAlert` - function resets the `errorInfo` state to 'null',
+        effectively hiding any displayed alerts, used within the `ErrorAert.js`
+        components timeout function.
 
-* **`ErrorProvider`:**
+-   **`ErrorProvider`:**
 
-The component which serves as the provider for the `ErrorContext`. It wraps the entite application (`App.js`) with `ErrorContext.Provider` *(index.js)*, making the state and functions available to all the nested components.
+The component which serves as the provider for the `ErrorContext`. It wraps the
+entite application (`App.js`) with `ErrorContext.Provider` _(index.js)_, making
+the state and functions available to all the nested components.
 
-Creating this context, gave the ability to display error or success alerts throughout the application without having to pass down props through multiple components.
+Creating this context, gave the ability to display error or success alerts
+throughout the application without having to pass down props through multiple
+components.
 
 [⏫ contents](#contents)
 
 ### `CurrentUserContext.js`
 
-The CurrentUserContext was taken from the Code Institute Moments React walkthrough project. It is used for handling the current user's information. `CurrentUserContext` is used to share the current user data in different components. There's also the `SetCurrentUserContext` which is used to provide a function to update the current user data.
+The CurrentUserContext was taken from the Code Institute Moments React
+walkthrough project. It is used for handling the current user's information.
+`CurrentUserContext` is used to share the current user data in different
+components. There's also the `SetCurrentUserContext` which is used to provide a
+function to update the current user data.
 
-Additionally, there is the Axios interceptors which handle token refreshing. When making requests using `axiosReq` it checks if the token needs refreshing and automatically refreshes it when needed.
+Additionally, there are the Axios interceptors which handle token refreshing.
+When making requests using `axiosReq` it checks if the token needs refreshing
+and automatically refreshes it when needed.
 
 ### `useRedirectUser.js`
 
-A custom React hook, taken from Code Institute Moments React walkthrough project, which handles redirection based on the user's authentication status. The logic means that by simply adding a line of code you can redirect unauthenticated users away from parts of the site. For example a logged out user shouldnt be able to access a create post form.
+A custom React hook, taken from Code Institute Moments React walkthrough
+project, which handles redirection based on the user's authentication status.
+The logic means that by simply adding a line of code you can redirect
+unauthenticated users away from parts of the site. For example, a logged-out user
+shouldn't be able to access a create post form.
 
 [⏫ contents](#contents)
 
@@ -899,7 +1134,7 @@ A custom React hook, taken from Code Institute Moments React walkthrough project
 
 -   [react-bootstrap](https://react-bootstrap-v4.netlify.app/): Bootstrap was
     chosen due to its familiarity, speeding up development and making responsive
-    design easier. Its library and documentation is extensive.
+    design easier. Its library and documentation are extensive.
 
 -   [react-router](https://reactrouter.com/en/main): React router handles
     navigation in React applications, allowing for a dynamic and seamless user
@@ -946,6 +1181,7 @@ got to
 [Kanban with Bug Reports](https://github.com/users/mtmanning93/projects/8/views/1?filterQuery=label%3ABug).
 
 ### Resolved Bugs
+
 ---
 
 As was expected with such a build some bugs were found and squashed here are
