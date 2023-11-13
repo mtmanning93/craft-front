@@ -86,10 +86,11 @@ const CreatePostForm = () => {
 
 	return (
 		<Col
+			xs={11}
 			sm={12}
 			md={10}
 			lg={8}
-			className={`${mainStyles.Content} p-0 mt-3`}
+			className={`${mainStyles.Content} p-0 my-3`}
 		>
 			<Form
 				onSubmit={handleSubmit}
