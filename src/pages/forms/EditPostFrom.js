@@ -132,7 +132,7 @@ const EditPostForm = () => {
 						xs={{ span: 12, order: 3 }}
 						md={{ span: 4, order: 2 }}
 					>
-						<h1 className="mt-2">Create a post</h1>
+						<h1 className="mt-2">edit a post</h1>
 					</Col>
 					<Col
 						className="text-right"
