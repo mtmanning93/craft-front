@@ -68,8 +68,20 @@ setup other dependencies:
             -   [Iterations](#iterations)
                 -   [Backend Iteration](#backend-iteration)
             -   [Kanban Board](#kanban-board)
-    -   [Features]()
-        -   [Current Features]()
+    -   [Features](#features)
+        -   [Current Features](#current-features)
+            -   [Landing Page](#landing-page)
+            -   [Sign Up Form](#sign-up-form)
+            -   [Login Form](#login-form)
+            -   [Navbar](#navbar)
+            -   [Header](#header)
+            -   [Work Of The Week](#work-of-the-week-wotw)
+            -   [Discover Feed](#discover-feed)
+            -   ['Feed' Feed](#feed-feed)
+            -   [Liked Feed](#liked-feed)
+            -   [Top Feed](#top-feed)
+            -   [Search Bar](#search-bar)
+        -   [CRUD Functionality]()
         -   [Future Features]()
         -   [Defensive Design]()
     -   [Efficient Components]()
@@ -494,25 +506,120 @@ automatically move the issue into the 'Done' column.
 
 ## Features
 
-<details>
-<summary>Click to see Craft-API ERD image</summary>
-
-![Craft Social API ERD](README_images/api-erd.png)
-
-</details>
-
 ### Current Features
 ---
 
-#### Landing Page
+### Landing Page
 
 When a user visits the site they are welcomed by a simple navbar giving options to home, login and signup. A header containing a welcome message and brief information enticing a non-registered user to sign up. Below is a feed containg all posts from the site and the 'Work of the Week' component, this gives a non registered user the ability to navigate around the site and read all information.
 
 ![Landing Page Desktop](README_images/features/landing-page.png) ![Landing Page Mobile](README_images/features/landing-page-m.png)
 
-#### Sign Up Form
+### Sign Up Form
 
+The sign up registration form is simple, making it easy for unregistered users to sign up with just a username and password confirmation. If a registered user find themselves on the sign up form there is also a login form link at the bottom to make navigate to the correct form easily.
 
+![Sign Up Form](README_images/features/sign-up-form.png)
+
+### Login Form
+
+Very similar to the sign up form is the login form, registered users are able to login to their account quickly via simple username and password combination. For non registered users there is a small link to navigate to the coreect sign up form if they have navigated to the wrong page.
+
+![Login Form](README_images/features/login-form.png)
+
+[⏫ contents](#contents)
+
+### Navbar
+
+The navbar found at the top of the site contains user related links to parts of the site. For unregistered and logged out users the navbar hold links to home, login and signup forms. When a registered user is logged in the navbar switches to contain the main '+' (add post) button along with their clickable avatar dropdown menu. Within this menu a user can find a small welcome message along with links to their profile page, account settings (username and password), and a logout link. It is fully responsive from desktop to mobile collapsing down as the screen size gets smaller. The links in the nav have an active classname set to enable better site navigation for a user and finally the site logo is a clickable link to the home page.
+
+<details>
+<summary>Logged Out Nav Screenshots</summary>
+
+![Logged Out Nav Dekstop](README_images/features/nav/logged-out-desk.png)
+![Logged Out Nav Mobile](README_images/features/nav/logged-out-m.png)
+</details>
+<details>
+<summary>Logged In Nav Screenshots</summary>
+
+![Logged In Nav Desktop](README_images/features/nav/logged-in-desk.png)
+![Logged In Nav Mobile](README_images/features/nav/logged-in-m.png)
+</details>
+
+[⏫ contents](#contents)
+
+### Header
+
+A header component is found between the navbar and the main content of the site, for a logged out or un-registered user it acts as a welcome header, providing snippets of information as to why they should sign up. For logged in users the header switches to feed navigation tabs. Users are able to quickly click between feeds, having the active feed visible as a tab when clicked. The tabs are responsive as on smaller screen sizes the text dissaperas showing only feed related icons.
+
+<details>
+<summary>Logged Out Header Screenshots</summary>
+
+![Logged Out Header Dekstop](README_images/features/header/header-lo.png)
+![Logged Out Header Mobile](README_images/features/header/header-lo-m.png)
+</details>
+<details>
+<summary>Logged In Header Screenshots</summary>
+
+![Logged In Header Desktop](README_images/features/header/header.png)
+![Logged In Header Mobile](README_images/features/header/header-m.png)
+</details>
+
+[⏫ contents](#contents)
+
+### Work Of The Week (WOTW)
+
+As one of the site goals is to showcase all users work and skills it was clear there needed to be a place to showcase popular posts. Therefore throughout the site the WOTW component can be found on the right hand side of the main content. It includes the top 3 most liked posts in smaller post form, hiding some informaton. All of the posts in the WOTW are links to the related post details page, this means users can easily navigate to these posts. As other posts gain more likes they are replaced.
+
+![WOTW Desktop](README_images/features/wotw/wotw.png)
+![WOTW Mobile](README_images/features/wotw/wotw-m.png)
+
+### Discover Feed
+
+The discover feed is where all site content lives. This feed acts also as the landing page feed, enabling users to search around all site content, from here users are able to discover each others profiles and posts. The posts are listed by the date of creation. All feeds use infinite scroll technology in order to create a better user experience by loading posts only when needed.
+
+![Discover Feed](README_images/features/feeds/discover.png)
+
+### 'Feed' Feed
+
+This feed is only available to logged in users and contians, all the posts, from all profiles they follow. Again using infintie scroll and listed by created date, in descending order. If a user is new or they havent followed any profiles a message appears tellling the user to 'get started by following other profiles' *(an example can be seen in the liked feed explanation)*.
+
+!['Feed' (following) Feed](README_images/features/feeds/feed.png)
+
+### Liked Feed
+
+Much like the feed described above this feed is ony available to logged in users. It displays all posts a user has liked. Again if a user is new or they havent liked any posts yet a message appears tellling the user to 'get started by liking some posts'.
+
+![Liked Feed](README_images/features/feeds/liked.png)
+![No posts message](README_images/features/feeds/no-posts-message.png)
+
+[⏫ contents](#contents)
+
+### Top Feed
+
+Top feed is only accessible to logged in users. It differs from the pther feeds in that instead of displaying posts it displays profile cards. When the feed initially loads it lists all profiles in order of [approval count](***), the most approved profile is awarded with the golden trophy on the top right of their profile card, second the silver medal and third the bronze.
+
+The idea of the top feed is for users to search profiles and have them listed in descending order of [approvals](***). Users are able to search profiles by information on their profile cards. For example if a user would like to find the most approved 'Landscaper' they can simply search this and have the profile cards listed with the most approved 'Landscaper' at the top of the list. Other examples include searching by employer, location, name, and username. Additionally beside the search bar is a hoverable information icon to explain in brief how a user can use the feed. 
+
+This works as a directory for users to find highly skilled individuals based on their needs.
+
+![Top Feed (Overall)](README_images/features/feeds/top.png)
+
+<details>
+<summary>More Top Feed Screenshots</summary>
+
+![Top Feed (Overall) Mobile](README_images/features/feeds/top-m.png)
+![Example Top Feed Search](README_images/features/feeds/top-searched.png)
+![Information Icon](README_images/features/feeds/information.png)
+</details>
+
+[⏫ contents](#contents)
+
+### Search Bar
+
+The search bar can be found above all feeds when a user is logged in. A user can use the search bar to filter feed results, if there are no posts found using this search filter a message is displayed.
+
+![Search Bar](README_images/features/feeds/search-bar.png)
 
 [⏫ contents](#contents)
 
