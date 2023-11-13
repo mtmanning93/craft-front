@@ -58,7 +58,7 @@ const LogInForm = () => {
 
 	return (
 		<Col
-			className={`mx-auto text-center ${styles.FormWrapper}`}
+			className={`mx-2 text-center ${styles.FormWrapper}`}
 			sm={6}
 			lg={5}
 		>

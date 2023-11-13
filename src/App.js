@@ -23,10 +23,7 @@ import CredentialsForm from "./pages/forms/CredentialsForm";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 
 function App() {
-
     const location = useLocation().pathname;
-
-    console.log(location)
 
 	return (
 		<div className={styles.App}>
