@@ -1,6 +1,8 @@
 # Testing
 
-[⏪ Main README](README.md)
+[⏩ Main README](README.md)
+
+[⏪ Craft-API Repository](https://github.com/mtmanning93/craft-api)
 
 ## Contents
 
@@ -15,7 +17,8 @@
         - [Install/ Run](#install-run-stylint)
 - [Manual Testing](#manual-testing)
     - [Simulating Errors](#simulating-errors)
-- [Screen Testing]()
+- [WAVE Web Accessibility Testing](#wave-web-accessibility-testing)
+- [Screen Testing](#screen-testing)
 - [Browser Testing]()
 - [Lighthouse]()
 
@@ -59,11 +62,15 @@ Finally to run the linter:
 
 #### Mock Service Worker
 
+[⏫ contents](#contents)
+
 ## Html Validation
 
 In this particular application there is only one Html file, public/index.html. However it still needs to be validated, for this [W3C Validator](https://validator.w3.org/) was used. The file returned no warnings or errors just some 'info' regarding the trailing '/' as the JSX syntax was used.
 
 ![Html Validation](./README_images/testing/html_validation.png)
+
+[⏫ contents](#contents)
 
 ## CSS Validation
 
@@ -99,6 +106,8 @@ Finally to run the linter I could use the custom script command:
 
 [For more on getting started with Stylelint](https://stylelint.io/user-guide/get-started)
 
+[⏫ contents](#contents)
+
 ## Manual Testing
 
 Manual tests were created to test the functionality of the final deployed version of the site, the outcomes were documented and displayed in the table below. During the testing phase, occassionally tests would fail. If a test did fail, the issue would be addressed accordingly and the outcome of the additional testing would be provided with description of how it was fixed.
@@ -124,7 +133,7 @@ Finally these tests were carried out by a real user, as tests failed they would 
 | Enter valid login data and submit form | [Signup #3](https://github.com/mtmanning93/craft-front/issues/3) | The user is directed to the 'Login' form, logging in with new credentials logs user in as expected. | Pass | - |
 | As a logged in user navigate to and click the logout link | [Logout #12](https://github.com/mtmanning93/craft-front/issues/12) | The user is logged out, redirected to the 'Home' page, and a success message appears, additionally the navbar reverts to the logged out navbar. | Pass | - |
 | As a logged in user, select between the 4 different feeds by clicking the navigation tabs | [Feed Navigation #27](https://github.com/mtmanning93/craft-front/issues/27) | On selection, the active tab is visible and the content represents the current tab features. | Pass | - |
-| **[Craft Front Iteration 2 (Create Post/ Post Details)](https://github.com/mtmanning93/craft-front/milestone/4)** |
+| **[Craft Front Iteration 2 (Create Post/ Post Details)](https://github.com/mtmanning93/craft-front/milestone/4)** |  |  |  | [⏫ contents](#contents) |
 | Navigate to and click the '+' create button in the navbar | [Create Posts #9](https://github.com/mtmanning93/craft-front/issues/9) | The user is directed to the create post form. | Pass | - |
 | In the form do not enter any information, and submit form | [Create Posts #9](https://github.com/mtmanning93/craft-front/issues/9) | Form validation error displayed on image file fields | Pass | - |
 | Add an image to the form, do not fill in the text fields, submit form | [Create Posts #9](https://github.com/mtmanning93/craft-front/issues/9) | Title validation error is displayed, 'This field may not be blank'. | Pass | - |
@@ -153,7 +162,7 @@ Finally these tests were carried out by a real user, as tests failed they would 
 | Navigate to the spanner icon and select delete from the dropdown | [Comment #19](https://github.com/mtmanning93/craft-front/issues/19) | On confirmation the users comment should be removed from the comment list. | Pass | - |
 | Locate a post owned by the current user, navigate to the spanner dropdown and select 'delete' | [Delete Post #11](https://github.com/mtmanning93/craft-front/issues/11) | A delete confirmation modal should appear. | Pass | - |
 | Confirm the post deletion. | [Delete Post #11](https://github.com/mtmanning93/craft-front/issues/11) | The post is removed from the site, and the user is redirected to the previous page. | Pass | - |
-| **[Craft Social Front Iteration 3 (Post Feeds)](https://github.com/mtmanning93/craft-front/milestone/5)** |
+| **[Craft Social Front Iteration 3 (Post Feeds)](https://github.com/mtmanning93/craft-front/milestone/5)** |  |  |  | [⏫ contents](#contents) |
 | Navigate to the 'Home' feed | [Post List #4](https://github.com/mtmanning93/craft-front/issues/4) | As an unregistered user cou can see a full list of all site posts on the landing page. | Pass | - |
 | As a logged in user navigate to the 'Discover' feed | [Post List #4](https://github.com/mtmanning93/craft-front/issues/4) | A full list of all site posts can be scrolled through ordered by most recent first. | Pass | - |
 | Click on the author details section with the avatar | [Post List #4](https://github.com/mtmanning93/craft-front/issues/4) | Users are redirected to the profile of the author | Pass | - |
@@ -172,7 +181,7 @@ Finally these tests were carried out by a real user, as tests failed they would 
 | Like a post from the WOTW list | [Top Posts 'WOTW' #13](https://github.com/mtmanning93/craft-front/issues/13) | The likes count should have incremented by one within the WOTW post. | Pass | - |
 | Unlike a post from the WOTW list | [Top Posts 'WOTW' #13](https://github.com/mtmanning93/craft-front/issues/13) | The likes count should have decremented by one within the WOTW post. | Pass | - |
 | Posts change depending like count | [Top Posts 'WOTW' #13](https://github.com/mtmanning93/craft-front/issues/13) | When a post is liked more than one of the posts in the WOTW component it swaps places ensuring the most liked posts are always ordered correctly. | Pass | - |
-| **[Craft Social Front Iteration 4 (Profile View)](https://github.com/mtmanning93/craft-front/milestone/6)** |
+| **[Craft Social Front Iteration 4 (Profile View)](https://github.com/mtmanning93/craft-front/milestone/6)** |  |  |  | [⏫ contents](#contents) |
 | Click a profile avatar | [Profile Pages #15](https://github.com/mtmanning93/craft-front/issues/15) | The avatars site wide should be a clickable link to the relevant profile details page. | Fail - In create post form | Pass - In post create form it isnt necessary for the Avatar to be a link as its a reference to the posts author. |
 | On a profile page scroll down to a profile specific post list | [Profile Pages #15](https://github.com/mtmanning93/craft-front/issues/15) | Every profile should have a posts feed filled with posts the profile has created. | Pass | - |
 | Check message for new profile | [Profile Pages #15](https://github.com/mtmanning93/craft-front/issues/15) | If a new profile has no posts yet the post list will display a "No posts yet!" message. | Pass | - |
@@ -208,7 +217,7 @@ Finally these tests were carried out by a real user, as tests failed they would 
 | Add company and select it as profiles employer instance | [Employment Details #14](https://github.com/mtmanning93/craft-front/issues/14) | Adding a new company adds it to the employer select dropdown menu. | Pass | - |
 | Delete a company, find it in the employer select dropdown | [Employment Details #14](https://github.com/mtmanning93/craft-front/issues/14) | The company is removed from the dropdown. | Fail - The company can still be found in dropdown until refresh | Pass - Added a handleSelectCompanyChange function, passing it down to ProfileCompany.js as a prop and set the selected option according to company deletion. |
 | Set a company as employer, update profile. Navigate back to update profile form and delete this company. | [Employment Details #14](https://github.com/mtmanning93/craft-front/issues/14) | The company is removed from the dropdown, and the users employer selection. | Pass | - |
-| **[Craft Social Front Iteration 5 (Top Feed/ High Priorities)](https://github.com/mtmanning93/craft-front/milestone/7)** |
+| **[Craft Social Front Iteration 5 (Top Feed/ High Priorities)](https://github.com/mtmanning93/craft-front/milestone/7)** |  |  |  | [⏫ contents](#contents) |
 | As a logged in user navigate to the 'Top' tab. | [Top List #17](https://github.com/mtmanning93/craft-front/issues/17) | The selected tab is visible and a list of all profiles is displayed, ordered from most approved to least. | Pass | - |
 | View a profile details | [Top List #17](https://github.com/mtmanning93/craft-front/issues/17) | A user can see a snapshot of the profiles in the list including: avatar, username, and personal detials added | Pass | - |
 | View profiles approval ranking | [Top List #17](https://github.com/mtmanning93/craft-front/issues/17) | A user can see each profiles approval ranking in the top left of the profile card, in descending order from most approved to least. | Pass | - |
@@ -237,6 +246,8 @@ Finally these tests were carried out by a real user, as tests failed they would 
 | Update password with a non matching passwords | [Update Credentials #43](https://github.com/mtmanning93/craft-front/issues/43) | The password form is invalid and validation error is displayed on the form. | Pass | - |
 | Click the cancel text link under the forms | [Update Credentials #43](https://github.com/mtmanning93/craft-front/issues/43) | User is redirected home | Pass | - |
 
+[⏫ contents](#contents)
+
 ### Simulating Errors
 ---
 When creating alerts to show the user incase of an error, I sometimes needed to trigger the catch block. To do so I created a simple function to mock an error. This way I was able to see the alerts play out in the case of an actual error. Below is the simple function and function call I used throughout testing the errors and the alerts.
@@ -251,30 +262,55 @@ When creating alerts to show the user incase of an error, I sometimes needed to 
 
 	simulateError();
 
-## WAVE Testing
+[⏫ contents](#contents)
+
+## WAVE Web Accessibility Testing
 
 WAVE testing was carried out to ensure accessibility was high. I used the WAVE chrome browser plugin, its very simple and easy to use rendering the sites pages with hints and errors marked, making them easy to address.
 
 The goal of WAVE testing is to check the sites accessibility scores. When testing the site the goal was to get 0 overall errors, and 0 contrast errors, to reach this goal the following errors were addressed:
 
-* #### Missing Form Label
+* ### Missing Form Label
     Initially many `<Form.Control>` elements had no label for screenreaders, to combat this I had to add additional `<Form.Label>` elements with `className="sr-only"` and connect it to a `<Form.Control>` element via `htmlFor` attribute.
 
-* #### Link Contains No Text
+* ### Link Contains No Text
     Related to the create post button in the navbar, to overcome this an `aria-label` was added to the link.
 
-* #### Empty Button
+* ### Empty Button
     Caused by having a Font Awesome icon as the button text. To fix this an `aria-label` was set on the MainButton and BackButton components.
 
-* #### Alt Text Missing On Update Images
+* ### Alt Text Missing On Update Images
     The issue was found in the edit object forms, for example the update profile form. The profile image to be updated need to have an `alt=""` text specified, additionally it needed to be more than one word to gove a relevant explanation. 
 
-* #### Active NavLink Color Contrast
+* ### Active NavLink Color Contrast
     Before the WAVE testing the active navlinks were bright yellow making the contrast too low, a simple update to a faded black color fixed this error.
+
+[⏫ contents](#contents)
 
 ## Screen Testing
 
+When designing the app and the UI, responsiveness was of high importance. Due to the size of the project, and modularity of different components, I was able to work on the responsivity of each component when it was developed, and maually tested. When a component was used its parent component, in a form or 'page', I utilized Chrome dev tools to aid in the responsive styling. Stacking components on mobile devices. Using bootstraps grid system and some custom styling I was able to implement a responsive design site-wide across a range of devices from iPhone 6 to larger monitor sized screens.
+
+To further test whether the app would work across screens I physically tested its appearance across some devices of differing sizes, these were:
+
+24" Monitor
+19" Square Desktop
+12" Macbook Air Laptop
+Samsung Galaxy s21
+iPhone 7
+
+[⏫ contents](#contents)
+
 ## Browser Testing
+
+The project was developed in Google Chrome using the Gitpod IDE. This made building the project simple as I had access to the Chrome Devtools. It is however not just available in the Chrome browser therefore it was important to test it across a number of different browsers, the browser tests included:
+
+Chrome (Development)
+Firefox
+Safari
+Edge
+
+[⏫ contents](#contents)
 
 ## Lighthouse
 
