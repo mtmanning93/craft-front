@@ -24,7 +24,7 @@ import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 const UpdateProfileForm = () => {
 	useRedirectUser("loggedOut");
 	const { showErrorAlert } = useErrorContext();
-    const setCurrentUser = useSetCurrentUser();
+	const setCurrentUser = useSetCurrentUser();
 
 	const [errors, setErrors] = useState({});
 	const [loaded, setLoaded] = useState(false);
@@ -131,6 +131,10 @@ const UpdateProfileForm = () => {
 		getProfileCompanies();
 	}, [id, showErrorAlert]);
 
+	const handleSelectedCompanyChange = (value) => {
+		setSelectedCompany(value);
+	};
+
 	const profileOwnedCompanies = (
 		<>
 			<Col
@@ -161,6 +165,10 @@ const UpdateProfileForm = () => {
 							{...company}
 							setProfileData={setProfileData}
 							setProfileCompanies={setProfileCompanies}
+							selectedCompany={selectedCompany}
+							handleSelectedCompanyChange={
+								handleSelectedCompanyChange
+							}
 						/>
 					))
 				) : (
@@ -189,7 +197,6 @@ const UpdateProfileForm = () => {
 		try {
 			const response = await axiosReq.put(`/profiles/${id}/`, formData);
 
-			// Update the profile image in the currentUser context
 			setCurrentUser((prevUser) => ({
 				...prevUser,
 				profile_image: response.data.image,
@@ -313,6 +320,7 @@ const UpdateProfileForm = () => {
 										Employer:
 									</Form.Label>
 									<EmployerSelector
+										key={profileCompanies.length}
 										value={selectedCompany}
 										onChange={setSelectedCompany}
 									/>

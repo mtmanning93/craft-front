@@ -7,7 +7,6 @@ import MainButton from "../../components/buttons/MainButton";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { axiosRes } from "../../api/axiosDefaults";
 import mainStyles from "../../App.module.css";
-import { useErrorContext } from "../../contexts/ErrorContext";
 
 const CommentForm = (props) => {
 	const user = useCurrentUser();

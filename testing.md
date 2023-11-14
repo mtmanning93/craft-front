@@ -202,6 +202,8 @@ tested on desktop size
 | Check Owned Companies section displays correct information | [Employment Details #14](https://github.com/mtmanning93/craft-front/issues/14) | The company details provided are shown in each company instance within the 'Owned Companies' seciton | Fail - Unused field icons are displayed with no data | Pass - Updated conditional statements to only show icons if related company detilas are provided. |
 | Click the edit option in company settings dropdown, within the update profile form | [Employment Details #14](https://github.com/mtmanning93/craft-front/issues/14) | The user is directed to the edit company form where they can update the company information. | Pass | - |
 | Click the delete option in company settings dropdown, within the update profile form | [Employment Details #14](https://github.com/mtmanning93/craft-front/issues/14) | A confirmation modal is triggered to confirm the user wishes to delete the company, if confirmed the company instance is deleted, including from any user's employer field within their personal details. | Pass | - |
+| Add company and select it as profiles employer instance | [Employment Details #14](https://github.com/mtmanning93/craft-front/issues/14) | Adding a new company adds it to the employer select dropdown menu. | Pass | - |
+| Delete a company, find it is the employer select dropdown | [Employment Details #14](https://github.com/mtmanning93/craft-front/issues/14) | The company is removed from the dropdown. | Fail - The company can still be found in dropdown until refresh | Pass - |
 
 Most approved test when approving a profile
 |  |  |  | Pass | - |

@@ -18,6 +18,8 @@ const ProfileCompany = (props) => {
 		employee_count,
 		setProfileData,
 		setProfileCompanies,
+		selectedCompany,
+		handleSelectedCompanyChange,
 	} = props;
 
 	const currentUrl = useLocation().pathname;
@@ -43,6 +45,12 @@ const ProfileCompany = (props) => {
 			setProfileCompanies((prevCompanies) =>
 				prevCompanies.filter((company) => company.id !== id)
 			);
+
+			// Check if the deleted company is the currently selected company
+			if (selectedCompany && selectedCompany.value === id) {
+				// Call the callback from the parent component to update selectedCompany
+				handleSelectedCompanyChange(""); // Modify the function name as needed
+			}
 		} catch (err) {
 			console.error("Error deleting company:", err);
 			showErrorAlert(
