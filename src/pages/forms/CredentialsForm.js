@@ -20,8 +20,8 @@ import { useErrorContext } from "../../contexts/ErrorContext";
 
 const CredentialsForm = () => {
 	useRedirectUser("loggedOut");
-    
-    const { showSuccessAlert } = useErrorContext();
+
+	const { showSuccessAlert } = useErrorContext();
 	const currentUser = useCurrentUser();
 	const setCurrentUser = useSetCurrentUser();
 
@@ -62,7 +62,7 @@ const CredentialsForm = () => {
 				...prevUser,
 				passwordData,
 			}));
-            showSuccessAlert(
+			showSuccessAlert(
 				"Success",
 				"You have successfully updated your password.",
 				"success"
@@ -81,7 +81,7 @@ const CredentialsForm = () => {
 				...prevUser,
 				username,
 			}));
-            showSuccessAlert(
+			showSuccessAlert(
 				"Success",
 				"You have successfully updated your username.",
 				"success"
@@ -102,10 +102,7 @@ const CredentialsForm = () => {
 		>
 			<Row className="m-2 pb-2 border-bottom">
 				<Col xs={{ span: 6, order: 1 }} md={{ span: 3, order: 1 }}>
-					<Avatar
-						src={currentUser?.profile_image}
-						height={40}
-					/>
+					<Avatar src={currentUser?.profile_image} height={40} />
 				</Col>
 				<Col
 					className="text-center pt-2 pt-md-0"
@@ -130,8 +127,11 @@ const CredentialsForm = () => {
 					</Alert>
 				))}
 				<Form.Group>
-					<Form.Label className="d-none">Username</Form.Label>
+					<Form.Label htmlFor="edit-username" className="sr-only">
+						Username
+					</Form.Label>
 					<Form.Control
+						id="edit-username"
 						className={formStyles.Input}
 						placeholder="Enter new username"
 						type="text"
@@ -159,8 +159,11 @@ const CredentialsForm = () => {
 					</Alert>
 				))}
 				<Form.Group>
-					<Form.Label className="d-none">New Password</Form.Label>
+					<Form.Label htmlFor="new-password" className="sr-only">
+						New Password
+					</Form.Label>
 					<Form.Control
+						id="new-password"
 						className={formStyles.Input}
 						placeholder="Enter new password"
 						type="password"
@@ -175,8 +178,11 @@ const CredentialsForm = () => {
 					</Alert>
 				))}
 				<Form.Group>
-					<Form.Label className="d-none">Confirm Password</Form.Label>
+					<Form.Label htmlFor="confirm-password" className="sr-only">
+						Confirm Password
+					</Form.Label>
 					<Form.Control
+						id="confirm-password"
 						className={formStyles.Input}
 						placeholder="Confirm new password"
 						type="password"

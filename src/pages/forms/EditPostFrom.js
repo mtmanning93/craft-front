@@ -107,7 +107,7 @@ const EditPostForm = () => {
 
 		try {
 			await axiosReq.put(`/posts/${id}/`, formData);
-            history.goBack()
+			history.goBack();
 		} catch (err) {
 			setErrors(err.response?.data || {});
 		}
@@ -154,8 +154,14 @@ const EditPostForm = () => {
 							</Alert>
 						))}
 						<Form.Group>
-							<Form.Label className="d-none">Title</Form.Label>
+							<Form.Label
+								htmlFor="post-title-edit"
+								className="sr-only"
+							>
+								Title
+							</Form.Label>
 							<Form.Control
+								id="post-title-edit"
 								type="text"
 								name="title"
 								placeholder="Title..."
@@ -169,10 +175,14 @@ const EditPostForm = () => {
 							</Alert>
 						))}
 						<Form.Group>
-							<Form.Label className="d-none">
+							<Form.Label
+								htmlFor="post-description-edit"
+								className="sr-only"
+							>
 								Description
 							</Form.Label>
 							<Form.Control
+								id="post-description-edit"
 								as="textarea"
 								rows={5}
 								name="content"
@@ -199,6 +209,7 @@ const EditPostForm = () => {
 										<Image
 											className={styles.Image}
 											src={image}
+                                            alt="Current post image, click to update."
 										/>
 									</figure>
 									<div

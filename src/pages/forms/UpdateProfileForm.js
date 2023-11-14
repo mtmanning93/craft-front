@@ -238,6 +238,7 @@ const UpdateProfileForm = () => {
 												<Image
 													className={styles.Image}
 													src={image}
+													alt="Current profile image, click to update"
 												/>
 											</figure>
 											<div className="p-0 mb-2 text-center">
@@ -278,10 +279,11 @@ const UpdateProfileForm = () => {
 							</Col>
 							<Col className="p-0 p-sm-2">
 								<Form.Group>
-									<Form.Label>
+									<Form.Label htmlFor="profile-name">
 										<i className="fa-solid fa-user" /> Name:
 									</Form.Label>
 									<Form.Control
+										id="profile-name"
 										type="text"
 										name="name"
 										placeholder="Name"
@@ -296,11 +298,12 @@ const UpdateProfileForm = () => {
 								))}
 
 								<Form.Group>
-									<Form.Label>
+									<Form.Label htmlFor="profile-craft">
 										<i className="fa-solid fa-trowel-bricks" />{" "}
 										Craft:
 									</Form.Label>
 									<Form.Control
+										id="profile-craft"
 										type="text"
 										name="job"
 										placeholder="Job"
@@ -332,10 +335,11 @@ const UpdateProfileForm = () => {
 								))}
 
 								<Form.Group>
-									<Form.Label>
+									<Form.Label htmlFor="profile-bio">
 										<i className="fa-solid fa-pencil" /> Bio
 									</Form.Label>
 									<Form.Control
+										id="profile-bio"
 										as="textarea"
 										rows={5}
 										name="bio"

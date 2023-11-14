@@ -42,11 +42,7 @@ const SignUpForm = () => {
 	};
 
 	return (
-		<Col
-			className={`mx-2 text-center ${styles.FormWrapper}`}
-			sm={6}
-			lg={5}
-		>
+		<Col className={`mx-2 text-center ${styles.FormWrapper}`} sm={6} lg={5}>
 			<img src={icon} alt="site icon" />
 			<h1 className={styles.Heading}>
 				Love your craft?
@@ -57,14 +53,17 @@ const SignUpForm = () => {
 
 			<Form onSubmit={handleSubmit} className="mb-2">
 				<h2>Enter Details</h2>
-                {errors.non_field_errors?.map((message, idx) => (
+				{errors.non_field_errors?.map((message, idx) => (
 					<Alert variant="warning" key={idx} className="mt-3">
 						{message}
 					</Alert>
 				))}
 				<Form.Group controlId="username">
-					<Form.Label className="d-none">Username</Form.Label>
+					<Form.Label htmlFor="username-signup" className="sr-only">
+						Username
+					</Form.Label>
 					<Form.Control
+						id="username-signup"
 						className={styles.Input}
 						type="text"
 						placeholder="Enter Username"
@@ -80,8 +79,11 @@ const SignUpForm = () => {
 				))}
 
 				<Form.Group controlId="password1">
-					<Form.Label className="d-none">Password</Form.Label>
+					<Form.Label htmlFor="password1" className="sr-only">
+						Password
+					</Form.Label>
 					<Form.Control
+						id="password1"
 						className={styles.Input}
 						type="password"
 						placeholder="Password"
@@ -97,8 +99,11 @@ const SignUpForm = () => {
 				))}
 
 				<Form.Group controlId="password2">
-					<Form.Label className="d-none">Confirm password</Form.Label>
+					<Form.Label htmlFor="password2" className="sr-only">
+						Confirm password
+					</Form.Label>
 					<Form.Control
+						id="password2"
 						className={styles.Input}
 						type="password"
 						placeholder="Confirm password"

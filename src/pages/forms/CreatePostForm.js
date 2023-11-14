@@ -126,8 +126,11 @@ const CreatePostForm = () => {
 				>
 					<Col className="m-md-2 p-0">
 						<Form.Group>
-							<Form.Label className="d-none">Title</Form.Label>
+							<Form.Label htmlFor="post-title" className="sr-only">
+								Title
+							</Form.Label>
 							<Form.Control
+								id="post-title"
 								type="text"
 								name="title"
 								placeholder="Title..."
@@ -141,10 +144,14 @@ const CreatePostForm = () => {
 							</Alert>
 						))}
 						<Form.Group>
-							<Form.Label className="d-none">
+							<Form.Label
+								htmlFor="post-content"
+								className="sr-only"
+							>
 								Description
 							</Form.Label>
 							<Form.Control
+								id="post-content"
 								as="textarea"
 								rows={5}
 								name="content"

@@ -251,6 +251,23 @@ When creating alerts to show the user incase of an error, I sometimes needed to 
 
 	simulateError();
 
+## WAVE Testing
+
+The goal of wave testing is to check the sites accessibility scores. When testing the site the goal was to get 0 overall errors, and 0 contrast errors, to reeahc this goal the following errors were addressed:
+
+* #### Missing Form Label
+    Initially many `<Form.Control>` elements had no label for screenreaders, to combat this I had to add additional `<Form.Label>` elements with `className="sr-only"` and connect it to a `<Form.Control>` element via `htmlFor` attribute.
+
+* #### Link Contains No Text
+    Related to the create post button in the navbar, to overcome this an `aria-label` was added to the link.
+
+* #### Empty Button
+    Caused by having a Font Awesome icon as the button text. To fix this an `aria-label` was set on the MainButton and BackButton components.
+
+* #### Alt Text Missing On Update Avatar Image
+
+* #### Active NavLink Color Contrast
+
 ## Screen Testing
 
 ## Browser Testing

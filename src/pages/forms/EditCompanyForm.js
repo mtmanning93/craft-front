@@ -24,7 +24,7 @@ const EditCompanyForm = () => {
 	const { showErrorAlert } = useErrorContext();
 	const currentUser = useCurrentUser();
 
-    const [errors, setErrors] = useState({});
+	const [errors, setErrors] = useState({});
 	const [loaded, setLoaded] = useState(false);
 	const [companyData, setCompanyData] = useState({
 		name: "",
@@ -37,58 +37,57 @@ const EditCompanyForm = () => {
 	const history = useHistory();
 	const { id } = useParams();
 
-    useEffect(() => {
-        let isMounted = true; // track whether the component is mounted
-      
-        const getCompanyData = async () => {
-          try {
-            const { data } = await axiosReq.get(`/companies/${id}/`);
-      
-            if (isMounted) {
-              // Check the component is mounted before updating
-              if (data.is_owner) {
-                setCompanyData(data);
-              } else {
-                showErrorAlert(
-                  "Unauthorized",
-                  `You are not the owner of this company, you cannot edit this company (id:${id}).`,
-                  "danger"
-                );
-                history.push("/");
-              }
-              setLoaded(true);
-            }
-          } catch (err) {
-      
-            if (isMounted) {
-              // Check the component is mounted before updating
-              if (err.response.status === 404) {
-                showErrorAlert(
-                  `${err.response.status} error!`,
-                  "Requested company could not be found or does not exist.",
-                  "warning"
-                );
-                history.push("/page-not-found");
-              } else {
-                showErrorAlert(
-                  `${err.response.status} error!`,
-                  `${err.message}`,
-                  "warning"
-                );
-                history.push("/");
-              }
-            }
-          }
-        };
-      
-        setLoaded(false);
-        getCompanyData();
-      
-        // Cleanup function to prevent state updates
-        return () => {
-          isMounted = false; // Set to false when the component unmounts
-        };
-      }, [history, id, showErrorAlert]);
+	useEffect(() => {
+		let isMounted = true; // track whether the component is mounted
+
+		const getCompanyData = async () => {
+			try {
+				const { data } = await axiosReq.get(`/companies/${id}/`);
+
+				if (isMounted) {
+					// Check the component is mounted before updating
+					if (data.is_owner) {
+						setCompanyData(data);
+					} else {
+						showErrorAlert(
+							"Unauthorized",
+							`You are not the owner of this company, you cannot edit this company (id:${id}).`,
+							"danger"
+						);
+						history.push("/");
+					}
+					setLoaded(true);
+				}
+			} catch (err) {
+				if (isMounted) {
+					// Check the component is mounted before updating
+					if (err.response.status === 404) {
+						showErrorAlert(
+							`${err.response.status} error!`,
+							"Requested company could not be found or does not exist.",
+							"warning"
+						);
+						history.push("/page-not-found");
+					} else {
+						showErrorAlert(
+							`${err.response.status} error!`,
+							`${err.message}`,
+							"warning"
+						);
+						history.push("/");
+					}
+				}
+			}
+		};
+
+		setLoaded(false);
+		getCompanyData();
+
+		// Cleanup function to prevent state updates
+		return () => {
+			isMounted = false; // Set to false when the component unmounts
+		};
+	}, [history, id, showErrorAlert]);
 
 	const handleChange = (event) => {
 		setCompanyData({
@@ -140,9 +139,7 @@ const EditCompanyForm = () => {
 							xs={{ span: 12, order: 3 }}
 							md={{ span: 8, order: 2 }}
 						>
-							<h1 className="mt-2">
-								Edit your company
-							</h1>
+							<h1 className="mt-2">Edit your company</h1>
 						</Col>
 						<Col
 							className="text-right"
@@ -172,8 +169,14 @@ const EditCompanyForm = () => {
 									</Alert>
 								))}
 							<Form.Group>
-								<Form.Label className="d-none">Name</Form.Label>
+								<Form.Label
+									htmlFor="company-name-edit"
+									className="sr-only"
+								>
+									Name
+								</Form.Label>
 								<Form.Control
+									id="company-name-edit"
 									type="text"
 									name="name"
 									placeholder="Company name..."
@@ -187,8 +190,14 @@ const EditCompanyForm = () => {
 								</Alert>
 							))}
 							<Form.Group>
-								<Form.Label className="d-none">Type</Form.Label>
+								<Form.Label
+									htmlFor="company-type-edit"
+									className="sr-only"
+								>
+									Type
+								</Form.Label>
 								<Form.Control
+									id="company-type-edit"
 									type="text"
 									name="type"
 									placeholder="Trade or Industry?"
@@ -202,10 +211,14 @@ const EditCompanyForm = () => {
 								</Alert>
 							))}
 							<Form.Group>
-								<Form.Label className="d-none">
+								<Form.Label
+									htmlFor="company-location-edit"
+									className="sr-only"
+								>
 									Location
 								</Form.Label>
 								<Form.Control
+									id="company-location-edit"
 									type="text"
 									name="location"
 									placeholder="Location..."

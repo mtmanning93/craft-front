@@ -15,9 +15,9 @@ import { useRedirectUser } from "../../hooks/useRedirectUser";
 import { useErrorContext } from "../../contexts/ErrorContext";
 
 const CompanyForm = () => {
-    useRedirectUser('loggedOut')
-    
-    const { showSuccessAlert } = useErrorContext();
+	useRedirectUser("loggedOut");
+
+	const { showSuccessAlert } = useErrorContext();
 	const currentUser = useCurrentUser();
 
 	const [errors, setErrors] = useState({});
@@ -49,11 +49,11 @@ const CompanyForm = () => {
 
 		try {
 			await axiosReq.post("/companies/", formData);
-            showSuccessAlert(
-                "Success",
-                "You have successfully added a company to your profile.",
-                "success"
-            )
+			showSuccessAlert(
+				"Success",
+				"You have successfully added a company to your profile.",
+				"success"
+			);
 			history.goBack();
 		} catch (err) {
 			setErrors(err.response?.data);
@@ -61,7 +61,13 @@ const CompanyForm = () => {
 	};
 
 	return (
-		<Col xs={11} sm={10} md={8} lg={6} className={`${mainStyles.Content} p-0 mt-3`}>
+		<Col
+			xs={11}
+			sm={10}
+			md={8}
+			lg={6}
+			className={`${mainStyles.Content} p-0 mt-3`}
+		>
 			<Form onSubmit={handleSubmit}>
 				<Row className="m-2 pb-2 border-bottom">
 					<Col xs={{ span: 6, order: 1 }} md={{ span: 2, order: 1 }}>
@@ -90,7 +96,10 @@ const CompanyForm = () => {
 					id="inputs"
 					className={`${mainStyles.Content} border m-2 p-2 p-md-0 flex-column`}
 				>
-                    <p className="text-center m-2"><strong>Note: </strong>You will automatically become the owner of a company you create</p>
+					<p className="text-center m-2">
+						<strong>Note: </strong>You will automatically become the
+						owner of a company you create
+					</p>
 					<Col className="p-2">
 						{Array.isArray(errors) &&
 							errors.map((message, idx) => (
@@ -103,8 +112,14 @@ const CompanyForm = () => {
 								</Alert>
 							))}
 						<Form.Group>
-							<Form.Label className="d-none">Name</Form.Label>
+							<Form.Label
+								htmlFor="company-name"
+								className="sr-only"
+							>
+								Name
+							</Form.Label>
 							<Form.Control
+								id="company-name"
 								type="text"
 								name="name"
 								placeholder="Company name..."
@@ -118,8 +133,14 @@ const CompanyForm = () => {
 							</Alert>
 						))}
 						<Form.Group>
-							<Form.Label className="d-none">Type</Form.Label>
+							<Form.Label
+								htmlFor="company-type"
+								className="sr-only"
+							>
+								Type
+							</Form.Label>
 							<Form.Control
+								id="company-type"
 								type="text"
 								name="type"
 								placeholder="Trade or Industry?"
@@ -133,8 +154,14 @@ const CompanyForm = () => {
 							</Alert>
 						))}
 						<Form.Group>
-							<Form.Label className="d-none">Location</Form.Label>
+							<Form.Label
+								htmlFor="company-location"
+								className="sr-only"
+							>
+								Location
+							</Form.Label>
 							<Form.Control
+								id="company-location"
 								type="text"
 								name="location"
 								placeholder="Location..."

@@ -86,7 +86,7 @@ const ProfilePage = () => {
 					next={() => fetchMoreData(profilePosts, setProfilePosts)}
 					hasMore={!!profilePosts.next}
 					loader={<Loader loader variant="warning" />}
-					endMessage={<p>No more posts to load...</p>}
+					endMessage={<strong>No more posts to load...</strong>}
 				>
 					{profilePosts.results.map((post) => (
 						<Post

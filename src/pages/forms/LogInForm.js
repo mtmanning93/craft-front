@@ -15,7 +15,7 @@ import { setTokenTimestamp } from "../../jwt/timestamps";
 
 const LogInForm = () => {
 	useRedirectUser("loggedIn");
-    const { showSuccessAlert } = useErrorContext();
+	const { showSuccessAlert } = useErrorContext();
 
 	const setCurrentUser = useSetCurrentUser();
 
@@ -44,12 +44,12 @@ const LogInForm = () => {
 				loginData
 			);
 			setCurrentUser(data.user);
-            showSuccessAlert(
-                "Success",
-                "You have successfully logged in.",
-                "success"
-            )
-            setTokenTimestamp(data)
+			showSuccessAlert(
+				"Success",
+				"You have successfully logged in.",
+				"success"
+			);
+			setTokenTimestamp(data);
 			history.goBack();
 		} catch (err) {
 			setErrors(err.response?.data);
@@ -57,11 +57,7 @@ const LogInForm = () => {
 	};
 
 	return (
-		<Col
-			className={`mx-2 text-center ${styles.FormWrapper}`}
-			sm={6}
-			lg={5}
-		>
+		<Col className={`mx-2 text-center ${styles.FormWrapper}`} sm={6} lg={5}>
 			<img src={icon} alt="site icon" />
 			<h1 className={styles.Heading}>
 				Welcome Back!
@@ -72,14 +68,17 @@ const LogInForm = () => {
 
 			<Form className="mb-2" onSubmit={handleSubmit}>
 				<h2>Login</h2>
-                {errors.non_field_errors?.map((message, idx) => (
+				{errors.non_field_errors?.map((message, idx) => (
 					<Alert variant="warning" key={idx} className="mt-3">
 						{message}
 					</Alert>
 				))}
 				<Form.Group controlId="username">
-					<Form.Label className="d-none">Username</Form.Label>
+					<Form.Label htmlFor="username-input" className="sr-only">
+						Username
+					</Form.Label>
 					<Form.Control
+						id="username-input"
 						className={styles.Input}
 						type="text"
 						placeholder="Enter Username"
@@ -95,8 +94,11 @@ const LogInForm = () => {
 				))}
 
 				<Form.Group controlId="password">
-					<Form.Label className="d-none">Password</Form.Label>
+					<Form.Label htmlFor="password-input" className="sr-only">
+						Password
+					</Form.Label>
 					<Form.Control
+						id="password-input"
 						className={styles.Input}
 						type="password"
 						placeholder="Password"

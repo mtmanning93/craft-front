@@ -44,7 +44,7 @@
 }
 
 .Active {
-	color: #f8c133;
+	color: rgba(0, 0, 0, 0.399)
 }
 
 @media (max-width: 768px) {
