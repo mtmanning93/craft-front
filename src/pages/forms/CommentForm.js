@@ -12,8 +12,6 @@ import { useErrorContext } from "../../contexts/ErrorContext";
 const CommentForm = (props) => {
 	const user = useCurrentUser();
 
-    const { showSuccessAlert } = useErrorContext();
-
 	const { post, setPost, setComments, profile_image, profile_id } = props;
 
 	const [commentData, setCommentData] = useState("");
@@ -48,11 +46,6 @@ const CommentForm = (props) => {
 				],
 			}));
 			setCommentData("");
-            showSuccessAlert(
-                "Success",
-                "Your comment was successfully posted.",
-                "success"
-            )
 		} catch (err) {
 			setErrors(err.response?.data);
 			if (!errors.comment && !errors.genericError) {
