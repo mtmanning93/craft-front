@@ -307,8 +307,22 @@ The project was developed in Google Chrome using the Gitpod IDE. This made build
 
 Chrome (Development)
 Firefox
-Safari
 Edge
+
+Finally I tested the browser compatability is Safari, worrryingly it didnt work as expected, when logging in to the site it just kept redirecting me back to the login form, although the 'successful log' message was displayed each time. This issue is due to the “Prevent Cross-Site Tracking” settings in safari. Whilst the default is checked, to view the projects functionalities beyond login or signup you must 'uncheck' this box, for use in safari.
+
+On a desktop follow these steps:
+
+1) Open site in Safari.
+
+2) On iOS navigate to the safari 'preferences' settings.
+    ![Safari Preferences](README_images/testing/safari.settings.png)
+
+3) Navigate to the 'Privacy' tab.
+    ![Privacy Tab](README_images/testing/privacy-tab.png)
+
+4) Uncheck the “Prevent Cross-Site Tracking” box.
+    ![Prevent Cross-Site Tracking](README_images/testing/uncheck.png)
 
 [⏫ contents](#contents)
 
