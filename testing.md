@@ -14,7 +14,6 @@
     - [Stylelint](#stylelint)
         - [Install/ Run](#install-run-stylint)
 - [Manual Testing](#manual-testing)
-    - [More...]()
     - [Simulating Errors](#simulating-errors)
 - [Screen Testing]()
 - [Browser Testing]()
@@ -102,10 +101,11 @@ Finally to run the linter I could use the custom script command:
 
 ## Manual Testing
 
-Manual tests were created to test the functionality of the final deployed version of the site, the outcomes were documented and displayed in the table below. Duzring the testing phase, occassionally tests would fail. If a test did fail, the issue would be addressed accordingly and the outcome of the additional testing is also provided 
+Manual tests were created to test the functionality of the final deployed version of the site, the outcomes were documented and displayed in the table below. During the testing phase, occassionally tests would fail. If a test did fail, the issue would be addressed accordingly and the outcome of the additional testing would be provided with description of how it was fixed.
 
-tested on desktop size
-*** More
+The related iterations seperate the tests and are linked to the related iteration within the GitHub repository, all tests are mapped to their related user stories, with an expected outcome and a test result following.
+
+Finally these tests were carried out by a real user, as tests failed they would be reported and dealt with after the testing with the current user. Once the failed tests had been addressed they were again carried out on the same user, this meant it was clear if the user experience was better as well as just passsing the test.
 
 | **Test** | **User Story** | **Expected Outcome** | **Initial Result** | **Action Taken To Pass *(if fail)*** |
 | ---- | ------ | ------ | ------ | ------ |
@@ -136,6 +136,10 @@ tested on desktop size
 | Find the comments count, and check it corresponds to number of comments | [Post Details #5](https://github.com/mtmanning93/craft-front/issues/5) | Comment count should convey the correct number of comments | Pass | - |
 | Navigate to the likes count | [Post Details #5](https://github.com/mtmanning93/craft-front/issues/5) | A visual representation of the number of likes per post is easily visible. | Pass | - |
 | Hover over the comment icon | [Post Details #5](https://github.com/mtmanning93/craft-front/issues/5) | A tooltip should appear prompting the user to 'join the discussion below'. | Pass | - |
+| Click on the settings menu on an owned post, then the 'edit' option | [Edit Post #10](https://github.com/mtmanning93/craft-front/issues/10) | A user is directed to the edit post form, rednered with relevant post details. | Pass | - |
+| In the edit form update the text fields | [Edit Post #10](https://github.com/mtmanning93/craft-front/issues/10) | The post is updated. | Pass | - |
+| In the edit form update image file | [Edit Post #10](https://github.com/mtmanning93/craft-front/issues/10) | The post is updated. | Pass | - |
+| In the edit form remove the text fields | [Edit Post #10](https://github.com/mtmanning93/craft-front/issues/10) | The form is not valid and does not submit. | Pass | - |
 | As a logged out user hover over the like icon | [Like/ Unlike #21](https://github.com/mtmanning93/craft-front/issues/21) | A tooltip should display prompting users to 'login or signup to llike posts'. | Pass | - |
 | As a logged in user hover over the like icon | [Like/ Unlike #21](https://github.com/mtmanning93/craft-front/issues/21) | A tooltip should display prompting a user to 'like this post'. | Fail - No tooltip shown | Pass - No tooltip was originally set, after setting  a tooltip test passed. |
 | As a logged in user hovers over the unlike icon | [Like/ Unlike #21](https://github.com/mtmanning93/craft-front/issues/21) | A tooltip should display prompting a user to 'unlike this post'. | Fail | Pass - No tooltip was originally set, after setting a tooltip the test passed. |
@@ -194,7 +198,6 @@ tested on desktop size
 | Update employer field | [Update Profile #22](https://github.com/mtmanning93/craft-front/issues/22) | The users profile card should now show personal details section with the updated employer (and location if available). | Pass | - |
 | Update bio field | [Update Profile #22](https://github.com/mtmanning93/craft-front/issues/22) | The users profile card should now show personal details section with the updated bio. | Pass | - |
 | Remove personal information field | [Update Profile #22](https://github.com/mtmanning93/craft-front/issues/22) | The users profile card should no longer show the relevant field | Pass | - |
-
 | Click the add company button | [Employment Details #14](https://github.com/mtmanning93/craft-front/issues/14) | The user is redirected to the add company form. | Pass | - |
 | Submit invalid add company form | [Employment Details #14](https://github.com/mtmanning93/craft-front/issues/14) | Validation errors are raised as the minimum required data for a Company is a title. | Pass | - |
 | Submit minimal details | [Employment Details #14](https://github.com/mtmanning93/craft-front/issues/14) | The user can add a company title and submit the form, redirected back to the update profile form with the new company visible in the 'Owned Companies' section. | Pass | - |
@@ -204,9 +207,35 @@ tested on desktop size
 | Click the delete option in company settings dropdown, within the update profile form | [Employment Details #14](https://github.com/mtmanning93/craft-front/issues/14) | A confirmation modal is triggered to confirm the user wishes to delete the company, if confirmed the company instance is deleted, including from any user's employer field within their personal details. | Pass | - |
 | Add company and select it as profiles employer instance | [Employment Details #14](https://github.com/mtmanning93/craft-front/issues/14) | Adding a new company adds it to the employer select dropdown menu. | Pass | - |
 | Delete a company, find it in the employer select dropdown | [Employment Details #14](https://github.com/mtmanning93/craft-front/issues/14) | The company is removed from the dropdown. | Fail - The company can still be found in dropdown until refresh | Pass - Added a handleSelectCompanyChange function, passing it down to ProfileCompany.js as a prop and set the selected option according to company deletion. |
-
-Most approved test when approving a profile
-|  |  |  | Pass | - |
+| Set a company as employer, update profile. Navigate back to update profile form and delete this company. | [Employment Details #14](https://github.com/mtmanning93/craft-front/issues/14) | The company is removed from the dropdown, and the users employer selection. | Pass | - |
+| **[Craft Social Front Iteration 5 (Top Feed/ High Priorities)](https://github.com/mtmanning93/craft-front/milestone/7)** |
+| As a logged in user navigate to the 'Top' tab. | [Top List #17](https://github.com/mtmanning93/craft-front/issues/17) | The selected tab is visible and a list of all profiles is displayed, ordered from most approved to least. | Pass | - |
+| View a profile details | [Top List #17](https://github.com/mtmanning93/craft-front/issues/17) | A user can see a snapshot of the profiles in the list including: avatar, username, and personal detials added | Pass | - |
+| View profiles approval ranking | [Top List #17](https://github.com/mtmanning93/craft-front/issues/17) | A user can see each profiles approval ranking in the top left of the profile card, in descending order from most approved to least. | Pass | - |
+| Click a profile card | [Top List #17](https://github.com/mtmanning93/craft-front/issues/17) | A user is directed to the profile page of the clicked profile card | Pass | - |
+| As a logged in user navigate through the feeds, locate search bar | [Search Bar #28](https://github.com/mtmanning93/craft-front/issues/28) | The search bar is located at the top of all feeds. | Pass | - |
+| Check search bar filters results search "Tuesday" | [Search Bar #28](https://github.com/mtmanning93/craft-front/issues/28) | The search should filter the results in the feed to show only results containing "Tuesday". | Pass | - |
+| Search bar timeout | [Search Bar #28](https://github.com/mtmanning93/craft-front/issues/28) | The search shouldnt return results for a second, this pause means the feed doesnt flash results back to the user. | Pass | - |
+| Get a no results found message by typing "tttttttt" | [Search Bar #28](https://github.com/mtmanning93/craft-front/issues/28) | A message should be displayed prompting the user to alter the search query | Fail - The response is the no feed message | Pass - Added a condition to display noResultsMessage if no results are found after a search query, added across all feeds. |
+| Filter approval list | [Approval Filters #17](https://github.com/mtmanning93/craft-front/issues/40) | A user is able to filter through the approval list by job title, location, employer, username. | Pass | - |
+| Filter approval list, ranking change | [Approval Filters #17](https://github.com/mtmanning93/craft-front/issues/40) | A user is able to filter through the approval list, when filtered the profiles are rnaked in order within the filter. | Pass | - |
+| Filter approval list by craft typing "Builder" | [Approval Filters #17](https://github.com/mtmanning93/craft-front/issues/40) | Results shown in list are only builders, and ranked in order of approval count. | Pass | - |
+| Filter approval list by location typing "Thetford" | [Approval Filters #17](https://github.com/mtmanning93/craft-front/issues/40) | Results shown in list are only profiles in Thetford, and ranked in order of approval count. | Pass | - |
+| Filter approval list by employer typing "Pro Scapes" | [Approval Filters #17](https://github.com/mtmanning93/craft-front/issues/40) | Results shown in list are only profiles employed by "Pro Scapes", and ranked in order of approval count. | Pass | - |
+| Hover over the information icon | [Approval Filters #17](https://github.com/mtmanning93/craft-front/issues/40) | The user is prompted in the functionality of the approval list and explained how to search. | Pass | - |
+| Test a resource not found error by going to "/social" Url  | [Custom Error Page #26](https://github.com/mtmanning93/craft-front/issues/26) | The user is redirected to the page not found error page. | Pass | - |
+| Test a resource not found error with a deleted resource by going to "/posts/2/" Url  | [Custom Error Page #26](https://github.com/mtmanning93/craft-front/issues/26) | The user is redirected to the page not found error page an error notification is displayed. | Pass | - |
+| Click the back button  | [Custom Error Page #26](https://github.com/mtmanning93/craft-front/issues/26) | The user is directed to the previous page. | Fail - BackButton component will not work as the previous page cannot be found. | Pass - Updated button to push to home, the failed result was because goBack() meant going back to a resource which is not there creating a loop between going back and the page not found. |
+| As a logged in user attempt to navigate to the login form using '/login' url | [Redirecting Users Access Control #42](https://github.com/mtmanning93/craft-front/issues/42) | The user is redirected to the "/" (Discover feed) Url | Pass | - |
+| As a logged in user attempt to navigate to the signup form using '/signup' url | [Redirecting Users Access Control #42](https://github.com/mtmanning93/craft-front/issues/42) | The user is redirected to the "/" (Discover feed) Url | Pass | - |
+| As a logged out user attempt to access unauthorized content using "/profiles/1/edit/ | [Redirecting Users Access Control #42](https://github.com/mtmanning93/craft-front/issues/42) | The user is redirected to the "/" Url with an error message telling the user this is restricted access | Pass | - |
+| As a logged out user attempt to access unauthorized content using "/posts/1/edit/ | [Redirecting Users Access Control #42](https://github.com/mtmanning93/craft-front/issues/42) | The user is redirected to the "/" Url with an error message telling the user this is restricted access | Pass | - |
+| As a logged in user navigate to settings link in the avatar dropdown menu | [Update Credentials #43](https://github.com/mtmanning93/craft-front/issues/43) | The user is directed to the update credential forms page. | Pass | - |
+| Update username and submit username form | [Update Credentials #43](https://github.com/mtmanning93/craft-front/issues/43) | The username is updated across the site, a success message is displayed, and the user is redirrected to the discover feed. | Pass | - |
+| Update password with valid data and submit password form | [Update Credentials #43](https://github.com/mtmanning93/craft-front/issues/43) | The password is updated, a success message is displayed, and the user is redirected to the discover feed. | Pass | - |
+| Update password with a common password "newpassword" | [Update Credentials #43](https://github.com/mtmanning93/craft-front/issues/43) | The password form is invalid and validation error is displayed on the form. | Pass | - |
+| Update password with a non matching passwords | [Update Credentials #43](https://github.com/mtmanning93/craft-front/issues/43) | The password form is invalid and validation error is displayed on the form. | Pass | - |
+| Click the cancel text link under the forms | [Update Credentials #43](https://github.com/mtmanning93/craft-front/issues/43) | User is redirected home | Pass | - |
 
 ### Simulating Errors
 ---
