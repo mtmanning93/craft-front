@@ -312,7 +312,7 @@ const ProfileCard = (props) => {
 					</Col>
 				</Row>
 			</Card.Body>
-			{(personalInfo || profileCompanies) && (
+			{(personalInfo || profileCompanies.length > 0) && (
 				<Card.Footer>
 					<Col className={styles.PersonalInfo}>
 						<h3>Personal Details</h3>
