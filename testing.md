@@ -334,12 +334,15 @@ On a desktop follow these steps:
 1) Open site in Safari.
 
 2) On iOS navigate to the safari 'preferences' settings.
+
     ![Safari Preferences](README_images/testing/safari.settings.png)
 
 3) Navigate to the 'Privacy' tab.
+
     ![Privacy Tab](README_images/testing/privacy-tab.png)
 
 4) Uncheck the “Prevent Cross-Site Tracking” box.
+
     ![Prevent Cross-Site Tracking](README_images/testing/uncheck.png)
 
 [⏫ contents](#contents)
