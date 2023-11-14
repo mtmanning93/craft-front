@@ -251,7 +251,14 @@ When creating alerts to show the user incase of an error, I sometimes needed to 
 
 	simulateError();
 
+## Screen Testing
 
-[⏪ Main README](README.md)
+## Browser Testing
+
+## Lighthouse
 
 [⏫ contents](#contents)
+
+[⏩ Main README](README.md)
+
+[⏪ Craft-API Repository](https://github.com/mtmanning93/craft-api)
