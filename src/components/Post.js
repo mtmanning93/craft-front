@@ -52,22 +52,16 @@ const Post = (props) => {
 		try {
 			await axiosRes.delete(`/posts/${id}/`);
 
-            setPosts((prevPosts) => ({
-				results: prevPosts.results.filter(
-					(post) => post.id !== id
-				),
+			setPosts((prevPosts) => ({
+				results: prevPosts.results.filter((post) => post.id !== id),
 			}));
 
 			if (isPostDetails) {
 				history.push("/");
 			}
-            showSuccessAlert(
-                "Success",
-                "Your post was deleted",
-                "success"
-            )
+			showSuccessAlert("Success", "Your post was deleted", "success");
 		} catch (err) {
-            console.log(err)
+			console.log(err);
 			showErrorAlert(
 				"Delete Error",
 				`Unable to delete post. ${err.message}`,
@@ -92,7 +86,7 @@ const Post = (props) => {
 				}),
 			}));
 		} catch (err) {
-            console.log(err)
+			console.log(err);
 			showErrorAlert(
 				"Unexpected Error",
 				`Unable to unlike post. ${err.message}`,
@@ -117,7 +111,7 @@ const Post = (props) => {
 				}),
 			}));
 		} catch (err) {
-            console.log(err)
+			console.log(err);
 			showErrorAlert(
 				"Unexpected Error",
 				`Unable to like post. ${err.message}`,
@@ -193,13 +187,33 @@ const Post = (props) => {
 					</OverlayTrigger>
 					<span className={styles.Count}>{likes_count}</span>
 					{like_id ? (
-						<span className={styles.LikeIcon} onClick={unlikePost}>
-							<i className="fa-solid fa-thumbs-up" title="Unlike button" />
-						</span>
+						<OverlayTrigger
+							placement="bottom"
+							overlay={<Tooltip>Unlike this post.</Tooltip>}
+						>
+							<span
+								className={styles.LikeIcon}
+								onClick={unlikePost}
+							>
+								<i
+									className="fa-solid fa-thumbs-up"
+									title="Unlike button"
+								/>
+							</span>
+						</OverlayTrigger>
 					) : currentUser ? (
-						<span className={styles.LikeIcon} onClick={likePost} title="Like button">
-							<i className="fa-regular fa-thumbs-up" />
-						</span>
+						<OverlayTrigger
+							placement="bottom"
+							overlay={<Tooltip>Like this post.</Tooltip>}
+						>
+							<span
+								className={styles.LikeIcon}
+								onClick={likePost}
+								title="Like button"
+							>
+								<i className="fa-regular fa-thumbs-up" />
+							</span>
+						</OverlayTrigger>
 					) : (
 						<OverlayTrigger
 							placement="bottom"
@@ -209,7 +223,10 @@ const Post = (props) => {
 								</Tooltip>
 							}
 						>
-							<i className="fa-regular fa-thumbs-up" title="Login or sign up to like" />
+							<i
+								className="fa-regular fa-thumbs-up"
+								title="Login or sign up to like"
+							/>
 						</OverlayTrigger>
 					)}
 				</div>
