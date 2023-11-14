@@ -9,8 +9,7 @@
 - [JavaScript/ JSX Testing](#javascript-jsx-testing)
     - [ESLint](#eslint)
         - [Install/ Run](#install-run-eslint)
-    - [React Testing Library]()
-        - [MSW]()
+    - [Automated Testing](#automated-testing)
 - [Html Validation](#html-validation)
 - [CSS Validation](#css-validation)
     - [Stylelint](#stylelint)
@@ -19,7 +18,7 @@
     - [Simulating Errors](#simulating-errors)
 - [WAVE Web Accessibility Testing](#wave-web-accessibility-testing)
 - [Screen Testing](#screen-testing)
-- [Browser Testing]()
+- [Browser Testing](#browser-testing)
 - [Lighthouse]()
 
 ## JavaScript/ JSX Testing
@@ -57,10 +56,29 @@ Finally to run the linter:
 
 [⏫ contents](#contents)
 
-### React Testing Library
+### Automated Testing
 ---
+Some simple automated tests were written using react testing library for the Header, NavBar, and Post components, the written tests can be found in `src/components/__tests__/<component>.test.js`.
 
-#### Mock Service Worker
+The test setup mehtods including beforeAll(), afterEach(), and afterAll() can be found in `src/setupTests.js`. With the test handlers found in `src/mocks/handlers.js`.
+
+In `handlers.js` I have defined necessary objects to simplify the tests, these include:
+- **get user handler:** providing a test user object.
+- **post logout handler:** providing a logout method.
+- **get posts handler** providing a test posts list of post objects.
+- **post likes handler:** providing a like object.
+
+The tests carried out are simple, mainly testing rendering, however they all passed, they are as follows:
+
+Test that the Header renders correctly for logged out users.
+Test that the Header renders correct tabs and links to feeds for logged in users.
+Test NavBar renders correct links for logged out users.
+Test NavBar renders link to profile for a logged in user.
+Test NavBar renders 'login' and 'signup' link and button when a user then logs out.
+Test Post renders the correct post details.
+Test that the Post renders the post like button for logged in users.
+Test that the Post component renders comment and like counts correctly.
+Test that the settings dropdown menu is rendered for posts which a user owns.
 
 [⏫ contents](#contents)
 
