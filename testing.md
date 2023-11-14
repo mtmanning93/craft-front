@@ -253,7 +253,9 @@ When creating alerts to show the user incase of an error, I sometimes needed to 
 
 ## WAVE Testing
 
-The goal of wave testing is to check the sites accessibility scores. When testing the site the goal was to get 0 overall errors, and 0 contrast errors, to reeahc this goal the following errors were addressed:
+WAVE testing was carried out to ensure accessibility was high. I used the WAVE chrome browser plugin, its very simple and easy to use rendering the sites pages with hints and errors marked, making them easy to address.
+
+The goal of WAVE testing is to check the sites accessibility scores. When testing the site the goal was to get 0 overall errors, and 0 contrast errors, to reach this goal the following errors were addressed:
 
 * #### Missing Form Label
     Initially many `<Form.Control>` elements had no label for screenreaders, to combat this I had to add additional `<Form.Label>` elements with `className="sr-only"` and connect it to a `<Form.Control>` element via `htmlFor` attribute.
@@ -264,9 +266,11 @@ The goal of wave testing is to check the sites accessibility scores. When testin
 * #### Empty Button
     Caused by having a Font Awesome icon as the button text. To fix this an `aria-label` was set on the MainButton and BackButton components.
 
-* #### Alt Text Missing On Update Avatar Image
+* #### Alt Text Missing On Update Images
+    The issue was found in the edit object forms, for example the update profile form. The profile image to be updated need to have an `alt=""` text specified, additionally it needed to be more than one word to gove a relevant explanation. 
 
 * #### Active NavLink Color Contrast
+    Before the WAVE testing the active navlinks were bright yellow making the contrast too low, a simple update to a faded black color fixed this error.
 
 ## Screen Testing
 
