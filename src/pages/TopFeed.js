@@ -23,6 +23,7 @@ const Feed = () => {
 	const [loaded, setLoaded] = useState(false);
 	const [search, setSearch] = useState("");
 	const [feedErrorMessage, setFeedErrorMessage] = useState("");
+	const [noResultsMessage, setNoResultsMessage] = useState("");
 
 	const noFeedMessage = (
 		<div>
@@ -46,6 +47,14 @@ const Feed = () => {
 				setProfiles(data);
 				setLoaded(true);
 				setFeedErrorMessage("");
+
+				if (data.results.length === 0) {
+					setNoResultsMessage(
+						search.trim() !== "" ? "No results found!" : ""
+					);
+				} else {
+					setNoResultsMessage("");
+				}
 			} catch (error) {
 				setFeedErrorMessage(
 					"Currently unable to retrieve feed data, please refresh the feed, or try again soon."
@@ -169,6 +178,15 @@ const Feed = () => {
 									</div>
 								)}
 							</InfiniteScroll>
+						) : noResultsMessage ? (
+							<div className="m-2">
+								<h1 className="mb-0">{noResultsMessage}</h1>
+								<p className="text-warning">
+									<strong>
+										Please change your search query...
+									</strong>
+								</p>
+							</div>
 						) : (
 							noFeedMessage
 						)}

@@ -20,6 +20,7 @@ const DefaultFeed = () => {
 	const [loaded, setLoaded] = useState(false);
 	const [search, setSearch] = useState("");
 	const [feedErrorMessage, setFeedErrorMessage] = useState("");
+	const [noResultsMessage, setNoResultsMessage] = useState("");
 
 	const noFeedMessage = (
 		<div className="m-2">
@@ -40,6 +41,14 @@ const DefaultFeed = () => {
 				setPosts(data);
 				setLoaded(true);
 				setFeedErrorMessage("");
+
+				if (data.results.length === 0) {
+					setNoResultsMessage(
+						search.trim() !== "" ? "No results found!" : ""
+					);
+				} else {
+					setNoResultsMessage("");
+				}
 			} catch (err) {
 				setFeedErrorMessage(
 					"Currently unable to retrieve feed data, please refresh the feed, or try again soon."
@@ -85,7 +94,9 @@ const DefaultFeed = () => {
 				)}
 				{feedErrorMessage && (
 					<div className="m-2">
-						<p className="text-warning mb-0"><strong>Unexpected Feed Error:</strong></p>
+						<p className="text-warning mb-0">
+							<strong>Unexpected Feed Error:</strong>
+						</p>
 						<p>{feedErrorMessage}</p>
 					</div>
 				)}
@@ -114,11 +125,24 @@ const DefaultFeed = () => {
 								))}
 								{feedErrorMessage && (
 									<div className="m-2">
-										<p className="text-warning mb-0"><strong>Unexpected Feed Error:</strong></p>
+										<p className="text-warning mb-0">
+											<strong>
+												Unexpected Feed Error:
+											</strong>
+										</p>
 										<p>{feedErrorMessage}</p>
 									</div>
 								)}
 							</InfiniteScroll>
+						) : noResultsMessage ? (
+							<div className="m-2">
+								<h1 className="mb-0">{noResultsMessage}</h1>
+								<p className="text-warning">
+									<strong>
+										Please change your search query...
+									</strong>
+								</p>
+							</div>
 						) : (
 							noFeedMessage
 						)}
