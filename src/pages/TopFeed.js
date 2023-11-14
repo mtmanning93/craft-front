@@ -99,9 +99,15 @@ const Feed = () => {
 							onSubmit={(event) => event.preventDefault()}
 							className={`${mainStyles.Content} d-flex pl-0`}
 						>
+							<Form.Label
+								htmlFor="search-input-top"
+								className="sr-only"
+							>
+								Search Feed
+							</Form.Label>
 							<i className="fa-solid fa-magnifying-glass my-auto mx-2" />
-
 							<Form.Control
+								id="search-input-top"
 								type="text"
 								placeholder="Search approvals list..."
 								value={search}
@@ -158,7 +164,9 @@ const Feed = () => {
 								}
 								hasMore={!!profiles.next}
 								loader={<Loader loader variant="warning" />}
-								endMessage={<p>No more profiles to load...</p>}
+								endMessage={
+									<strong>No more profiles to load...</strong>
+								}
 							>
 								{profiles.results.map((profile, idx) => (
 									<ApprovalFeedCard

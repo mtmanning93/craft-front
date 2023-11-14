@@ -43,7 +43,7 @@ const NavBar = () => {
 	};
 
 	const createBtn = (
-		<NavLink to="/posts/create">
+		<NavLink to="/posts/create" aria-label="Create post link">
 			<MainButton
 				type="button"
 				className={btnStyles.CreateBtn}
@@ -52,7 +52,7 @@ const NavBar = () => {
 						<i className="fa-solid fa-plus"></i>
 					</>
 				}
-			></MainButton>
+			/>
 		</NavLink>
 	);
 

@@ -6,6 +6,7 @@ const MainButton = ({ type, text, onClick, className }) => {
   return (
     <Button
       variant="warning"
+      aria-label="button"
       type={type}
       onClick={onClick}
       className={`${btnStyles.Btn} ${className}`}

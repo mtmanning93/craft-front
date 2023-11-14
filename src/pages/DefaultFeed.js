@@ -82,9 +82,12 @@ const DefaultFeed = () => {
 						onSubmit={(event) => event.preventDefault()}
 						className={`${mainStyles.Content} mt-3 d-flex`}
 					>
+						<Form.Label htmlFor="search-input" className="sr-only">
+							Search Feed
+						</Form.Label>
 						<i className="fa-solid fa-magnifying-glass my-auto mx-2" />
-
 						<Form.Control
+							id="search-input"
 							type="text"
 							placeholder="Search feed..."
 							value={search}
@@ -114,7 +117,9 @@ const DefaultFeed = () => {
 								}
 								hasMore={!!posts.next}
 								loader={<Loader loader variant="warning" />}
-								endMessage={<p>No more posts to load...</p>}
+								endMessage={
+									<strong>No more posts to load...</strong>
+								}
 							>
 								{posts.results.map((post) => (
 									<Post
