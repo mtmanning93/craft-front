@@ -8,7 +8,7 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { useErrorContext } from "../contexts/ErrorContext";
 
 const ProfileCompany = (props) => {
-    const { showErrorAlert } = useErrorContext();
+	const { showErrorAlert } = useErrorContext();
 
 	const {
 		id,
@@ -21,9 +21,9 @@ const ProfileCompany = (props) => {
 	} = props;
 
 	const currentUrl = useLocation().pathname;
-    const history = useHistory();
+	const history = useHistory();
 
-    const editPost = async () => {
+	const editPost = async () => {
 		history.push(`/companies/${id}/edit`);
 	};
 
@@ -45,7 +45,7 @@ const ProfileCompany = (props) => {
 			);
 		} catch (err) {
 			console.error("Error deleting company:", err);
-            showErrorAlert(
+			showErrorAlert(
 				"Delete Error",
 				`Unable to delete company. ${err.message}`,
 				"warning"
@@ -58,11 +58,15 @@ const ProfileCompany = (props) => {
 			<Col className="d-flex flex-column flex-sm-row">
 				<div>
 					<i className="fa-solid fa-house mr-2" />
-					{name} ({type})
+					{name} {type && <span>({type})</span>}
 				</div>
 				<div>
-					<i className="fa-solid fa-location-dot mx-2" />
-					{location}
+					{location && (
+						<>
+							<i className="fa-solid fa-location-dot mx-2" />
+							{location}
+						</>
+					)}
 				</div>
 				<div className="d-none d-sm-block">
 					{employee_count > 0 && (
