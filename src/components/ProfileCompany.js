@@ -46,10 +46,8 @@ const ProfileCompany = (props) => {
 				prevCompanies.filter((company) => company.id !== id)
 			);
 
-			// Check if the deleted company is the currently selected company
 			if (selectedCompany && selectedCompany.value === id) {
-				// Call the callback from the parent component to update selectedCompany
-				handleSelectedCompanyChange(""); // Modify the function name as needed
+				handleSelectedCompanyChange("");
 			}
 		} catch (err) {
 			console.error("Error deleting company:", err);
