@@ -349,6 +349,14 @@ On a desktop follow these steps:
 
 ## Lighthouse
 
+All site pages underwent a Lighthouse test, the goal here was to get all green scores, through; performance, accessibility, best practices and SEO. After making some minor tweaks to some of the pages I was able to 'reach' 85 or higher in all of the categories on each of the site pages. Click the dropdowns below to see the lighthouse screenshots from each page.
+
+<details>
+<summary>More Top Feed Screenshots</summary>
+
+![]()
+</details>
+
 [⏫ contents](#contents)
 
 [⏩ Main README](README.md)

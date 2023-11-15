@@ -231,11 +231,13 @@ const NavBar = () => {
 								src={logo}
 								alt="logo"
 								className={styles.Logo}
+                                height={60}
 							/>
 							<img
 								src={icon}
 								alt="logo"
 								className={styles.Icon}
+                                height={50}
 							/>
 						</Navbar.Brand>
 					</NavLink>

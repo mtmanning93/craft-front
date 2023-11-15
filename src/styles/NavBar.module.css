@@ -9,6 +9,7 @@
 
 .Logo {
 	height: 60px;
+    width: auto;
 }
 
 .Icon {
@@ -44,7 +45,7 @@
 }
 
 .Active {
-	color: rgba(0, 0, 0, 0.399)
+	color: #000000b0;
 }
 
 @media (max-width: 768px) {
@@ -66,6 +67,5 @@
 	}
 	.Icon {
 		display: block;
-		height: 50px;
 	}
 }
