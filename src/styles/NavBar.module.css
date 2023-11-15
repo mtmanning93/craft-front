@@ -67,5 +67,7 @@
 	}
 	.Icon {
 		display: block;
+        height: 50px;
+        width: auto;
 	}
 }
