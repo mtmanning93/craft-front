@@ -171,7 +171,7 @@ const Post = (props) => {
 			</Card.Header>
 			<Card.Body className="px-0 py-2 text-center">
 				<Link to={`/posts/${id}`}>
-					<Card.Img className={styles.Img} src={image} alt={title} />
+					<Card.Img className={styles.Img} src={image} alt={title} height="auto" width="auto" />
 				</Link>
 			</Card.Body>
 			<Card.Footer className="d-flex align-items-center justify-content-end">
