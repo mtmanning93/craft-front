@@ -199,7 +199,7 @@ const EditPostForm = () => {
 					</Col>
 
 					<Col
-						className={`${styles.ImgContainer} ${mainStyles.Content} border flex-column m-md-2 p-0 pt-2`}
+						className={`${styles.ImgContainer} ${mainStyles.Content} border flex-column m-md-2 p-2`}
 					>
 						<Form.Group className="m-0">
 							<Form.Label className="d-none">Image</Form.Label>
@@ -210,6 +210,8 @@ const EditPostForm = () => {
 											className={styles.Image}
 											src={image}
                                             alt="Current post image, click to update."
+                                            width="auto"
+                                            height="auto"
 										/>
 									</figure>
 									<div

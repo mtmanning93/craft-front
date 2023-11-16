@@ -476,6 +476,11 @@ const Avatar = ({ src, height = 45, textBefore, textAfter, className }) => {
 ![Top Feed Lighthouse](README_images/testing/lighthouse/top.png)
 </details>
 <details>
+<summary>Create Post Form Lighthouse Screenshots</summary>
+
+![Create Post Lighthouse](README_images/testing/lighthouse/create.png)
+</details>
+<details>
 <summary>Profile Page Lighthouse Screenshots</summary>
 
 ![Profile Page Lighthouse](README_images/testing/lighthouse/profile-page.png)
