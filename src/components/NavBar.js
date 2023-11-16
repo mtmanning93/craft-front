@@ -6,8 +6,8 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { NavLink } from "react-router-dom";
 import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
-import icon from "../assets/icon_nobg.png";
-import logo from "../assets/main_logo.png";
+import icon from "../assets/icon_nobg.webp";
+import logo from "../assets/main_logo.webp";
 import {
 	useCurrentUser,
 	useSetCurrentUser,

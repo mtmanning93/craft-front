@@ -430,6 +430,9 @@ making some minor tweaks to some of the pages I was able to 'reach' 85 or higher
 in all of the categories on each of the site pages. Click the dropdowns below to
 see the lighthouse screenshots from each page.
 
+f_auto format
+q_auto quality file size
+
 <details>
 <summary>Discover Feed Lighthouse Screenshots</summary>
 
