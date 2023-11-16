@@ -457,6 +457,18 @@ const Avatar = ({ src, height = 45, textBefore, textAfter, className }) => {
 **Click the dropdowns below to see the lighthouse screenshots from each page:**
 
 <details>
+<summary>Login Form Lighthouse Screenshots</summary>
+
+![Login Lighthosue](README_images/testing/lighthouse/login.png)
+
+</details>
+<details>
+<summary>Signup Form Lighthouse Screenshots</summary>
+
+![Signup Lighthosue](README_images/testing/lighthouse/signup.png)
+
+</details>
+<details>
 <summary>Discover Feed Lighthouse Screenshots</summary>
 
 ![Discover Feed Lighthosue](README_images/testing/lighthouse/discover.png)

@@ -30,7 +30,7 @@ function App() {
 			<CustomAlert />
 			<NavBar />
             {location !== '/login' && location !== '/signup' && <Header />}
-			<Container fluid className={mainStyles.MainContainer}>
+			<Container fluid className={mainStyles.MainContainer} width="100%" height="500px">
 				<Switch>
 					<Route exact path="/" render={() => <DefaultFeed />} />
 					<Route exact path="/feed" render={() => <OtherFeeds />} />
