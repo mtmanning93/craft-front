@@ -144,8 +144,8 @@ const PostDetails = () => {
 										No comments yet
 									</h2>
 									<p className="m-2 ml-4">
-										<Link to="/login">Login</Link> or{" "}
-										<Link to="/signup">signup</Link> to
+										<Link to="/login"><strong>Login</strong></Link> or{" "}
+										<Link to="/signup"><strong>signup</strong></Link> to
 										start the conversation...
 									</p>
 								</>
