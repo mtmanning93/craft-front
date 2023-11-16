@@ -215,6 +215,7 @@ const EditPostForm = () => {
                                             alt="Current post image, click to update."
                                             width="500"
                                             height="100%"
+                                            preload="auto"
 										/>
 									</figure>
 									<div
