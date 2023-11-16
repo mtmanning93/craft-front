@@ -425,36 +425,34 @@ On a desktop follow these steps:
 ## Lighthouse
 
 All site pages underwent a Lighthouse test, the goal here was to get all green
-scores, through; performance, accessibility, best practices and SEO. After
-making some tweaks to some of the forms, pages and components I was able to
-'reach' 84 or higher in all of the categories, performance being the only
-category without a green (90<) score.
+scores, through; performance, accessibility, best practices and SEO.
 
+After making some tweaks to some of the forms, pages and components I was able
+to 'reach' 80 or higher in all of the categories, across all pages, in desktop
+mode. Performance being the only category without a green (90<) score.
 
+Initially when running lighthouse testing some performance scores were lower
+than expected, to combat this I implemented these solutions:
 
-f_auto format q_auto quality file size
+* `Serve images in next-gen formats`
 
-webp logos
+    When researching this warning I found cloudinary comes with built in 'automatic format selection (`f_auto`) transformation parameter', to use this I needed to 'replace' the url string of the images used throughout the site. Posts and avatars are used and all needed to be rendered in next-gen formats, however webp format may not be cross compatible with a users device, this is where `f_auto` from Cloudinary comes in. By replacing part of the cloudinary image urls, cloudinary will automatically ['analyze the image content and select the best format to deliver. For example, it can automatically deliver images as WebP, AVIF or JPEG-2000 to browsers that support those formats'](https://cloudinary.com/documentation/image_optimization#how_to_optimize_image_format).
 
-const Avatar = ({ src, height = 45, textBefore, textAfter, className }) => {
+    here is an example of the replacement url, in use on the Avatar component (`src/componentsAvatar.js` *(line: 6)*):
 
-    const avatarSrc = src ? src.replace("/upload/", "/upload/f_auto,q_auto/") : null;
-    return (
-        <span>
-            <span className="d-none d-sm-inline">{textBefore}</span>
-            <img
-                className={`${styles.Avatar} ${className}`}
-                src={avatarSrc}
-                height={height}
-                width={height}
-                alt="user profile avatar"
-            />
-            <span className="d-none d-sm-inline">{textAfter}</span>
-        </span>
-    );
-    };
+        const avatarSrc = src ? src.replace("/upload/", "/upload/f_auto/") : null;
 
-**Click the dropdowns below to see the lighthouse screenshots from each page:**
+* Minimise 'Largest-Contentful-Paint (LCD)'
+
+    To optimise site performance and speed up the rendering of the images Cloudinary also have a similar solution using `q_auto`. It works the same as the above method, all you need to do is add it into the url seperating it from the `f-auto` with a comma. However this is for image quality, setting it to auto means ['Cloudinary's intelligent quality and encoding algorithm analyzes an image to find the best quality compression level and optimal encoding settings based on the image content and the viewing browser, in order to produce an image with good visual quality while minimizing the file size. '](https://cloudinary.com/documentation/image_optimization#automatic_quality_selection_q_auto).
+
+        const avatarSrc = src ? src.replace("/upload/", "/upload/f_auto,q_auto/") : null;
+
+* `Explicitly set width and height on all images`
+
+    Again the many images rendered throughout the site were slowing down the performance, setting explicit width and height attributes on the images significantly improved the performance scores.
+
+Click the dropdowns below to see the lighthouse screenshots from each page:
 
 <details>
 <summary>Login Form Lighthouse Screenshots</summary>
@@ -500,7 +498,18 @@ const Avatar = ({ src, height = 45, textBefore, textAfter, className }) => {
 ![Create Post Lighthouse](README_images/testing/lighthouse/create.png)
 
 </details>
-***
+<details>
+<summary>Edit Post Form Lighthouse Screenshots</summary>
+
+![Edit Post Lighthouse](README_images/testing/lighthouse/edit-post.png)
+
+</details>
+<details>
+<summary>Post Details Page Lighthouse Screenshots</summary>
+
+![Post Details Lighthouse](README_images/testing/lighthouse/details.png)
+
+</details>
 <details>
 <summary>Profile Page Lighthouse Screenshots</summary>
 
@@ -525,6 +534,8 @@ const Avatar = ({ src, height = 45, textBefore, textAfter, className }) => {
 ![Edit Company Lighthouse](README_images/testing/lighthouse/edit-company.png)
 
 </details>
+
+------
 
 [⏫ contents](#contents)
 
