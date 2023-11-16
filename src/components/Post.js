@@ -130,7 +130,7 @@ const Post = (props) => {
 					>
 						<Avatar src={profile_image} height={55} />
 						<div className="ml-2">
-							<Card.Title as="h4">{owner}</Card.Title>
+							<Card.Title>{owner}</Card.Title>
 							<Card.Subtitle className={`${styles.Job} mb-2`}>
 								{profile_job && profile_job}
 								{profile_location && (
