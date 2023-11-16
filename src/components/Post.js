@@ -176,7 +176,7 @@ const Post = (props) => {
 						src={`${image.replace("/upload/", "/upload/f_auto/")}?width=auto&height=525`}
 						alt={title}
 						width="auto"
-						height="525"
+						height="100%"
 						preload="auto"
 					/>
 				</Link>
