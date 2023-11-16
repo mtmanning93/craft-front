@@ -5,7 +5,7 @@ const Avatar = ({ src, height = 45, textBefore, textAfter, className }) => {
 
     const avatarSrc = src ? src.replace("/upload/", "/upload/f_auto,q_auto/") : null;
   return (
-    <span>
+    <span className={styles.Wrapper}>
         <span className="d-none d-sm-inline">{textBefore}</span>
         <img
             className={`${styles.Avatar} ${className}`}
@@ -14,7 +14,7 @@ const Avatar = ({ src, height = 45, textBefore, textAfter, className }) => {
             width={height}
             alt="user profile avatar"
         />
-        <span className="d-none d-sm-inline">{textAfter}</span>
+        <span className="d-none d-sm-inline text-dark">{textAfter}</span>
     </span>
   );
 };

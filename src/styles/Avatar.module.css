@@ -1,3 +1,11 @@
+.Wrapper {
+    color: #000000;
+}
+
+.Wrapper:hover {
+    color: #4682B4;
+}
+
 .Avatar {
     border-radius: 50%;
     border: 2px solid #4682B4;
