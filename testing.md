@@ -426,12 +426,13 @@ On a desktop follow these steps:
 
 All site pages underwent a Lighthouse test, the goal here was to get all green
 scores, through; performance, accessibility, best practices and SEO. After
-making some minor tweaks to some of the pages I was able to 'reach' 85 or higher
-in all of the categories on each of the site pages. Click the dropdowns below to
-see the lighthouse screenshots from each page.
+making some tweaks to some of the forms, pages and components I was able to
+'reach' 84 or higher in all of the categories, performance being the only
+category without a green (90<) score.
 
-f_auto format
-q_auto quality file size
+
+
+f_auto format q_auto quality file size
 
 webp logos
 
@@ -453,48 +454,64 @@ const Avatar = ({ src, height = 45, textBefore, textAfter, className }) => {
     );
     };
 
+**Click the dropdowns below to see the lighthouse screenshots from each page:**
+
 <details>
 <summary>Discover Feed Lighthouse Screenshots</summary>
 
 ![Discover Feed Lighthosue](README_images/testing/lighthouse/discover.png)
+
 </details>
 
 <details>
 <summary>Feed Lighthouse Screenshots</summary>
 
 ![Feed Lighthouse](README_images/testing/lighthouse/feed.png)
+
 </details>
 
 <details>
 <summary>Liked Feed Lighthouse Screenshots</summary>
 
 ![Liked Feed Lighthouse](README_images/testing/lighthouse/liked.png)
+
 </details>
 <details>
 <summary>Top Feed Lighthouse Screenshots</summary>
 
 ![Top Feed Lighthouse](README_images/testing/lighthouse/top.png)
+
 </details>
 <details>
 <summary>Create Post Form Lighthouse Screenshots</summary>
 
 ![Create Post Lighthouse](README_images/testing/lighthouse/create.png)
+
 </details>
 ***
 <details>
 <summary>Profile Page Lighthouse Screenshots</summary>
 
 ![Profile Page Lighthouse](README_images/testing/lighthouse/profile-page.png)
+
 </details>
 <details>
 <summary>Update Profile Form Lighthouse Screenshots</summary>
 
 ![Update Profile Lighthouse](README_images/testing/lighthouse/update-profile.png)
+
 </details>
 <details>
 <summary>Add Company Form Lighthouse Screenshots</summary>
 
 ![Add Company Lighthouse](README_images/testing/lighthouse/company.png)
+
+</details>
+<details>
+<summary>Edit Company Form Lighthouse Screenshots</summary>
+
+![Edit Company Lighthouse](README_images/testing/lighthouse/edit-company.png)
+
 </details>
 
 [⏫ contents](#contents)
