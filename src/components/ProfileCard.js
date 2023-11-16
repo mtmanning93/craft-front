@@ -315,7 +315,7 @@ const ProfileCard = (props) => {
 			{(personalInfo || profileCompanies.length > 0) && (
 				<Card.Footer>
 					<Col className={styles.PersonalInfo}>
-						<h3>Personal Details</h3>
+						<h2>Personal Details</h2>
 						{name && (
 							<p>
 								<i className="fa-solid fa-user" />
