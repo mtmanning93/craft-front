@@ -233,6 +233,7 @@ const NavBar = () => {
 								className={styles.Logo}
                                 height="60"
                                 width="328"
+                                preload="auto"
 							/>
 							<img
 								src={icon}
@@ -240,6 +241,7 @@ const NavBar = () => {
 								className={styles.Icon}
                                 height="50"
                                 width="75"
+                                preload="auto"
 							/>
 						</Navbar.Brand>
 					</NavLink>

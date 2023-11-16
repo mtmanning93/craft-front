@@ -480,10 +480,21 @@ const Avatar = ({ src, height = 45, textBefore, textAfter, className }) => {
 
 ![Create Post Lighthouse](README_images/testing/lighthouse/create.png)
 </details>
+***
 <details>
 <summary>Profile Page Lighthouse Screenshots</summary>
 
 ![Profile Page Lighthouse](README_images/testing/lighthouse/profile-page.png)
+</details>
+<details>
+<summary>Update Profile Form Lighthouse Screenshots</summary>
+
+![Update Profile Lighthouse](README_images/testing/lighthouse/update-profile.png)
+</details>
+<details>
+<summary>Add Company Form Lighthouse Screenshots</summary>
+
+![Add Company Lighthouse](README_images/testing/lighthouse/company.png)
 </details>
 
 [⏫ contents](#contents)
