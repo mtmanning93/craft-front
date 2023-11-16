@@ -2,6 +2,11 @@
 	margin-right: 5px;
 }
 
+.PersonalInfo h2,
+.PersonalInfo h3 {
+    font-size: 1.5em;
+}
+
 .UnfollowBtn {
     background-color: #ffffff;
 }
