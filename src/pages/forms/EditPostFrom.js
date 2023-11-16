@@ -208,10 +208,13 @@ const EditPostForm = () => {
 									<figure>
 										<Image
 											className={styles.Image}
-											src={image}
+											src={image.replace(
+                                                "/upload/",
+                                                "/upload/f_auto,q_auto/"
+                                            )}
                                             alt="Current post image, click to update."
-                                            width="auto"
-                                            height="auto"
+                                            width="500"
+                                            height="100%"
 										/>
 									</figure>
 									<div
