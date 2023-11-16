@@ -38,8 +38,9 @@
 }
 
 .Count {
-	color: #5b5b5b80;
+	color: rgb(91, 91, 91);
 	font-size: 0.8em;
+    font-weight: 700;
 }
 
 .LikeIcon:hover {
