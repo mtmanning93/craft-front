@@ -40,7 +40,6 @@ const CreatePostForm = () => {
 		const selectedFile = event.target.files[0];
 		if (selectedFile) {
 			const imageUrl = URL.createObjectURL(selectedFile);
-
 			setPostData({
 				...postData,
 				image: imageUrl,
