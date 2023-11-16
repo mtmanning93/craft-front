@@ -7,7 +7,7 @@ const Avatar = ({ src, height = 45, textBefore, textAfter, className }) => {
         <span className="d-none d-sm-inline">{textBefore}</span>
         <img
             className={`${styles.Avatar} ${className}`}
-            src={src.replace("/upload/", "/upload/f_auto/")}
+            src={src.replace("/upload/", "/upload/f_auto,q_auto/")}
             height={height}
             width={height}
             alt="user profile avatar"
