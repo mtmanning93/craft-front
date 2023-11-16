@@ -173,13 +173,11 @@ const Post = (props) => {
 				<Link to={`/posts/${id}`}>
 					<Card.Img
 						className={styles.Img}
-						src={`${image.replace(
-							"/upload/",
-							"/upload/f_auto/"
-						)}?width=auto&height=525&crop=fill&quality=auto`}
+						src={`${image.replace("/upload/", "/upload/f_auto/")}?width=auto&height=525`}
 						alt={title}
-						width="100%"
-						height="auto"
+						width="auto"
+						height="525"
+						preload="auto"
 					/>
 				</Link>
 			</Card.Body>

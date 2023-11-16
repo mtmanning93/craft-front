@@ -231,13 +231,15 @@ const NavBar = () => {
 								src={logo}
 								alt="logo"
 								className={styles.Logo}
-                                height={93}
+                                height="93"
+                                width="auto"
 							/>
 							<img
 								src={icon}
 								alt="logo"
 								className={styles.Icon}
-                                height={120}
+                                height="120"
+                                width="auto"
 							/>
 						</Navbar.Brand>
 					</NavLink>
