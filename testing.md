@@ -433,31 +433,34 @@ see the lighthouse screenshots from each page.
 f_auto format
 q_auto quality file size
 
+webp logos
+
 <details>
 <summary>Discover Feed Lighthouse Screenshots</summary>
 
 ![Discover Feed Lighthosue](README_images/testing/lighthouse/discover.png)
-
 </details>
 
 <details>
 <summary>Feed Lighthouse Screenshots</summary>
 
 ![Feed Lighthouse](README_images/testing/lighthouse/feed.png)
-
 </details>
 
 <details>
 <summary>Liked Feed Lighthouse Screenshots</summary>
 
 ![Liked Feed Lighthouse](README_images/testing/lighthouse/liked.png)
-
 </details>
 <details>
 <summary>Top Feed Lighthouse Screenshots</summary>
 
 ![Top Feed Lighthouse](README_images/testing/lighthouse/top.png)
+</details>
+<details>
+<summary>Profile Page Lighthouse Screenshots</summary>
 
+![Profile Page Lighthouse](README_images/testing/lighthouse/profile-page.png)
 </details>
 
 [⏫ contents](#contents)
