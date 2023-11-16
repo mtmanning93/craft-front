@@ -20,6 +20,7 @@
     max-height: 525px;
     max-width: fit-content;
     object-fit: contain;
+    border-radius: 0;
 }
 
 .Controls {
