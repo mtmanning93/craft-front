@@ -175,6 +175,8 @@ const Post = (props) => {
 						className={styles.Img}
 						src={`${image}?width=auto&height=525&crop=fill&quality=auto`}
 						alt={title}
+						width="auto"
+						max-height="525"
 						loading="lazy"
 					/>
 				</Link>
