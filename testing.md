@@ -19,7 +19,7 @@
 -   [WAVE Web Accessibility Testing](#wave-web-accessibility-testing)
 -   [Screen Testing](#screen-testing)
 -   [Browser Testing](#browser-testing)
--   [Lighthouse]()
+-   [Lighthouse](#lighthouse)
 
 ## JavaScript/ JSX Testing
 
@@ -424,8 +424,10 @@ On a desktop follow these steps:
 
 ## Lighthouse
 
-All site pages underwent a Lighthouse test, the goal here was to get all green
-scores, through; performance, accessibility, best practices and SEO.
+All site pages and forms underwent a Lighthouse test, the goal here was to get
+all green scores, through; performance, accessibility, best practices and SEO.
+The tests were carried out using Google Chrome with all browser pulgins switched
+off.
 
 After making some tweaks to some of the forms, pages and components I was able
 to 'reach' 80 or higher in all of the categories, across all pages, in desktop
@@ -434,23 +436,40 @@ mode. Performance being the only category without a green (90<) score.
 Initially when running lighthouse testing some performance scores were lower
 than expected, to combat this I implemented these solutions:
 
-* `Serve images in next-gen formats`
+-   `Serve images in next-gen formats`
 
-    When researching this warning I found cloudinary comes with built in 'automatic format selection (`f_auto`) transformation parameter', to use this I needed to 'replace' the url string of the images used throughout the site. Posts and avatars are used and all needed to be rendered in next-gen formats, however webp format may not be cross compatible with a users device, this is where `f_auto` from Cloudinary comes in. By replacing part of the cloudinary image urls, cloudinary will automatically ['analyze the image content and select the best format to deliver. For example, it can automatically deliver images as WebP, AVIF or JPEG-2000 to browsers that support those formats'](https://cloudinary.com/documentation/image_optimization#how_to_optimize_image_format).
+    To begin with I used [Lint Images Bookmarklet](https://ausi.github.io/respimagelint/) to check for general common mistakes.
 
-    here is an example of the replacement url, in use on the Avatar component (`src/componentsAvatar.js` *(line: 6)*):
+    When researching this warning I found cloudinary comes with built in
+    'automatic format selection (`f_auto`) transformation parameter', to use
+    this I needed to 'replace' the url string of the images used throughout the
+    site. Posts and avatars are used and all needed to be rendered in next-gen
+    formats, however webp format may not be cross compatible with a users
+    device, this is where `f_auto` from Cloudinary comes in. By replacing part
+    of the cloudinary image urls, cloudinary will automatically
+    ['analyze the image content and select the best format to deliver. For example, it can automatically deliver images as WebP, AVIF or JPEG-2000 to browsers that support those formats'](https://cloudinary.com/documentation/image_optimization#how_to_optimize_image_format).
 
-        const avatarSrc = src ? src.replace("/upload/", "/upload/f_auto/") : null;
+    here is an example of the replacement url, in use on the Avatar component
+    (`src/componentsAvatar.js` _(line: 6)_):
 
-* Minimise 'Largest-Contentful-Paint (LCD)'
+          const avatarSrc = src ? src.replace("/upload/", "/upload/f_auto/") : null;
 
-    To optimise site performance and speed up the rendering of the images Cloudinary also have a similar solution using `q_auto`. It works the same as the above method, all you need to do is add it into the url seperating it from the `f-auto` with a comma. However this is for image quality, setting it to auto means ['Cloudinary's intelligent quality and encoding algorithm analyzes an image to find the best quality compression level and optimal encoding settings based on the image content and the viewing browser, in order to produce an image with good visual quality while minimizing the file size. '](https://cloudinary.com/documentation/image_optimization#automatic_quality_selection_q_auto).
+-   Minimise 'Largest-Contentful-Paint (LCD)'
 
-        const avatarSrc = src ? src.replace("/upload/", "/upload/f_auto,q_auto/") : null;
+    To optimise site performance and speed up the rendering of the images
+    Cloudinary also have a similar solution using `q_auto`. It works the same as
+    the above method, all you need to do is add it into the url seperating it
+    from the `f-auto` with a comma. However this is for image quality, setting
+    it to auto means
+    ['Cloudinary's intelligent quality and encoding algorithm analyzes an image to find the best quality compression level and optimal encoding settings based on the image content and the viewing browser, in order to produce an image with good visual quality while minimizing the file size. '](https://cloudinary.com/documentation/image_optimization#automatic_quality_selection_q_auto).
 
-* `Explicitly set width and height on all images`
+          const avatarSrc = src ? src.replace("/upload/", "/upload/f_auto,q_auto/") : null;
 
-    Again the many images rendered throughout the site were slowing down the performance, setting explicit width and height attributes on the images significantly improved the performance scores.
+-   `Explicitly set width and height on all images`
+
+    Again the many images rendered throughout the site were slowing down the
+    performance, setting explicit width and height attributes on the images
+    significantly improved the performance scores.
 
 Click the dropdowns below to see the lighthouse screenshots from each page:
 
@@ -535,7 +554,7 @@ Click the dropdowns below to see the lighthouse screenshots from each page:
 
 </details>
 
-------
+---
 
 [⏫ contents](#contents)
 
