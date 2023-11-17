@@ -143,7 +143,7 @@ const Post = (props) => {
 						</div>
 					</Link>
 					<div className="ml-auto d-flex align-items-center justify-content mb-auto">
-						<p className="d-none d-md-block mb-0 mr-3">
+						<p className="d-none d-lg-block mb-0 mr-3">
 							{updated_on}
 						</p>
 						{is_owner && (
@@ -156,7 +156,7 @@ const Post = (props) => {
 						{isPostDetails && <BackButton />}
 					</div>
 				</Row>
-				<p className="d-block d-md-none mx-2">{updated_on}</p>
+				<p className="d-block d-lg-none mx-2">{updated_on}</p>
 				{title && (
 					<Card.Text as="h3" className="m-2">
 						{title}
