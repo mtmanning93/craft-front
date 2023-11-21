@@ -37,7 +37,7 @@ const SignUpForm = () => {
 			);
             showSuccessAlert(
 				"Success",
-				"You have successfully registered an account.",
+				"You have successfully registered an account. Please login to access new features.",
 				"success"
 			);
 			history.push("/login");
