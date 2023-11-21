@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
@@ -14,27 +14,25 @@ const SignUpForm = () => {
 	useRedirectUser("loggedIn");
 
 	const [errors, setErrors] = useState({});
-	const [signUpData, setSignUpData] = useState({
-		username: "",
-		password1: "",
-		password2: "",
-	});
 
-	const { username, password1, password2 } = signUpData;
+	const usernameRef = useRef();
+	const password1Ref = useRef();
+	const password2Ref = useRef();
 
 	const history = useHistory();
-
-	const handleChange = (event) => {
-		setSignUpData({
-			...signUpData,
-			[event.target.name]: event.target.value,
-		});
-	};
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 		try {
-			await axios.post("/dj-rest-auth/registration/", signUpData);
+			const formData = {
+				username: usernameRef.current.value,
+				password1: password1Ref.current.value,
+				password2: password2Ref.current.value,
+			};
+			await axios.post(
+				"/dj-rest-auth/registration/",
+				formData
+			);
 			history.push("/login");
 		} catch (err) {
 			setErrors(err.response?.data);
@@ -68,8 +66,7 @@ const SignUpForm = () => {
 						type="text"
 						placeholder="Enter Username"
 						name="username"
-						value={username}
-						onChange={handleChange}
+						ref={usernameRef}
 					/>
 				</Form.Group>
 				{errors.username?.map((message, idx) => (
@@ -88,8 +85,7 @@ const SignUpForm = () => {
 						type="password"
 						placeholder="Password"
 						name="password1"
-						value={password1}
-						onChange={handleChange}
+						ref={password1Ref}
 					/>
 				</Form.Group>
 				{errors.password1?.map((message, idx) => (
@@ -108,8 +104,7 @@ const SignUpForm = () => {
 						type="password"
 						placeholder="Confirm password"
 						name="password2"
-						value={password2}
-						onChange={handleChange}
+						ref={password2Ref}
 					/>
 				</Form.Group>
 				{errors.password2?.map((message, idx) => (

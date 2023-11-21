@@ -20,23 +20,11 @@ function LogInForm() {
 	useRedirectUser("loggedIn");
 
 	const [errors, setErrors] = useState({});
-	// const [loginData, setLoginData] = useState({
-	// 	username: "",
-	// 	password: "",
-	// });
 
     const usernameRef = useRef();
     const passwordRef = useRef()
 
-	// const { username, password } = loginData;
-
 	const history = useHistory();
-
-    // useEffect(() => {
-    //     console.log("Component mounted");
-    // }, []);
-
-    // console.log('componentDidReRender')
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
@@ -48,12 +36,10 @@ function LogInForm() {
     
 			const { data } = await axios.post(
 				"/dj-rest-auth/login/",
-				// loginData
                 formData
 			);
 			setCurrentUser(data.user);
             setTokenTimestamp(data);
-            console.log('DATA: ', data)
 			showSuccessAlert(
 				"Success",
 				"You have successfully logged in.",
@@ -64,14 +50,6 @@ function LogInForm() {
 			setErrors(err.response?.data);
 		}
 	};
-
-    // const handleChange = (event) => {
-    //     console.log('handleChange called');
-	// 	setLoginData({
-	// 		...loginData,
-	// 		[event.target.name]: event.target.value,
-	// 	});
-	// };
 
 	return (
 		<Col className={`mx-2 py-3 text-center ${styles.FormWrapper}`} sm={6} lg={5}>
@@ -101,8 +79,6 @@ function LogInForm() {
 						placeholder="Enter Username"
 						name="username"
                         ref={usernameRef}
-						// value={username}
-						// onChange={handleChange}
 					/>
 				</Form.Group>
 				{errors.username?.map((message, idx) => (
@@ -122,8 +98,6 @@ function LogInForm() {
 						placeholder="Password"
 						name="password"
                         ref={passwordRef}
-						// value={password}
-						// // onChange={handleChange}
 					/>
 				</Form.Group>
 				{errors.password?.map((message, idx) => (
