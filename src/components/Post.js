@@ -61,7 +61,6 @@ const Post = (props) => {
 			}
 			showSuccessAlert("Success", "Your post was deleted", "success");
 		} catch (err) {
-			console.log(err);
 			showErrorAlert(
 				"Delete Error",
 				`Unable to delete post. ${err.message}`,
@@ -86,7 +85,6 @@ const Post = (props) => {
 				}),
 			}));
 		} catch (err) {
-			console.log(err);
 			showErrorAlert(
 				"Unexpected Error",
 				`Unable to unlike post. ${err.message}`,
@@ -111,7 +109,6 @@ const Post = (props) => {
 				}),
 			}));
 		} catch (err) {
-			console.log(err);
 			showErrorAlert(
 				"Unexpected Error",
 				`Unable to like post. ${err.message}`,
