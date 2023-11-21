@@ -9,8 +9,10 @@ import styles from "../../styles/SignUpForm.module.css";
 import MainButton from "../../components/buttons/MainButton.js";
 import btnStyles from "../../styles/Buttons.module.css";
 import { useRedirectUser } from "../../hooks/useRedirectUser";
+import { useErrorContext } from "../../contexts/ErrorContext.js";
 
 const SignUpForm = () => {
+    const { showSuccessAlert } = useErrorContext();
 	useRedirectUser("loggedIn");
 
 	const [errors, setErrors] = useState({});
@@ -32,6 +34,11 @@ const SignUpForm = () => {
 			await axios.post(
 				"/dj-rest-auth/registration/",
 				formData
+			);
+            showSuccessAlert(
+				"Success",
+				"You have successfully registered an account.",
+				"success"
 			);
 			history.push("/login");
 		} catch (err) {
