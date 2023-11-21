@@ -1,57 +1,114 @@
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
-import { useCurrentUser } from "../contexts/CurrentUserContext";
+import {
+	useCurrentUser,
+	useSetCurrentUser,
+} from "../contexts/CurrentUserContext";
 import styles from "../styles/Footer.module.css";
+import { useErrorContext } from "../contexts/ErrorContext";
+import axios from "axios";
+import { removeTokenTimestamp } from "../jwt/timestamps";
 
 function Footer() {
+	const { showErrorAlert, showSuccessAlert } = useErrorContext();
 	const currentUser = useCurrentUser();
+	const setCurrentUser = useSetCurrentUser();
+
+	const handleLogOut = async () => {
+		try {
+			await axios.post("dj-rest-auth/logout/");
+			setCurrentUser(null);
+			removeTokenTimestamp();
+			showSuccessAlert(
+				"Success",
+				"You have successfully logged out",
+				"success"
+			);
+		} catch (err) {
+			showErrorAlert(`${err.response.status} Error`, `${err}`, "danger");
+		}
+	};
 
 	return (
-		<Container fluid className={styles.Footer}>
+		<Container
+			fluid
+			className={`${styles.Footer} text-center text-sm-left`}
+		>
 			<Row className="justify-content-between">
-				<Col className="border-right border-dark">
+				<Col className={styles.Border}>
+					<p className="d-sm-none">"Skilled workers appreciation."</p>
+					<strong className="d-sm-none">
+						Craft Social Ltd
+						<i className="fa-regular fa-registered ml-2" />
+					</strong>
+					<strong>Support:</strong>
 					<p>
 						<i className="fa-solid fa-envelope mr-2" />
 						craft_social@support.com
 					</p>
 				</Col>
-				<Col className="d-flex align-items-center justify-content-center border-right border-dark">
-					Craft Social Ltd &#9415;
+				<Col
+					className={`${styles.Border} d-none d-sm-block text-center`}
+				>
+					<p>"Skilled workers appreciation."</p>
+					<strong>
+						Craft Social Ltd
+						<i className="fa-regular fa-registered ml-2" />
+					</strong>
 				</Col>
-				<Col className="text-right">
+				<Col className="d-none d-sm-block text-right">
+					<strong className="m-0">Navigation:</strong>
 					{currentUser ? (
 						<ul className={styles.FooterNav}>
 							<li>
 								<Link
 									to={`/profiles/${currentUser?.profile_id}`}
+									aria-label="profile"
+									className="text-light"
 								>
 									Profile
+									<i className="fa-solid fa-user ml-2" />
 								</Link>
 							</li>
 							<li>
-								<Link to="/">Discover</Link>
+								<Link
+									to="/"
+									aria-label="discover"
+									className="text-light"
+								>
+									Discover
+									<i className="fa-solid fa-magnifying-glass ml-2" />
+								</Link>
 							</li>
 							<li>
-								<Link to="/feed">Feed</Link>
-							</li>
-							<li>
-								<Link to="/liked">Liked</Link>
-							</li>
-							<li>
-								<Link to="/top">Top</Link>
+								<Link
+									to="/"
+									onClick={handleLogOut}
+									aria-label="logout"
+									className="text-danger"
+								>
+									Logout
+									<i className="fa-solid fa-arrow-right-from-bracket ml-2" />
+								</Link>
 							</li>
 						</ul>
 					) : (
 						<ul className={styles.FooterNav}>
 							<li>
-								<Link to="/">Home</Link>
+								<Link to="/" className="text-light">
+									Home
+								</Link>
 							</li>
 							<li>
-								<Link to="/login">Login</Link>
+								<Link to="/login" className="text-light">
+									Login
+								</Link>
 							</li>
 							<li>
-								<Link to="/signup">Signup</Link>
+								<Link to="/signup" className="text-light">
+									Signup
+								</Link>
 							</li>
 						</ul>
 					)}
