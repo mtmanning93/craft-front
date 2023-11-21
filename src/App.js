@@ -21,6 +21,7 @@ import CustomAlert from "./components/tools/ErrorAlert";
 import ErrorPage from "./pages/ErrorPage";
 import CredentialsForm from "./pages/forms/CredentialsForm";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
+import Footer from "./components/Footer";
 
 function App() {
     const location = useLocation().pathname;
@@ -85,6 +86,7 @@ function App() {
 					<Redirect to="/page-not-found" />
 				</Switch>
 			</Container>
+            <Footer />
 		</div>
 	);
 }

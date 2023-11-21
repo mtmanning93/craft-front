@@ -10,7 +10,7 @@ const Header = () => {
     const currentUser = useCurrentUser();
 
     const loggedOutHeader = (
-        <Row className={`flex-column flex-sm-row p-3 bg-none ${styles.Header}`}>
+        <Row className={`flex-column flex-sm-row m-0 px-1 py-3 bg-none ${styles.Header}`}>
             <Col
                 className={`${styles.HeaderBorder} text-start text-lg-center col`}
             >

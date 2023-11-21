@@ -169,7 +169,7 @@ const Post = (props) => {
 					</Card.Text>
 				)}
 			</Card.Header>
-			<Card.Body className="px-0 py-2 text-center">
+			<Card.Body className="p-0 py-sm-2 text-center">
 				<Link to={`/posts/${id}`}>
 					<Card.Img
 						className={styles.Img}
@@ -184,7 +184,7 @@ const Post = (props) => {
 					/>
 				</Link>
 			</Card.Body>
-			<Card.Footer className="d-flex align-items-center justify-content-end">
+			<Card.Footer className="d-flex align-items-center justify-content-end px-2 px-sm-3">
 				<div className={styles.Controls}>
 					<span className={styles.Count}>{comments_count}</span>
 					<OverlayTrigger

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
@@ -13,51 +13,68 @@ import { useRedirectUser } from "../../hooks/useRedirectUser";
 import { useErrorContext } from "../../contexts/ErrorContext";
 import { setTokenTimestamp } from "../../jwt/timestamps";
 
-const LogInForm = () => {
-	useRedirectUser("loggedIn");
-	const { showSuccessAlert } = useErrorContext();
+function LogInForm() {
+    const { showSuccessAlert } = useErrorContext();
 
 	const setCurrentUser = useSetCurrentUser();
+	useRedirectUser("loggedIn");
 
 	const [errors, setErrors] = useState({});
-	const [loginData, setLoginData] = useState({
-		username: "",
-		password: "",
-	});
+	// const [loginData, setLoginData] = useState({
+	// 	username: "",
+	// 	password: "",
+	// });
 
-	const { username, password } = loginData;
+    const usernameRef = useRef();
+    const passwordRef = useRef()
+
+	// const { username, password } = loginData;
 
 	const history = useHistory();
 
-	const handleChange = (event) => {
-		setLoginData({
-			...loginData,
-			[event.target.name]: event.target.value,
-		});
-	};
+    // useEffect(() => {
+    //     console.log("Component mounted");
+    // }, []);
+
+    // console.log('componentDidReRender')
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 		try {
+            const formData = {
+                username: usernameRef.current.value,
+                password: passwordRef.current.value,
+            }
+    
 			const { data } = await axios.post(
 				"/dj-rest-auth/login/",
-				loginData
+				// loginData
+                formData
 			);
 			setCurrentUser(data.user);
+            setTokenTimestamp(data);
+            console.log('DATA: ', data)
 			showSuccessAlert(
 				"Success",
 				"You have successfully logged in.",
 				"success"
 			);
-			setTokenTimestamp(data);
 			history.goBack();
 		} catch (err) {
 			setErrors(err.response?.data);
 		}
 	};
 
+    // const handleChange = (event) => {
+    //     console.log('handleChange called');
+	// 	setLoginData({
+	// 		...loginData,
+	// 		[event.target.name]: event.target.value,
+	// 	});
+	// };
+
 	return (
-		<Col className={`mx-2 text-center ${styles.FormWrapper}`} sm={6} lg={5}>
+		<Col className={`mx-2 py-3 text-center ${styles.FormWrapper}`} sm={6} lg={5}>
 			<img src={icon} alt="site icon" />
 			<h1 className={styles.Heading}>
 				Welcome Back!
@@ -73,7 +90,7 @@ const LogInForm = () => {
 						{message}
 					</Alert>
 				))}
-				<Form.Group controlId="username">
+				<Form.Group>
 					<Form.Label htmlFor="username-input" className="sr-only">
 						Username
 					</Form.Label>
@@ -83,8 +100,9 @@ const LogInForm = () => {
 						type="text"
 						placeholder="Enter Username"
 						name="username"
-						value={username}
-						onChange={handleChange}
+                        ref={usernameRef}
+						// value={username}
+						// onChange={handleChange}
 					/>
 				</Form.Group>
 				{errors.username?.map((message, idx) => (
@@ -93,7 +111,7 @@ const LogInForm = () => {
 					</Alert>
 				))}
 
-				<Form.Group controlId="password">
+				<Form.Group>
 					<Form.Label htmlFor="password-input" className="sr-only">
 						Password
 					</Form.Label>
@@ -103,8 +121,9 @@ const LogInForm = () => {
 						type="password"
 						placeholder="Password"
 						name="password"
-						value={password}
-						onChange={handleChange}
+                        ref={passwordRef}
+						// value={password}
+						// // onChange={handleChange}
 					/>
 				</Form.Group>
 				{errors.password?.map((message, idx) => (

@@ -1441,7 +1441,7 @@ deployed project.**
     -   Redirect users based on authentication (`src/hooks/useRedirectUser.js`)
     -   Form validation alerts (_site wide, example:_
         `src/pages/forms/LoginForm.js`)
-
+-   Using useRef over useState to avoid 401 errors from onChange - [Uncontrolled Inputs React](https://sentry.io/answers/uncontrolled-inputs-react/)
 -   Infinite Scroll -
     [Npm react-infinite-scroll Docs](https://www.npmjs.com/package/react-infinite-scroll-component)
 

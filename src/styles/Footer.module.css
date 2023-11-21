@@ -1,0 +1,13 @@
+.Footer {
+	background-color: #f5f5f5;
+	color: #000000;
+	border-top: 2px solid #000000;
+	min-height: 10vh;
+	padding: 20px;
+	position: relative;
+    margin-top: 20px;
+}
+
+.FooterNav {
+	list-style-type: none;
+}

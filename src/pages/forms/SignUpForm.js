@@ -58,7 +58,7 @@ const SignUpForm = () => {
 						{message}
 					</Alert>
 				))}
-				<Form.Group controlId="username">
+				<Form.Group>
 					<Form.Label htmlFor="username-signup" className="sr-only">
 						Username
 					</Form.Label>
@@ -78,7 +78,7 @@ const SignUpForm = () => {
 					</Alert>
 				))}
 
-				<Form.Group controlId="password1">
+				<Form.Group>
 					<Form.Label htmlFor="password1" className="sr-only">
 						Password
 					</Form.Label>
@@ -98,7 +98,7 @@ const SignUpForm = () => {
 					</Alert>
 				))}
 
-				<Form.Group controlId="password2">
+				<Form.Group>
 					<Form.Label htmlFor="password2" className="sr-only">
 						Confirm password
 					</Form.Label>
