@@ -97,17 +97,17 @@ function Footer() {
 						<ul className={styles.FooterNav}>
 							<li>
 								<Link to="/" className="text-light">
-									Home
+									Home<i class="fa-solid fa-house ml-2" />
 								</Link>
 							</li>
 							<li>
 								<Link to="/login" className="text-light">
-									Login
+									Login<i className="fa-solid fa-arrow-right-to-bracket ml-2" />
 								</Link>
 							</li>
 							<li>
-								<Link to="/signup" className="text-light">
-									Signup
+								<Link to="/signup" className="text-warning">
+									Signup<i className="fas fa-user-plus ml-2" />
 								</Link>
 							</li>
 						</ul>

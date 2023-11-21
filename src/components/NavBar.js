@@ -110,7 +110,7 @@ const NavBar = () => {
 							aria-label="sign up"
 							text={
 								<>
-									<i className="fas fa-user-plus"></i> Sign Up
+									<i className="fas fa-user-plus" /> Sign Up
 								</>
 							}
 						/>
