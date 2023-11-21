@@ -98,7 +98,7 @@ const CredentialsForm = () => {
 			sm={8}
 			md={6}
 			lg={4}
-			className={`${mainStyles.Content} p-0 mt-3`}
+			className={`${mainStyles.Content} ${mainStyles.Wrapper} p-2 px-0 mt-3`}
 		>
 			<Row className="m-2 pb-2 border-bottom">
 				<Col xs={{ span: 6, order: 1 }} md={{ span: 3, order: 1 }}>

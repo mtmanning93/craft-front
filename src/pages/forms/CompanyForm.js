@@ -66,7 +66,7 @@ const CompanyForm = () => {
 			sm={10}
 			md={8}
 			lg={6}
-			className={`${mainStyles.Content} p-0 mt-3`}
+			className={`${mainStyles.Content} ${mainStyles.Wrapper} p-2 px-0 mt-3`}
 		>
 			<Form onSubmit={handleSubmit}>
 				<Row className="m-2 pb-2 border-bottom">

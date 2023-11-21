@@ -89,7 +89,7 @@ const CreatePostForm = () => {
 			sm={12}
 			md={10}
 			lg={8}
-			className={`${mainStyles.Content} p-0 my-3`}
+			className={`${mainStyles.Content} ${mainStyles.Wrapper} p-0 my-3`}
 		>
 			<Form
 				onSubmit={handleSubmit}

@@ -12,7 +12,7 @@
 .MainContainer {
 	display: flex;
 	justify-content: center;
-    min-height: 90vh;
+    min-height: 80vh;
 }
 
 a {
@@ -37,6 +37,10 @@ a:hover {
 	background-color: #ffffff;
 	border: 1px solid #000000;
 	border-radius: 5px;
+}
+
+.Wrapper {
+    height: fit-content;
 }
 
 h1 {
