@@ -1218,10 +1218,9 @@ As was expected with such a build some bugs were found and squashed here are
 some of the bugs which have been rectified, and a link to all
 [closed bug reports](https://github.com/mtmanning93/craft-front/issues?q=is%3Aissue+label%3ABug+is%3Aclosed).
 
--   **axios defaults base URL was original set for the frontend Url not the
-    API's**
+-   #### axios defaults base URL was original set for the frontend Url not the API's
 
--   **Edit post form not accepting populated image data on form submission.**\
+-   #### Edit post form not accepting populated image data on form submission.
     Initially when created the edit post form this had gone unnoticed, however later
     when manually testing the edit post form, I noticed that if a user wanted to
     change the text fields of the post and not the image the form wouldnt pass validation,
@@ -1235,8 +1234,7 @@ some of the bugs which have been rectified, and a link to all
         // INCORRECT ORIGNAL
         // formData.append("image", imageSelection.current.files[0] || profileData.image);
 
--   **Assignments to the 'filter' variable from inside React Hook useEffect will
-    be lost after each render.**\
+-   #### Assignments to the 'filter' variable from inside React Hook useEffect will be lost after each render.
     When trying to filter the list of posts for the following and liked feeds I needed
     to assign a filter method to each url. Originally I had defined the filter variable
     from inside the react hook, this raised a warning:
@@ -1261,7 +1259,7 @@ some of the bugs which have been rectified, and a link to all
                         filter = `like__owner__profile=${user_id}&ordering=-like__created_on&`;
                     }...
 
--   **Undefined ids on initial mount.**\
+-   #### Undefined ids on initial mount.
     When trying to fetch company lists based on a profile errors were being raised,
     this was because the function was trying to fetch data before the id was defined
     when mounting, to combat this I had to add an additionally line to check for
@@ -1274,10 +1272,51 @@ some of the bugs which have been rectified, and a link to all
 
                 const getProfileCompanies = async () => {...
 
--   **Navbar Avatar doesn't update on profile image update.**\
+-   #### Navbar Avatar doesn't update on profile image update.
     When a user would update their profile image the Avatar's state was not updated
     meaning the users profile card would have one image but until the page was refreshed
     the navbar avatar wouldnt change. To fix the bug I needed to ensure a state change.
+
+-   #### "401 Unauthorized" error on each key press when typing in Login and Signup forms.
+    Whilst going through the site with a test user running the manual tests I quickly realised that whilst the user typed into the login form username field every key hit would, seem to, send an API request. For example every time a key was hit, including backspace, the 401 error was raised in the console. To debug this, I first included a `console.log('componentDidRender')` outside of the onChange function. It quickly became clear that the component was essentially re-rendering on every key press. To test this further I created a `useEffect` to run only once on mount, it looked like this:
+
+        useEffect(() => {
+            console.log('componentDidMount')
+        }, [])
+
+    This enabled me to see that the component was not remounting as the log would only show once on initial mount, however the `componentDidRender` was showing. After some research I understood that the previous 'loginData' state update was being updated on every key press, creating the rerender on every state update. 
+
+    To avoid using 'debounce' and 'throttling', to advanced techniques, I decided to search for the use of the `useRef()` hook in a form component, as I had previously used this hook. The search returned this result [uncontrolled-inputs-react](https://sentry.io/answers/uncontrolled-inputs-react/). I decided to test this out, as I understood the concept. The 401 errors were avoided and after testing the user could still, seemlessly, login.
+
+    The same method was used on the signup form, the solution is to use the `useRef` hook over the `useState` as ['a way to store a mutable value within triggering a rerender'](https://sentry.io/answers/uncontrolled-inputs-react/). For example:
+
+        const usernameRef = useRef();
+        const passwordRef = useRef();
+
+    With this variables created I could assign them to a form input, like this:
+
+        <Form.Control
+            id="username-input"
+            className={styles.Input}
+            type="text"
+            placeholder="Enter Username"
+            name="username"
+            ref={usernameRef}
+        />
+    
+    Finally I used the `current` property of the ref to access the values from the input field, and post the form data to the '/login/' endpoint:
+    
+        const formData = {
+                username: usernameRef.current.value,
+                password: passwordRef.current.value,
+            }
+        const { data } = await axios.post(
+				"/dj-rest-auth/login/",
+                formData
+			);
+
+    To see it in full use in the application it can be found at: 
+    `src/pages/forms/LoginForm.js` / `src/pages/forms/SignUpForm.js`
 
 [⏫ contents](#contents)
 
@@ -1472,7 +1511,8 @@ deployed project.**
     -   Form validation alerts (_site wide, example:_
         `src/pages/forms/LoginForm.js`)
 
--   Using useRef over useState to avoid 401 errors from onChange - [Uncontrolled Inputs React](https://sentry.io/answers/uncontrolled-inputs-react/)
+-   Using useRef over useState to avoid 401 errors from onChange rerender [more information *(link to Resolved Bugs)*](#401-unauthorized-error-on-each-key-press-when-typing-in-login-and-signup-forms) - [Uncontrolled Inputs React](https://sentry.io/answers/uncontrolled-inputs-react/)
+
 -   Infinite Scroll -
     [Npm react-infinite-scroll Docs](https://www.npmjs.com/package/react-infinite-scroll-component)
 

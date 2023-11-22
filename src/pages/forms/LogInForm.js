@@ -22,7 +22,7 @@ function LogInForm() {
 	const [errors, setErrors] = useState({});
 
     const usernameRef = useRef();
-    const passwordRef = useRef()
+    const passwordRef = useRef();
 
 	const history = useHistory();
 
