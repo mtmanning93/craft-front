@@ -97,7 +97,7 @@ function Footer() {
 						<ul className={styles.FooterNav}>
 							<li>
 								<Link to="/" className="text-light">
-									Home<i class="fa-solid fa-house ml-2" />
+									Home<i className="fa-solid fa-house ml-2" />
 								</Link>
 							</li>
 							<li>

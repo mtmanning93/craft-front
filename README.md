@@ -74,6 +74,7 @@ setup other dependencies:
             -   [Sign Up Form](#sign-up-form)
             -   [Login Form](#login-form)
             -   [Navbar](#navbar)
+            -   [Footer](#footer)
             -   [Header](#header)
             -   [Work Of The Week](#work-of-the-week-wotw)
             -   [Discover Feed](#discover-feed)
@@ -107,6 +108,8 @@ setup other dependencies:
         -   [ConfirmationModal.js](#confirationmodaljs)
         -   [Post.js](#postjs)
         -   [Comment.js](#commentjs)
+        -   [NavBar.js](#navbarjs)
+        -   [Footer.js](#footerjs)
     -   [Contexts/ Hooks](#contexts-hooks)
         -   [ErrorContext.js](#errorcontextjs)
         -   [CurrentUserContext.js](#currentusercontextjs)
@@ -618,6 +621,21 @@ clickable link to the home page.
 
 [⏫ contents](#contents)
 
+### Footer
+
+The Footer is found at the bottom of all site content. Inside the footer users can find a contact section, small message (including copyright) and extra avigation links. Its site role is to provide additional information, navigation, and functionality to the user, enabling a more user-friendly experience
+
+<details>
+<summary>Footer Screenshots</summary>
+
+![Footer Mobile](README_images/features/footer/logged-out-footer-m.png)
+![Logged In Footer Desktop](README_images/features/footer/logged-in-footer.png)
+![Logged Out Footer Desktop](README_images/features/footer/logged-out-footer.png)
+
+</details>
+
+[⏫ contents](#contents)
+
 ### Header
 
 A header component is found between the navbar and the main content of the site,
@@ -923,7 +941,9 @@ must be the same and of correct length.
 [⏫ contents](#contents)
 
 ### CRUD Functionality
+
 ---
+
 Craft Social features full Create, Read, Update, Delete functionality, for
 registered users, within the UI shown above in
 [current features](#current-features).
@@ -948,7 +968,9 @@ registered users, within the UI shown above in
 [⏫ contents](#contents)
 
 ### Future Features
+
 ---
+
 The current released version of Craft Social was produced with a timeframe in
 mind, meaning the project scope was planned accordingly. Therefore in order to
 reach an MVP on time some features must be implemented in future versions. These
@@ -1062,6 +1084,14 @@ are used. Seperating this was imperative to the efficiency of the build.
 Much like the Post.js component the Comment.js component is used as the response
 when 'mapping' over a list of results. Therefore having a separate component to
 use here makes the codebase more streamlined.
+
+### `NavBar.js`
+
+Throughout the site the Navbar component is used for user navigation, it holds the logic to alter betweene a logged in state and logged out state, providing necessary links. It can always be found at the top of the site 'page'.
+
+### `Footer.js`
+
+Similaraly to the NavBar component the Footer is always at the bottom of the page throughout the site, it holds contact links a small message and extra navigation links which, again, similar to the NavBar update on login.
 
 [⏫ contents](#contents)
 
@@ -1441,6 +1471,7 @@ deployed project.**
     -   Redirect users based on authentication (`src/hooks/useRedirectUser.js`)
     -   Form validation alerts (_site wide, example:_
         `src/pages/forms/LoginForm.js`)
+
 -   Using useRef over useState to avoid 401 errors from onChange - [Uncontrolled Inputs React](https://sentry.io/answers/uncontrolled-inputs-react/)
 -   Infinite Scroll -
     [Npm react-infinite-scroll Docs](https://www.npmjs.com/package/react-infinite-scroll-component)
