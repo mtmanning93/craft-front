@@ -16,6 +16,10 @@ import { useErrorContext } from "../contexts/ErrorContext";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 
+/**
+ * ProfilePage component for displaying a user's profile information and posts.
+ * Offers user option to edit their profile.
+ */
 const ProfilePage = () => {
 	const { showErrorAlert } = useErrorContext();
 	const currentUser = useCurrentUser();
@@ -29,6 +33,7 @@ const ProfilePage = () => {
 
 	const is_owner = currentUser?.pk.toString() === id;
 
+	// Fetches profile data for the profile page. Including all posts owned by the profile.
 	useEffect(() => {
 		const getProfileData = async () => {
 			try {
@@ -66,6 +71,7 @@ const ProfilePage = () => {
 		getProfileData();
 	}, [id, history, showErrorAlert]);
 
+	// Message displayed if the user has no owned posts to list
 	const noPostsMessage = (
 		<div className="m-2">
 			<h1>You have no posts yet! Start building.</h1>
@@ -78,6 +84,8 @@ const ProfilePage = () => {
 		</div>
 	);
 
+	// JSX for all posts in the profiles posts feed.
+	// Uses infinite scroll for pagination if necessary.
 	const profileOwnedPosts = (
 		<>
 			{profilePosts.results.length ? (
@@ -105,6 +113,7 @@ const ProfilePage = () => {
 	return (
 		<Row className="w-100 p-2">
 			<Col className="p-0">
+				{/* Work of the Week component on small screens */}
 				<Row
 					className={`${mainStyles.Content} bg-warning border-dark m-0 mt-3 d-md-none`}
 				>
@@ -121,6 +130,7 @@ const ProfilePage = () => {
 							setProfileData={setProfileData}
 						/>
 
+						{/* Conditionally renders the profiles name unless the user is on their own profile page. */}
 						<h1 className="mb-0 mt-3 pb-2 border-bottom">
 							{is_owner ? "Your" : profile.results[0].owner}{" "}
 							posts:
@@ -131,6 +141,7 @@ const ProfilePage = () => {
 					<Loader loader variant="warning" />
 				)}
 			</Col>
+			{/* Work of the Week component on large screens */}
 			<Col
 				className={`${stylesW.WotwContainer} ${mainStyles.Content} bg-warning border-dark ml-2 mt-3 p-0 d-none d-md-block`}
 				md={4}

@@ -16,6 +16,10 @@ import Loader from "../components/tools/Loader";
 import WorkOfTheWeek from "../components/WorkOfTheWeek";
 import { useErrorContext } from "../contexts/ErrorContext";
 
+/**
+ * The post details 'page' for displaying details of a selecte post.
+ * Including listing the post comments below the post.
+ */
 const PostDetails = () => {
 	const { showErrorAlert } = useErrorContext();
 	const currentUser = useCurrentUser();
@@ -28,8 +32,10 @@ const PostDetails = () => {
 	const { id } = useParams();
 	const history = useHistory();
 
+    // used to populate the post avatar
 	const profile_image = currentUser?.profile_image;
 
+    // Sets post data for the component on mount, including comments list related to the post.
 	useEffect(() => {
 		const handleMount = async () => {
 			try {
@@ -76,8 +82,10 @@ const PostDetails = () => {
 					</p>
 					<WorkOfTheWeek />
 				</Row>
+                {/* Shows spinner until data is loaded. */}
 				{loaded ? (
 					<>
+                        {/* Shows post with all related post details */}
 						<Post {...post.results[0]} setPosts={setPost} />
 
 						<Container
@@ -97,6 +105,7 @@ const PostDetails = () => {
 							) : null}
 
 							{comments.results.length ? (
+                                // Infinite scroll component to list all comments in a paginated form.
 								<InfiniteScroll
 									dataLength={comments.results.length}
 									next={() =>
@@ -117,6 +126,7 @@ const PostDetails = () => {
 											setComments={setComments}
 										/>
 									))}
+                                    {/* If comment feed has erros displays the erros */}
 									{commentFeedErrors && (
 										<div className="m-2">
 											<p className="text-warning mb-0">
@@ -129,6 +139,7 @@ const PostDetails = () => {
 									)}
 								</InfiniteScroll>
 							) : currentUser ? (
+                                // Message if no comments yet and user is logged in
 								<>
 									<h2 className="border-bottom pb-2 m-2 ml-4">
 										Got something to say?
@@ -139,6 +150,7 @@ const PostDetails = () => {
 									</p>
 								</>
 							) : (
+                                // Message if no comments yet and the user is logged out
 								<>
 									<h2 className="border-bottom pb-2 m-2 ml-4">
 										No comments yet

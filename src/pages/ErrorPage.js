@@ -5,6 +5,10 @@ import errorCone from "../assets/error_cone.jpg";
 import mainStyles from "../App.module.css";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
+/**
+ * Simple error page for displaying when a resource is not found.
+ * Provides a button back to the home page.
+ */
 const ErrorPage = () => {
     const history = useHistory();
 

@@ -16,6 +16,11 @@ import mainStyles from "../App.module.css";
 import ApprovalFeedCard from "../components/ApprovalFeedCard";
 import { useRedirectUser } from "../hooks/useRedirectUser";
 
+/**
+ * A feed component for displaying all site profiles.
+ * Users can filter results via asearch input form,
+ * posts are listed from most approved to least.
+ */
 const Feed = () => {
 	useRedirectUser("loggedOut");
 
@@ -24,7 +29,8 @@ const Feed = () => {
 	const [search, setSearch] = useState("");
 	const [feedErrorMessage, setFeedErrorMessage] = useState("");
 	const [noResultsMessage, setNoResultsMessage] = useState("");
-
+    
+    // Message for if there are no posts to display.
 	const noFeedMessage = (
 		<div>
 			<h1>No profiles yet! You have not liked any profiles.</h1>
@@ -37,7 +43,8 @@ const Feed = () => {
 			</p>
 		</div>
 	);
-
+    
+    // Fetches all profiles for approved feed, and filters them when user gives search input.
 	useEffect(() => {
 		const getApprovedFeed = async () => {
 			try {
@@ -62,6 +69,8 @@ const Feed = () => {
 			}
 		};
 
+        // sets loaded to false for 1 second, for use when the user types in the search input.
+        // prevents multiple rendering.
 		setLoaded(false);
 		const timeout = setTimeout(() => {
 			getApprovedFeed();
@@ -74,6 +83,7 @@ const Feed = () => {
 	return (
 		<Row className="w-100 px-2 px-sm-4">
 			<Col className="px-0 pr-md-4">
+                {/* Small screens Work of the Week component. */}
 				<Row
 					className={`${mainStyles.Content} bg-warning border-dark m-0 mt-3 d-md-none`}
 				>
@@ -95,6 +105,7 @@ const Feed = () => {
 						</p>
 					</div>
 					<Col sm={11} className="p-0">
+                        {/* form to filter top feed results via search input */}
 						<Form
 							onSubmit={(event) => event.preventDefault()}
 							className={`${mainStyles.Content} d-flex pl-0`}
@@ -141,7 +152,7 @@ const Feed = () => {
 						</OverlayTrigger>
 					</Col>
 				</div>
-
+                {/* Displays feed error messages if necessary */}
 				{feedErrorMessage && (
 					<div className="m-2">
 						<p className="text-warning mb-0">
@@ -153,6 +164,7 @@ const Feed = () => {
 				{loaded ? (
 					<>
 						{profiles.results.length ? (
+                            // Infinite scroll component fetches more feed data when necessary
 							<InfiniteScroll
 								dataLength={profiles.results.length}
 								next={() =>
@@ -203,6 +215,7 @@ const Feed = () => {
 					<Loader loader variant="warning" />
 				)}
 			</Col>
+            {/* Large screens work of the week component */}
 			<Col
 				className={`${stylesW.WotwContainer} ${mainStyles.Content} bg-warning border-dark ml-2 mt-3 p-0 d-none d-md-block`}
 				md={4}

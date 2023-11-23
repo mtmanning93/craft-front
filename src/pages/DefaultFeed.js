@@ -13,6 +13,10 @@ import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 
+/**
+ * A feed component for displaying all site posts.
+ * Used as landing page and 'Discover' feed for logged in users.
+ */
 const DefaultFeed = () => {
 	const currentUser = useCurrentUser();
 
@@ -22,6 +26,7 @@ const DefaultFeed = () => {
 	const [feedErrorMessage, setFeedErrorMessage] = useState("");
 	const [noResultsMessage, setNoResultsMessage] = useState("");
 
+    // Message for if there are no posts to display.
 	const noFeedMessage = (
 		<div className="m-2">
 			<h1>No posts yet! You must create a post.</h1>
@@ -33,7 +38,9 @@ const DefaultFeed = () => {
 			</p>
 		</div>
 	);
-
+    
+    // Fetches posts to display in the feed.
+    // Sets loaded to true if data is fetched.
 	useEffect(() => {
 		const getDefaultFeed = async () => {
 			try {
@@ -56,6 +63,8 @@ const DefaultFeed = () => {
 			}
 		};
 
+        // sets loaded to false for 1 second, for use when the user types in the search input.
+        // prevents multiple rendering.
 		setLoaded(false);
 		const timeout = setTimeout(() => {
 			getDefaultFeed();
@@ -68,6 +77,7 @@ const DefaultFeed = () => {
 	return (
 		<Row className="w-100 px-2 px-sm-4">
 			<Col className="px-0 pr-md-4">
+                {/* Small screens Work of the Week component. */}
 				<Row
 					className={`${mainStyles.Content} bg-warning border-dark m-0 mt-3 d-md-none`}
 				>
@@ -77,6 +87,7 @@ const DefaultFeed = () => {
 					<WorkOfTheWeek />
 				</Row>
 
+                {/* Displays the search bar form for logged in users */}
 				{currentUser && (
 					<Form
 						onSubmit={(event) => event.preventDefault()}
@@ -95,6 +106,7 @@ const DefaultFeed = () => {
 						></Form.Control>
 					</Form>
 				)}
+                {/* Displays feed error messages if necessary */}
 				{feedErrorMessage && (
 					<div className="m-2">
 						<p className="text-warning mb-0">
@@ -106,6 +118,7 @@ const DefaultFeed = () => {
 				{loaded ? (
 					<>
 						{posts.results.length ? (
+                            // Infinite scroll component fetches more feed data when necessary
 							<InfiniteScroll
 								dataLength={posts.results.length}
 								next={() =>
@@ -156,6 +169,7 @@ const DefaultFeed = () => {
 					<Loader loader variant="warning" />
 				)}
 			</Col>
+            {/* Large screens work of the week component */}
 			<Col
 				className={`${stylesW.WotwContainer} ${mainStyles.Content} bg-warning border-dark ml-2 mt-3 p-0 d-none d-md-block`}
 				md={4}

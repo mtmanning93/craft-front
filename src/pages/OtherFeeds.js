@@ -14,6 +14,12 @@ import stylesW from "../styles/WotW.module.css";
 import mainStyles from "../App.module.css";
 import { useRedirectUser } from "../hooks/useRedirectUser";
 
+/**
+ * A feed component for displaying 'other' feeds including, 'feed' (followed) and 'liked'.
+ * Lists all posts by created date, if a user hasnt yet fllowed a profile or liked a post
+ * relevant messages are displayed.
+ * Only available to logged in users.
+ */
 const OtherFeeds = () => {
 	useRedirectUser("loggedOut");
 	const user = useCurrentUser();
@@ -28,6 +34,7 @@ const OtherFeeds = () => {
 
 	const user_id = user?.profile_id;
 
+    // Message for if there are no posts to display.
 	const noFeedMessage =
 		currentUrl === "/feed" ? (
 			<div className="m-2">
@@ -52,6 +59,10 @@ const OtherFeeds = () => {
 			</div>
 		);
 
+    // Fetches posts to display in the feed.
+    // Filters posts depending on the current url, for 'feed' its profile the user follows,
+    // for 'liked' its all posts a user likes.
+    // Filters posts by search method if added by user.
 	useEffect(() => {
 		let filter = "";
 		const getPosts = async () => {
@@ -82,7 +93,9 @@ const OtherFeeds = () => {
 				);
 			}
 		};
-
+        
+        // sets loaded to false for 1 second, for use when the user types in the search input.
+        // prevents multiple rendering.
 		setLoaded(false);
 		const timeout = setTimeout(() => {
 			getPosts();
@@ -95,6 +108,7 @@ const OtherFeeds = () => {
 	return (
 		<Row className="w-100 px-2 px-sm-4">
 			<Col className="px-0 pr-md-4">
+                {/* Small screens Work of the Week component. */}
 				<Row
 					className={`${mainStyles.Content} bg-warning border-dark m-0 mt-3 d-md-none`}
 				>
@@ -103,6 +117,8 @@ const OtherFeeds = () => {
 					</p>
 					<WorkOfTheWeek />
 				</Row>
+
+                {/* Displays the search bar form for logged in users */}
 				{user && (
 					<Form
 						onSubmit={(event) => event.preventDefault()}
@@ -185,6 +201,7 @@ const OtherFeeds = () => {
 					<Loader loader variant="warning" />
 				)}
 			</Col>
+            {/* Large screens work of the week component */}
 			<Col
 				className={`${stylesW.WotwContainer} ${mainStyles.Content} bg-warning border-dark ml-2 mt-3 p-0 d-none d-md-block`}
 				md={4}
