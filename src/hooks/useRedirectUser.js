@@ -3,6 +3,11 @@ import { useEffect } from "react";
 import { useHistory } from "react-router";
 import { useErrorContext } from "../contexts/ErrorContext";
 
+/**
+ * Custom React hook for redirecting users based on their authentication status.
+ * Taken form the Code Institutes 'Moments' walkthrough (see README references)
+ * @param {string} userStatus - authentication status of the user ("loggedIn" or "loggedOut").
+ */
 export const useRedirectUser = (userStatus) => {
 	const { showErrorAlert } = useErrorContext();
 

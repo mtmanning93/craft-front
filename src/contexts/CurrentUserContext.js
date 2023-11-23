@@ -14,6 +14,7 @@ export const useSetCurrentUser = () => useContext(SetCurrentUserContext);
  * Manages the current user data and authentication status.
  * It uses Axios interceptors to automatically refresh the authentication
  * token when it's about to expire and handle unauthorized access.
+ * Taken form the Code Institutes 'Moments' walkthrough *see references*
  * @component
  * @param {ReactNode} props.children - children components to be wrapped by the provider (index.js).
  */

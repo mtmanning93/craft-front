@@ -2,6 +2,7 @@ import axios from "axios";
 
 /**
  * REST API Configuration
+ * Taken form the Code Institutes 'Moments' walkthrough *see references*
  */
 
 axios.defaults.baseURL = "https://craft-api-aeec93e46ff2.herokuapp.com/";

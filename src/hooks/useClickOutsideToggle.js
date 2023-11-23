@@ -1,5 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 
+/**
+ * Custom React hook for handling click outside of the navigation dropdowns.
+ * Taken form the Code Institutes 'Moments' walkthrough (see README references)
+ */
 const useClickOutsideToggle = () => {
   const [expanded, setExpanded] = useState(false);
   const ref = useRef(null);
