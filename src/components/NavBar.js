@@ -142,7 +142,7 @@ const NavBar = () => {
 					</NavLink>
 					<NavLink
 						className="d-block"
-						to={`/profiles/${currentUser?.profile_id}}/edit/credentials`}
+						to={`/profiles/${currentUser?.profile_id}/edit/credentials`}
 						aria-label="profile"
 					>
 						Settings <i className="fa-solid fa-angle-right" />
