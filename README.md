@@ -1528,7 +1528,7 @@ deployed project.**
 
 -   Using ref to store a reference to the current timeout
     (`src/components/tools/ErrorAlert.js`) -
-    [Timeout Updating State](https://stackoverflow.com/questions/68886839/how-do-i-avoid-cant-perform-a-react-state-update-on-an-unmounted-component-er?rq=3)
+    [Timeout Updating State](https://stackoverflow.com/questions/68886839/how-do-i-avoid-cant-perform-a-react-state-update-on-an-unmounted-component-er?rq=3), [Clearing Timeouts](https://stackoverflow.com/questions/53090432/react-hooks-right-way-to-clear-timeouts-and-intervals)
 
 **The below Docs were used extensively throughout the project build:**
 

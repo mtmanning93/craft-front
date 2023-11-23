@@ -391,8 +391,10 @@ iPhone 6 to larger monitor sized screens.
 To further test whether the app would work across screens I physically tested
 its appearance across some devices of differing sizes, these were:
 
-24" Monitor 19" Square Desktop 12" Macbook Air Laptop Samsung Galaxy s21 iPhone
-7
+* 24" Monitor 19"
+* Square Desktop 12"
+* Macbook Air Laptop
+* Samsung Galaxy s21
 
 [⏫ contents](#contents)
 
@@ -403,9 +405,11 @@ building the project simple as I had access to the Chrome Devtools. It is
 however not just available in the Chrome browser therefore it was important to
 test it across a number of different browsers, the browser tests included:
 
-Chrome (Development) Firefox Edge
+* Chrome (Development)
+* Firefox
+* Edge
 
-Finally I tested the browser compatability is Safari, worrryingly it didnt work
+Finally I tested the browser compatability is Safari, worryingly it didnt work
 as expected, when logging in to the site it just kept redirecting me back to the
 login form, although the 'successful log' message was displayed each time. This
 issue is due to the “Prevent Cross-Site Tracking” settings in safari. Whilst the
