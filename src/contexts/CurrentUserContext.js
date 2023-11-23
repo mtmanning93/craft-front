@@ -10,75 +10,84 @@ export const SetCurrentUserContext = createContext();
 export const useCurrentUser = () => useContext(CurrentUserContext);
 export const useSetCurrentUser = () => useContext(SetCurrentUserContext);
 
+/**
+ * Manages the current user data and authentication status.
+ * It uses Axios interceptors to automatically refresh the authentication
+ * token when it's about to expire and handle unauthorized access.
+ * @component
+ * @param {ReactNode} props.children - children components to be wrapped by the provider (index.js).
+ */
 export const CurrentUserProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState(null);
+	const [currentUser, setCurrentUser] = useState(null);
 
-  const history = useHistory();
+	const history = useHistory();
 
-  const handleMount = async () => {
-    try {
-      const { data } = await axiosRes.get("dj-rest-auth/user/");
-      setCurrentUser(data);
-    } catch (err) {
-    // console.log(err);
-    }
-  };
+	// Function to fetch the current user data.
+	const handleMount = async () => {
+		try {
+			const { data } = await axiosRes.get("dj-rest-auth/user/");
+			setCurrentUser(data);
+		} catch (err) {
+			// console.log(err);
+		}
+	};
 
-  useEffect(() => {
-    handleMount();
-  }, []);
+	useEffect(() => {
+		handleMount();
+	}, []);
 
-  useMemo(() => {
-    axiosReq.interceptors.response.use(
-        async (config) => {
-            if (shouldRefreshToken()){
-                try{
-                    await axios.post("/dj-rest-auth/token/refresh/");
-                } catch(err){
-                    setCurrentUser((prevCurrentUser) => {
-                        if (prevCurrentUser){
-                            history.push("/login");
-                        }
-                        return null;
-                    });
-                    removeTokenTimestamp();
-                    return config;
-                }
-            }
-            return config;
-        },
-        (err) => {
-            return Promise.reject(err);
-        }
-    );
+	// Axios interceptors to manage token refresh and unauthorized access
+	useMemo(() => {
+		axiosReq.interceptors.response.use(
+			async (config) => {
+				if (shouldRefreshToken()) {
+					try {
+						await axios.post("/dj-rest-auth/token/refresh/");
+					} catch (err) {
+						setCurrentUser((prevCurrentUser) => {
+							if (prevCurrentUser) {
+								history.push("/login");
+							}
+							return null;
+						});
+						removeTokenTimestamp();
+						return config;
+					}
+				}
+				return config;
+			},
+			(err) => {
+				return Promise.reject(err);
+			}
+		);
 
-    axiosRes.interceptors.response.use(
-        (response) => response,
-        async (err) => {
-            if (err.response?.status === 401){
-                try{
-                    await axios.post("/dj-rest-auth/token/refresh/");
-                } catch(err){
-                    setCurrentUser((prevCurrentUser) => {
-                        if (prevCurrentUser){
-                            history.push("/login");
-                        }
-                        return null;
-                    });
-                    removeTokenTimestamp();
-                }
-                return axios(err.config);
-            }
-            return Promise.reject(err);
-        }
-    );
-}, [history]);
+		axiosRes.interceptors.response.use(
+			(response) => response,
+			async (err) => {
+				if (err.response?.status === 401) {
+					try {
+						await axios.post("/dj-rest-auth/token/refresh/");
+					} catch (err) {
+						setCurrentUser((prevCurrentUser) => {
+							if (prevCurrentUser) {
+								history.push("/login");
+							}
+							return null;
+						});
+						removeTokenTimestamp();
+					}
+					return axios(err.config);
+				}
+				return Promise.reject(err);
+			}
+		);
+	}, [history]);
 
-return (
-    <CurrentUserContext.Provider value={currentUser}>
-        <SetCurrentUserContext.Provider value={setCurrentUser}>
-            {children}
-        </SetCurrentUserContext.Provider>
-    </CurrentUserContext.Provider>
-)
+	return (
+		<CurrentUserContext.Provider value={currentUser}>
+			<SetCurrentUserContext.Provider value={setCurrentUser}>
+				{children}
+			</SetCurrentUserContext.Provider>
+		</CurrentUserContext.Provider>
+	);
 };
