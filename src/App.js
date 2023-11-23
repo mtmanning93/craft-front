@@ -23,6 +23,10 @@ import CredentialsForm from "./pages/forms/CredentialsForm";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 import Footer from "./components/Footer";
 
+/**
+ * Main component, the entry point of the Craft-Social application.
+ * Renders page and site-wide components based on the current route.
+ */
 function App() {
     const location = useLocation().pathname;
 
@@ -30,6 +34,7 @@ function App() {
 		<div className={styles.App}>
 			<CustomAlert />
 			<NavBar />
+            {/* renders the header except for on login and signup forms. */}
             {location !== '/login' && location !== '/signup' && <Header />}
 			<Container fluid className={mainStyles.MainContainer}>
 				<Switch>
