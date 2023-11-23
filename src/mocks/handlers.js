@@ -2,6 +2,7 @@ import { rest } from "msw";
 
 const baseURL = "https://craft-api-aeec93e46ff2.herokuapp.com/";
 
+// Automated Test handlers to support component tests.
 export const handlers = [
 	rest.get(`${baseURL}dj-rest-auth/user/`, (req, res, ctx) => {
 		return res(

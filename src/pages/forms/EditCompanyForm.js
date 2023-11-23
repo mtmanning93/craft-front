@@ -18,6 +18,9 @@ import { useRedirectUser } from "../../hooks/useRedirectUser";
 import { useErrorContext } from "../../contexts/ErrorContext";
 import Loader from "../../components/tools/Loader";
 
+/**
+ * EditCompanyForm component for updating company details.
+ */
 const EditCompanyForm = () => {
 	useRedirectUser("loggedOut");
 
@@ -37,15 +40,16 @@ const EditCompanyForm = () => {
 	const history = useHistory();
 	const { id } = useParams();
 
+    // Fetches the company data to populate the edit form, raises error is user doesnt own company.
 	useEffect(() => {
-		let isMounted = true; // track whether the component is mounted
+		let isMounted = true; // tracks if the component is mounted
 
 		const getCompanyData = async () => {
 			try {
 				const { data } = await axiosReq.get(`/companies/${id}/`);
 
 				if (isMounted) {
-					// Check the component is mounted before updating
+					// Checks the component is mounted before updating
 					if (data.is_owner) {
 						setCompanyData(data);
 					} else {
@@ -60,7 +64,7 @@ const EditCompanyForm = () => {
 				}
 			} catch (err) {
 				if (isMounted) {
-					// Check the component is mounted before updating
+					// Checks the component is mounted before updating
 					if (err.response.status === 404) {
 						showErrorAlert(
 							`${err.response.status} error!`,
@@ -83,12 +87,13 @@ const EditCompanyForm = () => {
 		setLoaded(false);
 		getCompanyData();
 
-		// Cleanup function to prevent state updates
+		// Cleanup function preventing state updates
 		return () => {
-			isMounted = false; // Set to false when the component unmounts
+			isMounted = false; // False when the component unmounts
 		};
 	}, [history, id, showErrorAlert]);
 
+    // Updates company state with input data
 	const handleChange = (event) => {
 		setCompanyData({
 			...companyData,
@@ -96,6 +101,7 @@ const EditCompanyForm = () => {
 		});
 	};
 
+    // handles the company form submition, by sending post request with new data
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 

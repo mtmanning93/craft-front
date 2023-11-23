@@ -21,6 +21,9 @@ import btnStyles from "../../styles/Buttons.module.css";
 import { useRedirectUser } from "../../hooks/useRedirectUser";
 import { useErrorContext } from "../../contexts/ErrorContext";
 
+/**
+ * Form for updating post details.
+ */
 const EditPostForm = () => {
 	useRedirectUser("loggedOut");
 
@@ -40,6 +43,7 @@ const EditPostForm = () => {
 	const history = useHistory();
 	const { id } = useParams();
 
+    // Fetches the post information for edit form. Raises erros based on user authentication.
 	useEffect(() => {
 		const getPostData = async () => {
 			try {
@@ -76,6 +80,7 @@ const EditPostForm = () => {
 		getPostData();
 	}, [history, id, showErrorAlert]);
 
+    // Handles the image change selection of the user. Updating post data with new image.
 	const handleImage = (event) => {
 		const selectedFile = event.target.files[0];
 		if (selectedFile) {
@@ -88,6 +93,7 @@ const EditPostForm = () => {
 		}
 	};
 
+    // handles text inputs, updating the post state.
 	const handleChange = (event) => {
 		setPostData({
 			...postData,
@@ -95,6 +101,7 @@ const EditPostForm = () => {
 		});
 	};
 
+    // Handles the edit post form submition.
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 
@@ -203,6 +210,7 @@ const EditPostForm = () => {
 					>
 						<Form.Group className="m-0">
 							<Form.Label className="d-none">Image</Form.Label>
+                            {/* Updates change image icon to upload icon if no image */}
 							{image ? (
 								<>
 									<figure>

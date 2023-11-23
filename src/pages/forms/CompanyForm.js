@@ -14,6 +14,10 @@ import BackButton from "../../components/buttons/BackButton";
 import { useRedirectUser } from "../../hooks/useRedirectUser";
 import { useErrorContext } from "../../contexts/ErrorContext";
 
+/**
+ * Form component for adding a company to the user's profile.
+ * User will automatically become the owner of the company they create.
+ */
 const CompanyForm = () => {
 	useRedirectUser("loggedOut");
 
@@ -31,6 +35,7 @@ const CompanyForm = () => {
 
 	const history = useHistory();
 
+    // Allows the input data to update the company state
 	const handleChange = (event) => {
 		setCompanyData({
 			...companyData,
@@ -38,6 +43,7 @@ const CompanyForm = () => {
 		});
 	};
 
+    // Handles the company form submition. Sending the form data in the post request.
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 
@@ -101,6 +107,7 @@ const CompanyForm = () => {
 						owner of a company you create
 					</p>
 					<Col className="p-2">
+                        {/* Displays errors after checking the response is an array */}
 						{Array.isArray(errors) &&
 							errors.map((message, idx) => (
 								<Alert

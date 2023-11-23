@@ -18,6 +18,9 @@ import MainButton from "../../components/buttons/MainButton";
 import { useRedirectUser } from "../../hooks/useRedirectUser";
 import { useErrorContext } from "../../contexts/ErrorContext";
 
+/**
+ * CredentialsForm component for updating username and password.
+ */
 const CredentialsForm = () => {
 	useRedirectUser("loggedOut");
 
@@ -37,16 +40,18 @@ const CredentialsForm = () => {
 
 	const { new_password1, new_password2 } = passwordData;
 
+    // Redirects the user if there id doesnt match the url
 	useEffect(() => {
 		currentUser?.profile_id?.toString() !== id
 			? history.push("/")
 			: setUsername(currentUser.username);
 	}, [currentUser, history, id]);
 
+    // updates username state with input
 	const handleChangeUsername = (event) => {
 		setUsername(event.target.value);
 	};
-
+    // updates password state with input
 	const handleChangePassword = (event) => {
 		setPasswordData({
 			...passwordData,
@@ -54,6 +59,7 @@ const CredentialsForm = () => {
 		});
 	};
 
+    // Handles the password form submititon, updates password on success.
 	const handlePasswordSubmit = async (event) => {
 		event.preventDefault();
 		try {
@@ -73,6 +79,7 @@ const CredentialsForm = () => {
 		}
 	};
 
+    // handles the username form submition, updating the username on success.
 	const handleUsernameSubmit = async (event) => {
 		event.preventDefault();
 		try {

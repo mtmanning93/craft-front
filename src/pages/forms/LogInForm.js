@@ -13,6 +13,9 @@ import { useRedirectUser } from "../../hooks/useRedirectUser";
 import { useErrorContext } from "../../contexts/ErrorContext";
 import { setTokenTimestamp } from "../../jwt/timestamps";
 
+/**
+ * Form for user login.
+ */
 function LogInForm() {
     const { showSuccessAlert } = useErrorContext();
 
@@ -26,6 +29,7 @@ function LogInForm() {
 
 	const history = useHistory();
 
+    // Handles the login form submition, updating the current user with credentials.
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 		try {

@@ -8,6 +8,14 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { axiosRes } from "../../api/axiosDefaults";
 import mainStyles from "../../App.module.css";
 
+/**
+ * CommentForm component for submitting comments on a post.
+ * @param {Object} post - post data.
+ * @param {Function} setPost - updates the post data state.
+ * @param {Function} setComments - Updates the comments data.
+ * @param {string} profile_image - URL of the users profile image.
+ * @param {string} profile_id - ID of the user.
+ */
 const CommentForm = (props) => {
 	const user = useCurrentUser();
 
@@ -16,10 +24,12 @@ const CommentForm = (props) => {
 	const [commentData, setCommentData] = useState("");
 	const [errors, setErrors] = useState({});
 
+    // Updates form on key press
 	const handleChange = (event) => {
 		setCommentData(event.target.value);
 	};
 
+    // handles the comment form submition updating the comment and post state.
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 

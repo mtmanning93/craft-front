@@ -18,6 +18,9 @@ import btnStyles from "../../styles/Buttons.module.css";
 import { useRedirectUser } from "../../hooks/useRedirectUser";
 import { useErrorContext } from "../../contexts/ErrorContext";
 
+/**
+ * Form for creating a new post.
+ */
 const CreatePostForm = () => {
 	useRedirectUser("loggedOut");
 
@@ -36,6 +39,7 @@ const CreatePostForm = () => {
 	const imageSelection = useRef(null);
 	const history = useHistory();
 
+    // handles the image change when a user selects an image.
 	const handleImage = (event) => {
 		const selectedFile = event.target.files[0];
 		if (selectedFile) {
@@ -47,6 +51,7 @@ const CreatePostForm = () => {
 		}
 	};
 
+    // Updates the post state on input change.
 	const handleChange = (event) => {
 		setPostData({
 			...postData,
@@ -54,6 +59,9 @@ const CreatePostForm = () => {
 		});
 	};
 
+    // handles the form submition by sending the formData in a post request.
+    // Raises erros if no image selected.
+    // Pushes user to the post details page on successful post creation.
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 
@@ -171,6 +179,7 @@ const CreatePostForm = () => {
 					>
 						<Form.Group className="m-0">
 							<Form.Label className="d-none">Image</Form.Label>
+                            {/* changes the image displayed dependent on the users selection, or not */}
 							{image ? (
 								<>
 									<figure>

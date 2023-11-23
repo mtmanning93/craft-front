@@ -21,6 +21,12 @@ import { useRedirectUser } from "../../hooks/useRedirectUser";
 import { useErrorContext } from "../../contexts/ErrorContext";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 
+/**
+ * Form for updating user profiles.
+ * Only accessible by the owner of the profile.
+ * Users can add and update companies,
+ * as well as personal information and profile image.
+ */
 const UpdateProfileForm = () => {
 	useRedirectUser("loggedOut");
 	const { showErrorAlert } = useErrorContext();
@@ -45,6 +51,9 @@ const UpdateProfileForm = () => {
 	const history = useHistory();
 	const { id } = useParams();
 
+    // Fetches the user profile data to populate the update form.
+    // Sets the employer selector to the employer instance chosen by the user.
+    // Fetches list of owned companies.
 	useEffect(() => {
 		const getProfileData = async () => {
 			try {
@@ -104,6 +113,7 @@ const UpdateProfileForm = () => {
 		getProfileData();
 	}, [id, history, showErrorAlert]);
 
+    // Handles the form input text field updates to the profile state.
 	const handleChange = (event) => {
 		setProfileData({
 			...profileData,
@@ -111,6 +121,7 @@ const UpdateProfileForm = () => {
 		});
 	};
 
+    // Fetches the companies owned by the profile owner.
 	useEffect(() => {
 		const getProfileCompanies = async () => {
 			try {
@@ -158,6 +169,7 @@ const UpdateProfileForm = () => {
 						</p>
 					)}
 				</div>
+                {/* displays a list of company components owned by the user. */}
 				{profileCompanies.length ? (
 					profileCompanies.map((company) => (
 						<ProfileCompany
@@ -180,6 +192,7 @@ const UpdateProfileForm = () => {
 		</>
 	);
 
+    // Handles the submition of the update profile form, incluing updating the selected employer.
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 
@@ -222,6 +235,7 @@ const UpdateProfileForm = () => {
 						<BackButton />
 					</Col>
 				</Row>
+                {/* shows spinner until component renders */}
 				{loaded ? (
 					<>
 						<Row

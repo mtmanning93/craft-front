@@ -11,6 +11,9 @@ import btnStyles from "../../styles/Buttons.module.css";
 import { useRedirectUser } from "../../hooks/useRedirectUser";
 import { useErrorContext } from "../../contexts/ErrorContext.js";
 
+/**
+ * Form for new user registration.
+ */
 const SignUpForm = () => {
     const { showSuccessAlert } = useErrorContext();
 	useRedirectUser("loggedIn");
@@ -23,6 +26,8 @@ const SignUpForm = () => {
 
 	const history = useHistory();
 
+    // Handles the signup form submition, sending form data to registration endpoint.
+    // Pushes new user to login form.
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 		try {
