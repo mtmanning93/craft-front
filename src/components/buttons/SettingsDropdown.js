@@ -3,6 +3,12 @@ import Dropdown from "react-bootstrap/Dropdown";
 import btnStyles from "../../styles/Buttons.module.css";
 import ConfirmationModal from "../ConfirmationModal";
 
+/**
+ * A dropdown menu with settings options, including edit and delete.
+ * @component
+ * @param {function} editObject - Function called when the "Edit" option is selected.
+ * @param {function} onDelete - Function called when the "Delete" option is selected.
+ */
 const SettingsBtn = React.forwardRef(({ onClick }, ref) => (
 	<i
 		ref={ref}
@@ -17,10 +23,11 @@ const SettingsBtn = React.forwardRef(({ onClick }, ref) => (
 const SettingsDropdown = ({ editObject, onDelete }) => {
 	const [showModal, setShowModal] = useState(false);
 
+    // Shows modal when delete is selected
 	const handleDeleteClick = () => {
 		setShowModal(true);
 	};
-
+    // unshows modal when deletion is confirmed
 	const handleConfirmDelete = () => {
 		onDelete();
 		setShowModal(false);
@@ -33,12 +40,14 @@ const SettingsDropdown = ({ editObject, onDelete }) => {
 				<Dropdown.Menu
 					className="text-right"
 					popperConfig={{ strategy: "fixed" }}
-				>
+				>   
+                    {/* shows edit option if specified in props */}
 					{editObject && (
 						<Dropdown.Item onClick={editObject} aria-label="edit">
 							Edit
 						</Dropdown.Item>
 					)}
+                    {/* shows delete option if specified in props */}
 					{onDelete && (
 						<Dropdown.Item
 							onClick={handleDeleteClick}

@@ -3,6 +3,10 @@ import Button from "react-bootstrap/Button";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import btnStyles from "../../styles/Buttons.module.css";
 
+/**
+ * Renders a button to navigate the user back to the previous page.
+ * @component
+ */
 const BackButton = () => {
   const history = useHistory();
 
