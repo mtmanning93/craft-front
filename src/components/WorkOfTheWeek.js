@@ -8,6 +8,10 @@ import mainStyles from "../App.module.css";
 import Avatar from "./Avatar";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
+/**
+ * Displays the top liked posts based on likes.
+ * @component
+ */
 const WorkOfTheWeek = () => {
 	const [errorMessage, setErrorMessage] = useState("");
 	const [postData, setPostData] = useState({
@@ -19,6 +23,7 @@ const WorkOfTheWeek = () => {
 	useEffect(() => {
 		let isMounted = true;
 
+        // fetches the top posts.
 		const getTopPosts = async () => {
 			try {
 				const { data } = await axiosReq.get(
@@ -51,6 +56,7 @@ const WorkOfTheWeek = () => {
 			<Row
 				className={`${styles.Wrapper} m-0 justify-content-around flex-md-column w-100 h-100 p-2 pt-md-0`}
 			>
+                {/* displays error message JSX if necessary */}
 				{errorMessage && (
 					<>
 						<p className="text-danger m-0">
@@ -61,6 +67,7 @@ const WorkOfTheWeek = () => {
 						</p>
 					</>
 				)}
+                {/* Displays the top 3 posts */}
 				{popularPosts.results.length ? (
 					popularPosts.results.slice(0, 3).map((post) => (
 						<Card

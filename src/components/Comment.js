@@ -8,6 +8,18 @@ import SettingsDropdown from "./buttons/SettingsDropdown";
 import { axiosRes } from "../api/axiosDefaults";
 import { useErrorContext } from "../contexts/ErrorContext";
 
+/**
+ * Component representing a comment with user details, content, and delete functionality.
+ * @component
+ * @param {str} owner - The username of the comment owner.
+ * @param {number} profile_id - The ID of the comment owner's profile.
+ * @param {str} profile_image - The path to the comment owner's avatar image.
+ * @param {str} created_on - The timestamp indicating when the comment was created.
+ * @param {str} content - The content of the comment.
+ * @param {number} id - The unique ID of the comment.
+ * @param {function} setPost - Function to update the post containing the comment.
+ * @param {function} setComments - Function to update the list of comments.
+ */
 const Comment = (props) => {
 	const user = useCurrentUser();
 	const { showErrorAlert } = useErrorContext();
@@ -23,8 +35,11 @@ const Comment = (props) => {
 		setComments,
 	} = props;
 
+    // Checks if the user is the owner
 	const is_owner = user?.username === owner;
 
+    // Handles the comment deletion
+    // Updates the posts comment count and comments list
 	const deleteComment = async () => {
 		try {
 			await axiosRes.delete(`/comments/${id}`);

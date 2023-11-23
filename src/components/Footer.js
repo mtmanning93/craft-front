@@ -10,11 +10,16 @@ import { useErrorContext } from "../contexts/ErrorContext";
 import axios from "axios";
 import { removeTokenTimestamp } from "../jwt/timestamps";
 
+/**
+ * Site Footer containing contact email and extra navigation.
+ * @component
+ */
 function Footer() {
 	const { showErrorAlert, showSuccessAlert } = useErrorContext();
 	const currentUser = useCurrentUser();
 	const setCurrentUser = useSetCurrentUser();
 
+    // handles the logout funcitonality for logged in users.
 	const handleLogOut = async () => {
 		try {
 			await axios.post("dj-rest-auth/logout/");
@@ -60,6 +65,7 @@ function Footer() {
 				<Col className="d-none d-sm-block text-right">
 					<strong className="m-0">Navigation:</strong>
 					{currentUser ? (
+                        // logged in user footer nav
 						<ul className={styles.FooterNav}>
 							<li>
 								<Link
@@ -94,6 +100,7 @@ function Footer() {
 							</li>
 						</ul>
 					) : (
+                        // logged out footer nav
 						<ul className={styles.FooterNav}>
 							<li>
 								<Link to="/" className="text-light">

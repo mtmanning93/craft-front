@@ -3,6 +3,14 @@ import Modal from "react-bootstrap/Modal";
 import MainButton from "./buttons/MainButton";
 import btnStyles from "../styles/Buttons.module.css";
 
+
+/** 
+ * Deletion confirmation modal
+ * @component
+ * @param {boolean} props.show - Indicates whether the modal should be displayed.
+ * @param {function} props.onHide - Handler function for the modal's close button or backdrop click.
+ * @param {function} props.onConfirm - Handler function for the confirm button.
+ */
 const ConfirmationModal = ({ show, onHide, onConfirm }) => {
 	return (
 		<Modal show={show} onHide={onHide} animation={false}>

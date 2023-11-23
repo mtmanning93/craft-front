@@ -6,9 +6,14 @@ import styles from "../styles/Header.module.css";
 import { Link, NavLink } from "react-router-dom";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 
+/**
+ * Site Welcome Message and Feed Navigation Header
+ * @component
+ */
 const Header = () => {
     const currentUser = useCurrentUser();
 
+    // Welcome message header for logged out user.
     const loggedOutHeader = (
         <Row className={`flex-column flex-sm-row m-0 px-1 py-3 bg-none ${styles.Header}`}>
             <Col
@@ -36,7 +41,8 @@ const Header = () => {
             </Col>
         </Row>
     );
-
+    
+    // Feed navigation links, header for a logged in user.
     const loggedInHeader = (
         <Nav justify className={`pt-3 bg-none ${styles.Header}`}>
             <NavLink

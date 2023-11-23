@@ -18,6 +18,26 @@ import btnStyles from "../styles/Buttons.module.css";
 import ProfileCompany from "./ProfileCompany";
 import { useErrorContext } from "../contexts/ErrorContext";
 
+/**
+ * A user profile card with details, personal information, and controls
+ * including follow and approve.
+ * @component
+ * @param {number} id - unique id of the profile.
+ * @param {string} owner - username of the profile owner.
+ * @param {string} name - name of the profile owner.
+ * @param {string} bio -  bio of the profile owner.
+ * @param {string} job - job of the profile owner.
+ * @param {string} created_on - date and time of profile creation.
+ * @param {string} image - path to profile owner's avatar image.
+ * @param {string} employer - employer (company instance) of the profile owner.
+ * @param {number} posts_count - number of posts by profile.
+ * @param {number} following_id - id of the follow relationship (if user is following).
+ * @param {number} following_count - number of profile the profile is following.
+ * @param {number} followers_count - number of profiles following this profile.
+ * @param {number} approval_count - number of profile approvals.
+ * @param {number} approval_id - id of the approval relationship (if user has approved).
+ * @param {function} setProfileData - Function to update the profile data.
+ */
 const ProfileCard = (props) => {
 	const { showErrorAlert } = useErrorContext();
 	const currentUser = useCurrentUser();
@@ -46,12 +66,16 @@ const ProfileCard = (props) => {
 
 	const history = useHistory();
 
+    // Displays the personal information section if any updates 
+    // are made to a profile.
 	const personalInfo = name || job || employer || bio;
 
+    // Pushes user to edit post form if selected.
 	const editProfile = async () => {
 		history.push(`/profiles/${id}/edit`);
 	};
 
+    // Handles a user unapproving a profile, updates approval count.
 	const unApproveProfile = async () => {
 		try {
 			await axiosRes.delete(`/approvals/${approval_id}/`);
@@ -75,7 +99,7 @@ const ProfileCard = (props) => {
 			);
 		}
 	};
-
+    // Handles a user approving a profile, updates approval count.
 	const approveProfile = async () => {
 		try {
 			const { data } = await axiosRes.post("/approvals/", {
@@ -102,6 +126,8 @@ const ProfileCard = (props) => {
 		}
 	};
 
+    // Handles a user following a profile instance, updates profile data of user and
+    // profile, updating both counters also.
 	const followProfile = async () => {
 		try {
 			const { data } = await axiosRes.post("/followers/", {
@@ -127,7 +153,8 @@ const ProfileCard = (props) => {
 			);
 		}
 	};
-
+    // Handles a user unfollowing a profile instance, updates profile data of user and
+    // profile, updating both counters also.
 	const unfollowProfile = async () => {
 		try {
 			await axiosRes.delete(`/followers/${following_id}/`);
@@ -152,6 +179,7 @@ const ProfileCard = (props) => {
 		}
 	};
 
+    // Gets all companies a profile owns.
 	useEffect(() => {
 		if (id !== undefined) {
 			const getProfileCompanies = async () => {
@@ -171,6 +199,7 @@ const ProfileCard = (props) => {
 		}
 	}, [id]);
 
+    // JSX to display profile owned companies, including error message.
 	const profileOwnedCompanies = (
 		<>
 			{companiesErrorMessage && (
@@ -226,6 +255,7 @@ const ProfileCard = (props) => {
 							<Card.Title as="h1">{owner}'s Profile</Card.Title>
 							{currentUser && (
 								<div className="d-flex m-auto m-sm-0">
+                                    {/* displays buttons depending if the user is the profile owner. */}
 									{!is_owner &&
 										(following_id ? (
 											<MainButton
@@ -312,6 +342,7 @@ const ProfileCard = (props) => {
 					</Col>
 				</Row>
 			</Card.Body>
+            {/* displays the personalInfo section if information exists for profile */}
 			{(personalInfo || profileCompanies.length > 0) && (
 				<Card.Footer>
 					<Col className={styles.PersonalInfo}>

@@ -17,6 +17,24 @@ import { axiosRes } from "../api/axiosDefaults";
 import SettingsDropdown from "./buttons/SettingsDropdown";
 import { useErrorContext } from "../contexts/ErrorContext";
 
+/**
+ * Represents a post with user details, content, and like controls.
+ * @component
+ * @param {number} id - A unique post ID.
+ * @param {string} owner - post owner username.
+ * @param {number} profile_id - post owner's profile pk.
+ * @param {string} profile_image - path to the post owner's avatar image.
+ * @param {string} profile_job - job title of the post owner.
+ * @param {string} profile_location - location of the post owners, employer instance.
+ * @param {number} comments_count - number of comments.
+ * @param {number} likes_count - number of likes.
+ * @param {number} like_id - id of the like associated with the current user.
+ * @param {string} title - post title.
+ * @param {string} content - post content (description).
+ * @param {string} image - path to the main post image.
+ * @param {string} updated_on - date and time when the post was last updated.
+ * @param {function} setPosts - function to update the list of posts.
+ */
 const Post = (props) => {
 	const { showErrorAlert, showSuccessAlert } = useErrorContext();
 	const currentUser = useCurrentUser();
@@ -41,13 +59,17 @@ const Post = (props) => {
 	const currentUrl = useLocation();
 	const history = useHistory();
 
+    // checks if the user owns the post instance
 	const is_owner = currentUser?.username === owner;
+    // Renders the back button depending on where the user is.
 	const isPostDetails = currentUrl.pathname.startsWith(`/posts/${id}`);
 
+    // pushes user to the edit post form, when selected.
 	const editPost = async () => {
 		history.push(`/posts/${id}/edit`);
 	};
 
+    // handles the post deletion, updates the post list, shows alert.
 	const deletePost = async () => {
 		try {
 			await axiosRes.delete(`/posts/${id}/`);
@@ -69,6 +91,7 @@ const Post = (props) => {
 		}
 	};
 
+    // handles a user unliking a previously liked post, updates likes count.
 	const unlikePost = async () => {
 		try {
 			await axiosRes.delete(`/likes/${like_id}/`);
@@ -92,7 +115,7 @@ const Post = (props) => {
 			);
 		}
 	};
-
+    // handles a user liking a post, updates likes count.
 	const likePost = async () => {
 		try {
 			const { data } = await axiosRes.post("/likes/", { post: id });
@@ -193,6 +216,7 @@ const Post = (props) => {
 						</span>
 					</OverlayTrigger>
 					<span className={styles.Count}>{likes_count}</span>
+                    {/* like tooltip conditional rendering */}
 					{like_id ? (
 						<OverlayTrigger
 							placement="bottom"

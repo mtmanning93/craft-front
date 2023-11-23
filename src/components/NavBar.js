@@ -20,13 +20,20 @@ import btnStyles from "../styles/Buttons.module.css";
 import { useErrorContext } from "../contexts/ErrorContext";
 import { removeTokenTimestamp } from "../jwt/timestamps";
 
+/**
+ * User related navigation component with responsive layout,
+ * user authentication, create post button, and dropdown menus.
+ * @component
+ */
 const NavBar = () => {
 	const { showErrorAlert, showSuccessAlert } = useErrorContext();
 	const currentUser = useCurrentUser();
 	const setCurrentUser = useSetCurrentUser();
 
+    // Sets the expanded value when a user clicks outside the dropdowns
 	const { expanded, setExpanded, ref } = useClickOutsideToggle();
 
+    // Handles the user logout, removes token shows success alert.
 	const handleLogOut = async () => {
 		try {
 			await axios.post("dj-rest-auth/logout/");
@@ -42,6 +49,7 @@ const NavBar = () => {
 		}
 	};
 
+    // Create a post button
 	const createBtn = (
 		<NavLink to="/posts/create" aria-label="Create post link">
 			<MainButton
@@ -56,6 +64,7 @@ const NavBar = () => {
 		</NavLink>
 	);
 
+    // Navbar toggler for a logged out user
 	const loggedOutToggler = (
 		<Navbar.Toggle
 			ref={ref}
@@ -65,7 +74,7 @@ const NavBar = () => {
 			className="border-0 p-0"
 		/>
 	);
-
+    // Navbar toggler set to profile avatar for logge din users.
 	const loggedInToggler = (
 		<Navbar.Toggle
 			ref={ref}
@@ -77,7 +86,8 @@ const NavBar = () => {
 			<Avatar src={currentUser?.profile_image} height={40} />
 		</Navbar.Toggle>
 	);
-
+    
+    // Navigation links for a logged out user including signup button.
 	const loggedOutNav = (
 		<>
 			<Navbar.Collapse
@@ -119,7 +129,7 @@ const NavBar = () => {
 			</Navbar.Collapse>
 		</>
 	);
-
+    // Navigation for logged in users, seperated between large and smalls screens.
 	const loggedInNav = (
 		<>
 			<Navbar.Collapse

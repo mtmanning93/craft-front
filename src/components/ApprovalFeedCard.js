@@ -8,9 +8,17 @@ import { useCurrentUser } from "../contexts/CurrentUserContext";
 import styles from "../styles/ApprovalFeedCard.module.css";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
+/**
+ * Component displaying user profile details on the top feed
+ * including approval ranking.
+ * @component
+ * @param {Object} profile - The profile details.
+ * @param {number} ranking - The user's ranking for query list.
+ */
 const ApprovalFeedCard = ({ profile, ranking }) => {
 	const currentUser = useCurrentUser();
 
+    // checks if current user ownes the profile card for highlighting.
 	const is_owner = currentUser?.username === profile.owner;
 
 	return (
@@ -23,7 +31,9 @@ const ApprovalFeedCard = ({ profile, ranking }) => {
 						</p>
 					</div>
 					<div className={styles.HeadIcons}>
+                        {/* displays user symbol for users card */}
 						{is_owner && <i className="fa-solid fa-user" />}
+                        {/* displays awards on cards for top 3 approved cards */}
 						{ranking === 1 && (
 							<i className="fas fa-trophy ml-2 text-warning" />
 						)}
@@ -37,6 +47,7 @@ const ApprovalFeedCard = ({ profile, ranking }) => {
 						)}
 					</div>
 				</Card.Header>
+                {/* profile details */}
 				<Card.Body>
 					<Row className="mb-2 d-flex flex-row">
 						<Col className="d-sm-flex text-center text-sm-left">
