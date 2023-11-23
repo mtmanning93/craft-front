@@ -3,12 +3,17 @@ import Alert from "react-bootstrap/Alert";
 import styles from "../../styles/Alert.module.css";
 import { useErrorContext } from "../../contexts/ErrorContext";
 
+/**
+ * A custom alert component for displaying error messages.
+ * @component
+ */
 const CustomAlert = () => {
 	const { errorInfo, clearErrorAlert } = useErrorContext();
 	const [show, setShow] = useState(false);
 
 	const timeoutRef = useRef(null);
 
+    // shows error alert if error passed to errorInfo context
 	useEffect(() => {
 		if (errorInfo) {
 			setShow(true);

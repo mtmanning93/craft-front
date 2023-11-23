@@ -1,5 +1,11 @@
 import { axiosReq } from "../../api/axiosDefaults";
 
+/**
+ * Fetches more objects for a paginated list resource.
+ * @param {object} resource - resource state containing results and pagination information.
+ * @param {function} setResource - function to set the state for updating the resource.
+ * @param {function} setError - function for updating an error message.
+ */
 const fetchMoreData = async (resource, setResource, setError) => {
 	try {
 		const { data } = await axiosReq.get(resource.next);
