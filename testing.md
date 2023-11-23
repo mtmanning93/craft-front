@@ -1,9 +1,5 @@
 # Testing
 
-[⏩ Main README](README.md)
-
-[⏪ Craft-API Repository](https://github.com/mtmanning93/craft-api)
-
 ## Contents
 
 -   [JavaScript/ JSX Testing](#javascript-jsx-testing)
@@ -20,6 +16,10 @@
 -   [Screen Testing](#screen-testing)
 -   [Browser Testing](#browser-testing)
 -   [Lighthouse](#lighthouse)
+
+[⏩ Main README](README.md)
+
+[⏪ Craft-API Repository](https://github.com/mtmanning93/craft-api)
 
 ## JavaScript/ JSX Testing
 
