@@ -203,7 +203,7 @@ const OtherFeeds = () => {
 				)}
 			</Col>
             {/* Large screens work of the week component */}
-			<Col md={4} className="d-none d-md-block">
+			<Col md={4} className="d-none d-md-block pr-0">
 				<Col
 					className={`${stylesW.WotwContainer} ${mainStyles.Content} bg-warning border-dark mt-3 p-0`}
 				>
