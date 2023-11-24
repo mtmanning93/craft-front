@@ -163,7 +163,7 @@ function CompanyList() {
 						)}
 					</>
 				) : (
-					<Loader loader variant="warning" />
+					<Loader loader variant="dark" />
 				)}
 			</div>
 			{/* Company Modal */}
