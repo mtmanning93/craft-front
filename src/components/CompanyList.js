@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { axiosReq } from "../api/axiosDefaults";
 import styles from "../styles/CompanyList.module.css";
 import mainStyles from ".././App.module.css";
-import { Form, Modal } from "react-bootstrap";
+import { Form, Modal, OverlayTrigger, Popover } from "react-bootstrap";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 import Loader from "./tools/Loader";
 import axios from "axios";
@@ -80,8 +80,34 @@ function CompanyList() {
 
 	return (
 		<>
-			<div className={`${styles.CompanyListWrapper} ${mainStyles.Content}`}>
-                <p className={styles.Heading}><i className="fa-solid fa-book mr-2" />Company Directory</p>
+			<div
+				className={`${styles.CompanyListWrapper} ${mainStyles.Content}`}
+			>
+				<div
+					className={`${styles.Heading} d-flex justify-content-between align-items-center`}
+				>
+					<p className="m-0">
+						<i className="fa-solid fa-book mr-2" />
+						Company Directory
+					</p>
+					<OverlayTrigger
+						placement="bottom"
+						overlay={
+							<Popover id="popover-positioned-bottom">
+								<Popover.Title>
+									Search Company Directory
+								</Popover.Title>
+								<Popover.Content>
+									Search by name or location, or scroll
+									through the alphabetized list of companies
+									to find employees and more information.
+								</Popover.Content>
+							</Popover>
+						}
+					>
+						<i className="fa-solid fa-circle-info" />
+					</OverlayTrigger>
+				</div>
 				{/* Displays the search bar form for logged in users */}
 				{currentUser && (
 					<Form
@@ -95,7 +121,7 @@ function CompanyList() {
 						<Form.Control
 							id="search-input"
 							type="text"
-							placeholder="Search feed..."
+							placeholder="Search directory..."
 							value={search}
 							onChange={(event) => setSearch(event.target.value)}
 						></Form.Control>
@@ -118,13 +144,22 @@ function CompanyList() {
 						{companies.results ? (
 							// Infinite scroll component fetches more feed data when necessary
 							companies.results.map((company) => (
-								<p
-									key={company.id}
-									onClick={() => openModal(company)}
-                                    className={`${styles.ListCompany} m-0 mt-2`}
-								>
-									{company.name}
-								</p>
+								<>
+									<hr />
+									<p
+										key={company.id}
+										onClick={() => openModal(company)}
+										className={`${styles.ListCompany} m-0 mt-2`}
+									>
+										<i className="fa-solid fa-house mr-2" />
+										{company.name}
+										{company.location && (
+											<span className="ml-2">
+												({company.location})
+											</span>
+										)}
+									</p>
+								</>
 							))
 						) : (
 							<p>No Companies...</p>
@@ -173,7 +208,10 @@ function CompanyList() {
 									{/* Display list of employee names */}
 									<ul className={styles.EmployeeList}>
 										{employees.map((profile) => (
-											<li className="mt-2" key={profile.id}>
+											<li
+												className="mt-2"
+												key={profile.id}
+											>
 												<Link
 													to={`/profiles/${profile.id}`}
 												>

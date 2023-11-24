@@ -171,10 +171,9 @@ const DefaultFeed = () => {
 				)}
 			</Col>
 			{/* Large screens work of the week component */}
-			<Col md={4}>
+			<Col md={4} className="d-none d-md-block">
 				<Col
-					className={`${stylesW.WotwContainer} ${mainStyles.Content} bg-warning border-dark mt-3 p-0 d-none d-md-block`}
-					// md={4}
+					className={`${stylesW.WotwContainer} ${mainStyles.Content} bg-warning border-dark mt-3 p-0`}
 				>
 					<p className={`${stylesW.Heading} m-0 mt-2 ml-2`}>
 						Work of the week

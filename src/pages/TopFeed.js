@@ -15,6 +15,7 @@ import styles from "../styles/TopFeed.module.css";
 import mainStyles from "../App.module.css";
 import ApprovalFeedCard from "../components/ApprovalFeedCard";
 import { useRedirectUser } from "../hooks/useRedirectUser";
+import CompanyList from "../components/CompanyList";
 
 /**
  * A feed component for displaying all site profiles.
@@ -84,14 +85,11 @@ const Feed = () => {
 		<Row className="w-100 px-2 px-sm-4">
 			<Col className="px-0 pr-md-4">
                 {/* Small screens Work of the Week component. */}
-				<Row
-					className={`${mainStyles.Content} bg-warning border-dark m-0 mt-3 d-md-none`}
+				<div
+					className="m-0 mt-3 d-md-none"
 				>
-					<p className={`${stylesW.Heading} mb-0 mt-2 ml-3 ml-sm-4`}>
-						Work of the week
-					</p>
-					<WorkOfTheWeek />
-				</Row>
+					<CompanyList />
+				</div>
 				<div className="d-flex flex-column flex-sm-row mt-3">
 					<div className="d-sm-none">
 						<strong>
@@ -216,15 +214,19 @@ const Feed = () => {
 				)}
 			</Col>
             {/* Large screens work of the week component */}
-			<Col
-				className={`${stylesW.WotwContainer} ${mainStyles.Content} bg-warning border-dark ml-2 mt-3 p-0 d-none d-md-block`}
-				md={4}
-			>
-				<p className={`${stylesW.Heading} m-0 mt-2 ml-2`}>
-					Work of the week
-				</p>
-				<p className="mx-2 mb-0">The most liked work right now.</p>
-				<WorkOfTheWeek />
+			<Col md={4} className="d-none d-md-block">
+				<Col
+					className={`${stylesW.WotwContainer} ${mainStyles.Content} bg-warning border-dark mt-3 p-0`}
+				>
+					<p className={`${stylesW.Heading} m-0 mt-2 ml-2`}>
+						Work of the week
+					</p>
+					<p className="mx-2 mb-0">The most liked work right now.</p>
+					<WorkOfTheWeek />
+				</Col>
+				<div>
+					<CompanyList />
+				</div>
 			</Col>
 		</Row>
 	);

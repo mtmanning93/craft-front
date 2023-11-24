@@ -23,3 +23,15 @@
 .ListCompany:hover {
     color: #4682B4
 }
+
+@media (max-width: 767px) {
+    .CompanyListWrapper {
+        margin-top: 0;
+        background-color: #f8c133;
+        max-height: 300px;
+    }
+
+    .Heading {
+        font-size: 1.2em;
+    }
+}
