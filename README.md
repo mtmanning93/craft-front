@@ -95,6 +95,7 @@ setup other dependencies:
                 -   [Select Employer](#select-employer)
                 -   [Add/ Edit Company](#add-edit-company)
             -   [Account Credentials](#account-credentials)
+            -   [Company Directory](#companies-directory)
         -   [CRUD Functionality](#crud-functionality)
         -   [Future Features](#future-features)
     -   [Reusable Components](#reusable-components)
@@ -110,6 +111,7 @@ setup other dependencies:
         -   [Comment.js](#commentjs)
         -   [NavBar.js](#navbarjs)
         -   [Footer.js](#footerjs)
+        -   [CompanyList.js](#companylistjs)
     -   [Contexts/ Hooks](#contexts-hooks)
         -   [ErrorContext.js](#errorcontextjs)
         -   [CurrentUserContext.js](#currentusercontextjs)
@@ -940,6 +942,16 @@ must be the same and of correct length.
 
 [⏫ contents](#contents)
 
+### Company Directory
+
+Users can scroll or search through the sites alphabetised list of companies. Clicking on a particular company in the list will open the company modal, which displays useful information regarding the company and a list of the companies employees, the employee list is also a clickeable linke to the related profile page. On mobiles it is located above the Top approved feed, whereas on desktops its easily found on all pages below the 'Work of the Week' component.
+
+![Company Directory Desktop](README_images/features/companydir/company-dir.png)
+![Company Directory Mobile](README_images/features/companydir/company-dir-m.png)
+![Company Modal](README_images/features/companydir/company-modal.png)
+
+[⏫ contents](#contents)
+
 ### CRUD Functionality
 
 ---
@@ -978,16 +990,12 @@ features may be short or long-term, some future features are listed below:
 
 -   #### Companies Directory
 
-    As users can add companies and employers to their profiles it would be a
-    great addition to have a page that could work as a 'Yellow Pages' style
-    directory. As the site's goal is to showcase the skills and abilities of the
-    users, a directory whereby the user's companies and employers are listed,
-    and can be searched through, would increase the visibilty of the users and
-    potentially offer them work opportunities.
+    In the future the companies directory could include contact details and website
+    links, this would increase the visibilty of the users and potentially offer them work opportunities.
 
 -   #### Company Contact Details
 
-    In order to enable the above directory feature to work, adding the company
+    In order to enable the above directory feature to work better, adding the company
     contact details would mean users can search companies by trade or by a
     particular profile and contact the company directly.
 
@@ -1092,6 +1100,10 @@ Throughout the site the Navbar component is used for user navigation, it holds t
 ### `Footer.js`
 
 Similaraly to the NavBar component the Footer is always at the bottom of the page throughout the site, it holds contact links a small message and extra navigation links which, again, similar to the NavBar update on login.
+
+### `CompanyList.js`
+
+Similar to he 'Work of the Week' component this feature component is used across all site pages which are not forms, simply by adding the component with no extra props or styles made it a great reuasable component.
 
 [⏫ contents](#contents)
 
@@ -1221,6 +1233,7 @@ some of the bugs which have been rectified, and a link to all
 -   #### axios defaults base URL was original set for the frontend Url not the API's
 
 -   #### Edit post form not accepting populated image data on form submission.
+
     Initially when created the edit post form this had gone unnoticed, however later
     when manually testing the edit post form, I noticed that if a user wanted to
     change the text fields of the post and not the image the form wouldnt pass validation,
@@ -1235,6 +1248,7 @@ some of the bugs which have been rectified, and a link to all
         // formData.append("image", imageSelection.current.files[0] || profileData.image);
 
 -   #### Assignments to the 'filter' variable from inside React Hook useEffect will be lost after each render.
+
     When trying to filter the list of posts for the following and liked feeds I needed
     to assign a filter method to each url. Originally I had defined the filter variable
     from inside the react hook, this raised a warning:
@@ -1260,6 +1274,7 @@ some of the bugs which have been rectified, and a link to all
                     }...
 
 -   #### Undefined ids on initial mount.
+
     When trying to fetch company lists based on a profile errors were being raised,
     this was because the function was trying to fetch data before the id was defined
     when mounting, to combat this I had to add an additionally line to check for
@@ -1273,18 +1288,20 @@ some of the bugs which have been rectified, and a link to all
                 const getProfileCompanies = async () => {...
 
 -   #### Navbar Avatar doesn't update on profile image update.
+
     When a user would update their profile image the Avatar's state was not updated
     meaning the users profile card would have one image but until the page was refreshed
     the navbar avatar wouldnt change. To fix the bug I needed to ensure a state change.
 
 -   #### "401 Unauthorized" error on each key press when typing in Login and Signup forms.
+
     Whilst going through the site with a test user running the manual tests I quickly realised that whilst the user typed into the login form username field every key hit would, seem to, send an API request. For example every time a key was hit, including backspace, the 401 error was raised in the console. To debug this, I first included a `console.log('componentDidRender')` outside of the onChange function. It quickly became clear that the component was essentially re-rendering on every key press. To test this further I created a `useEffect` to run only once on mount, it looked like this:
 
         useEffect(() => {
             console.log('componentDidMount')
         }, [])
 
-    This enabled me to see that the component was not remounting as the log would only show once on initial mount, however the `componentDidRender` was showing. After some research I understood that the previous 'loginData' state update was being updated on every key press, creating the rerender on every state update. 
+    This enabled me to see that the component was not remounting as the log would only show once on initial mount, however the `componentDidRender` was showing. After some research I understood that the previous 'loginData' state update was being updated on every key press, creating the rerender on every state update.
 
     To avoid using 'debounce' and 'throttling', to advanced techniques, I decided to search for the use of the `useRef()` hook in a form component, as I had previously used this hook. The search returned this result [uncontrolled-inputs-react](https://sentry.io/answers/uncontrolled-inputs-react/). I decided to test this out, as I understood the concept. The 401 errors were avoided and after testing the user could still, seemlessly, login.
 
@@ -1303,19 +1320,19 @@ some of the bugs which have been rectified, and a link to all
             name="username"
             ref={usernameRef}
         />
-    
+
     Finally I used the `current` property of the ref to access the values from the input field, and post the form data to the '/login/' endpoint:
-    
+
         const formData = {
                 username: usernameRef.current.value,
                 password: passwordRef.current.value,
             }
         const { data } = await axios.post(
-				"/dj-rest-auth/login/",
+        		"/dj-rest-auth/login/",
                 formData
-			);
+        	);
 
-    To see it in full use in the application it can be found at: 
+    To see it in full use in the application it can be found at:
     `src/pages/forms/LoginForm.js` / `src/pages/forms/SignUpForm.js`
 
 [⏫ contents](#contents)
@@ -1511,7 +1528,7 @@ deployed project.**
     -   Form validation alerts (_site wide, example:_
         `src/pages/forms/LoginForm.js`)
 
--   Using useRef over useState to avoid 401 errors from onChange rerender [more information *(link to Resolved Bugs)*](#401-unauthorized-error-on-each-key-press-when-typing-in-login-and-signup-forms) - [Uncontrolled Inputs React](https://sentry.io/answers/uncontrolled-inputs-react/)
+-   Using useRef over useState to avoid 401 errors from onChange rerender [more information _(link to Resolved Bugs)_](#401-unauthorized-error-on-each-key-press-when-typing-in-login-and-signup-forms) - [Uncontrolled Inputs React](https://sentry.io/answers/uncontrolled-inputs-react/)
 
 -   Infinite Scroll -
     [Npm react-infinite-scroll Docs](https://www.npmjs.com/package/react-infinite-scroll-component)
