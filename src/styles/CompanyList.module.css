@@ -18,6 +18,7 @@
 
 .ListCompany {
     cursor: pointer;
+    border-top: 1px solid #4682B4;
 }
 
 .ListCompany:hover {
@@ -29,6 +30,11 @@
         margin-top: 0;
         background-color: #f8c133;
         max-height: 300px;
+    }
+
+    .ListCompany {
+        cursor: pointer;
+        border-top: 1px solid #00000038;
     }
 
     .Heading {

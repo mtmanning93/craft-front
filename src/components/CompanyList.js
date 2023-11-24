@@ -144,22 +144,19 @@ function CompanyList() {
 						{companies.results ? (
 							// Infinite scroll component fetches more feed data when necessary
 							companies.results.map((company) => (
-								<>
-									<hr />
-									<p
-										key={company.id}
-										onClick={() => openModal(company)}
-										className={`${styles.ListCompany} m-0 mt-2`}
-									>
-										<i className="fa-solid fa-house mr-2" />
-										{company.name}
-										{company.location && (
-											<span className="ml-2">
-												({company.location})
-											</span>
-										)}
-									</p>
-								</>
+								<p
+									key={company.id}
+									onClick={() => openModal(company)}
+									className={`${styles.ListCompany} m-0 mt-2 pt-2`}
+								>
+									<i className="fa-solid fa-house mr-2" />
+									{company.name}
+									{company.location && (
+										<span className="ml-2">
+											({company.location})
+										</span>
+									)}
+								</p>
 							))
 						) : (
 							<p>No Companies...</p>
@@ -220,7 +217,9 @@ function CompanyList() {
 														height={30}
 														// className={styles.Avatar}
 													/>
-													<span className="ml-2">{profile.owner}</span>
+													<span className="ml-2">
+														{profile.owner}
+													</span>
 												</Link>
 											</li>
 										))}
