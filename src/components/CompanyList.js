@@ -219,10 +219,8 @@ function CompanyList() {
 														src={profile.image}
 														height={30}
 														// className={styles.Avatar}
-														textAfter={
-															profile.owner
-														}
 													/>
+													<span className="ml-2">{profile.owner}</span>
 												</Link>
 											</li>
 										))}
